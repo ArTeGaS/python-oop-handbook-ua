@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="uk" data-active-chapter="08-slovnyky-vkladennia-i-mnozhyny">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Словники, вкладені дані й множини Словники, вкладені дані й множини Список знаходить елемент за позицією: нульовий, перший, останній. Але налаштування зручніше шукати за змістом: `volume`, `">
+  <meta name="theme-color" content="#f4f0e8">
+  <title>Словники, вкладені дані й множини — Python через об’єкти</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body class="chapter-page">
+  <a class="skip-link" href="#main-content">До основного тексту</a>
+  <header class="mobile-header">
+    <button class="icon-button menu-button" type="button" aria-label="Відкрити зміст" aria-expanded="false">Зміст</button>
+    <a class="mobile-brand" href="index.html">Python через об’єкти</a>
+    <button class="icon-button theme-toggle" type="button" aria-label="Змінити тему">Тема</button>
+  </header>
+  <div class="app-shell">
+
+<aside class="sidebar" aria-label="Зміст">
+  <div class="sidebar-top">
+    <a class="brand" data-slug="home" href="index.html">
+      <span class="brand-mark">Py</span>
+      <span><strong>Python через об’єкти</strong><small>Практична довідка для початківців</small></span>
+    </a>
+    <button class="theme-toggle desktop-theme" type="button">Змінити тему</button>
+  </div>
+  <label class="search-box">
+    <span class="visually-hidden">Пошук</span>
+    <input id="chapter-search" type="search" placeholder="Знайти тему…" autocomplete="off">
+    <kbd>Ctrl K</kbd>
+  </label>
+  <div class="progress-card">
+    <div><span>Прогрес</span><strong id="progress-label">0 з 18</strong></div>
+    <div class="progress-track"><span id="progress-bar"></span></div>
+  </div>
+  <nav class="chapter-nav"><a class="chapter-link" data-slug="00-yak-korystuvatysia" href="00-yak-korystuvatysia.html"><span class="chapter-number">Початок</span><span>Як користуватися цією довідкою</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="01-py-fail-i-pershyi-obiekt" href="01-py-fail-i-pershyi-obiekt.html"><span class="chapter-number">01</span><span>`.py`-файл і перший об’єкт</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="02-stan-obiekta-i-prosti-typy" href="02-stan-obiekta-i-prosti-typy.html"><span class="chapter-number">02</span><span>Стан об’єкта: рядки, числа й логічні значення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="03-metody-parametry-i-povernennia" href="03-metody-parametry-i-povernennia.html"><span class="chapter-number">03</span><span>Методи: параметри, аргументи й `return`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="04-rishennia-i-lohichni-vyrazy" href="04-rishennia-i-lohichni-vyrazy.html"><span class="chapter-number">04</span><span>Рішення: порівняння, `if`, `elif`, `else`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="05-spysky-i-kortezhi" href="05-spysky-i-kortezhi.html"><span class="chapter-number">05</span><span>Списки й кортежі: впорядковані колекції</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="06-cykly-range-i-zrizy" href="06-cykly-range-i-zrizy.html"><span class="chapter-number">06</span><span>Повторення: `for`, `range()` і зрізи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="07-vvedennia-i-cykl-while" href="07-vvedennia-i-cykl-while.html"><span class="chapter-number">07</span><span>Діалог із програмою: `input()` і цикл `while`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="08-slovnyky-vkladennia-i-mnozhyny" href="08-slovnyky-vkladennia-i-mnozhyny.html"><span class="chapter-number">08</span><span>Словники, вкладені дані й множини</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="09-funktsii-i-moduli" href="09-funktsii-i-moduli.html"><span class="chapter-number">09</span><span>Функції й модулі: інструменти поза об’єктами</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="10-struktura-opp-proiektu" href="10-struktura-opp-proiektu.html"><span class="chapter-number">10</span><span>Структура OOP-проєкту у VS Code</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="11-spadkuvannia-kompozytsiia-i-vlastyvosti" href="11-spadkuvannia-kompozytsiia-i-vlastyvosti.html"><span class="chapter-number">11</span><span>Пов’язані об’єкти: успадкування, композиція й властивості</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="12-standartna-biblioteka-i-vypadkovist" href="12-standartna-biblioteka-i-vypadkovist.html"><span class="chapter-number">12</span><span>Стандартна бібліотека й керована випадковість</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="13-faily-koduvannia-i-shliakhy" href="13-faily-koduvannia-i-shliakhy.html"><span class="chapter-number">13</span><span>Текстові файли, UTF-8 і шляхи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="14-vyniatky-i-chytabelni-zboi" href="14-vyniatky-i-chytabelni-zboi.html"><span class="chapter-number">14</span><span>Винятки: передбачувані збої й корисні повідомлення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="15-json-zberezhennia-i-refaktorynh" href="15-json-zberezhennia-i-refaktorynh.html"><span class="chapter-number">15</span><span>JSON: збереження стану й рефакторинг</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="16-testy-z-pytest" href="16-testy-z-pytest.html"><span class="chapter-number">16</span><span>Автоматичні тести з pytest</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="17-styl-nalahodzhennia-i-karta-syntaksysu" href="17-styl-nalahodzhennia-i-karta-syntaksysu.html"><span class="chapter-number">17</span><span>Підтримуваний код: стиль, налагодження й карта синтаксису</span><span class="chapter-check" aria-hidden="true">✓</span></a></nav>
+  <div class="sidebar-actions">
+    <a class="button secondary full" href="downloads/python-cherez-obiekty.pdf">Завантажити PDF</a>
+  </div>
+</aside>
+
+    <main id="main-content" class="main-content" tabindex="-1">
+
+<article class="chapter-article" data-chapter="08-slovnyky-vkladennia-i-mnozhyny">
+  <header class="chapter-header">
+    <p class="eyebrow">Розділ 08</p>
+    <p class="chapter-reading-note">Читай · запускай · змінюй · перевіряй</p>
+  </header>
+  <div class="chapter-body"><h1 id="slovnyky-vkladeni-dani-y-mnozhyny">Словники, вкладені дані й множини<a class="heading-link" href="#slovnyky-vkladeni-dani-y-mnozhyny" aria-label="Посилання на розділ">#</a></h1>
+<p>Список знаходить елемент за позицією: нульовий, перший, останній. Але налаштування зручніше шукати за змістом: <code>volume</code>, <code>language</code>, <code>difficulty</code>. <strong>Словник</strong> пов’язує ключ із відповідним значенням.</p>
+<h2 id="shcho-zrobymo">Що зробимо<a class="heading-link" href="#shcho-zrobymo" aria-label="Посилання на розділ">#</a></h2>
+<p>Створимо профіль гравця з налаштуваннями, досягненнями й статистикою. Побачимо, коли словник є частиною стану класу, а коли сам клас уже зайвий або, навпаки, необхідний.</p>
+<section class="callout callout-goal"><div class="callout-label">Результат</div><p>Ти зможеш безпечно читати й змінювати значення за ключем, перебирати пари, будувати вкладені дані та відрізняти словник даних від об’єкта з поведінкою.</p></section>
+<h2 id="slovnyk-poviazuie-kliuch-i-znachennia">Словник пов’язує ключ і значення<a class="heading-link" href="#slovnyk-poviazuie-kliuch-i-znachennia" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">settings = {
+    &quot;volume&quot;: 70,
+    &quot;language&quot;: &quot;uk&quot;,
+    &quot;show_hints&quot;: True,
+}</code></pre></div>
+<p>Фігурні дужки позначають словник <code>dict</code>. Кожна пара має форму <code>key: value</code>.</p>
+<ul><li>ключ <code>&quot;volume&quot;</code> веде до числа <code>70</code>;</li><li>ключ <code>&quot;language&quot;</code> — до рядка <code>&quot;uk&quot;</code>;</li><li>ключ <code>&quot;show_hints&quot;</code> — до логічного значення.</li></ul>
+<p>Ключі в одному словнику мають бути унікальними. Якщо записати той самий ключ повторно, пізніше значення замінить попереднє.</p>
+<p>З Python 3.7 порядок вставлення ключів є гарантованою властивістю мови. Але звертатися до словника все одно треба за змістовним ключем, а не будувати логіку на «другій парі».</p>
+<h2 id="maysternia">Майстерня<a class="heading-link" href="#maysternia" aria-label="Посилання на розділ">#</a></h2>
+<p>Створи <code>player_profile.py</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>player_profile.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class PlayerProfile:
+    def __init__(self, name):
+        self.name = name
+        self.settings = {
+            &quot;volume&quot;: 70,
+            &quot;language&quot;: &quot;uk&quot;,
+            &quot;show_hints&quot;: True,
+        }
+        self.statistics = {}
+        self.achievements = []
+
+    def change_setting(self, key, value):
+        if key not in self.settings:
+            return f&quot;Невідоме налаштування: {key}.&quot;
+        self.settings[key] = value
+        return f&quot;Налаштування {key} змінено.&quot;
+
+    def add_stat(self, key, amount=1):
+        current = self.statistics.get(key, 0)
+        self.statistics[key] = current + amount
+
+    def unlock(self, achievement):
+        if achievement in self.achievements:
+            return &quot;Досягнення вже було відкрито.&quot;
+        self.achievements.append(achievement)
+        return f&quot;Досягнення відкрито: {achievement}.&quot;
+
+    def settings_text(self):
+        hints = &quot;так&quot; if self.settings[&quot;show_hints&quot;] else &quot;ні&quot;
+        return (
+            f&quot;Мова: {self.settings[&#x27;language&#x27;]}, &quot;
+            f&quot;гучність: {self.settings[&#x27;volume&#x27;]}, &quot;
+            f&quot;підказки: {hints}.&quot;
+        )
+
+
+profile = PlayerProfile(&quot;Міра&quot;)
+print(profile.settings_text())
+print(profile.unlock(&quot;Перший крок&quot;))
+
+profile.change_setting(&quot;volume&quot;, 40)
+profile.add_stat(&quot;rooms_explored&quot;, 3)
+
+print(profile.settings_text())
+print(f&quot;Досліджено кімнат: {profile.statistics[&#x27;rooms_explored&#x27;]}.&quot;)</code></pre></div>
+<p>В одному об’єкті є три різні колекції:</p>
+<ul><li>словник <code>settings</code> має заздалегідь відомі ключі;</li><li>порожній словник <code>statistics</code> отримує нові категорії під час роботи;</li><li>список <code>achievements</code> зберігає впорядковану історію досягнень.</li></ul>
+<h3 id="chytannia-za-kliuchem">Читання за ключем<a class="heading-link" href="#chytannia-za-kliuchem" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">volume = self.settings[&quot;volume&quot;]</code></pre></div>
+<p>Квадратні дужки повертають значення за точним ключем. Якщо ключа немає, Python показує <code>KeyError</code>.</p>
+<p>Для необов’язкового ключа використовуй <code>get()</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">current = self.statistics.get(key, 0)</code></pre></div>
+<p>Якщо <code>key</code> існує, повернеться його значення. Якщо ні — запасне <code>0</code>. Без другого аргументу <code>get()</code> повертає <code>None</code>.</p>
+<p>Не треба автоматично замінювати всі <code>[...]</code> на <code>.get()</code>. Коли ключ <strong>зобов’язаний</strong> існувати, <code>KeyError</code> чесно показує порушену структуру. <code>get()</code> доречний для справді необов’язкових даних або явного значення за замовчуванням.</p>
+<h3 id="dodavannia-y-zamina-maiut-odnakovyy-zapys">Додавання й заміна мають однаковий запис<a class="heading-link" href="#dodavannia-y-zamina-maiut-odnakovyy-zapys" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">self.statistics[&quot;steps&quot;] = 1
+self.statistics[&quot;steps&quot;] = 2</code></pre></div>
+<p>Перший рядок додає нову пару, другий змінює значення наявного ключа.</p>
+<p>Метод <code>update()</code> додає або замінює кілька пар:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">self.settings.update({&quot;volume&quot;: 40, &quot;show_hints&quot;: False})</code></pre></div>
+<h3 id="vydalennia">Видалення<a class="heading-link" href="#vydalennia" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">del self.statistics[&quot;temporary&quot;]</code></pre></div>
+<p><code>del</code> потребує наявного ключа.</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">removed = self.statistics.pop(&quot;temporary&quot;, None)</code></pre></div>
+<p><code>pop()</code> видаляє ключ і повертає значення. Другий аргумент є запасним результатом, якщо ключ відсутній.</p>
+<section class="callout callout-practice"><div class="callout-label">Перемкни підказки</div><p>Додай метод без аргументів:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def toggle_hints(self):
+    self.settings[&quot;show_hints&quot;] = not self.settings[&quot;show_hints&quot;]</code></pre></div>
+<p>Виклич його двічі й перевір <code>settings_text()</code>. Чому <code>not</code> зручно описує перемикач?</p></section>
+<h2 id="perebyrannia-slovnyka">Перебирання словника<a class="heading-link" href="#perebyrannia-slovnyka" aria-label="Посилання на розділ">#</a></h2>
+<h3 id="pary-cherez-items">Пари через <code>items()</code><a class="heading-link" href="#pary-cherez-items" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>dict_items.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">stats = {&quot;health&quot;: 20, &quot;energy&quot;: 8}
+
+for key, value in stats.items():
+    print(f&quot;{key}: {value}&quot;)</code></pre></div>
+<p>Кожна пара розпаковується у <code>key</code> та <code>value</code>.</p>
+<h3 id="lyshe-kliuchi">Лише ключі<a class="heading-link" href="#lyshe-kliuchi" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">for key in stats:
+    print(key)</code></pre></div>
+<p>Це коротка форма <code>for key in stats.keys():</code>. Метод <code>keys()</code> корисний, коли хочеться явно підкреслити роботу з ключами.</p>
+<h3 id="lyshe-znachennia">Лише значення<a class="heading-link" href="#lyshe-znachennia" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">for value in stats.values():
+    print(value)</code></pre></div>
+<p>Значення можуть повторюватися. Якщо потрібні лише унікальні значення, їх можна передати до <code>set()</code>.</p>
+<h3 id="vyznachenyy-poriadok-pokazu">Визначений порядок показу<a class="heading-link" href="#vyznachenyy-poriadok-pokazu" aria-label="Посилання на розділ">#</a></h3>
+<p>Словник пам’ятає порядок додавання, але іноді інтерфейс потребує алфавітного порядку:</p>
+<div class="code-block"><div class="code-toolbar"><span>sorted_dict.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">stats = {&quot;health&quot;: 20, &quot;score&quot;: 100, &quot;energy&quot;: 8}
+
+for key in sorted(stats):
+    print(key)</code></pre></div>
+<p><code>sorted(stats)</code> сортує ключі й повертає список.</p>
+<h2 id="vkladeni-struktury">Вкладені структури<a class="heading-link" href="#vkladeni-struktury" aria-label="Посилання на розділ">#</a></h2>
+<p>Значенням словника може бути список, інший словник або об’єкт.</p>
+<div class="code-block"><div class="code-toolbar"><span>nested_profile.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">profile_data = {
+    &quot;name&quot;: &quot;Міра&quot;,
+    &quot;stats&quot;: {
+        &quot;score&quot;: 120,
+        &quot;level&quot;: 3,
+    },
+    &quot;tags&quot;: [&quot;дослідник&quot;, &quot;помічник&quot;],
+}
+
+print(f&quot;{profile_data[&#x27;name&#x27;]}: {profile_data[&#x27;stats&#x27;][&#x27;score&#x27;]} очок&quot;)
+print(f&quot;Мітки: {&#x27;, &#x27;.join(profile_data[&#x27;tags&#x27;])}&quot;)</code></pre></div>
+<p>Кожна пара дужок проходить на один рівень глибше. Надто глибоке вкладення важко читати:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">data[&quot;players&quot;][0][&quot;inventory&quot;][&quot;tools&quot;][2]</code></pre></div>
+<p>Якщо структура має власні правила й поведінку, виділи клас або хоча б проміжні імена.</p>
+<h3 id="spysok-slovnykiv">Список словників<a class="heading-link" href="#spysok-slovnykiv" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>list_of_dicts.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">readings = [
+    {&quot;sensor&quot;: &quot;A&quot;, &quot;value&quot;: 21.5},
+    {&quot;sensor&quot;: &quot;B&quot;, &quot;value&quot;: 19.0},
+]
+
+for reading in readings:
+    print(f&quot;Датчик {reading[&#x27;sensor&#x27;]}: {reading[&#x27;value&#x27;]}&quot;)</code></pre></div>
+<p>Це зручно для простих зовнішніх даних: рядків таблиці, повідомлень API, записів JSON. Якщо кожен датчик має обчислення, перевірки й стан, об’єкти <code>Sensor</code> дадуть чіткішу модель.</p>
+<h3 id="slovnyk-obiektiv">Словник об’єктів<a class="heading-link" href="#slovnyk-obiektiv" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>dict_of_objects.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Robot:
+    def __init__(self, name, energy):
+        self.name = name
+        self.energy = energy
+
+    def status_text(self):
+        return f&quot;{self.name} має {self.energy} енергії.&quot;
+
+
+robots = {
+    &quot;worker&quot;: Robot(&quot;Робі&quot;, 10),
+    &quot;scout&quot;: Robot(&quot;Іскра&quot;, 7),
+}
+
+print(robots[&quot;worker&quot;].status_text())</code></pre></div>
+<p>Словник швидко знаходить роль <code>&quot;worker&quot;</code>, а об’єкт зберігає поведінку конкретного робота. Колекції та ООП не конкурують — вони виконують різні роботи.</p>
+<h2 id="koly-klas-a-koly-slovnyk">Коли клас, а коли словник<a class="heading-link" href="#koly-klas-a-koly-slovnyk" aria-label="Посилання на розділ">#</a></h2>
+<p>Обирай словник, коли:</p>
+<ul><li>ключі можуть з’являтися динамічно;</li><li>дані приходять або йдуть у формат на кшталт JSON;</li><li>потрібне просте зіставлення «ключ → значення»;</li><li>поведінка мінімальна й живе в іншому об’єкті.</li></ul>
+<p>Обирай клас, коли:</p>
+<ul><li>структура має обов’язкові поля;</li><li>зміни підкоряються правилам;</li><li>дані мають власні дії;</li><li>важливі зрозумілі методи на кшталт <code>move()</code>, <code>unlock()</code>, <code>calculate_total()</code>.</li></ul>
+<p>Нормальний варіант — клас <strong>містить</strong> словник, як <code>PlayerProfile.settings</code>. Клас захищає правила, словник дає гнучке зберігання пар.</p>
+<section class="callout callout-note"><div class="callout-label">Не перетворюй усе на класи</div><p>ООП-first не означає «клас для кожного числа». Локальний словник налаштувань може бути найпростішим рішенням. Клас виправданий, коли дає назву сутності й збирає разом її стан та поведінку.</p></section>
+<h2 id="bezpechnyy-parametr-slovnyk">Безпечний параметр-словник<a class="heading-link" href="#bezpechnyy-parametr-slovnyk" aria-label="Посилання на розділ">#</a></h2>
+<p>Не використовуй порожній словник як значення параметра за замовчуванням:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Profile:
+    def __init__(self, settings={}):
+        self.settings = settings</code></pre></div>
+<p>Цей словник створюється один раз під час визначення класу й може несподівано стати спільним для багатьох об’єктів.</p>
+<p>Безпечний шаблон:</p>
+<div class="code-block"><div class="code-toolbar"><span>safe_default_dict.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Profile:
+    def __init__(self, settings=None):
+        if settings is None:
+            settings = {}
+        self.settings = settings.copy()
+
+
+first = Profile()
+second = Profile()
+
+first.settings[&quot;volume&quot;] = 20
+
+print(first.settings)
+print(second.settings)</code></pre></div>
+<p><code>None</code> не змінюється. Новий словник створюється окремо для кожного виклику. <code>.copy()</code> також відділяє внутрішній словник від переданого зовнішнього словника.</p>
+<p>Для перевірки саме <code>None</code> використовують <code>is None</code>, а не <code>== None</code>. <code>is</code> перевіряє тотожність одному спеціальному об’єкту <code>None</code>.</p>
+<h2 id="mnozhyna-zberihaie-unikalni-znachennia">Множина зберігає унікальні значення<a class="heading-link" href="#mnozhyna-zberihaie-unikalni-znachennia" aria-label="Посилання на розділ">#</a></h2>
+<p>Множина <code>set</code> не зберігає повтори:</p>
+<div class="code-block"><div class="code-toolbar"><span>unique_tags.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">tags = {&quot;python&quot;, &quot;oop&quot;, &quot;python&quot;, &quot;practice&quot;}
+
+print(len(tags))
+print(&quot;oop&quot; in tags)</code></pre></div>
+<p>Порядок множини не слід вважати стабільним для показу. Якщо потрібен передбачуваний порядок, використовуй <code>sorted(tags)</code>.</p>
+<p>Порожню множину створюють лише через <code>set()</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">tags = set()</code></pre></div>
+<p><code>{}</code> створює порожній словник.</p>
+<p>Основні зміни:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">tags.add(&quot;testing&quot;)
+tags.remove(&quot;oop&quot;)
+tags.discard(&quot;missing&quot;)</code></pre></div>
+<p><code>remove()</code> дає <code>KeyError</code>, якщо значення відсутнє; <code>discard()</code> мовчки лишає множину без змін.</p>
+<p>Операції над множинами:</p>
+<div class="code-block"><div class="code-toolbar"><span>set_operations.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">learned = {&quot;python&quot;, &quot;oop&quot;, &quot;loops&quot;}
+required = {&quot;python&quot;, &quot;testing&quot;}
+
+print(sorted(learned | required))
+print(sorted(learned &amp; required))</code></pre></div>
+<ul><li><code>|</code> — об’єднання всіх значень;</li><li><code>&amp;</code> — перетин спільних;</li><li><code>-</code> — різниця;</li><li><code>&lt;=</code> — перевірка, чи є одна множина підмножиною іншої.</li></ul>
+<p>Множина доречна для унікальних тегів, відвіданих кімнат, дозволів або швидкої перевірки належності.</p>
+<h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
+<h3 id="vidsutniy-kliuch">Відсутній ключ<a class="heading-link" href="#vidsutniy-kliuch" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">settings = {&quot;volume&quot;: 70}
+print(settings[&quot;language&quot;])</code></pre></div>
+<p>Python покаже <code>KeyError: &#x27;language&#x27;</code>. Виріши, що це означає для моделі:</p>
+<ul><li>структура зламана — нехай помилка лишиться видимою;</li><li>ключ необов’язковий — використай <code>settings.get(&quot;language&quot;, &quot;uk&quot;)</code>;</li><li>ключ треба створити раніше — виправ ініціалізацію.</li></ul>
+<h3 id="zmina-rozmiru-slovnyka-pid-chas-pereboru">Зміна розміру словника під час перебору<a class="heading-link" href="#zmina-rozmiru-slovnyka-pid-chas-pereboru" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">for key in statistics:
+    if statistics[key] == 0:
+        del statistics[key]</code></pre></div>
+<p>Python зупиниться з <code>RuntimeError</code>, бо розмір словника змінився під час циклу. Перебирай копію ключів: <code>for key in list(statistics):</code>, або створи новий словник.</p>
+<h3 id="kliuch-i-znachennia-pereplutani">Ключ і значення переплутані<a class="heading-link" href="#kliuch-i-znachennia-pereplutani" aria-label="Посилання на розділ">#</a></h3>
+<p><code>for key, value in data.items()</code> має два імені. Назви <code>for value, key ...</code> синтаксично працюватимуть, але введуть читача в оману й швидко спричинять логічну помилку.</p>
+<section class="callout callout-mistake"><div class="callout-label">Типова помилка</div><p>Не ховай помилку структури через нескінченний ланцюжок <code>.get(..., {})</code>. Якщо поле обов’язкове, краще отримати точну помилку біля джерела, ніж <code>None</code> у далекому обчисленні.</p></section>
+<h2 id="shvydka-perevirka">Швидка перевірка<a class="heading-link" href="#shvydka-perevirka" aria-label="Посилання на розділ">#</a></h2>
+<p>Визнач стан обох профілів після змін:</p>
+<div class="code-block"><div class="code-toolbar"><span>profile_copy.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Profile:
+    def __init__(self, settings):
+        self.settings = settings.copy()
+
+
+defaults = {&quot;theme&quot;: &quot;light&quot;, &quot;volume&quot;: 20}
+first = Profile(defaults)
+second = Profile(defaults)
+
+first.settings[&quot;volume&quot;] = 80
+second.settings[&quot;theme&quot;] = &quot;dark&quot;
+
+print(f&quot;Перший: {first.settings}&quot;)
+print(f&quot;Другий: {second.settings}&quot;)</code></pre></div>
+<section class="quiz" data-answer="2"><div class="callout-label">Перевір себе</div><p class="quiz-question">Як без помилки прочитати необов’язковий ключ score і отримати 0, якщо його немає?</p><div class="quiz-options"><button type="button" class="quiz-option" data-index="0">data[&quot;score&quot;, 0]</button><button type="button" class="quiz-option" data-index="1">data.get[&quot;score&quot;]</button><button type="button" class="quiz-option" data-index="2">data.get(&quot;score&quot;, 0)</button></div><p class="quiz-feedback" hidden>Метод get() приймає ключ і запасне значення. Квадратні дужки потребують наявного точного ключа.</p></section>
+<h2 id="samostiyna-robota">Самостійна робота<a class="heading-link" href="#samostiyna-robota" aria-label="Посилання на розділ">#</a></h2>
+<section class="callout callout-tasks"><div class="callout-label">Самостійна робота</div><ul><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="08-slovnyky-vkladennia-i-mnozhyny-task-1"><span>Додай профілю налаштування <code>difficulty</code> і метод, який приймає лише значення <code>easy</code>, <code>normal</code>, <code>hard</code>, а невідоме значення відхиляє.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="08-slovnyky-vkladennia-i-mnozhyny-task-2"><span>Створи клас <code>WordCounter</code> зі словником частот. Метод <code>add(word)</code> має збільшувати лічильник через <code>.get(word, 0)</code>.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="08-slovnyky-vkladennia-i-mnozhyny-task-3"><span>Побудуй словник об’єктів <code>Robot</code>, де ключ — унікальний ідентифікатор. Додай безпечний метод пошуку, який повертає об’єкт або <code>None</code>.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="08-slovnyky-vkladennia-i-mnozhyny-task-4"><span>Створи список із трьох словників зовнішніх даних, перетвори кожен на об’єкт <code>Sensor</code> і порівняй, де зручніше розмістити перевірку значення.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="08-slovnyky-vkladennia-i-mnozhyny-task-5"><span>Перебери словник у порядку ключів і надрукуй таблицю. Потім перебери тільки унікальні значення через множину.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="08-slovnyky-vkladennia-i-mnozhyny-task-6"><span>Створи дві множини навичок: уже вивчені та потрібні. Знайди спільні, відсутні й повний набір.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="08-slovnyky-vkladennia-i-mnozhyny-task-7"><span>Відтвори проблему зі спільним словником у параметрі <code>settings={}</code>, а потім виправ її через <code>None</code> і копію.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="08-slovnyky-vkladennia-i-mnozhyny-task-8"><span>Навмисно зміни розмір словника під час циклу, прочитай <code>RuntimeError</code>, а потім реалізуй безпечне очищення через копію ключів або словникове включення.</span></label></li></ul></section>
+<section class="callout callout-history"><div class="callout-label">Коротка історична пауза</div><p>Назва «словник» добре описує ідею: слово веде до пояснення, а ключ — до значення. В інших мовах подібну структуру можуть називати map, hash map, associative array або object. Назви різняться, а головна модель одна: знайти значення не за позицією, а за ключем.</p></section>
+<h2 id="pidsumok">Підсумок<a class="heading-link" href="#pidsumok" aria-label="Посилання на розділ">#</a></h2>
+<ul><li>Словник зберігає пари <code>ключ: значення</code>; ключі унікальні.</li><li><code>data[key]</code> потребує наявного ключа, <code>data.get(key, default)</code> підтримує необов’язкові дані.</li><li>Присвоєння за ключем додає або змінює пару; <code>del</code> і <code>pop()</code> видаляють.</li><li><code>items()</code>, <code>keys()</code> і <code>values()</code> дають різні способи перебору.</li><li>Значення можуть містити вкладені словники, списки або об’єкти, але надмірна глибина погіршує модель.</li><li>Клас потрібен для сутності з правилами й поведінкою; словник — для гнучкого зіставлення та зовнішніх даних.</li><li>Для змінної колекції за замовчуванням використовуй <code>None</code>, а нову колекцію створюй усередині <code>__init__</code>.</li><li>Множина зберігає унікальні значення й підтримує об’єднання, перетин та різницю.</li></ul></div>
+  <section class="completion-card">
+    <div><p class="eyebrow">Твій прогрес</p><h2>Розділ опрацьовано?</h2><p>Позначай тільки після запуску прикладу й самостійної зміни.</p></div>
+    <button class="button primary complete-chapter" type="button" data-chapter-id="08-slovnyky-vkladennia-i-mnozhyny">Позначити завершеним</button>
+  </section>
+  <nav class="chapter-pager" aria-label="Сусідні розділи"><a class="chapter-pager-link previous" href="07-vvedennia-i-cykl-while.html"><span>← Назад</span><strong>Діалог із програмою: `input()` і цикл `while`</strong></a><a class="chapter-pager-link next" href="09-funktsii-i-moduli.html"><span>Далі →</span><strong>Функції й модулі: інструменти поза об’єктами</strong></a></nav>
+</article>
+
+      <footer class="site-footer">
+        <p>Python через об’єкти · українська практична довідка · 2026</p>
+        <a href="https://github.com/ArTeGaS/python-oop-handbook-ua">Відкрити репозиторій</a>
+      </footer>
+    </main>
+  </div>
+  <div class="search-panel" hidden aria-live="polite">
+    <div class="search-panel-inner">
+      <button class="search-close" type="button" aria-label="Закрити пошук">×</button>
+      <p class="eyebrow">Пошук у довідці</p>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+</body>
+</html>

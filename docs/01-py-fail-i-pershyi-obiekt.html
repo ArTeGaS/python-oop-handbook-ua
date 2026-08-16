@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="uk" data-active-chapter="01-py-fail-i-pershyi-obiekt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="`.py`-файл і перший об’єкт `.py`-файл і перший об’єкт У цьому розділі ми не встановлюємо редактор і не налаштовуємо Python. Вважаємо, що папка вже відкрита у VS Code, а команда запуску працю">
+  <meta name="theme-color" content="#f4f0e8">
+  <title>`.py`-файл і перший об’єкт — Python через об’єкти</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body class="chapter-page">
+  <a class="skip-link" href="#main-content">До основного тексту</a>
+  <header class="mobile-header">
+    <button class="icon-button menu-button" type="button" aria-label="Відкрити зміст" aria-expanded="false">Зміст</button>
+    <a class="mobile-brand" href="index.html">Python через об’єкти</a>
+    <button class="icon-button theme-toggle" type="button" aria-label="Змінити тему">Тема</button>
+  </header>
+  <div class="app-shell">
+
+<aside class="sidebar" aria-label="Зміст">
+  <div class="sidebar-top">
+    <a class="brand" data-slug="home" href="index.html">
+      <span class="brand-mark">Py</span>
+      <span><strong>Python через об’єкти</strong><small>Практична довідка для початківців</small></span>
+    </a>
+    <button class="theme-toggle desktop-theme" type="button">Змінити тему</button>
+  </div>
+  <label class="search-box">
+    <span class="visually-hidden">Пошук</span>
+    <input id="chapter-search" type="search" placeholder="Знайти тему…" autocomplete="off">
+    <kbd>Ctrl K</kbd>
+  </label>
+  <div class="progress-card">
+    <div><span>Прогрес</span><strong id="progress-label">0 з 18</strong></div>
+    <div class="progress-track"><span id="progress-bar"></span></div>
+  </div>
+  <nav class="chapter-nav"><a class="chapter-link" data-slug="00-yak-korystuvatysia" href="00-yak-korystuvatysia.html"><span class="chapter-number">Початок</span><span>Як користуватися цією довідкою</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="01-py-fail-i-pershyi-obiekt" href="01-py-fail-i-pershyi-obiekt.html"><span class="chapter-number">01</span><span>`.py`-файл і перший об’єкт</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="02-stan-obiekta-i-prosti-typy" href="02-stan-obiekta-i-prosti-typy.html"><span class="chapter-number">02</span><span>Стан об’єкта: рядки, числа й логічні значення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="03-metody-parametry-i-povernennia" href="03-metody-parametry-i-povernennia.html"><span class="chapter-number">03</span><span>Методи: параметри, аргументи й `return`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="04-rishennia-i-lohichni-vyrazy" href="04-rishennia-i-lohichni-vyrazy.html"><span class="chapter-number">04</span><span>Рішення: порівняння, `if`, `elif`, `else`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="05-spysky-i-kortezhi" href="05-spysky-i-kortezhi.html"><span class="chapter-number">05</span><span>Списки й кортежі: впорядковані колекції</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="06-cykly-range-i-zrizy" href="06-cykly-range-i-zrizy.html"><span class="chapter-number">06</span><span>Повторення: `for`, `range()` і зрізи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="07-vvedennia-i-cykl-while" href="07-vvedennia-i-cykl-while.html"><span class="chapter-number">07</span><span>Діалог із програмою: `input()` і цикл `while`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="08-slovnyky-vkladennia-i-mnozhyny" href="08-slovnyky-vkladennia-i-mnozhyny.html"><span class="chapter-number">08</span><span>Словники, вкладені дані й множини</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="09-funktsii-i-moduli" href="09-funktsii-i-moduli.html"><span class="chapter-number">09</span><span>Функції й модулі: інструменти поза об’єктами</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="10-struktura-opp-proiektu" href="10-struktura-opp-proiektu.html"><span class="chapter-number">10</span><span>Структура OOP-проєкту у VS Code</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="11-spadkuvannia-kompozytsiia-i-vlastyvosti" href="11-spadkuvannia-kompozytsiia-i-vlastyvosti.html"><span class="chapter-number">11</span><span>Пов’язані об’єкти: успадкування, композиція й властивості</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="12-standartna-biblioteka-i-vypadkovist" href="12-standartna-biblioteka-i-vypadkovist.html"><span class="chapter-number">12</span><span>Стандартна бібліотека й керована випадковість</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="13-faily-koduvannia-i-shliakhy" href="13-faily-koduvannia-i-shliakhy.html"><span class="chapter-number">13</span><span>Текстові файли, UTF-8 і шляхи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="14-vyniatky-i-chytabelni-zboi" href="14-vyniatky-i-chytabelni-zboi.html"><span class="chapter-number">14</span><span>Винятки: передбачувані збої й корисні повідомлення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="15-json-zberezhennia-i-refaktorynh" href="15-json-zberezhennia-i-refaktorynh.html"><span class="chapter-number">15</span><span>JSON: збереження стану й рефакторинг</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="16-testy-z-pytest" href="16-testy-z-pytest.html"><span class="chapter-number">16</span><span>Автоматичні тести з pytest</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="17-styl-nalahodzhennia-i-karta-syntaksysu" href="17-styl-nalahodzhennia-i-karta-syntaksysu.html"><span class="chapter-number">17</span><span>Підтримуваний код: стиль, налагодження й карта синтаксису</span><span class="chapter-check" aria-hidden="true">✓</span></a></nav>
+  <div class="sidebar-actions">
+    <a class="button secondary full" href="downloads/python-cherez-obiekty.pdf">Завантажити PDF</a>
+  </div>
+</aside>
+
+    <main id="main-content" class="main-content" tabindex="-1">
+
+<article class="chapter-article" data-chapter="01-py-fail-i-pershyi-obiekt">
+  <header class="chapter-header">
+    <p class="eyebrow">Розділ 01</p>
+    <p class="chapter-reading-note">Читай · запускай · змінюй · перевіряй</p>
+  </header>
+  <div class="chapter-body"><h1 id="py-fayl-i-pershyy-obiekt"><code>.py</code>-файл і перший об’єкт<a class="heading-link" href="#py-fayl-i-pershyy-obiekt" aria-label="Посилання на розділ">#</a></h1>
+<p>У цьому розділі ми не встановлюємо редактор і не налаштовуємо Python. Вважаємо, що папка вже відкрита у VS Code, а команда запуску працює. Наше завдання — зрозуміти, <strong>що саме ми запускаємо</strong>, і відразу створити об’єкт, який щось робить.</p>
+<h2 id="shcho-zrobymo">Що зробимо<a class="heading-link" href="#shcho-zrobymo" aria-label="Посилання на розділ">#</a></h2>
+<p>Наприкінці розділу в папці буде файл <code>robot.py</code>. У ньому ми опишемо робота, створимо конкретного робота й накажемо йому привітатися.</p>
+<section class="callout callout-goal"><div class="callout-label">Результат</div><p>Після запуску в терміналі має з’явитися повідомлення <code>Привіт! Я Робі.</code>. Ти знатимеш, де в коді опис об’єктів, де конкретний об’єкт, а де команда для нього.</p></section>
+<h2 id="shcho-take-prohrama-u-fayli">Що таке програма у файлі<a class="heading-link" href="#shcho-take-prohrama-u-fayli" aria-label="Посилання на розділ">#</a></h2>
+<p>Відкрий у VS Code новий файл і збережи його як <code>robot.py</code>.</p>
+<p>Звичайний <code>.py</code>-файл — це <strong>текстовий файл</strong>. Усередині немає прихованих деталей, спеціальних кнопок чи готової програми. Там лежать символи, які можна було б набрати навіть у найпростішому текстовому редакторі.</p>
+<p>Розширення <code>.py</code> повідомляє людям і програмам: «цей текст написаний мовою Python». Завдяки цьому:</p>
+<ul><li>VS Code підсвічує різні частини коду різними кольорами;</li><li>редактор пропонує доречні підказки;</li><li>операційна система може пов’язати файл з Python;</li><li>іншим програмістам відразу зрозуміло, як файл запускати.</li></ul>
+<p>Сам код виконує не VS Code. <strong>VS Code редагує текст</strong>, а <strong>інтерпретатор Python читає команди й виконує їх</strong>. Кнопка запуску у VS Code лише передає відкритий файл вибраному інтерпретатору.</p>
+<section class="callout callout-note"><div class="callout-label">Інтерпретатор</div><p>Інтерпретатор — програма, яка читає код Python і виконує його. Якщо VS Code показує код, але команда запуску не працює, проблема може бути не у файлі, а у виборі інтерпретатора.</p></section>
+<h3 id="malenkyy-eksperyment-iz-txt">Маленький експеримент із <code>.txt</code><a class="heading-link" href="#malenkyy-eksperyment-iz-txt" aria-label="Посилання на розділ">#</a></h3>
+<p>Створи файл <code>message.txt</code> із таким вмістом:</p>
+<div class="code-block"><div class="code-toolbar"><span>message.txt</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">print(&quot;Цей текст виконав Python.&quot;)</code></pre></div>
+<p>Якщо явно передати цей файл інтерпретатору, він спробує виконати вміст навіть без розширення <code>.py</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>powershell</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-powershell">python message.txt</code></pre></div>
+<p>На macOS або Linux команда зазвичай така:</p>
+<div class="code-block"><div class="code-toolbar"><span>bash</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-bash">python3 message.txt</code></pre></div>
+<p>Цей експеримент не означає, що варто називати програми <code>.txt</code>. Інтерпретатору важливий вміст, але редакторам, інструментам і людям потрібна зрозуміла домовленість. Для Python-скриптів такою домовленістю є <code>.py</code>.</p>
+<h2 id="maysternia">Майстерня<a class="heading-link" href="#maysternia" aria-label="Посилання на розділ">#</a></h2>
+<p>Набери у <code>robot.py</code> цей код. Не вставляй нові команди, доки перша версія не запрацює.</p>
+<div class="code-block"><div class="code-toolbar"><span>robot.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Robot:
+    def say_hello(self):
+        print(&quot;Привіт! Я Робі.&quot;)
+
+
+robot = Robot()
+robot.say_hello()</code></pre></div>
+<p>Запусти файл кнопкою <strong>Run Python File</strong> у правому верхньому куті VS Code. Редактор збереже файл, відкриє вбудований термінал і передасть <code>robot.py</code> вибраному Python.</p>
+<p>Очікуваний результат:</p>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Привіт! Я Робі.</code></pre></div>
+<p>Це вже об’єктна програма. Вона маленька, але в ній є три різні рівні.</p>
+<h3 id="1-klas-opysuie-mozhlyvosti">1. Клас описує можливості<a class="heading-link" href="#1-klas-opysuie-mozhlyvosti" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Robot:
+    def say_hello(self):
+        print(&quot;Привіт! Я Робі.&quot;)</code></pre></div>
+<p><code>class Robot:</code> починає опис роботів. Клас можна уявити як креслення або набір правил: кожен об’єкт, створений за цим описом, матиме передбачені можливості.</p>
+<p>Назву класу пишемо з великої літери. Якщо слів декілька, кожне теж починаємо з великої: <code>GameCharacter</code>, <code>MusicPlayer</code>, <code>SecretDoor</code>.</p>
+<p>Рядок <code>def say_hello(self):</code> описує дію. Дія, що належить об’єкту, називається <strong>методом</strong>. Назва <code>say_hello</code> читається як «скажи привіт».</p>
+<p>Поки що сприймай <code>self</code> як слово «цей конкретний об’єкт». Воно дає методу доступ до робота, для якого викликали команду. У наступних розділах ми використаємо <code>self</code>, щоб кожен робот мав власне ім’я й заряд.</p>
+<h3 id="2-vidstup-pokazuie-nalezhnist">2. Відступ показує належність<a class="heading-link" href="#2-vidstup-pokazuie-nalezhnist" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Robot:
+    def say_hello(self):
+        print(&quot;Привіт! Я Робі.&quot;)</code></pre></div>
+<p>У Python відступ — частина граматики. Він не просто робить текст красивим.</p>
+<ul><li><code>def say_hello(self):</code> має чотири пробіли, тому метод належить класу <code>Robot</code>.</li><li><code>print(...)</code> має ще чотири пробіли, тому команда належить методу <code>say_hello</code>.</li><li><code>robot = Robot()</code> стоїть без відступу, тому опис класу перед ним уже закінчився.</li></ul>
+<p>У VS Code клавіша <code>Tab</code> зазвичай додає потрібний рівень відступу. У Python прийнято використовувати чотири пробіли на рівень і не змішувати пробіли з табуляцією.</p>
+<h3 id="3-obiekt-konkretnyy-uchasnyk-prohramy">3. Об’єкт — конкретний учасник програми<a class="heading-link" href="#3-obiekt-konkretnyy-uchasnyk-prohramy" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">robot = Robot()
+robot.say_hello()</code></pre></div>
+<p><code>Robot()</code> створює конкретний об’єкт за описом класу <code>Robot</code>. Ми даємо цьому об’єкту коротке ім’я <code>robot</code>, щоб звертатися до нього далі.</p>
+<p>Крапка у <code>robot.say_hello()</code> читається так: «у об’єкта <code>robot</code> виконай метод <code>say_hello</code>». Порожні дужки означають, що зараз команді не передаємо додаткових даних.</p>
+<section class="callout callout-practice"><div class="callout-label">Побач два різні об’єкти</div><p>Додай ще одного робота й виклич той самий метод для обох:</p>
+<div class="code-block"><div class="code-toolbar"><span>two_robots.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Robot:
+    def say_hello(self):
+        print(&quot;Привіт! Я Робі.&quot;)
+
+
+first_robot = Robot()
+second_robot = Robot()
+
+first_robot.say_hello()
+second_robot.say_hello()</code></pre></div>
+<p>Поки обидва поводяться однаково. Це нормально: ми вже створили два об’єкти, але ще не дали їм окремого стану. Саме це зробимо в наступному розділі.</p></section>
+<h2 id="zapusk-cherez-terminal">Запуск через термінал<a class="heading-link" href="#zapusk-cherez-terminal" aria-label="Посилання на розділ">#</a></h2>
+<p>Кнопка <strong>Run Python File</strong> зручна, але вона не є єдиним способом запуску. Відкрий у VS Code меню <strong>Terminal → New Terminal</strong>. Новий термінал зазвичай починає роботу в корені відкритої проєктної папки.</p>
+<section class="callout callout-os"><div class="callout-label">Команди для різних операційних систем</div><h3 id="windows-powershell-abo-command-prompt">Windows: PowerShell або Command Prompt<a class="heading-link" href="#windows-powershell-abo-command-prompt" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>powershell</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-powershell">python robot.py</code></pre></div>
+<p>Сучасна офіційна збірка Python для Windows рекомендує команду <code>python</code>. Якщо на конкретному комп’ютері вона не налаштована, часто працює launcher-команда:</p>
+<div class="code-block"><div class="code-toolbar"><span>powershell</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-powershell">py robot.py</code></pre></div>
+<p>PowerShell — це оболонка Windows, тобто програма, яка приймає текстові команди. Рядок на кшталт <code>PS C:\Projects\Python&gt;</code> є запрошенням оболонки; його не треба набирати.</p>
+<h3 id="macos-terminal-iz-zsh">macOS: Terminal із zsh<a class="heading-link" href="#macos-terminal-iz-zsh" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>bash</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-bash">python3 robot.py</code></pre></div>
+<p>Стандартна програма для команд називається <strong>Terminal</strong>, а типовою оболонкою сучасної macOS є <code>zsh</code>. На Mac команда <code>python</code> може бути відсутня або вказувати не туди, тому поза активованим віртуальним середовищем використовуй <code>python3</code>.</p>
+<h3 id="linux-terminal-iz-bash-abo-inshoiu-obolonkoiu">Linux: Terminal із Bash або іншою оболонкою<a class="heading-link" href="#linux-terminal-iz-bash-abo-inshoiu-obolonkoiu" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>bash</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-bash">python3 robot.py</code></pre></div>
+<p>У більшості дистрибутивів Linux інтерпретатор Python 3 також запускається командою <code>python3</code>. Символ <code>$</code> у прикладах документації часто позначає запрошення оболонки; його не треба копіювати.</p>
+<h3 id="shcho-odnakove">Що однакове<a class="heading-link" href="#shcho-odnakove" aria-label="Посилання на розділ">#</a></h3>
+<p>Сам файл <code>robot.py</code> однаковий на всіх трьох системах. Зазвичай відрізняються команда запуску, вигляд шляху й назва оболонки. Після активації проєктного віртуального середовища команда часто стає однаковою — <code>python robot.py</code>; до цього повернемося перед зовнішніми пакетами.</p></section>
+<h3 id="iakshcho-terminal-ne-bachyt-fayl">Якщо термінал «не бачить» файл<a class="heading-link" href="#iakshcho-terminal-ne-bachyt-fayl" aria-label="Посилання на розділ">#</a></h3>
+<p>Команда <code>python robot.py</code> шукає <code>robot.py</code> у поточній папці термінала. Якщо файл лежить в іншій папці, Python повідомить, що не може його відкрити.</p>
+<p>Перевір дві речі:</p>
+<ol><li>У лівій панелі VS Code файл справді має назву <code>robot.py</code>, а не <code>robot.py.txt</code>.</li><li>Рядок термінала показує папку, у якій цей файл лежить.</li></ol>
+<p>Команда <code>pwd</code> показує поточну папку в PowerShell, macOS і більшості Linux-оболонок. Команда <code>dir</code> зручна у Windows, а <code>ls</code> — у macOS та Linux; PowerShell розуміє обидві форми.</p>
+<h2 id="fayl-skrypt-i-interaktyvnyy-rezhym">Файл, скрипт і інтерактивний режим<a class="heading-link" href="#fayl-skrypt-i-interaktyvnyy-rezhym" aria-label="Посилання на розділ">#</a></h2>
+<p>Python можна використовувати двома близькими способами.</p>
+<p><strong>Скрипт</strong> — збережений файл із послідовністю команд. Його можна запускати багато разів, редагувати, надсилати іншій людині й зберігати в Git.</p>
+<p><strong>REPL</strong> — інтерактивний режим, у якому Python читає одну команду, виконує її та одразу показує результат. Назва складається з англійських слів <em>read, evaluate, print, loop</em>: прочитати, обчислити, показати, повторити.</p>
+<p>Щоб відкрити REPL у терміналі, введи лише команду інтерпретатора:</p>
+<div class="code-block"><div class="code-toolbar"><span>powershell</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-powershell">python</code></pre></div>
+<p>або на macOS/Linux:</p>
+<div class="code-block"><div class="code-toolbar"><span>bash</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-bash">python3</code></pre></div>
+<p>Побачиш запрошення <code>&gt;&gt;&gt;</code>. Тут зручно швидко перевірити вираз:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">&gt;&gt;&gt; 2 + 3
+5
+&gt;&gt;&gt; &quot;ро&quot; + &quot;бот&quot;
+&#x27;робот&#x27;</code></pre></div>
+<p>Символи <code>&gt;&gt;&gt;</code> не є частиною Python-коду. Вони лише показують, що інтерактивний режим чекає на команду. Для виходу введи <code>exit()</code>.</p>
+<section class="callout callout-note"><div class="callout-label">Коли що використовувати</div><p>REPL зручний для маленького експерименту на один-два рядки. Усі приклади, які потрібно зберегти, розширити або перевірити повторно, пиши у <code>.py</code>-файлах.</p></section>
+<h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
+<p>Приберемо двокрапку після назви класу:</p>
+<div class="code-block"><div class="code-toolbar"><span>robot_broken.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Robot
+    def say_hello(self):
+        print(&quot;Привіт!&quot;)</code></pre></div>
+<p>Python не може завершити читання першого рядка й показує <code>SyntaxError</code>. Останній рядок traceback — повідомлення про тип проблеми. Трохи вище Python показує файл, номер рядка й місце, біля якого перестав розуміти код.</p>
+<p>Поверни двокрапку:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Robot:</code></pre></div>
+<p>Інший частий збій — відсутній відступ:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Robot:
+def say_hello(self):
+    print(&quot;Привіт!&quot;)</code></pre></div>
+<p>Після <code>class Robot:</code> інтерпретатор очікує вкладений блок. Тому повідомлення буде пов’язане з відступом. Виправляй не весь файл навмання, а перший рядок свого коду, на який вказує traceback.</p>
+<section class="callout callout-mistake"><div class="callout-label">Типова помилка</div><p>Не називай файл <code>robot.py.py</code>, <code>robot.py.txt</code> або <code>my robot.py</code>. Увімкни показ розширень файлів у системі, а для назв Python-модулів використовуй малі латинські літери та підкреслення: <code>robot.py</code>, <code>music_player.py</code>.</p></section>
+<h2 id="shvydka-perevirka">Швидка перевірка<a class="heading-link" href="#shvydka-perevirka" aria-label="Посилання на розділ">#</a></h2>
+<p>Перед самостійною роботою поясни вголос кожен рядок:</p>
+<div class="code-block"><div class="code-toolbar"><span>door.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Door:
+    def open(self):
+        print(&quot;Двері відчиняються.&quot;)
+
+
+door = Door()
+door.open()</code></pre></div>
+<p>Перевір себе:</p>
+<ul><li><code>Door</code> — опис категорії об’єктів;</li><li><code>door</code> — один конкретний об’єкт;</li><li><code>open</code> — дія цього об’єкта;</li><li>крапка обирає дію, що належить об’єкту;</li><li>відступи показують, які рядки належать класу й методу.</li></ul>
+<section class="quiz" data-answer="0"><div class="callout-label">Перевір себе</div><p class="quiz-question">Який рядок створює конкретний об’єкт за описом класу Robot?</p><div class="quiz-options"><button type="button" class="quiz-option" data-index="0">robot = Robot()</button><button type="button" class="quiz-option" data-index="1">class Robot:</button><button type="button" class="quiz-option" data-index="2">def robot(self):</button></div><p class="quiz-feedback" hidden>Клас уже має бути описаний. Виклик Robot() створює його екземпляр, а ім’я robot зберігає посилання на цей об’єкт.</p></section>
+<h2 id="samostiyna-robota">Самостійна робота<a class="heading-link" href="#samostiyna-robota" aria-label="Посилання на розділ">#</a></h2>
+<p>Виконуй завдання по одному. Після кожної зміни запускай файл і порівнюй результат зі своїм прогнозом.</p>
+<section class="callout callout-tasks"><div class="callout-label">Самостійна робота</div><ul><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="01-py-fail-i-pershyi-obiekt-task-1"><span>Зміни текст привітання робота. Перед запуском запиши, який рядок має з’явитися в терміналі.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="01-py-fail-i-pershyi-obiekt-task-2"><span>Додай до <code>Robot</code> метод <code>wave()</code>, який виводить <code>Робот махає рукою.</code>. Виклич спочатку <code>say_hello()</code>, потім <code>wave()</code>.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="01-py-fail-i-pershyi-obiekt-task-3"><span>Створи два об’єкти <code>first_robot</code> і <code>second_robot</code>. Виклич обидва методи для кожного робота.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="01-py-fail-i-pershyi-obiekt-task-4"><span>Навмисно видали одну двокрапку, запусти код, знайди тип помилки й номер рядка, а потім віднови робочу версію.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="01-py-fail-i-pershyi-obiekt-task-5"><span>Скопіюй найменший робочий приклад у файл <code>robot.txt</code> і явно передай його інтерпретатору. Поясни, що залишилося робочим, а що VS Code перестав розпізнавати автоматично.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="01-py-fail-i-pershyi-obiekt-task-6"><span>Придумай власний клас із реального або вигаданого світу. Дай йому одну дію, створи об’єкт і виклич метод. Не додавай властивості — це завдання наступного розділу.</span></label></li></ul></section>
+<section class="callout callout-history"><div class="callout-label">Коротка історична пауза</div><p>Назва Python з’явилася не через змію. Коли Гвідо ван Россум починав роботу над мовою, він читав сценарії британського комедійного шоу <em>Monty Python’s Flying Circus</em> і шукав коротку, незвичну назву. Тому в навчальних прикладах Python часто трапляється легкий гумор.</p></section>
+<h2 id="pidsumok">Підсумок<a class="heading-link" href="#pidsumok" aria-label="Посилання на розділ">#</a></h2>
+<ul><li><code>.py</code> — звичайний текстовий файл із домовленим розширенням для Python-коду.</li><li>VS Code допомагає писати й запускати, але код виконує інтерпретатор Python.</li><li>Клас описує категорію об’єктів, а виклик на кшталт <code>Robot()</code> створює конкретний об’єкт.</li><li>Метод — дія об’єкта; крапка в <code>robot.say_hello()</code> обирає цю дію.</li><li>Відступи в Python передають структуру, тому вони впливають на виконання.</li><li>На Windows типовою командою є <code>python</code>, додатково може працювати <code>py</code>; на macOS і Linux зазвичай використовують <code>python3</code>.</li><li>Traceback — не покарання, а карта до місця, де інтерпретатор перестав розуміти програму.</li></ul>
+<p>Офіційні орієнтири: <a href="https://code.visualstudio.com/docs/python/run" target="_blank" rel="noreferrer">як VS Code запускає Python-файл</a>, <a href="https://docs.python.org/3/using/windows.html" target="_blank" rel="noreferrer">як Python працює у Windows</a>, <a href="https://docs.python.org/3/using/mac.html" target="_blank" rel="noreferrer">як Python працює у macOS</a>, <a href="https://docs.python.org/3/using/unix.html" target="_blank" rel="noreferrer">як Python працює на Unix-платформах</a>.</p></div>
+  <section class="completion-card">
+    <div><p class="eyebrow">Твій прогрес</p><h2>Розділ опрацьовано?</h2><p>Позначай тільки після запуску прикладу й самостійної зміни.</p></div>
+    <button class="button primary complete-chapter" type="button" data-chapter-id="01-py-fail-i-pershyi-obiekt">Позначити завершеним</button>
+  </section>
+  <nav class="chapter-pager" aria-label="Сусідні розділи"><a class="chapter-pager-link previous" href="00-yak-korystuvatysia.html"><span>← Назад</span><strong>Як користуватися цією довідкою</strong></a><a class="chapter-pager-link next" href="02-stan-obiekta-i-prosti-typy.html"><span>Далі →</span><strong>Стан об’єкта: рядки, числа й логічні значення</strong></a></nav>
+</article>
+
+      <footer class="site-footer">
+        <p>Python через об’єкти · українська практична довідка · 2026</p>
+        <a href="https://github.com/ArTeGaS/python-oop-handbook-ua">Відкрити репозиторій</a>
+      </footer>
+    </main>
+  </div>
+  <div class="search-panel" hidden aria-live="polite">
+    <div class="search-panel-inner">
+      <button class="search-close" type="button" aria-label="Закрити пошук">×</button>
+      <p class="eyebrow">Пошук у довідці</p>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+</body>
+</html>

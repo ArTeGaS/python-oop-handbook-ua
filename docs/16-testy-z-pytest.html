@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="uk" data-active-chapter="16-testy-z-pytest">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Автоматичні тести з pytest Автоматичні тести з pytest Ручний запуск показує, що один сценарій щойно спрацював. Автоматичний тест зберігає очікування у коді й повторює його після кожної зміни">
+  <meta name="theme-color" content="#f4f0e8">
+  <title>Автоматичні тести з pytest — Python через об’єкти</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body class="chapter-page">
+  <a class="skip-link" href="#main-content">До основного тексту</a>
+  <header class="mobile-header">
+    <button class="icon-button menu-button" type="button" aria-label="Відкрити зміст" aria-expanded="false">Зміст</button>
+    <a class="mobile-brand" href="index.html">Python через об’єкти</a>
+    <button class="icon-button theme-toggle" type="button" aria-label="Змінити тему">Тема</button>
+  </header>
+  <div class="app-shell">
+
+<aside class="sidebar" aria-label="Зміст">
+  <div class="sidebar-top">
+    <a class="brand" data-slug="home" href="index.html">
+      <span class="brand-mark">Py</span>
+      <span><strong>Python через об’єкти</strong><small>Практична довідка для початківців</small></span>
+    </a>
+    <button class="theme-toggle desktop-theme" type="button">Змінити тему</button>
+  </div>
+  <label class="search-box">
+    <span class="visually-hidden">Пошук</span>
+    <input id="chapter-search" type="search" placeholder="Знайти тему…" autocomplete="off">
+    <kbd>Ctrl K</kbd>
+  </label>
+  <div class="progress-card">
+    <div><span>Прогрес</span><strong id="progress-label">0 з 18</strong></div>
+    <div class="progress-track"><span id="progress-bar"></span></div>
+  </div>
+  <nav class="chapter-nav"><a class="chapter-link" data-slug="00-yak-korystuvatysia" href="00-yak-korystuvatysia.html"><span class="chapter-number">Початок</span><span>Як користуватися цією довідкою</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="01-py-fail-i-pershyi-obiekt" href="01-py-fail-i-pershyi-obiekt.html"><span class="chapter-number">01</span><span>`.py`-файл і перший об’єкт</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="02-stan-obiekta-i-prosti-typy" href="02-stan-obiekta-i-prosti-typy.html"><span class="chapter-number">02</span><span>Стан об’єкта: рядки, числа й логічні значення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="03-metody-parametry-i-povernennia" href="03-metody-parametry-i-povernennia.html"><span class="chapter-number">03</span><span>Методи: параметри, аргументи й `return`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="04-rishennia-i-lohichni-vyrazy" href="04-rishennia-i-lohichni-vyrazy.html"><span class="chapter-number">04</span><span>Рішення: порівняння, `if`, `elif`, `else`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="05-spysky-i-kortezhi" href="05-spysky-i-kortezhi.html"><span class="chapter-number">05</span><span>Списки й кортежі: впорядковані колекції</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="06-cykly-range-i-zrizy" href="06-cykly-range-i-zrizy.html"><span class="chapter-number">06</span><span>Повторення: `for`, `range()` і зрізи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="07-vvedennia-i-cykl-while" href="07-vvedennia-i-cykl-while.html"><span class="chapter-number">07</span><span>Діалог із програмою: `input()` і цикл `while`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="08-slovnyky-vkladennia-i-mnozhyny" href="08-slovnyky-vkladennia-i-mnozhyny.html"><span class="chapter-number">08</span><span>Словники, вкладені дані й множини</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="09-funktsii-i-moduli" href="09-funktsii-i-moduli.html"><span class="chapter-number">09</span><span>Функції й модулі: інструменти поза об’єктами</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="10-struktura-opp-proiektu" href="10-struktura-opp-proiektu.html"><span class="chapter-number">10</span><span>Структура OOP-проєкту у VS Code</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="11-spadkuvannia-kompozytsiia-i-vlastyvosti" href="11-spadkuvannia-kompozytsiia-i-vlastyvosti.html"><span class="chapter-number">11</span><span>Пов’язані об’єкти: успадкування, композиція й властивості</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="12-standartna-biblioteka-i-vypadkovist" href="12-standartna-biblioteka-i-vypadkovist.html"><span class="chapter-number">12</span><span>Стандартна бібліотека й керована випадковість</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="13-faily-koduvannia-i-shliakhy" href="13-faily-koduvannia-i-shliakhy.html"><span class="chapter-number">13</span><span>Текстові файли, UTF-8 і шляхи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="14-vyniatky-i-chytabelni-zboi" href="14-vyniatky-i-chytabelni-zboi.html"><span class="chapter-number">14</span><span>Винятки: передбачувані збої й корисні повідомлення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="15-json-zberezhennia-i-refaktorynh" href="15-json-zberezhennia-i-refaktorynh.html"><span class="chapter-number">15</span><span>JSON: збереження стану й рефакторинг</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="16-testy-z-pytest" href="16-testy-z-pytest.html"><span class="chapter-number">16</span><span>Автоматичні тести з pytest</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="17-styl-nalahodzhennia-i-karta-syntaksysu" href="17-styl-nalahodzhennia-i-karta-syntaksysu.html"><span class="chapter-number">17</span><span>Підтримуваний код: стиль, налагодження й карта синтаксису</span><span class="chapter-check" aria-hidden="true">✓</span></a></nav>
+  <div class="sidebar-actions">
+    <a class="button secondary full" href="downloads/python-cherez-obiekty.pdf">Завантажити PDF</a>
+  </div>
+</aside>
+
+    <main id="main-content" class="main-content" tabindex="-1">
+
+<article class="chapter-article" data-chapter="16-testy-z-pytest">
+  <header class="chapter-header">
+    <p class="eyebrow">Розділ 16</p>
+    <p class="chapter-reading-note">Читай · запускай · змінюй · перевіряй</p>
+  </header>
+  <div class="chapter-body"><h1 id="avtomatychni-testy-z-pytest">Автоматичні тести з pytest<a class="heading-link" href="#avtomatychni-testy-z-pytest" aria-label="Посилання на розділ">#</a></h1>
+<p>Ручний запуск показує, що один сценарій щойно спрацював. Автоматичний тест зберігає очікування у коді й повторює його після кожної зміни. Тест не доводить відсутність усіх помилок, але захищає конкретну важливу поведінку.</p>
+<h2 id="shcho-zrobymo">Що зробимо<a class="heading-link" href="#shcho-zrobymo" aria-label="Посилання на розділ">#</a></h2>
+<p>Перевіримо клас <code>Robot</code>: початковий стан, успішний рух, відмову без пошкодження стану, кілька неправильних аргументів і JSON-сховище в тимчасовій папці.</p>
+<section class="callout callout-goal"><div class="callout-label">Результат</div><p>Ти зможеш перетворити вимогу на тест у формі «підготуй → виконай → перевір», прочитати звіт падіння й виправити причину, а не сам тест навмання.</p></section>
+<h2 id="pytest-stabilnyy-storonniy-paket">pytest — стабільний сторонній пакет<a class="heading-link" href="#pytest-stabilnyy-storonniy-paket" aria-label="Посилання на розділ">#</a></h2>
+<p><code>pytest</code> не входить до стандартної бібліотеки, тому його встановлюють у активне віртуальне середовище:</p>
+<section class="callout callout-os"><div class="callout-label">Встановлення й запуск</div><h3 id="pislia-aktyvatsii-venv-u-windows-macos-abo-linux">Після активації <code>.venv</code> у Windows, macOS або Linux<a class="heading-link" href="#pislia-aktyvatsii-venv-u-windows-macos-abo-linux" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>powershell</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-powershell">python -m pip install pytest
+python -m pytest</code></pre></div>
+<p>У активованому середовищі команда <code>python</code> вказує на локальний інтерпретатор проєкту в усіх системах.</p>
+<h3 id="bez-aktyvatsii-u-windows-powershell">Без активації у Windows PowerShell<a class="heading-link" href="#bez-aktyvatsii-u-windows-powershell" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>powershell</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-powershell">.\.venv\Scripts\python.exe -m pytest</code></pre></div>
+<h3 id="bez-aktyvatsii-u-macos-abo-linux">Без активації у macOS або Linux<a class="heading-link" href="#bez-aktyvatsii-u-macos-abo-linux" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>bash</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-bash">.venv/bin/python -m pytest</code></pre></div>
+<p>Форма <code>python -m pytest</code> гарантує, що pytest запускає той самий інтерпретатор, у якому пакет встановлено.</p></section>
+<p>У цьому репозиторії точна перевірена залежність зафіксована в <code>requirements-dev.txt</code>. Для відтворення середовища:</p>
+<div class="code-block"><div class="code-toolbar"><span>powershell</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-powershell">python -m pip install -r requirements-dev.txt</code></pre></div>
+<p>Не встановлюй випадкові плагіни до pytest, доки немає конкретної потреби. Базового пакета достатньо для всього розділу.</p>
+<h2 id="iak-pytest-znakhodyt-testy">Як pytest знаходить тести<a class="heading-link" href="#iak-pytest-znakhodyt-testy" aria-label="Посилання на розділ">#</a></h2>
+<p>Типова структура:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-text">project/
+├── robot.py
+├── storage.py
+└── tests/
+    ├── test_robot.py
+    └── test_storage.py</code></pre></div>
+<p>За замовчуванням pytest знаходить файли на кшталт <code>test_*.py</code> і функції <code>test_*</code>. Імена мають описувати поведінку:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def test_move_changes_energy_and_distance():
+    ...</code></pre></div>
+<p>Назва <code>test_1()</code> не допомагає зрозуміти, що зламалося.</p>
+<p>Запускай із кореня проєкту, де імпорти моделі працюють так само, як у застосунку:</p>
+<div class="code-block"><div class="code-toolbar"><span>powershell</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-powershell">python -m pytest</code></pre></div>
+<p>Корисні варіанти:</p>
+<div class="code-block"><div class="code-toolbar"><span>powershell</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-powershell">python -m pytest -q
+python -m pytest -v
+python -m pytest tests/test_robot.py
+python -m pytest tests/test_robot.py::test_move_changes_energy_and_distance
+python -m pytest -k move
+python -m pytest -x</code></pre></div>
+<ul><li><code>-q</code> — коротший звіт;</li><li><code>-v</code> — докладні назви тестів;</li><li>шлях або node id запускає точну частину;</li><li><code>-k move</code> фільтрує за виразом у назві;</li><li><code>-x</code> зупиняється після першого падіння.</li></ul>
+<h2 id="pershyy-test-zvychaynyy-assert">Перший тест: звичайний <code>assert</code><a class="heading-link" href="#pershyy-test-zvychaynyy-assert" aria-label="Посилання на розділ">#</a></h2>
+<p>Модель <code>robot.py</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>robot.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Robot:
+    def __init__(self, name, energy=10):
+        self.name = name
+        self.energy = energy
+        self.distance = 0
+
+    def move(self, steps):
+        self.energy -= steps
+        self.distance += steps
+        return self.distance</code></pre></div>
+<p>Тест <code>test_robot.py</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>test_robot.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">from robot import Robot
+
+
+def test_new_robot_has_expected_state():
+    robot = Robot(&quot;Робі&quot;, energy=10)
+
+    assert robot.name == &quot;Робі&quot;
+    assert robot.energy == 10
+    assert robot.distance == 0</code></pre></div>
+<p>pytest перехоплює стандартний <code>assert</code> і за падіння показує значення обох сторін. Не треба вчити окремі методи на кшталт <code>assertEqual()</code>.</p>
+<h3 id="pidhotuy-vykonay-perevir">Підготуй → виконай → перевір<a class="heading-link" href="#pidhotuy-vykonay-perevir" aria-label="Посилання на розділ">#</a></h3>
+<p>Поширена структура тесту:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def test_move_changes_energy_and_distance():
+    # Підготовка
+    robot = Robot(&quot;Робі&quot;, energy=10)
+
+    # Дія
+    result = robot.move(3)
+
+    # Перевірка
+    assert result == 3
+    assert robot.energy == 7
+    assert robot.distance == 3</code></pre></div>
+<p>Англійською її називають Arrange–Act–Assert, або AAA. Коментарі не обов’язкові, якщо порожні рядки й назви вже ясно відділяють три частини.</p>
+<p>Один тест може мати кілька <code>assert</code>, коли всі вони описують один видимий результат однієї дії. Не збирай в одному тесті десять незалежних сценаріїв.</p>
+<h2 id="maysternia">Майстерня<a class="heading-link" href="#maysternia" aria-label="Посилання на розділ">#</a></h2>
+<p>У репозиторії є повністю виконуваний приклад:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-text">examples/pytest_demo/
+├── robot.py
+├── storage.py
+├── test_robot.py
+└── test_storage.py</code></pre></div>
+<p>Його тестовий набір запускається з цієї папки:</p>
+<div class="code-block"><div class="code-toolbar"><span>powershell</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-powershell">python -m pytest -q</code></pre></div>
+<p>Очікуваний підсумок для зафіксованої версії прикладу:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-text">7 passed</code></pre></div>
+<p>Один параметризований тест запускається тричі, тому фізичних функцій менше, ніж зібраних тестових випадків.</p>
+<p>Щоб сам розділ також мав незалежну швидку перевірку без стороннього runner, звичайні твердження Python працюють так:</p>
+<div class="code-block"><div class="code-toolbar"><span>plain_assert_check.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Robot:
+    def __init__(self, energy):
+        self.energy = energy
+        self.distance = 0
+
+    def move(self, steps):
+        self.energy -= steps
+        self.distance += steps
+
+
+robot = Robot(10)
+robot.move(3)
+
+assert robot.energy == 7
+assert robot.distance == 3
+print(&quot;Базові твердження виконано.&quot;)</code></pre></div>
+<p>Для повного набору все одно використовуй pytest: він знаходить тести, ізолює контекст, показує діагностику й надає fixtures.</p>
+<h2 id="spochatku-pobach-padinnia">Спочатку побач падіння<a class="heading-link" href="#spochatku-pobach-padinnia" aria-label="Посилання на розділ">#</a></h2>
+<p>Якщо новий тест одразу зелений, перевір, чи він справді здатен знайти дефект.</p>
+<p>Тимчасово напиши неправильне очікування:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">assert robot.energy == 8</code></pre></div>
+<p>pytest покаже приблизно:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-text">E       assert 7 == 8
+E        +  where 7 = robot.energy</code></pre></div>
+<p>Потім поверни правильне очікування. Цей короткий червоний крок доводить, що тест виконує потрібну гілку.</p>
+<p>Коли справжній тест падає:</p>
+<ol><li>Прочитай назву тесту.</li><li>Знайди перший рядок із <code>E</code> та значення.</li><li>Визнач: неправильний код, неправильне очікування чи неправильна підготовка?</li><li>Виправ одну причину.</li><li>Запусти спочатку точний тест, потім весь набір.</li></ol>
+<p>Не змінюй очікування лише для того, щоб отримати зелений колір. Воно має походити з вимоги.</p>
+<h2 id="perevirka-vyniatku-cherez-pytest-raises">Перевірка винятку через <code>pytest.raises</code><a class="heading-link" href="#perevirka-vyniatku-cherez-pytest-raises" aria-label="Посилання на розділ">#</a></h2>
+<p>Модель відмовляє за надмірної відстані:</p>
+<div class="code-block"><div class="code-toolbar"><span>robot.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class EnergyError(ValueError):
+    pass
+
+
+def move(self, steps):
+    if steps &gt; self.energy:
+        raise EnergyError(&quot;Не вистачає енергії&quot;)
+    self.energy -= steps
+    self.distance += steps</code></pre></div>
+<p>Тест:</p>
+<div class="code-block"><div class="code-toolbar"><span>test_robot.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">import pytest
+
+from robot import EnergyError, Robot
+
+
+def test_failed_move_preserves_state():
+    robot = Robot(&quot;Робі&quot;, energy=10)
+
+    with pytest.raises(EnergyError, match=&quot;Не вистачає&quot;):
+        robot.move(11)
+
+    assert robot.energy == 10
+    assert robot.distance == 0</code></pre></div>
+<p>Контекстний менеджер перевіряє, що блок справді підняв <code>EnergyError</code>. <code>match</code> перевіряє повідомлення як регулярний вираз.</p>
+<p>Два останні твердження особливо важливі: операція не лише відмовила, а й <strong>не пошкодила стан</strong>.</p>
+<p>Якщо виняток не виникне або тип буде інший, тест впаде.</p>
+<h2 id="fixture-hotuie-nadiynyy-kontekst">Fixture готує надійний контекст<a class="heading-link" href="#fixture-hotuie-nadiynyy-kontekst" aria-label="Посилання на розділ">#</a></h2>
+<p>Однаковий новий робот потрібен багатьом тестам:</p>
+<div class="code-block"><div class="code-toolbar"><span>test_robot.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">import pytest
+
+from robot import Robot
+
+
+@pytest.fixture
+def robot():
+    return Robot(&quot;Робі&quot;, energy=10)
+
+
+def test_new_robot_has_expected_state(robot):
+    assert robot.energy == 10
+
+
+def test_move_changes_energy(robot):
+    robot.move(3)
+    assert robot.energy == 7</code></pre></div>
+<p>pytest бачить параметр <code>robot</code>, знаходить fixture з такою назвою й викликає її перед тестом.</p>
+<p>За замовчуванням кожен тест отримує <strong>новий</strong> результат fixture. Зміна робота в одному тесті не протікає в інший. Це одна з причин не використовувати спільний глобальний об’єкт.</p>
+<p>Fixture має готувати контекст, а не приховувати саму дію, яку тест перевіряє. Якщо тест називається <code>test_move...</code>, виклик <code>move()</code> краще лишити видимим у тесті.</p>
+<p>Спільні fixtures для кількох файлів кладуть у <code>conftest.py</code>; його не імпортують вручну — pytest знаходить його за деревом папок.</p>
+<h2 id="parametryzatsiia-pereviriaie-tablytsiu-vypadkiv">Параметризація перевіряє таблицю випадків<a class="heading-link" href="#parametryzatsiia-pereviriaie-tablytsiu-vypadkiv" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>test_robot.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">import pytest
+
+
+@pytest.mark.parametrize(&quot;steps&quot;, [0, -1, -20])
+def test_move_rejects_nonpositive_steps(robot, steps):
+    with pytest.raises(ValueError, match=&quot;додатною&quot;):
+        robot.move(steps)</code></pre></div>
+<p>Одна функція запускається тричі. У звіті кожен набір має окремий test id.</p>
+<p>Коли результат теж змінюється:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">@pytest.mark.parametrize(
+    &quot;start, steps, expected_energy&quot;,
+    [
+        (10, 1, 9),
+        (10, 10, 0),
+        (3, 2, 1),
+    ],
+)
+def test_move_uses_energy(start, steps, expected_energy):
+    robot = Robot(&quot;Робі&quot;, energy=start)
+    robot.move(steps)
+    assert robot.energy == expected_energy</code></pre></div>
+<p>Не мутуй список або словник із параметрів, якщо очікуєш чисте значення для наступного запуску: pytest передає параметри як є, без автоматичного копіювання.</p>
+<section class="callout callout-practice"><div class="callout-label">Перевір межі</div><p>Додай випадки для <code>steps = 1</code>, <code>steps = energy</code>, <code>steps = energy + 1</code>. Це значення на межі, безпосередньо до неї та після неї.</p></section>
+<h2 id="tmp-path-daie-okremu-tymchasovu-papku"><code>tmp_path</code> дає окрему тимчасову папку<a class="heading-link" href="#tmp-path-daie-okremu-tymchasovu-papku" aria-label="Посилання на розділ">#</a></h2>
+<p>Тест сховища не повинен писати <code>profile.json</code> у робочу папку або торкатися справжніх даних.</p>
+<div class="code-block"><div class="code-toolbar"><span>test_storage.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def test_store_round_trip(tmp_path):
+    path = tmp_path / &quot;robot.json&quot;
+    store = RobotStore(path)
+    robot = Robot(&quot;Іскра&quot;, energy=8)
+    robot.move(3)
+
+    store.save(robot)
+    restored = store.load()
+
+    assert restored.to_data() == robot.to_data()
+    assert path.read_text(encoding=&quot;utf-8&quot;).endswith(&quot;\n&quot;)</code></pre></div>
+<p><code>tmp_path</code> — вбудована fixture pytest, яка повертає окремий <code>pathlib.Path</code> для тесту. Не підставляй <code>--basetemp</code> на важливу папку: pytest може очистити вказану базову директорію перед запуском.</p>
+<p>Перевірка round trip підтверджує: збережений і відновлений об’єкти мають однакові дані. Окреме твердження про фінальний <code>\n</code> фіксує формат файла.</p>
+<h2 id="perevirka-vyvedennia-cherez-capsys">Перевірка виведення через <code>capsys</code><a class="heading-link" href="#perevirka-vyvedennia-cherez-capsys" aria-label="Посилання на розділ">#</a></h2>
+<p>Краще повертати значення, але іноді треба перевірити справжній CLI-вивід:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def greet(name):
+    print(f&quot;Привіт, {name}!&quot;)
+
+
+def test_greet_prints_message(capsys):
+    greet(&quot;Міра&quot;)
+
+    captured = capsys.readouterr()
+    assert captured.out == &quot;Привіт, Міра!\n&quot;
+    assert captured.err == &quot;&quot;</code></pre></div>
+<p><code>capsys</code> перехоплює стандартні потоки виведення. Не тестуй кожен пробіл інтерфейсу, якщо формат не є частиною контракту.</p>
+<h2 id="shcho-same-testuvaty-v-obiekti">Що саме тестувати в об’єкті<a class="heading-link" href="#shcho-same-testuvaty-v-obiekti" aria-label="Посилання на розділ">#</a></h2>
+<p>Пріоритет:</p>
+<ul><li>публічний результат методу;</li><li>важлива зміна стану;</li><li>відмова й незмінність стану;</li><li>межові значення;</li><li>перетворення <code>to_data()</code>/<code>from_data()</code>;</li><li>взаємодія складених об’єктів через публічний інтерфейс.</li></ul>
+<p>Не прив’язуй тест до внутрішнього <code>_charge</code>, якщо контракт дає <code>battery.charge</code>. Інакше безпечний рефакторинг внутрішньої реалізації зламає тести без зміни поведінки.</p>
+<p>Один тест має бути:</p>
+<ul><li>повторюваним;</li><li>незалежним від порядку інших тестів;</li><li>швидким для свого рівня;</li><li>зрозумілим за назвою;</li><li>здатним упасти з однієї чіткої причини.</li></ul>
+<h2 id="nabir-testiv-i-rehresiia">Набір тестів і регресія<a class="heading-link" href="#nabir-testiv-i-rehresiia" aria-label="Посилання на розділ">#</a></h2>
+<p><strong>Регресія</strong> — поведінка, яка працювала, але зламалася після зміни. Коли знаходиш дефект:</p>
+<ol><li>Напиши тест, який відтворює його й падає.</li><li>Виправ мінімальну причину.</li><li>Побач зелений новий тест.</li><li>Запусти весь набір.</li></ol>
+<p>Тест лишається як сигналізація проти повторення того самого дефекту.</p>
+<p>Тести не замінюють перевірку інтерфейсу людиною, аналіз безпеки або розуміння вимог. Вони є виконуваною частиною доказу.</p>
+<h2 id="konfihuratsiia-v-pyproject-toml">Конфігурація в <code>pyproject.toml</code><a class="heading-link" href="#konfihuratsiia-v-pyproject-toml" aria-label="Посилання на розділ">#</a></h2>
+<p>Коли проєкту потрібні сталі опції:</p>
+<div class="code-block"><div class="code-toolbar"><span>toml</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-toml">[tool.pytest.ini_options]
+testpaths = [&quot;tests&quot;]
+addopts = &quot;-ra&quot;</code></pre></div>
+<ul><li><code>testpaths</code> обмежує звичний пошук;</li><li><code>-ra</code> додає короткий підсумок неочевидних результатів.</li></ul>
+<p>Не приховуй попередження або падіння глобальними опціями лише заради чистого екрана. Кожне приглушення має конкретну причину.</p>
+<h2 id="standartnyy-unittest">Стандартний <code>unittest</code><a class="heading-link" href="#standartnyy-unittest" aria-label="Посилання на розділ">#</a></h2>
+<p>Python має вбудований модуль <code>unittest</code>, який не потребує встановлення. pytest може запускати багато наявних <code>unittest</code>-тестів і дає коротший синтаксис для нових початкових перевірок.</p>
+<p>Вибір залежить від проєкту. Ця довідка використовує pytest через простий <code>assert</code>, fixtures і читабельну параметризацію. Не переписуй робочий набір іншого проєкту лише заради назви інструмента.</p>
+<h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
+<h3 id="testy-zalezhat-odyn-vid-odnoho">Тести залежать один від одного<a class="heading-link" href="#testy-zalezhat-odyn-vid-odnoho" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">robot = Robot(&quot;Робі&quot;, 10)
+
+
+def test_move():
+    robot.move(3)
+    assert robot.energy == 7
+
+
+def test_initial_energy():
+    assert robot.energy == 10</code></pre></div>
+<p>Другий тест залежить від порядку. Створюй новий об’єкт у тесті або function-scoped fixture.</p>
+<h3 id="perevireno-realizatsiiu-a-ne-povedinku">Перевірено реалізацію, а не поведінку<a class="heading-link" href="#perevireno-realizatsiiu-a-ne-povedinku" aria-label="Посилання на розділ">#</a></h3>
+<p>Тест вимагає, щоб метод використав рівно один цикл або конкретний приватний список. Рефакторинг ламає тест, хоча результат той самий. Перевір публічний результат і значущий стан.</p>
+<h3 id="vyniatok-ochikuietsia-nadto-shyroko">Виняток очікується надто широко<a class="heading-link" href="#vyniatok-ochikuietsia-nadto-shyroko" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">with pytest.raises(Exception):
+    robot.move(-1)</code></pre></div>
+<p>Тест пройде навіть за випадкового <code>AttributeError</code>. Очікуй точний <code>ValueError</code> або власний <code>EnergyError</code> і, за потреби, повідомлення.</p>
+<h3 id="test-mistyt-umovu">Тест містить умову<a class="heading-link" href="#test-mistyt-umovu" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">if result == 3:
+    assert True</code></pre></div>
+<p>Коли результат неправильний, тест може завершитися без жодного твердження й вважатися успішним. Пиши пряме <code>assert result == 3</code>.</p>
+<section class="callout callout-mistake"><div class="callout-label">Типова помилка</div><p>Не запускай тести на справжній файл користувача, домашню папку або спільну базу. Передавай тимчасову залежність (<code>tmp_path</code>, fake, тестовий об’єкт) і доводь межі шляху до операції.</p></section>
+<h2 id="shvydka-perevirka">Швидка перевірка<a class="heading-link" href="#shvydka-perevirka" aria-label="Посилання на розділ">#</a></h2>
+<p>Який тест найкраще ловить регресію «невдала атака все одно відняла енергію»?</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def test_failed_attack_preserves_energy():
+    hero = Hero(energy=5)
+
+    with pytest.raises(EnergyError):
+        hero.attack(cost=8)
+
+    assert hero.energy == 5</code></pre></div>
+<p>Тут назва, точний виняток і стан після відмови описують одну вимогу.</p>
+<section class="quiz" data-answer="2"><div class="callout-label">Перевір себе</div><p class="quiz-question">Навіщо тесту сховища fixture tmp_path?</p><div class="quiz-options"><button type="button" class="quiz-option" data-index="0">Щоб pytest автоматично опублікував файл у Git.</button><button type="button" class="quiz-option" data-index="1">Щоб JSON перетворився на двійковий формат.</button><button type="button" class="quiz-option" data-index="2">Щоб кожен тест працював у власній тимчасовій папці й не торкався реальних файлів.</button></div><p class="quiz-feedback" hidden>tmp_path дає pathlib.Path для ізольованих тестових даних. Шлях передається сховищу як звичайна залежність.</p></section>
+<h2 id="samostiyna-robota">Самостійна робота<a class="heading-link" href="#samostiyna-robota" aria-label="Посилання на розділ">#</a></h2>
+<section class="callout callout-tasks"><div class="callout-label">Самостійна робота</div><ul><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="16-testy-z-pytest-task-1"><span>Запусти готовий <code>examples/pytest_demo</code> і поясни, чому звіт має 7 випадків, хоча тестових функцій менше.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="16-testy-z-pytest-task-2"><span>Навмисно зміни правильне очікування на неправильне, прочитай introspection pytest, потім віднови вимогу й зелений результат.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="16-testy-z-pytest-task-3"><span>Додай тест успішного руху на точну межу енергії та тест відмови на один крок більше. В обох перевір стан.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="16-testy-z-pytest-task-4"><span>Створи fixture нового <code>PlayerProfile</code> і два незалежні тести, один з яких змінює навички. Доведи, що зміна не протікає.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="16-testy-z-pytest-task-5"><span>Параметризуй щонайменше чотири неправильні значення для методу. Не мутуй передані параметри між випадками.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="16-testy-z-pytest-task-6"><span>Перевір власний виняток через <code>pytest.raises(..., match=...)</code> і переконайся, що стан після відмови не змінився.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="16-testy-z-pytest-task-7"><span>Використай <code>tmp_path</code> для round trip JSON-сховища. Не пиши тестовий файл у корінь або домашню папку.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="16-testy-z-pytest-task-8"><span>Відтвори знайдений раніше дефект тестом, побач червоний результат, виправ мінімальну причину й запусти весь набір.</span></label></li></ul></section>
+<section class="callout callout-history"><div class="callout-label">Коротка історична пауза</div><p>Автоматичний тест — це програма, яка запускає іншу частину програми й порівнює спостереження з очікуванням. Сильна діагностика pytest для звичайного <code>assert</code> зробила такі тести короткими: сама мова формулює твердження, runner додає пошук, ізоляцію та звіт.</p></section>
+<h2 id="pidsumok">Підсумок<a class="heading-link" href="#pidsumok" aria-label="Посилання на розділ">#</a></h2>
+<ul><li>pytest — стабільний сторонній пакет; встановлюй його в <code>.venv</code> і запускай через <code>python -m pytest</code>.</li><li>Файли й функції <code>test_*</code> pytest знаходить автоматично.</li><li>Тест організовують як підготовку, одну дію й перевірку результату через <code>assert</code>.</li><li>Спочатку побач, що новий тест здатен падати з правильної причини.</li><li><code>pytest.raises()</code> перевіряє точний виняток, fixture готує незалежний контекст.</li><li>Параметризація запускає одну перевірку для таблиці випадків.</li><li><code>tmp_path</code> ізолює файлові тести, <code>capsys</code> перехоплює консольний вивід.</li><li>Перевіряй публічну поведінку та стан, а не випадкові деталі реалізації.</li><li>Регресійний тест спершу відтворює дефект, потім захищає виправлення.</li><li>Зелений набір — важливе свідчення, але не доказ, що поза перевіреними сценаріями помилок немає.</li></ul>
+<p>Офіційні орієнтири: <a href="https://docs.pytest.org/en/stable/getting-started.html" target="_blank" rel="noreferrer">початок роботи з pytest</a>, <a href="https://docs.pytest.org/en/stable/how-to/assert.html" target="_blank" rel="noreferrer">твердження</a>, <a href="https://docs.pytest.org/en/stable/explanation/fixtures.html" target="_blank" rel="noreferrer">fixtures</a>, <a href="https://docs.pytest.org/en/stable/how-to/parametrize.html" target="_blank" rel="noreferrer">параметризація</a>, <a href="https://docs.pytest.org/en/stable/how-to/tmp_path.html" target="_blank" rel="noreferrer"><code>tmp_path</code></a>.</p></div>
+  <section class="completion-card">
+    <div><p class="eyebrow">Твій прогрес</p><h2>Розділ опрацьовано?</h2><p>Позначай тільки після запуску прикладу й самостійної зміни.</p></div>
+    <button class="button primary complete-chapter" type="button" data-chapter-id="16-testy-z-pytest">Позначити завершеним</button>
+  </section>
+  <nav class="chapter-pager" aria-label="Сусідні розділи"><a class="chapter-pager-link previous" href="15-json-zberezhennia-i-refaktorynh.html"><span>← Назад</span><strong>JSON: збереження стану й рефакторинг</strong></a><a class="chapter-pager-link next" href="17-styl-nalahodzhennia-i-karta-syntaksysu.html"><span>Далі →</span><strong>Підтримуваний код: стиль, налагодження й карта синтаксису</strong></a></nav>
+</article>
+
+      <footer class="site-footer">
+        <p>Python через об’єкти · українська практична довідка · 2026</p>
+        <a href="https://github.com/ArTeGaS/python-oop-handbook-ua">Відкрити репозиторій</a>
+      </footer>
+    </main>
+  </div>
+  <div class="search-panel" hidden aria-live="polite">
+    <div class="search-panel-inner">
+      <button class="search-close" type="button" aria-label="Закрити пошук">×</button>
+      <p class="eyebrow">Пошук у довідці</p>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+</body>
+</html>

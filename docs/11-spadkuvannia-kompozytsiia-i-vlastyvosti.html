@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="uk" data-active-chapter="11-spadkuvannia-kompozytsiia-i-vlastyvosti">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Пов’язані об’єкти: успадкування, композиція й властивості Пов’язані об’єкти: успадкування, композиція й властивості Класи рідко живуть окремо. Електросамокат є видом транспорту, а його батар">
+  <meta name="theme-color" content="#f4f0e8">
+  <title>Пов’язані об’єкти: успадкування, композиція й властивості — Python через об’єкти</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body class="chapter-page">
+  <a class="skip-link" href="#main-content">До основного тексту</a>
+  <header class="mobile-header">
+    <button class="icon-button menu-button" type="button" aria-label="Відкрити зміст" aria-expanded="false">Зміст</button>
+    <a class="mobile-brand" href="index.html">Python через об’єкти</a>
+    <button class="icon-button theme-toggle" type="button" aria-label="Змінити тему">Тема</button>
+  </header>
+  <div class="app-shell">
+
+<aside class="sidebar" aria-label="Зміст">
+  <div class="sidebar-top">
+    <a class="brand" data-slug="home" href="index.html">
+      <span class="brand-mark">Py</span>
+      <span><strong>Python через об’єкти</strong><small>Практична довідка для початківців</small></span>
+    </a>
+    <button class="theme-toggle desktop-theme" type="button">Змінити тему</button>
+  </div>
+  <label class="search-box">
+    <span class="visually-hidden">Пошук</span>
+    <input id="chapter-search" type="search" placeholder="Знайти тему…" autocomplete="off">
+    <kbd>Ctrl K</kbd>
+  </label>
+  <div class="progress-card">
+    <div><span>Прогрес</span><strong id="progress-label">0 з 18</strong></div>
+    <div class="progress-track"><span id="progress-bar"></span></div>
+  </div>
+  <nav class="chapter-nav"><a class="chapter-link" data-slug="00-yak-korystuvatysia" href="00-yak-korystuvatysia.html"><span class="chapter-number">Початок</span><span>Як користуватися цією довідкою</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="01-py-fail-i-pershyi-obiekt" href="01-py-fail-i-pershyi-obiekt.html"><span class="chapter-number">01</span><span>`.py`-файл і перший об’єкт</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="02-stan-obiekta-i-prosti-typy" href="02-stan-obiekta-i-prosti-typy.html"><span class="chapter-number">02</span><span>Стан об’єкта: рядки, числа й логічні значення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="03-metody-parametry-i-povernennia" href="03-metody-parametry-i-povernennia.html"><span class="chapter-number">03</span><span>Методи: параметри, аргументи й `return`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="04-rishennia-i-lohichni-vyrazy" href="04-rishennia-i-lohichni-vyrazy.html"><span class="chapter-number">04</span><span>Рішення: порівняння, `if`, `elif`, `else`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="05-spysky-i-kortezhi" href="05-spysky-i-kortezhi.html"><span class="chapter-number">05</span><span>Списки й кортежі: впорядковані колекції</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="06-cykly-range-i-zrizy" href="06-cykly-range-i-zrizy.html"><span class="chapter-number">06</span><span>Повторення: `for`, `range()` і зрізи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="07-vvedennia-i-cykl-while" href="07-vvedennia-i-cykl-while.html"><span class="chapter-number">07</span><span>Діалог із програмою: `input()` і цикл `while`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="08-slovnyky-vkladennia-i-mnozhyny" href="08-slovnyky-vkladennia-i-mnozhyny.html"><span class="chapter-number">08</span><span>Словники, вкладені дані й множини</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="09-funktsii-i-moduli" href="09-funktsii-i-moduli.html"><span class="chapter-number">09</span><span>Функції й модулі: інструменти поза об’єктами</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="10-struktura-opp-proiektu" href="10-struktura-opp-proiektu.html"><span class="chapter-number">10</span><span>Структура OOP-проєкту у VS Code</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="11-spadkuvannia-kompozytsiia-i-vlastyvosti" href="11-spadkuvannia-kompozytsiia-i-vlastyvosti.html"><span class="chapter-number">11</span><span>Пов’язані об’єкти: успадкування, композиція й властивості</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="12-standartna-biblioteka-i-vypadkovist" href="12-standartna-biblioteka-i-vypadkovist.html"><span class="chapter-number">12</span><span>Стандартна бібліотека й керована випадковість</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="13-faily-koduvannia-i-shliakhy" href="13-faily-koduvannia-i-shliakhy.html"><span class="chapter-number">13</span><span>Текстові файли, UTF-8 і шляхи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="14-vyniatky-i-chytabelni-zboi" href="14-vyniatky-i-chytabelni-zboi.html"><span class="chapter-number">14</span><span>Винятки: передбачувані збої й корисні повідомлення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="15-json-zberezhennia-i-refaktorynh" href="15-json-zberezhennia-i-refaktorynh.html"><span class="chapter-number">15</span><span>JSON: збереження стану й рефакторинг</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="16-testy-z-pytest" href="16-testy-z-pytest.html"><span class="chapter-number">16</span><span>Автоматичні тести з pytest</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="17-styl-nalahodzhennia-i-karta-syntaksysu" href="17-styl-nalahodzhennia-i-karta-syntaksysu.html"><span class="chapter-number">17</span><span>Підтримуваний код: стиль, налагодження й карта синтаксису</span><span class="chapter-check" aria-hidden="true">✓</span></a></nav>
+  <div class="sidebar-actions">
+    <a class="button secondary full" href="downloads/python-cherez-obiekty.pdf">Завантажити PDF</a>
+  </div>
+</aside>
+
+    <main id="main-content" class="main-content" tabindex="-1">
+
+<article class="chapter-article" data-chapter="11-spadkuvannia-kompozytsiia-i-vlastyvosti">
+  <header class="chapter-header">
+    <p class="eyebrow">Розділ 11</p>
+    <p class="chapter-reading-note">Читай · запускай · змінюй · перевіряй</p>
+  </header>
+  <div class="chapter-body"><h1 id="poviazani-obiekty-uspadkuvannia-kompozytsiia-y-vlastyvosti">Пов’язані об’єкти: успадкування, композиція й властивості<a class="heading-link" href="#poviazani-obiekty-uspadkuvannia-kompozytsiia-y-vlastyvosti" aria-label="Посилання на розділ">#</a></h1>
+<p>Класи рідко живуть окремо. Електросамокат є видом транспорту, а його батарея — окремою частиною. Перше відношення іноді описує <strong>успадкування</strong>, друге — <strong>композиція</strong>. Вибір впливає на те, наскільки легко змінювати програму.</p>
+<h2 id="shcho-zrobymo">Що зробимо<a class="heading-link" href="#shcho-zrobymo" aria-label="Посилання на розділ">#</a></h2>
+<p>Створимо базовий <code>Vehicle</code>, спеціалізований <code>ElectricScooter</code> і окремий об’єкт <code>Battery</code>. Потім закриємо небезпечну зміну заряду за властивістю <code>energy</code>.</p>
+<section class="callout callout-goal"><div class="callout-label">Результат</div><p>Ти зможеш перевірити відношення простими фразами: «X є різновидом Y» для успадкування та «X має Y» для композиції. Перевагу отримає простіший зв’язок, а не найбільше дерево класів.</p></section>
+<h2 id="uspadkuvannia-peredaie-spilnyy-opys">Успадкування передає спільний опис<a class="heading-link" href="#uspadkuvannia-peredaie-spilnyy-opys" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Vehicle:
+    def __init__(self, name, speed):
+        self.name = name
+        self.speed = speed
+
+    def move_text(self):
+        return f&quot;{self.name} рухається зі швидкістю {self.speed}.&quot;
+
+
+class Bicycle(Vehicle):
+    pass</code></pre></div>
+<p><code>Bicycle(Vehicle)</code> означає: <code>Bicycle</code> успадковує доступні методи й атрибути, підготовлені <code>Vehicle</code>. Порожній клас із <code>pass</code> уже може створювати об’єкти:</p>
+<div class="code-block"><div class="code-toolbar"><span>first_inheritance.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Vehicle:
+    def __init__(self, name, speed):
+        self.name = name
+        self.speed = speed
+
+    def move_text(self):
+        return f&quot;{self.name} рухається зі швидкістю {self.speed}.&quot;
+
+
+class Bicycle(Vehicle):
+    pass
+
+
+bicycle = Bicycle(&quot;Ластівка&quot;, 18)
+print(bicycle.move_text())</code></pre></div>
+<p><code>Vehicle</code> називають базовим або батьківським класом, <code>Bicycle</code> — похідним або дочірнім.</p>
+<p>Успадкування доречне, якщо об’єкт похідного класу справді можна використовувати всюди, де очікують базовий. Велосипед є транспортом і підтримує основні обіцянки транспорту.</p>
+<h2 id="maysternia">Майстерня<a class="heading-link" href="#maysternia" aria-label="Посилання на розділ">#</a></h2>
+<p>Створи <code>electric_scooter.py</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>electric_scooter.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Battery:
+    def __init__(self, capacity, charge=None):
+        self.capacity = capacity
+        self._charge = capacity if charge is None else charge
+
+    @property
+    def charge(self):
+        return self._charge
+
+    def use(self, amount):
+        if amount &lt; 0 or amount &gt; self._charge:
+            return False
+        self._charge -= amount
+        return True
+
+    def status_text(self):
+        return f&quot;Заряд: {self._charge}/{self.capacity}.&quot;
+
+
+class Vehicle:
+    def __init__(self, name, speed):
+        self.name = name
+        self.speed = speed
+
+    def move_text(self):
+        return f&quot;{self.name} рухається зі швидкістю {self.speed}.&quot;
+
+
+class ElectricScooter(Vehicle):
+    def __init__(self, name, speed, battery):
+        super().__init__(name, speed)
+        self.battery = battery
+        self.distance = 0
+
+    def ride(self, kilometers):
+        if kilometers &lt;= 0:
+            return &quot;Відстань має бути додатною.&quot;
+        if not self.battery.use(kilometers):
+            return &quot;Недостатньо заряду.&quot;
+        self.distance += kilometers
+        return f&quot;Самокат проїхав {kilometers} км.&quot;
+
+
+battery = Battery(capacity=40, charge=30)
+scooter = ElectricScooter(&quot;Іскра&quot;, speed=22, battery=battery)
+
+print(scooter.move_text())
+print(scooter.battery.status_text())
+print(scooter.ride(8))
+print(scooter.battery.status_text())</code></pre></div>
+<p>Тут обидва зв’язки мають чітку причину:</p>
+<ul><li><code>ElectricScooter</code> <strong>є</strong> видом <code>Vehicle</code>;</li><li><code>ElectricScooter</code> <strong>має</strong> <code>Battery</code>.</li></ul>
+<h3 id="super-vyklykaie-realizatsiiu-bazovoho-klasu"><code>super()</code> викликає реалізацію базового класу<a class="heading-link" href="#super-vyklykaie-realizatsiiu-bazovoho-klasu" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">super().__init__(name, speed)</code></pre></div>
+<p><code>super()</code> дає доступ до наступної реалізації в ланцюжку успадкування. Тут він просить <code>Vehicle</code> підготувати спільні атрибути <code>name</code> і <code>speed</code>.</p>
+<p>Не дублюй:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">self.name = name
+self.speed = speed</code></pre></div>
+<p>у кожному похідному класі, якщо базовий уже має правильну ініціалізацію. Дубльовані правила легко розійдуться.</p>
+<p><code>super()</code> краще за прямий виклик <code>Vehicle.__init__(self, ...)</code>, бо поважає порядок пошуку методів і підтримує складніші, хоча й рідші, схеми успадкування.</p>
+<h3 id="perevyznachennia-metodu">Перевизначення методу<a class="heading-link" href="#perevyznachennia-metodu" aria-label="Посилання на розділ">#</a></h3>
+<p>Похідний клас може дати власну реалізацію методу з тим самим іменем:</p>
+<div class="code-block"><div class="code-toolbar"><span>override.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Vehicle:
+    def __init__(self, name, speed):
+        self.name = name
+        self.speed = speed
+
+    def move_text(self):
+        return f&quot;{self.name} рухається зі швидкістю {self.speed}.&quot;
+
+
+class Boat(Vehicle):
+    def move_text(self):
+        return f&quot;Човен {self.name} рухається водою зі швидкістю {self.speed}.&quot;
+
+
+boat = Boat(&quot;Плин&quot;, 12)
+print(boat.move_text())</code></pre></div>
+<p>Це <strong>перевизначення</strong>. Виклик <code>boat.move_text()</code> знаходить найближчу реалізацію в <code>Boat</code>.</p>
+<p>Якщо треба розширити, а не повністю замінити базовий результат:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def move_text(self):
+    base_text = super().move_text()
+    return base_text + &quot; Двигун працює тихо.&quot;</code></pre></div>
+<p>Зберігай сумісний зміст: якщо базовий <code>move_text()</code> повертає рядок, похідний не повинен раптом видаляти об’єкт або повертати словник без дуже вагомої причини.</p>
+<h2 id="kompozytsiia-obiekt-skladaietsia-z-inshykh-obiektiv">Композиція: об’єкт складається з інших об’єктів<a class="heading-link" href="#kompozytsiia-obiekt-skladaietsia-z-inshykh-obiektiv" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">self.battery = battery</code></pre></div>
+<p>Самокат не успадковує батарею. Він містить посилання на окремий об’єкт і делегує йому роботу:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">if not self.battery.use(kilometers):
+    return &quot;Недостатньо заряду.&quot;</code></pre></div>
+<p>Переваги:</p>
+<ul><li><code>Battery</code> можна перевірити окремо;</li><li>ту саму модель батареї можна використати в роботі або ліхтарі;</li><li>батарею можна замінити іншим сумісним об’єктом;</li><li>клас самоката не розростається правилами заряджання.</li></ul>
+<section class="callout callout-practice"><div class="callout-label">Заміни батарею</div><p>Створи другу батарею більшої місткості й присвой <code>scooter.battery = new_battery</code>. Перевір, що код <code>ride()</code> не треба змінювати: він очікує поведінку <code>use()</code> і <code>status_text()</code>, а не конкретну історію об’єкта.</p></section>
+<h2 id="pidkreslennia-poznachaie-vnutrishniu-detal">Підкреслення позначає внутрішню деталь<a class="heading-link" href="#pidkreslennia-poznachaie-vnutrishniu-detal" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">self._charge = capacity</code></pre></div>
+<p>Одне початкове підкреслення — домовленість: «це внутрішня деталь класу; зовнішньому коду краще не змінювати напряму». Python не ставить фізичний замок:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">battery._charge = -100</code></pre></div>
+<p>технічно можливе. Але такий код обходить перевірки й порушує контракт.</p>
+<p>Подвійне підкреслення <code>__charge</code> вмикає механізм зміни імені, а не абсолютну приватність. Для початкових моделей достатньо одного <code>_</code> і зрозумілих публічних методів.</p>
+<h2 id="property-daie-kontrolovane-chytannia"><code>@property</code> дає контрольоване читання<a class="heading-link" href="#property-daie-kontrolovane-chytannia" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">@property
+def charge(self):
+    return self._charge</code></pre></div>
+<p>Зовнішній код читає <code>battery.charge</code> без дужок, але насправді виконується метод. Властивість доречна для простого значення, яке виглядає як стан.</p>
+<p>Без setter-властивості такий запис не дозволений:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">battery.charge = -10</code></pre></div>
+<p>Python покаже <code>AttributeError</code>. Зміну треба робити через <code>use()</code> або окремий метод <code>charge_by()</code>, де діють правила.</p>
+<p>Якщо пряме присвоєння справді є частиною зручного інтерфейсу, можна додати setter:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">@charge.setter
+def charge(self, value):
+    if not 0 &lt;= value &lt;= self.capacity:
+        raise ValueError(&quot;Заряд поза допустимими межами&quot;)
+    self._charge = value</code></pre></div>
+<p>Але метод <code>recharge(amount)</code> часто краще називає дію, ніж приховане складне присвоєння.</p>
+<section class="callout callout-note"><div class="callout-label">Властивість не потрібна для кожного атрибута</div><p>Публічне <code>self.name</code> — нормальний Python. Додавай <code>_attribute</code> і property, коли є справжня умова цілісності, обчислення або потреба змінити реалізацію без зміни зовнішнього інтерфейсу.</p></section>
+<h2 id="atrybut-klasu-spilnyy-dlia-vsikh-obiektiv">Атрибут класу спільний для всіх об’єктів<a class="heading-link" href="#atrybut-klasu-spilnyy-dlia-vsikh-obiektiv" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>class_attribute.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Robot:
+    created_count = 0
+
+    def __init__(self, name):
+        self.name = name
+        Robot.created_count += 1
+
+
+first = Robot(&quot;Робі&quot;)
+second = Robot(&quot;Іскра&quot;)
+
+print(Robot.created_count)
+print(second.created_count)</code></pre></div>
+<p><code>created_count</code> належить класу й спільний. Читати його через <code>Robot.created_count</code> ясніше. Звичайні дані конкретного робота, як <code>name</code>, створюють через <code>self</code>.</p>
+<p>Не використовуй змінний список атрибутом класу для особистих даних:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Backpack:
+    items = []</code></pre></div>
+<p>Усі наплічники отримають той самий список. Створюй <code>self.items = []</code> у <code>__init__</code>.</p>
+<h2 id="classmethod-iak-alternatyvnyy-konstruktor"><code>@classmethod</code> як альтернативний конструктор<a class="heading-link" href="#classmethod-iak-alternatyvnyy-konstruktor" aria-label="Посилання на розділ">#</a></h2>
+<p>Метод класу отримує клас у параметрі <code>cls</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>class_method.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Robot:
+    def __init__(self, name, energy):
+        self.name = name
+        self.energy = energy
+
+    @classmethod
+    def fully_charged(cls, name):
+        return cls(name, energy=25)
+
+
+robot = Robot.fully_charged(&quot;Робі&quot;)
+print(f&quot;{robot.name}: {robot.energy}&quot;)</code></pre></div>
+<p><code>fully_charged()</code> дає назву іншому способу створення. <code>cls(...)</code> підтримує похідні класи краще, ніж жорстко записане <code>Robot(...)</code>.</p>
+<p><code>@staticmethod</code> створює функцію в просторі імен класу без <code>self</code> і <code>cls</code>. Використовуй її рідко: якщо функція не пов’язана зі станом чи поняттям класу, звичайний модуль часто природніший.</p>
+<h2 id="polimorfizm-odna-komanda-dlia-riznykh-obiektiv">Поліморфізм: одна команда для різних об’єктів<a class="heading-link" href="#polimorfizm-odna-komanda-dlia-riznykh-obiektiv" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>polymorphism.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class WheelVehicle:
+    def move_text(self):
+        return &quot;Колесо котиться.&quot;
+
+
+class Boat:
+    def move_text(self):
+        return &quot;Човен пливе.&quot;
+
+
+vehicles = [WheelVehicle(), Boat()]
+
+for vehicle in vehicles:
+    print(vehicle.move_text())</code></pre></div>
+<p>Класи навіть не мають спільного базового класу, крім загального <code>object</code>. Python часто достатньо того, що об’єкт підтримує потрібний метод. Це називають <strong>duck typing</strong>: важлива поведінка, а не формальний ярлик.</p>
+<p>Успадкування корисне для спільної реалізації й явного відношення, але не потрібне лише заради однакової назви методу.</p>
+<p>Функції <code>isinstance(obj, Class)</code> і <code>issubclass(Child, Parent)</code> перевіряють формальний зв’язок. Не підмінюй ними нормальний поліморфізм великим ланцюжком перевірок типів.</p>
+<h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
+<h3 id="uspadkuvannia-zarady-povtornoho-vykorystannia-dvokh-riadkiv">Успадкування заради повторного використання двох рядків<a class="heading-link" href="#uspadkuvannia-zarady-povtornoho-vykorystannia-dvokh-riadkiv" aria-label="Посилання на розділ">#</a></h3>
+<p>Якщо <code>Report</code> успадковує <code>Robot</code> лише через корисний метод форматування, твердження «звіт є роботом» хибне. Винеси функцію або окремий об’єкт форматера.</p>
+<h3 id="zabutyy-super-init">Забутий <code>super().__init__()</code><a class="heading-link" href="#zabutyy-super-init" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class ElectricScooter(Vehicle):
+    def __init__(self, battery):
+        self.battery = battery</code></pre></div>
+<p>Об’єкт не отримає <code>name</code> і <code>speed</code>, хоча успадковані методи їх очікують. Або виклич <code>super()</code>, або свідомо забезпеч усі обіцянки базового класу.</p>
+<h3 id="pokhidnyy-klas-lamaie-kontrakt">Похідний клас ламає контракт<a class="heading-link" href="#pokhidnyy-klas-lamaie-kontrakt" aria-label="Посилання на розділ">#</a></h3>
+<p>Якщо базовий <code>move_text()</code> повертає рядок, а один похідний метод повертає <code>None</code> і лише друкує, спільний цикл не зможе однаково обробити об’єкти.</p>
+<section class="callout callout-mistake"><div class="callout-label">Типова помилка</div><p>Не створюй глибоку ієрархію наперед: <code>Entity -&gt; Actor -&gt; MovingActor -&gt; LivingMovingActor -&gt; Hero</code>. Спочатку потрібні конкретні два класи й реальна спільна поведінка. Композицію легше змінювати, тому за сумніву перевір варіант «має об’єкт».</p></section>
+<h2 id="shvydka-perevirka">Швидка перевірка<a class="heading-link" href="#shvydka-perevirka" aria-label="Посилання на розділ">#</a></h2>
+<p>Визнач, де успадкування, а де композиція:</p>
+<div class="code-block"><div class="code-toolbar"><span>service_robot.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Robot:
+    def __init__(self, name):
+        self.name = name
+
+
+class Tool:
+    def __init__(self, title):
+        self.title = title
+
+
+class ServiceRobot(Robot):
+    def __init__(self, name, tool):
+        super().__init__(name)
+        self.tool = tool
+
+    def description(self):
+        return f&quot;{self.name}: інструмент — {self.tool.title}.&quot;
+
+
+robot = ServiceRobot(&quot;Сервіс-1&quot;, Tool(&quot;ключ&quot;))
+print(robot.description())</code></pre></div>
+<section class="quiz" data-answer="0"><div class="callout-label">Перевір себе</div><p class="quiz-question">Який зв’язок найкраще описує фразу «самокат має батарею»?</p><div class="quiz-options"><button type="button" class="quiz-option" data-index="0">Композиція: об’єкт Battery зберігається в атрибуті самоката.</button><button type="button" class="quiz-option" data-index="1">Успадкування: ElectricScooter повинен бути підкласом Battery.</button><button type="button" class="quiz-option" data-index="2">Глобальна змінна battery для всіх самокатів.</button></div><p class="quiz-feedback" hidden>Батарея є частиною самоката, але самокат не є різновидом батареї. Це відношення «має», тобто композиція.</p></section>
+<h2 id="samostiyna-robota">Самостійна робота<a class="heading-link" href="#samostiyna-robota" aria-label="Посилання на розділ">#</a></h2>
+<section class="callout callout-tasks"><div class="callout-label">Самостійна робота</div><ul><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="11-spadkuvannia-kompozytsiia-i-vlastyvosti-task-1"><span>Створи базовий <code>Notification</code> із методом <code>message_text()</code> і два похідні класи, які перевизначають формат, але завжди повертають рядок.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="11-spadkuvannia-kompozytsiia-i-vlastyvosti-task-2"><span>Створи <code>Flashlight</code>, який має об’єкт <code>Battery</code>. Нехай ліхтар делегує витрату заряду батареї, а не змінює її внутрішній атрибут напряму.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="11-spadkuvannia-kompozytsiia-i-vlastyvosti-task-3"><span>Додай батареї метод <code>recharge(amount)</code> з межами від 0 до <code>capacity</code>. Перевір від’ємне значення, переповнення й нормальний заряд.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="11-spadkuvannia-kompozytsiia-i-vlastyvosti-task-4"><span>Перероби прямий публічний атрибут, для якого справді потрібна перевірка, на <code>_attribute</code> з read-only property і методами зміни.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="11-spadkuvannia-kompozytsiia-i-vlastyvosti-task-5"><span>Створи атрибут класу, який рахує кількість створених об’єктів. Поясни, чому особистий стан не можна зберігати там само.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="11-spadkuvannia-kompozytsiia-i-vlastyvosti-task-6"><span>Додай альтернативний конструктор <code>from_text()</code> через <code>@classmethod</code>, який створює об’єкт із простого рядка відомого формату.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="11-spadkuvannia-kompozytsiia-i-vlastyvosti-task-7"><span>Знайди у власному прикладі хибне успадкування за тестом «X є Y» і заміни його композицією або функцією.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="11-spadkuvannia-kompozytsiia-i-vlastyvosti-task-8"><span>Створи список різних об’єктів зі спільним методом <code>status_text()</code> без спільного класу й оброби його одним циклом.</span></label></li></ul></section>
+<section class="callout callout-history"><div class="callout-label">Коротка історична пауза</div><p>Фраза «віддавай перевагу композиції перед успадкуванням» не забороняє успадкування. Вона нагадує: дерево типів важко перебудувати, а об’єкти-частини можна замінювати. Спершу перевір «має», а «є різновидом» залиш для справді стабільного відношення.</p></section>
+<h2 id="pidsumok">Підсумок<a class="heading-link" href="#pidsumok" aria-label="Посилання на розділ">#</a></h2>
+<ul><li>Успадкування описує відношення «похідний клас є різновидом базового».</li><li><code>super()</code> викликає реалізацію наступного класу в ланцюжку й допомагає не дублювати ініціалізацію.</li><li>Перевизначення дає похідному класу власну сумісну реалізацію методу.</li><li>Композиція описує «об’єкт має інший об’єкт» і делегує йому відповідальність.</li><li>Одне <code>_</code> позначає внутрішню деталь за домовленістю; property дає контрольоване читання або присвоєння.</li><li>Атрибут класу спільний, атрибут <code>self</code> належить конкретному об’єкту.</li><li><code>@classmethod</code> зручний для альтернативного способу створення.</li><li>Поліморфізм дозволяє однаково викликати сумісну поведінку різних об’єктів навіть без формального спільного предка.</li></ul></div>
+  <section class="completion-card">
+    <div><p class="eyebrow">Твій прогрес</p><h2>Розділ опрацьовано?</h2><p>Позначай тільки після запуску прикладу й самостійної зміни.</p></div>
+    <button class="button primary complete-chapter" type="button" data-chapter-id="11-spadkuvannia-kompozytsiia-i-vlastyvosti">Позначити завершеним</button>
+  </section>
+  <nav class="chapter-pager" aria-label="Сусідні розділи"><a class="chapter-pager-link previous" href="10-struktura-opp-proiektu.html"><span>← Назад</span><strong>Структура OOP-проєкту у VS Code</strong></a><a class="chapter-pager-link next" href="12-standartna-biblioteka-i-vypadkovist.html"><span>Далі →</span><strong>Стандартна бібліотека й керована випадковість</strong></a></nav>
+</article>
+
+      <footer class="site-footer">
+        <p>Python через об’єкти · українська практична довідка · 2026</p>
+        <a href="https://github.com/ArTeGaS/python-oop-handbook-ua">Відкрити репозиторій</a>
+      </footer>
+    </main>
+  </div>
+  <div class="search-panel" hidden aria-live="polite">
+    <div class="search-panel-inner">
+      <button class="search-close" type="button" aria-label="Закрити пошук">×</button>
+      <p class="eyebrow">Пошук у довідці</p>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+</body>
+</html>

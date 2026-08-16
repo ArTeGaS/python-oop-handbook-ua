@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="uk" data-active-chapter="10-struktura-opp-proiektu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Структура OOP-проєкту у VS Code Структура OOP-проєкту у VS Code Коли програма виростає, проблема вже не в тому, чи працює окремий `if`. Треба швидко знайти клас, зрозуміти точку запуску й не">
+  <meta name="theme-color" content="#f4f0e8">
+  <title>Структура OOP-проєкту у VS Code — Python через об’єкти</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body class="chapter-page">
+  <a class="skip-link" href="#main-content">До основного тексту</a>
+  <header class="mobile-header">
+    <button class="icon-button menu-button" type="button" aria-label="Відкрити зміст" aria-expanded="false">Зміст</button>
+    <a class="mobile-brand" href="index.html">Python через об’єкти</a>
+    <button class="icon-button theme-toggle" type="button" aria-label="Змінити тему">Тема</button>
+  </header>
+  <div class="app-shell">
+
+<aside class="sidebar" aria-label="Зміст">
+  <div class="sidebar-top">
+    <a class="brand" data-slug="home" href="index.html">
+      <span class="brand-mark">Py</span>
+      <span><strong>Python через об’єкти</strong><small>Практична довідка для початківців</small></span>
+    </a>
+    <button class="theme-toggle desktop-theme" type="button">Змінити тему</button>
+  </div>
+  <label class="search-box">
+    <span class="visually-hidden">Пошук</span>
+    <input id="chapter-search" type="search" placeholder="Знайти тему…" autocomplete="off">
+    <kbd>Ctrl K</kbd>
+  </label>
+  <div class="progress-card">
+    <div><span>Прогрес</span><strong id="progress-label">0 з 18</strong></div>
+    <div class="progress-track"><span id="progress-bar"></span></div>
+  </div>
+  <nav class="chapter-nav"><a class="chapter-link" data-slug="00-yak-korystuvatysia" href="00-yak-korystuvatysia.html"><span class="chapter-number">Початок</span><span>Як користуватися цією довідкою</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="01-py-fail-i-pershyi-obiekt" href="01-py-fail-i-pershyi-obiekt.html"><span class="chapter-number">01</span><span>`.py`-файл і перший об’єкт</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="02-stan-obiekta-i-prosti-typy" href="02-stan-obiekta-i-prosti-typy.html"><span class="chapter-number">02</span><span>Стан об’єкта: рядки, числа й логічні значення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="03-metody-parametry-i-povernennia" href="03-metody-parametry-i-povernennia.html"><span class="chapter-number">03</span><span>Методи: параметри, аргументи й `return`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="04-rishennia-i-lohichni-vyrazy" href="04-rishennia-i-lohichni-vyrazy.html"><span class="chapter-number">04</span><span>Рішення: порівняння, `if`, `elif`, `else`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="05-spysky-i-kortezhi" href="05-spysky-i-kortezhi.html"><span class="chapter-number">05</span><span>Списки й кортежі: впорядковані колекції</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="06-cykly-range-i-zrizy" href="06-cykly-range-i-zrizy.html"><span class="chapter-number">06</span><span>Повторення: `for`, `range()` і зрізи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="07-vvedennia-i-cykl-while" href="07-vvedennia-i-cykl-while.html"><span class="chapter-number">07</span><span>Діалог із програмою: `input()` і цикл `while`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="08-slovnyky-vkladennia-i-mnozhyny" href="08-slovnyky-vkladennia-i-mnozhyny.html"><span class="chapter-number">08</span><span>Словники, вкладені дані й множини</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="09-funktsii-i-moduli" href="09-funktsii-i-moduli.html"><span class="chapter-number">09</span><span>Функції й модулі: інструменти поза об’єктами</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="10-struktura-opp-proiektu" href="10-struktura-opp-proiektu.html"><span class="chapter-number">10</span><span>Структура OOP-проєкту у VS Code</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="11-spadkuvannia-kompozytsiia-i-vlastyvosti" href="11-spadkuvannia-kompozytsiia-i-vlastyvosti.html"><span class="chapter-number">11</span><span>Пов’язані об’єкти: успадкування, композиція й властивості</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="12-standartna-biblioteka-i-vypadkovist" href="12-standartna-biblioteka-i-vypadkovist.html"><span class="chapter-number">12</span><span>Стандартна бібліотека й керована випадковість</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="13-faily-koduvannia-i-shliakhy" href="13-faily-koduvannia-i-shliakhy.html"><span class="chapter-number">13</span><span>Текстові файли, UTF-8 і шляхи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="14-vyniatky-i-chytabelni-zboi" href="14-vyniatky-i-chytabelni-zboi.html"><span class="chapter-number">14</span><span>Винятки: передбачувані збої й корисні повідомлення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="15-json-zberezhennia-i-refaktorynh" href="15-json-zberezhennia-i-refaktorynh.html"><span class="chapter-number">15</span><span>JSON: збереження стану й рефакторинг</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="16-testy-z-pytest" href="16-testy-z-pytest.html"><span class="chapter-number">16</span><span>Автоматичні тести з pytest</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="17-styl-nalahodzhennia-i-karta-syntaksysu" href="17-styl-nalahodzhennia-i-karta-syntaksysu.html"><span class="chapter-number">17</span><span>Підтримуваний код: стиль, налагодження й карта синтаксису</span><span class="chapter-check" aria-hidden="true">✓</span></a></nav>
+  <div class="sidebar-actions">
+    <a class="button secondary full" href="downloads/python-cherez-obiekty.pdf">Завантажити PDF</a>
+  </div>
+</aside>
+
+    <main id="main-content" class="main-content" tabindex="-1">
+
+<article class="chapter-article" data-chapter="10-struktura-opp-proiektu">
+  <header class="chapter-header">
+    <p class="eyebrow">Розділ 10</p>
+    <p class="chapter-reading-note">Читай · запускай · змінюй · перевіряй</p>
+  </header>
+  <div class="chapter-body"><h1 id="struktura-oop-proiektu-u-vs-code">Структура OOP-проєкту у VS Code<a class="heading-link" href="#struktura-oop-proiektu-u-vs-code" aria-label="Посилання на розділ">#</a></h1>
+<p>Коли програма виростає, проблема вже не в тому, чи працює окремий <code>if</code>. Треба швидко знайти клас, зрозуміти точку запуску й не загубитися в імпортах. Структура папок — це карта відповідальності, а не прикраса.</p>
+<h2 id="shcho-zrobymo">Що зробимо<a class="heading-link" href="#shcho-zrobymo" aria-label="Посилання на розділ">#</a></h2>
+<p>Розкладемо консольну станцію роботів на <code>main.py</code>, окремі модулі класів, файл налаштувань і пакет <code>objects</code>. Запустимо проєкт із кореня та розберемо, чому місце запуску впливає на імпорти й шляхи.</p>
+<section class="callout callout-goal"><div class="callout-label">Результат</div><p>Відкривши проєкт у VS Code, інша людина одразу побачить: де запуск, де об’єкти, де сталі дані й де перевірки. <code>main.py</code> координуватиме готові частини, а не міститиме всю логіку.</p></section>
+<h2 id="pochny-z-malenkoi-karty">Почни з маленької карти<a class="heading-link" href="#pochny-z-malenkoi-karty" aria-label="Посилання на розділ">#</a></h2>
+<p>Для навчального проєкту достатня така структура:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-text">robot_station/
+├── main.py
+├── settings.py
+├── objects/
+│   ├── __init__.py
+│   ├── robot.py
+│   └── station.py
+└── tests/
+    └── test_station.py</code></pre></div>
+<ul><li><code>main.py</code> — точка входу: створити об’єкти й запустити сценарій;</li><li><code>settings.py</code> — сталі налаштування;</li><li><code>objects/robot.py</code> — клас <code>Robot</code>;</li><li><code>objects/station.py</code> — клас <code>Station</code>, який керує роботами;</li><li><code>objects/__init__.py</code> — позначає звичайний пакет;</li><li><code>tests/</code> — перевірки, з якими детально працюватимемо пізніше.</li></ul>
+<p><strong>Один навчальний клас на файл</strong> робить маршрут очевидним: <code>Robot</code> шукаємо в <code>robot.py</code>. Це не закон Python. Маленькі тісно пов’язані класи іноді доречно тримати разом, але спершу ясність важливіша за економію файлів.</p>
+<h2 id="maysternia">Майстерня<a class="heading-link" href="#maysternia" aria-label="Посилання на розділ">#</a></h2>
+<h3 id="1-stali-nalashtuvannia">1. Сталі налаштування<a class="heading-link" href="#1-stali-nalashtuvannia" aria-label="Посилання на розділ">#</a></h3>
+<p><code>settings.py</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>settings.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">DEFAULT_ENERGY = 20
+STATION_NAME = &quot;Орбіта&quot;</code></pre></div>
+<p>Назви значень, які програма не планує змінювати, пишуть <code>UPPER_SNAKE_CASE</code>. Python технічно не забороняє переприсвоєння, але стиль повідомляє: це <strong>константа за домовленістю</strong>.</p>
+<p>Не збирай у <code>settings.py</code> будь-яке число. <code>DEFAULT_ENERGY</code> — налаштування. Локальний крок <code>index + 1</code> не потребує глобальної назви.</p>
+<h3 id="2-odyn-klas-odyn-zrozumilyy-modul">2. Один клас — один зрозумілий модуль<a class="heading-link" href="#2-odyn-klas-odyn-zrozumilyy-modul" aria-label="Посилання на розділ">#</a></h3>
+<p><code>objects/robot.py</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>objects/robot.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Robot:
+    def __init__(self, name, energy):
+        self.name = name
+        self.energy = energy
+
+    def charge(self, amount):
+        if amount &lt;= 0:
+            return False
+        self.energy += amount
+        return True
+
+    def status_text(self):
+        return f&quot;{self.name}: {self.energy} енергії&quot;</code></pre></div>
+<p><code>objects/station.py</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>objects/station.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Station:
+    def __init__(self, name):
+        self.name = name
+        self.robots = []
+
+    def register(self, robot):
+        self.robots.append(robot)
+
+    def status_lines(self):
+        return [robot.status_text() for robot in self.robots]</code></pre></div>
+<p><code>Station</code> не імпортує <code>Robot</code>, бо не створює його й не перевіряє точний тип. Вона працює з будь-яким об’єктом, який має <code>status_text()</code>. Менше зайвих залежностей — простіші модулі.</p>
+<h3 id="3-main-py-lyshe-skladaie-chastyny">3. <code>main.py</code> лише складає частини<a class="heading-link" href="#3-main-py-lyshe-skladaie-chastyny" aria-label="Посилання на розділ">#</a></h3>
+<p><code>main.py</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>main.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">from objects.robot import Robot
+from objects.station import Station
+from settings import DEFAULT_ENERGY, STATION_NAME
+
+
+def main():
+    station = Station(STATION_NAME)
+    station.register(Robot(&quot;Робі&quot;, DEFAULT_ENERGY))
+    station.register(Robot(&quot;Іскра&quot;, 12))
+
+    for line in station.status_lines():
+        print(line)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()</code></pre></div>
+<p>Функція <code>main()</code> є явним сценарієм запуску. Захист унизу не дає сценарію виконатися, якщо хтось імпортує <code>main.py</code> для перевірки.</p>
+<p>Однофайловий еквівалент, який можна запустити для швидкої перевірки:</p>
+<div class="code-block"><div class="code-toolbar"><span>station_single_file.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">DEFAULT_ENERGY = 20
+STATION_NAME = &quot;Орбіта&quot;
+
+
+class Robot:
+    def __init__(self, name, energy):
+        self.name = name
+        self.energy = energy
+
+    def status_text(self):
+        return f&quot;{self.name}: {self.energy} енергії&quot;
+
+
+class Station:
+    def __init__(self, name):
+        self.name = name
+        self.robots = []
+
+    def register(self, robot):
+        self.robots.append(robot)
+
+    def status_lines(self):
+        return [robot.status_text() for robot in self.robots]
+
+
+def main():
+    station = Station(STATION_NAME)
+    station.register(Robot(&quot;Робі&quot;, DEFAULT_ENERGY))
+    station.register(Robot(&quot;Іскра&quot;, 12))
+
+    print(f&quot;Станція {station.name}&quot;)
+    for line in station.status_lines():
+        print(line)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()</code></pre></div>
+<p>Розкладання по файлах не змінює модель. Воно лише дає кожній частині адресу.</p>
+<h2 id="paket-i-fayl-init-py">Пакет і файл <code>__init__.py</code><a class="heading-link" href="#paket-i-fayl-init-py" aria-label="Посилання на розділ">#</a></h2>
+<p>Папка <code>objects</code> містить модулі й має <code>__init__.py</code>, тому її можна імпортувати як пакет.</p>
+<p>На початку файл може бути порожнім:</p>
+<div class="code-block"><div class="code-toolbar"><span>objects/__init__.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">&quot;&quot;&quot;Об’єкти станції роботів.&quot;&quot;&quot;</code></pre></div>
+<p>Сучасний Python підтримує пакети без <code>__init__.py</code> у спеціальних сценаріях, але явний файл робить звичайний навчальний пакет зрозумілим інструментам і читачеві.</p>
+<p>Можна відкрити зручні імпорти на рівні пакета:</p>
+<div class="code-block"><div class="code-toolbar"><span>objects/__init__.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">from .robot import Robot
+from .station import Station</code></pre></div>
+<p>Тоді <code>main.py</code> може написати:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">from objects import Robot, Station</code></pre></div>
+<p>Крапка в <code>.robot</code> означає «модуль <code>robot</code> у цьому самому пакеті». Не наповнюй <code>__init__.py</code> складною логікою: імпорт пакета не повинен несподівано запускати програму.</p>
+<h2 id="absoliutni-y-vidnosni-importy">Абсолютні й відносні імпорти<a class="heading-link" href="#absoliutni-y-vidnosni-importy" aria-label="Посилання на розділ">#</a></h2>
+<p>Усередині пакета можливі два стилі:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">from objects.robot import Robot</code></pre></div>
+<p>Це абсолютний імпорт від кореня проєкту.</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">from .robot import Robot</code></pre></div>
+<p>Це відносний імпорт від поточного пакета. Він працює, коли модуль завантажений як частина пакета, а не як випадковий окремий файл.</p>
+<p>Для навчального проєкту обери один послідовний стиль. У <code>main.py</code> на корені природні абсолютні імпорти. Усередині <code>objects</code> короткі відносні імпорти показують внутрішній зв’язок.</p>
+<h2 id="zapuskay-z-korenia-proiektu">Запускай з кореня проєкту<a class="heading-link" href="#zapuskay-z-korenia-proiektu" aria-label="Посилання на розділ">#</a></h2>
+<p>Відкрий у VS Code саме папку <code>robot_station</code>, а не лише <code>objects</code>. Вбудований термінал має показувати корінь:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-text">robot_station/</code></pre></div>
+<p>Тоді команда:</p>
+<section class="callout callout-os"><div class="callout-label">Запуск у різних системах</div><h3 id="windows-powershell-abo-command-prompt">Windows PowerShell або Command Prompt<a class="heading-link" href="#windows-powershell-abo-command-prompt" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>powershell</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-powershell">python main.py</code></pre></div>
+<p>Якщо налаштований launcher, також може працювати:</p>
+<div class="code-block"><div class="code-toolbar"><span>powershell</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-powershell">py main.py</code></pre></div>
+<h3 id="macos-i-linux">macOS і Linux<a class="heading-link" href="#macos-i-linux" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>bash</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-bash">python3 main.py</code></pre></div>
+<p>Самі імпорти в коді не змінюються між системами. Відрізняється переважно команда інтерпретатора й запис шляхів у терміналі.</p></section>
+<p>Python додає папку запущеного скрипту до шляху пошуку модулів. Якщо запустити <code>python objects/robot.py</code>, кореневі імпорти можуть не працювати, а головний сценарій взагалі оминається. Запускай точку входу з кореня.</p>
+<p>Для пакета з <code>app/main.py</code> іноді використовують модульний запуск:</p>
+<div class="code-block"><div class="code-toolbar"><span>powershell</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-powershell">python -m app.main</code></pre></div>
+<p>або:</p>
+<div class="code-block"><div class="code-toolbar"><span>bash</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-bash">python3 -m app.main</code></pre></div>
+<p>Ключ <code>-m</code> просить Python знайти модуль через систему імпортів. Це корисно, коли сама точка входу лежить усередині пакета.</p>
+<h2 id="potochna-papka-y-shliakhy-do-fayliv">Поточна папка й шляхи до файлів<a class="heading-link" href="#potochna-papka-y-shliakhy-do-fayliv" aria-label="Посилання на розділ">#</a></h2>
+<p>Імпорт і відкриття даних — різні механізми, але обидва залежать від контексту запуску.</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">open(&quot;data/message.txt&quot;, encoding=&quot;utf-8&quot;)</code></pre></div>
+<p>Відносний шлях зазвичай рахується від <strong>поточної робочої папки термінала</strong>, а не автоматично від файлу з цим рядком. Тому однакова команда запуску з кореня робить поведінку передбачуваною.</p>
+<p>У розділі про файли ми побудуємо шлях від <code>Path(__file__)</code>, коли ресурс повинен знаходитися поруч із модулем незалежно від робочої папки.</p>
+<h2 id="virtualne-seredovyshche">Віртуальне середовище<a class="heading-link" href="#virtualne-seredovyshche" aria-label="Посилання на розділ">#</a></h2>
+<p>Стандартний модуль <code>venv</code> створює для проєкту окреме середовище пакетів. Це не встановлення редактора й не заміна системного Python. Середовище допомагає двом проєктам мати різні версії залежностей.</p>
+<p>Створення в корені проєкту:</p>
+<section class="callout callout-os"><div class="callout-label">Створення `.venv`</div><h3 id="windows">Windows<a class="heading-link" href="#windows" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>powershell</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-powershell">python -m venv .venv</code></pre></div>
+<h3 id="macos-i-linux-2">macOS і Linux<a class="heading-link" href="#macos-i-linux-2" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>bash</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-bash">python3 -m venv .venv</code></pre></div></section>
+<p>Активація змінює команду <code>python</code> у поточному терміналі:</p>
+<section class="callout callout-os"><div class="callout-label">Активація `.venv`</div><h3 id="windows-powershell">Windows PowerShell<a class="heading-link" href="#windows-powershell" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>powershell</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-powershell">.\.venv\Scripts\Activate.ps1</code></pre></div>
+<h3 id="windows-command-prompt">Windows Command Prompt<a class="heading-link" href="#windows-command-prompt" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>bat</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-bat">.venv\Scripts\activate.bat</code></pre></div>
+<h3 id="macos-i-linux-3">macOS і Linux<a class="heading-link" href="#macos-i-linux-3" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>bash</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-bash">source .venv/bin/activate</code></pre></div>
+<p>Після активації на початку запрошення часто з’являється <code>(.venv)</code>. Для виходу в усіх системах:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-text">deactivate</code></pre></div></section>
+<p>У VS Code команда <strong>Python: Select Interpreter</strong> дозволяє вибрати інтерпретатор із <code>.venv</code>. Після вибору нові термінали зазвичай активують його автоматично.</p>
+<p>Папку <code>.venv</code> не зберігають у Git. Додай до <code>.gitignore</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-text">.venv/
+__pycache__/
+*.pyc</code></pre></div>
+<h3 id="pakety-vstanovliuiut-cherez-aktyvnyy-interpretator">Пакети встановлюють через активний інтерпретатор<a class="heading-link" href="#pakety-vstanovliuiut-cherez-aktyvnyy-interpretator" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>powershell</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-powershell">python -m pip install package_name</code></pre></div>
+<p>Форма <code>python -m pip</code> явно використовує <code>pip</code> того самого інтерпретатора, яким запускається програма. Не копіюй <code>package_name</code>: підстав точну назву потрібного стабільного пакета.</p>
+<p>Список залежностей можна зафіксувати:</p>
+<div class="code-block"><div class="code-toolbar"><span>powershell</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-powershell">python -m pip freeze &gt; requirements.txt</code></pre></div>
+<p>і відтворити в іншому середовищі:</p>
+<div class="code-block"><div class="code-toolbar"><span>powershell</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-powershell">python -m pip install -r requirements.txt</code></pre></div>
+<p>Для простого навчального проєкту цього достатньо. Не додавай бібліотеку лише тому, що вона популярна: спершу визнач, яку конкретну проблему вона розв’язує.</p>
+<section class="callout callout-note"><div class="callout-label">Стандартна бібліотека не потребує `pip`</div><p>Модулі <code>json</code>, <code>random</code>, <code>pathlib</code>, <code>datetime</code>, <code>math</code> і <code>unittest</code> постачаються з Python. Команда на кшталт <code>pip install json</code> не потрібна й може встановити зовсім інший сторонній пакет.</p></section>
+<h2 id="keshi-y-sluzhbovi-fayly">Кеші й службові файли<a class="heading-link" href="#keshi-y-sluzhbovi-fayly" aria-label="Посилання на розділ">#</a></h2>
+<p>Після імпорту Python може створити <code>__pycache__</code> і файли <code>.pyc</code>. Це кеш байткоду, який прискорює наступні завантаження модулів. Це не нові вихідні файли й не місце для власного коду.</p>
+<p>Їх можна не додавати до Git. Якщо кеш зникне, Python створить його знову.</p>
+<h2 id="tsyklichni-zalezhnosti-iak-syhnal-struktury">Циклічні залежності як сигнал структури<a class="heading-link" href="#tsyklichni-zalezhnosti-iak-syhnal-struktury" aria-label="Посилання на розділ">#</a></h2>
+<p>Уявімо:</p>
+<ul><li><code>robot.py</code> імпортує <code>Station</code>;</li><li><code>station.py</code> імпортує <code>Robot</code>.</li></ul>
+<p>Два модулі завантажуються одночасно й чекають один на одного. Часто один із імпортів просто не потрібен: <code>Station</code> може приймати об’єкт без перевірки класу. Або спільний контракт треба винести в третій модуль.</p>
+<p>Малюй стрілки залежностей у один бік:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-text">main.py -&gt; Station -&gt; об’єкти з потрібними методами
+        -&gt; Robot
+        -&gt; settings</code></pre></div>
+<p><code>main.py</code> знає конкретні класи й складає їх. Нижчі модулі не повинні імпортувати <code>main.py</code>.</p>
+<h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
+<h3 id="pratsiuie-lyshe-cherez-knopku-v-odnomu-fayli">«Працює лише через кнопку в одному файлі»<a class="heading-link" href="#pratsiuie-lyshe-cherez-knopku-v-odnomu-fayli" aria-label="Посилання на розділ">#</a></h3>
+<p>Якщо запуск окремого <code>objects/robot.py</code> працює, а <code>main.py</code> — ні, або навпаки, перевір:</p>
+<ol><li>Яка папка відкрита у VS Code?</li><li>Яка поточна папка термінала?</li><li>Яку точну команду запущено?</li><li>Чи не названий власний файл як стандартний модуль?</li></ol>
+<p>Не додавай випадкові <code>..</code> до імпортів і не змінюй <code>sys.path</code> навмання. Спершу віднови єдину точку запуску з кореня.</p>
+<h3 id="usia-lohika-lyshylasia-v-main-py">Уся логіка лишилася в <code>main.py</code><a class="heading-link" href="#usia-lohika-lyshylasia-v-main-py" aria-label="Посилання на розділ">#</a></h3>
+<p>Окремі файли не допомагають, якщо <code>main.py</code> усе ще містить сотні рядків умов, змінює атрибути напряму й лише формально створює порожні класи. Перенось до класу правила, що належать його стану.</p>
+<section class="callout callout-mistake"><div class="callout-label">Типова помилка</div><p>Не створюй папку для кожного маленького файла. Структура має зменшувати час пошуку. Для п’яти модулів достатньо кількох зрозумілих папок; глибоке дерево без потреби лише додає імпортів.</p></section>
+<h2 id="shvydka-perevirka">Швидка перевірка<a class="heading-link" href="#shvydka-perevirka" aria-label="Посилання на розділ">#</a></h2>
+<p>Цей приклад доводить, що <code>main()</code> координує готові об’єкти:</p>
+<div class="code-block"><div class="code-toolbar"><span>clean_main.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Robot:
+    def __init__(self, name, energy):
+        self.name = name
+        self.energy = energy
+
+    def charge(self, amount):
+        self.energy += amount
+        return f&quot;{self.name} заряджено до {self.energy}.&quot;
+
+
+def main():
+    robot = Robot(&quot;Робі&quot;, 10)
+    print(robot.charge(5))
+
+
+if __name__ == &quot;__main__&quot;:
+    main()</code></pre></div>
+<p>У багатофайловій версії зміниться лише місце визначення <code>Robot</code> та рядок імпорту, а сценарій <code>main()</code> залишиться таким самим.</p>
+<section class="quiz" data-answer="1"><div class="callout-label">Перевір себе</div><p class="quiz-question">Звідки найкраще запускати команду python main.py у наведеній структурі?</p><div class="quiz-options"><button type="button" class="quiz-option" data-index="0">З будь-якої папки — поточна папка ніколи не впливає на Python.</button><button type="button" class="quiz-option" data-index="1">З кореня robot_station, де лежить main.py.</button><button type="button" class="quiz-option" data-index="2">З папки objects, бо там лежать класи.</button></div><p class="quiz-feedback" hidden>Єдина точка запуску з кореня робить локальні імпорти й відносні шляхи передбачуваними.</p></section>
+<h2 id="samostiyna-robota">Самостійна робота<a class="heading-link" href="#samostiyna-robota" aria-label="Посилання на розділ">#</a></h2>
+<section class="callout callout-tasks"><div class="callout-label">Самостійна робота</div><ul><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="10-struktura-opp-proiektu-task-1"><span>Розклади <code>RobotConsole</code> на <code>robot.py</code>, <code>console.py</code>, <code>settings.py</code> і короткий <code>main.py</code>. Запусти лише точку входу з кореня.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="10-struktura-opp-proiektu-task-2"><span>Створи пакет <code>objects</code> з порожнім <code>__init__.py</code>, а потім відкрий у ньому зручні імпорти <code>Robot</code> і <code>Station</code>. Порівняй два стилі імпорту в <code>main.py</code>.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="10-struktura-opp-proiektu-task-3"><span>Навмисно запусти внутрішній модуль із неправильної папки, зафіксуй помилку імпорту, а потім виправ маршрут без редагування <code>sys.path</code>.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="10-struktura-opp-proiektu-task-4"><span>Створи <code>settings.py</code> з трьома справжніми налаштуваннями. Не винось туди локальні числа, зміст яких зрозумілий лише в одному методі.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="10-struktura-opp-proiektu-task-5"><span>Створи <code>.venv</code>, активуй її відповідною командою своєї системи, перевір шлях через <code>python -c &quot;import sys; print(sys.executable)&quot;</code>, а потім виконай <code>deactivate</code>.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="10-struktura-opp-proiektu-task-6"><span>Додай <code>.gitignore</code> для <code>.venv</code>, <code>__pycache__</code> і <code>.pyc</code>. Поясни, чому вихідний код лишається, а ці файли можна відтворити.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="10-struktura-opp-proiektu-task-7"><span>Намалюй стрілки імпортів для свого маленького проєкту. Прибери зайву двосторонню залежність або поясни, чому її поки неможливо уникнути.</span></label></li></ul></section>
+<section class="callout callout-history"><div class="callout-label">Коротка історична пауза</div><p>Пакет у Python — це насамперед спосіб організувати простір імен. Крапки в <code>objects.robot</code> нагадують шлях по папках, але імпорт є роботою самої мови: вона знаходить модуль, створює його об’єкт і кешує завантаження.</p></section>
+<h2 id="pidsumok">Підсумок<a class="heading-link" href="#pidsumok" aria-label="Посилання на розділ">#</a></h2>
+<ul><li>Структура проєкту показує відповідальності: точка входу, моделі, налаштування, тести.</li><li>Один клас на файл — корисне навчальне правило, а не абсолютна вимога мови.</li><li><code>main.py</code> створює й поєднує об’єкти; правила стану мають жити у відповідних класах.</li><li><code>__init__.py</code> робить звичайний пакет явним і може відкривати зручні імпорти.</li><li>Запуск із кореня проєкту робить імпорти та відносні шляхи передбачуваними.</li><li><code>python -m package.module</code> запускає модуль через систему імпортів.</li><li><code>.venv</code> ізолює сторонні пакети; команди активації відрізняються у Windows та macOS/Linux.</li><li>Стандартну бібліотеку не встановлюють через <code>pip</code>, а службові кеші не зберігають у Git.</li><li>Циклічний імпорт часто вказує на зайву залежність або нечітку межу модулів.</li></ul>
+<p>Офіційні орієнтири: <a href="https://docs.python.org/3/library/venv.html" target="_blank" rel="noreferrer">віртуальні середовища <code>venv</code></a>, <a href="https://docs.python.org/3/tutorial/modules.html" target="_blank" rel="noreferrer">модулі та пакети</a>, <a href="https://code.visualstudio.com/docs/python/environments" target="_blank" rel="noreferrer">вибір інтерпретатора у VS Code</a>.</p></div>
+  <section class="completion-card">
+    <div><p class="eyebrow">Твій прогрес</p><h2>Розділ опрацьовано?</h2><p>Позначай тільки після запуску прикладу й самостійної зміни.</p></div>
+    <button class="button primary complete-chapter" type="button" data-chapter-id="10-struktura-opp-proiektu">Позначити завершеним</button>
+  </section>
+  <nav class="chapter-pager" aria-label="Сусідні розділи"><a class="chapter-pager-link previous" href="09-funktsii-i-moduli.html"><span>← Назад</span><strong>Функції й модулі: інструменти поза об’єктами</strong></a><a class="chapter-pager-link next" href="11-spadkuvannia-kompozytsiia-i-vlastyvosti.html"><span>Далі →</span><strong>Пов’язані об’єкти: успадкування, композиція й властивості</strong></a></nav>
+</article>
+
+      <footer class="site-footer">
+        <p>Python через об’єкти · українська практична довідка · 2026</p>
+        <a href="https://github.com/ArTeGaS/python-oop-handbook-ua">Відкрити репозиторій</a>
+      </footer>
+    </main>
+  </div>
+  <div class="search-panel" hidden aria-live="polite">
+    <div class="search-panel-inner">
+      <button class="search-close" type="button" aria-label="Закрити пошук">×</button>
+      <p class="eyebrow">Пошук у довідці</p>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+</body>
+</html>

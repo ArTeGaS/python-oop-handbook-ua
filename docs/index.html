@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="uk" data-active-chapter="home">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Систематична довідка з основ Python: від першого .py-файла до класів, файлів, помилок і тестів — через маленькі робочі програми та об’єктне мислення.">
+  <meta name="theme-color" content="#f4f0e8">
+  <title>Python через об’єкти</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body class="home-page">
+  <a class="skip-link" href="#main-content">До основного тексту</a>
+  <header class="mobile-header">
+    <button class="icon-button menu-button" type="button" aria-label="Відкрити зміст" aria-expanded="false">Зміст</button>
+    <a class="mobile-brand" href="index.html">Python через об’єкти</a>
+    <button class="icon-button theme-toggle" type="button" aria-label="Змінити тему">Тема</button>
+  </header>
+  <div class="app-shell">
+
+<aside class="sidebar" aria-label="Зміст">
+  <div class="sidebar-top">
+    <a class="brand" data-slug="home" href="index.html">
+      <span class="brand-mark">Py</span>
+      <span><strong>Python через об’єкти</strong><small>Практична довідка для початківців</small></span>
+    </a>
+    <button class="theme-toggle desktop-theme" type="button">Змінити тему</button>
+  </div>
+  <label class="search-box">
+    <span class="visually-hidden">Пошук</span>
+    <input id="chapter-search" type="search" placeholder="Знайти тему…" autocomplete="off">
+    <kbd>Ctrl K</kbd>
+  </label>
+  <div class="progress-card">
+    <div><span>Прогрес</span><strong id="progress-label">0 з 18</strong></div>
+    <div class="progress-track"><span id="progress-bar"></span></div>
+  </div>
+  <nav class="chapter-nav"><a class="chapter-link" data-slug="00-yak-korystuvatysia" href="00-yak-korystuvatysia.html"><span class="chapter-number">Початок</span><span>Як користуватися цією довідкою</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="01-py-fail-i-pershyi-obiekt" href="01-py-fail-i-pershyi-obiekt.html"><span class="chapter-number">01</span><span>`.py`-файл і перший об’єкт</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="02-stan-obiekta-i-prosti-typy" href="02-stan-obiekta-i-prosti-typy.html"><span class="chapter-number">02</span><span>Стан об’єкта: рядки, числа й логічні значення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="03-metody-parametry-i-povernennia" href="03-metody-parametry-i-povernennia.html"><span class="chapter-number">03</span><span>Методи: параметри, аргументи й `return`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="04-rishennia-i-lohichni-vyrazy" href="04-rishennia-i-lohichni-vyrazy.html"><span class="chapter-number">04</span><span>Рішення: порівняння, `if`, `elif`, `else`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="05-spysky-i-kortezhi" href="05-spysky-i-kortezhi.html"><span class="chapter-number">05</span><span>Списки й кортежі: впорядковані колекції</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="06-cykly-range-i-zrizy" href="06-cykly-range-i-zrizy.html"><span class="chapter-number">06</span><span>Повторення: `for`, `range()` і зрізи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="07-vvedennia-i-cykl-while" href="07-vvedennia-i-cykl-while.html"><span class="chapter-number">07</span><span>Діалог із програмою: `input()` і цикл `while`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="08-slovnyky-vkladennia-i-mnozhyny" href="08-slovnyky-vkladennia-i-mnozhyny.html"><span class="chapter-number">08</span><span>Словники, вкладені дані й множини</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="09-funktsii-i-moduli" href="09-funktsii-i-moduli.html"><span class="chapter-number">09</span><span>Функції й модулі: інструменти поза об’єктами</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="10-struktura-opp-proiektu" href="10-struktura-opp-proiektu.html"><span class="chapter-number">10</span><span>Структура OOP-проєкту у VS Code</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="11-spadkuvannia-kompozytsiia-i-vlastyvosti" href="11-spadkuvannia-kompozytsiia-i-vlastyvosti.html"><span class="chapter-number">11</span><span>Пов’язані об’єкти: успадкування, композиція й властивості</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="12-standartna-biblioteka-i-vypadkovist" href="12-standartna-biblioteka-i-vypadkovist.html"><span class="chapter-number">12</span><span>Стандартна бібліотека й керована випадковість</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="13-faily-koduvannia-i-shliakhy" href="13-faily-koduvannia-i-shliakhy.html"><span class="chapter-number">13</span><span>Текстові файли, UTF-8 і шляхи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="14-vyniatky-i-chytabelni-zboi" href="14-vyniatky-i-chytabelni-zboi.html"><span class="chapter-number">14</span><span>Винятки: передбачувані збої й корисні повідомлення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="15-json-zberezhennia-i-refaktorynh" href="15-json-zberezhennia-i-refaktorynh.html"><span class="chapter-number">15</span><span>JSON: збереження стану й рефакторинг</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="16-testy-z-pytest" href="16-testy-z-pytest.html"><span class="chapter-number">16</span><span>Автоматичні тести з pytest</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="17-styl-nalahodzhennia-i-karta-syntaksysu" href="17-styl-nalahodzhennia-i-karta-syntaksysu.html"><span class="chapter-number">17</span><span>Підтримуваний код: стиль, налагодження й карта синтаксису</span><span class="chapter-check" aria-hidden="true">✓</span></a></nav>
+  <div class="sidebar-actions">
+    <a class="button secondary full" href="downloads/python-cherez-obiekty.pdf">Завантажити PDF</a>
+  </div>
+</aside>
+
+    <main id="main-content" class="main-content" tabindex="-1">
+
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">Українська практична довідка</p>
+    <h1>Python, у якому дані <em>щось означають</em>, а об’єкти <em>щось роблять</em></h1>
+    <p class="hero-lead">Від першого <code>.py</code>-файла до збереження даних і тестів. Кожна нова конструкція одразу стає поведінкою маленької програми.</p>
+    <div class="hero-actions">
+      <a class="button primary" href="00-yak-korystuvatysia.html">Почати читати</a>
+      <a class="button secondary" href="downloads/python-cherez-obiekty.pdf">PDF-книга</a>
+    </div>
+  </div>
+  <div class="hero-code" aria-label="Приклад Python-коду">
+    <div class="window-bar"><span></span><span></span><span></span><small>robot.py</small></div>
+    <pre><code><span class="token-keyword">class</span> <span class="token-class">Robot</span>:
+    <span class="token-keyword">def</span> <span class="token-function">say_hello</span>(self):
+        print(<span class="token-string">"Привіт! Я вже працюю."</span>)
+
+robot = Robot()
+robot.say_hello()</code></pre>
+    <div class="terminal-line"><span>›</span> Привіт! Я вже працюю.</div>
+  </div>
+</section>
+
+<section class="home-section principles">
+  <p class="eyebrow">Як тут навчаємось</p>
+  <div class="principle-grid">
+    <article><span>01</span><h2>Спочатку результат</h2><p>Перед кодом завжди зрозуміло, що зміниться після запуску.</p></article>
+    <article><span>02</span><h2>Теорія в потрібний момент</h2><p>Нове слово з’являється поруч із дією, яку допомагає виконати.</p></article>
+    <article><span>03</span><h2>Помилка — теж приклад</h2><p>Ми навмисно ламаємо код, читаємо повідомлення й відновлюємо поведінку.</p></article>
+    <article><span>04</span><h2>Зміни самостійно</h2><p>Наприкінці розділу є завдання без готової покрокової відповіді.</p></article>
+  </div>
+</section>
+
+<section class="home-section">
+  <div class="section-heading">
+    <div><p class="eyebrow">Повний маршрут</p><h2>Зміст довідки</h2></div>
+    <p>17 основних розділів, вступ і наскрізні швидкі перевірки.</p>
+  </div>
+  <div class="chapter-grid"><a class="chapter-card" href="00-yak-korystuvatysia.html" data-chapter-card="00-yak-korystuvatysia"><span class="card-label">Вступ</span><h2>Як користуватися цією довідкою</h2><span class="card-action">Відкрити <span aria-hidden="true">→</span></span></a><a class="chapter-card" href="01-py-fail-i-pershyi-obiekt.html" data-chapter-card="01-py-fail-i-pershyi-obiekt"><span class="card-label">Розділ 01</span><h2>`.py`-файл і перший об’єкт</h2><span class="card-action">Відкрити <span aria-hidden="true">→</span></span></a><a class="chapter-card" href="02-stan-obiekta-i-prosti-typy.html" data-chapter-card="02-stan-obiekta-i-prosti-typy"><span class="card-label">Розділ 02</span><h2>Стан об’єкта: рядки, числа й логічні значення</h2><span class="card-action">Відкрити <span aria-hidden="true">→</span></span></a><a class="chapter-card" href="03-metody-parametry-i-povernennia.html" data-chapter-card="03-metody-parametry-i-povernennia"><span class="card-label">Розділ 03</span><h2>Методи: параметри, аргументи й `return`</h2><span class="card-action">Відкрити <span aria-hidden="true">→</span></span></a><a class="chapter-card" href="04-rishennia-i-lohichni-vyrazy.html" data-chapter-card="04-rishennia-i-lohichni-vyrazy"><span class="card-label">Розділ 04</span><h2>Рішення: порівняння, `if`, `elif`, `else`</h2><span class="card-action">Відкрити <span aria-hidden="true">→</span></span></a><a class="chapter-card" href="05-spysky-i-kortezhi.html" data-chapter-card="05-spysky-i-kortezhi"><span class="card-label">Розділ 05</span><h2>Списки й кортежі: впорядковані колекції</h2><span class="card-action">Відкрити <span aria-hidden="true">→</span></span></a><a class="chapter-card" href="06-cykly-range-i-zrizy.html" data-chapter-card="06-cykly-range-i-zrizy"><span class="card-label">Розділ 06</span><h2>Повторення: `for`, `range()` і зрізи</h2><span class="card-action">Відкрити <span aria-hidden="true">→</span></span></a><a class="chapter-card" href="07-vvedennia-i-cykl-while.html" data-chapter-card="07-vvedennia-i-cykl-while"><span class="card-label">Розділ 07</span><h2>Діалог із програмою: `input()` і цикл `while`</h2><span class="card-action">Відкрити <span aria-hidden="true">→</span></span></a><a class="chapter-card" href="08-slovnyky-vkladennia-i-mnozhyny.html" data-chapter-card="08-slovnyky-vkladennia-i-mnozhyny"><span class="card-label">Розділ 08</span><h2>Словники, вкладені дані й множини</h2><span class="card-action">Відкрити <span aria-hidden="true">→</span></span></a><a class="chapter-card" href="09-funktsii-i-moduli.html" data-chapter-card="09-funktsii-i-moduli"><span class="card-label">Розділ 09</span><h2>Функції й модулі: інструменти поза об’єктами</h2><span class="card-action">Відкрити <span aria-hidden="true">→</span></span></a><a class="chapter-card" href="10-struktura-opp-proiektu.html" data-chapter-card="10-struktura-opp-proiektu"><span class="card-label">Розділ 10</span><h2>Структура OOP-проєкту у VS Code</h2><span class="card-action">Відкрити <span aria-hidden="true">→</span></span></a><a class="chapter-card" href="11-spadkuvannia-kompozytsiia-i-vlastyvosti.html" data-chapter-card="11-spadkuvannia-kompozytsiia-i-vlastyvosti"><span class="card-label">Розділ 11</span><h2>Пов’язані об’єкти: успадкування, композиція й властивості</h2><span class="card-action">Відкрити <span aria-hidden="true">→</span></span></a><a class="chapter-card" href="12-standartna-biblioteka-i-vypadkovist.html" data-chapter-card="12-standartna-biblioteka-i-vypadkovist"><span class="card-label">Розділ 12</span><h2>Стандартна бібліотека й керована випадковість</h2><span class="card-action">Відкрити <span aria-hidden="true">→</span></span></a><a class="chapter-card" href="13-faily-koduvannia-i-shliakhy.html" data-chapter-card="13-faily-koduvannia-i-shliakhy"><span class="card-label">Розділ 13</span><h2>Текстові файли, UTF-8 і шляхи</h2><span class="card-action">Відкрити <span aria-hidden="true">→</span></span></a><a class="chapter-card" href="14-vyniatky-i-chytabelni-zboi.html" data-chapter-card="14-vyniatky-i-chytabelni-zboi"><span class="card-label">Розділ 14</span><h2>Винятки: передбачувані збої й корисні повідомлення</h2><span class="card-action">Відкрити <span aria-hidden="true">→</span></span></a><a class="chapter-card" href="15-json-zberezhennia-i-refaktorynh.html" data-chapter-card="15-json-zberezhennia-i-refaktorynh"><span class="card-label">Розділ 15</span><h2>JSON: збереження стану й рефакторинг</h2><span class="card-action">Відкрити <span aria-hidden="true">→</span></span></a><a class="chapter-card" href="16-testy-z-pytest.html" data-chapter-card="16-testy-z-pytest"><span class="card-label">Розділ 16</span><h2>Автоматичні тести з pytest</h2><span class="card-action">Відкрити <span aria-hidden="true">→</span></span></a><a class="chapter-card" href="17-styl-nalahodzhennia-i-karta-syntaksysu.html" data-chapter-card="17-styl-nalahodzhennia-i-karta-syntaksysu"><span class="card-label">Розділ 17</span><h2>Підтримуваний код: стиль, налагодження й карта синтаксису</h2><span class="card-action">Відкрити <span aria-hidden="true">→</span></span></a></div>
+</section>
+
+<section class="home-section coverage">
+  <div class="coverage-copy">
+    <p class="eyebrow">Не прив’язано до одного проєкту</p>
+    <h2>Знання, які можна перенести у власну програму</h2>
+    <p>Приклади змінюють контекст: робот, герой, інвентар, нотатник, сховище, генератор і тестована модель. Так синтаксис не зливається з однією грою чи одним сюжетом.</p>
+  </div>
+  <ul class="coverage-list">
+    <li><strong>Мова</strong><span>типи, умови, колекції, цикли, функції</span></li>
+    <li><strong>ООП</strong><span>класи, стан, поведінка, композиція, успадкування</span></li>
+    <li><strong>Надійність</strong><span>traceback, винятки, файли, JSON, тести</span></li>
+    <li><strong>Практика</strong><span>VS Code, термінал, модулі, структура папок</span></li>
+  </ul>
+</section>
+
+      <footer class="site-footer">
+        <p>Python через об’єкти · українська практична довідка · 2026</p>
+        <a href="https://github.com/ArTeGaS/python-oop-handbook-ua">Відкрити репозиторій</a>
+      </footer>
+    </main>
+  </div>
+  <div class="search-panel" hidden aria-live="polite">
+    <div class="search-panel-inner">
+      <button class="search-close" type="button" aria-label="Закрити пошук">×</button>
+      <p class="eyebrow">Пошук у довідці</p>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+</body>
+</html>

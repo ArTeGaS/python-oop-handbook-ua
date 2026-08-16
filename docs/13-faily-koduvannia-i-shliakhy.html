@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="uk" data-active-chapter="13-faily-koduvannia-i-shliakhy">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Текстові файли, UTF-8 і шляхи Текстові файли, UTF-8 і шляхи Стан у пам’яті зникає після завершення програми. Текстовий файл дозволяє зберегти нотатку, журнал або налаштування між запусками. ">
+  <meta name="theme-color" content="#f4f0e8">
+  <title>Текстові файли, UTF-8 і шляхи — Python через об’єкти</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body class="chapter-page">
+  <a class="skip-link" href="#main-content">До основного тексту</a>
+  <header class="mobile-header">
+    <button class="icon-button menu-button" type="button" aria-label="Відкрити зміст" aria-expanded="false">Зміст</button>
+    <a class="mobile-brand" href="index.html">Python через об’єкти</a>
+    <button class="icon-button theme-toggle" type="button" aria-label="Змінити тему">Тема</button>
+  </header>
+  <div class="app-shell">
+
+<aside class="sidebar" aria-label="Зміст">
+  <div class="sidebar-top">
+    <a class="brand" data-slug="home" href="index.html">
+      <span class="brand-mark">Py</span>
+      <span><strong>Python через об’єкти</strong><small>Практична довідка для початківців</small></span>
+    </a>
+    <button class="theme-toggle desktop-theme" type="button">Змінити тему</button>
+  </div>
+  <label class="search-box">
+    <span class="visually-hidden">Пошук</span>
+    <input id="chapter-search" type="search" placeholder="Знайти тему…" autocomplete="off">
+    <kbd>Ctrl K</kbd>
+  </label>
+  <div class="progress-card">
+    <div><span>Прогрес</span><strong id="progress-label">0 з 18</strong></div>
+    <div class="progress-track"><span id="progress-bar"></span></div>
+  </div>
+  <nav class="chapter-nav"><a class="chapter-link" data-slug="00-yak-korystuvatysia" href="00-yak-korystuvatysia.html"><span class="chapter-number">Початок</span><span>Як користуватися цією довідкою</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="01-py-fail-i-pershyi-obiekt" href="01-py-fail-i-pershyi-obiekt.html"><span class="chapter-number">01</span><span>`.py`-файл і перший об’єкт</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="02-stan-obiekta-i-prosti-typy" href="02-stan-obiekta-i-prosti-typy.html"><span class="chapter-number">02</span><span>Стан об’єкта: рядки, числа й логічні значення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="03-metody-parametry-i-povernennia" href="03-metody-parametry-i-povernennia.html"><span class="chapter-number">03</span><span>Методи: параметри, аргументи й `return`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="04-rishennia-i-lohichni-vyrazy" href="04-rishennia-i-lohichni-vyrazy.html"><span class="chapter-number">04</span><span>Рішення: порівняння, `if`, `elif`, `else`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="05-spysky-i-kortezhi" href="05-spysky-i-kortezhi.html"><span class="chapter-number">05</span><span>Списки й кортежі: впорядковані колекції</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="06-cykly-range-i-zrizy" href="06-cykly-range-i-zrizy.html"><span class="chapter-number">06</span><span>Повторення: `for`, `range()` і зрізи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="07-vvedennia-i-cykl-while" href="07-vvedennia-i-cykl-while.html"><span class="chapter-number">07</span><span>Діалог із програмою: `input()` і цикл `while`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="08-slovnyky-vkladennia-i-mnozhyny" href="08-slovnyky-vkladennia-i-mnozhyny.html"><span class="chapter-number">08</span><span>Словники, вкладені дані й множини</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="09-funktsii-i-moduli" href="09-funktsii-i-moduli.html"><span class="chapter-number">09</span><span>Функції й модулі: інструменти поза об’єктами</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="10-struktura-opp-proiektu" href="10-struktura-opp-proiektu.html"><span class="chapter-number">10</span><span>Структура OOP-проєкту у VS Code</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="11-spadkuvannia-kompozytsiia-i-vlastyvosti" href="11-spadkuvannia-kompozytsiia-i-vlastyvosti.html"><span class="chapter-number">11</span><span>Пов’язані об’єкти: успадкування, композиція й властивості</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="12-standartna-biblioteka-i-vypadkovist" href="12-standartna-biblioteka-i-vypadkovist.html"><span class="chapter-number">12</span><span>Стандартна бібліотека й керована випадковість</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="13-faily-koduvannia-i-shliakhy" href="13-faily-koduvannia-i-shliakhy.html"><span class="chapter-number">13</span><span>Текстові файли, UTF-8 і шляхи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="14-vyniatky-i-chytabelni-zboi" href="14-vyniatky-i-chytabelni-zboi.html"><span class="chapter-number">14</span><span>Винятки: передбачувані збої й корисні повідомлення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="15-json-zberezhennia-i-refaktorynh" href="15-json-zberezhennia-i-refaktorynh.html"><span class="chapter-number">15</span><span>JSON: збереження стану й рефакторинг</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="16-testy-z-pytest" href="16-testy-z-pytest.html"><span class="chapter-number">16</span><span>Автоматичні тести з pytest</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="17-styl-nalahodzhennia-i-karta-syntaksysu" href="17-styl-nalahodzhennia-i-karta-syntaksysu.html"><span class="chapter-number">17</span><span>Підтримуваний код: стиль, налагодження й карта синтаксису</span><span class="chapter-check" aria-hidden="true">✓</span></a></nav>
+  <div class="sidebar-actions">
+    <a class="button secondary full" href="downloads/python-cherez-obiekty.pdf">Завантажити PDF</a>
+  </div>
+</aside>
+
+    <main id="main-content" class="main-content" tabindex="-1">
+
+<article class="chapter-article" data-chapter="13-faily-koduvannia-i-shliakhy">
+  <header class="chapter-header">
+    <p class="eyebrow">Розділ 13</p>
+    <p class="chapter-reading-note">Читай · запускай · змінюй · перевіряй</p>
+  </header>
+  <div class="chapter-body"><h1 id="tekstovi-fayly-utf-8-i-shliakhy">Текстові файли, UTF-8 і шляхи<a class="heading-link" href="#tekstovi-fayly-utf-8-i-shliakhy" aria-label="Посилання на розділ">#</a></h1>
+<p>Стан у пам’яті зникає після завершення програми. Текстовий файл дозволяє зберегти нотатку, журнал або налаштування між запусками. Головна складність тут не <code>read()</code> чи <code>write()</code>, а точна відповідь: <strong>який файл, у якій папці й у якому кодуванні</strong>.</p>
+<h2 id="shcho-zrobymo">Що зробимо<a class="heading-link" href="#shcho-zrobymo" aria-label="Посилання на розділ">#</a></h2>
+<p>Створимо <code>TextNotebook</code>, який отримує шлях ззовні, додає нотатки й читає їх. Він не вгадуватиме поточну папку та завжди використовуватиме UTF-8.</p>
+<section class="callout callout-goal"><div class="callout-label">Результат</div><p>Ти зможеш відрізнити шлях від вмісту файла, відносний шлях від абсолютного й поточну робочу папку від папки модуля.</p></section>
+<h2 id="path-predstavliaie-shliakh-iak-obiekt"><code>Path</code> представляє шлях як об’єкт<a class="heading-link" href="#path-predstavliaie-shliakh-iak-obiekt" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>path_basics.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">from pathlib import Path
+
+path = Path(&quot;notes&quot;) / &quot;lesson.txt&quot;
+
+print(path.parent)
+print(path.name)
+print(path.suffix)</code></pre></div>
+<p>Оператор <code>/</code> у <code>pathlib</code> складає частини шляху. Це не ділення: ліва частина є об’єктом <code>Path</code>.</p>
+<ul><li><code>path.parent</code> — батьківська папка;</li><li><code>path.name</code> — повна назва файла;</li><li><code>path.stem</code> — назва без останнього розширення;</li><li><code>path.suffix</code> — останнє розширення;</li><li><code>path.parts</code> — кортеж частин.</li></ul>
+<p><code>Path</code> сам використовує правила поточної операційної системи. Не треба вручну склеювати рядки через <code>&quot;/&quot;</code> або <code>&quot;\\&quot;</code>.</p>
+<h2 id="maysternia">Майстерня<a class="heading-link" href="#maysternia" aria-label="Посилання на розділ">#</a></h2>
+<p>Створи <code>text_notebook.py</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>text_notebook.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">from pathlib import Path
+
+
+class TextNotebook:
+    def __init__(self, path):
+        self.path = Path(path)
+
+    def replace_all(self, notes):
+        text = &quot;\n&quot;.join(notes) + &quot;\n&quot;
+        self.path.write_text(text, encoding=&quot;utf-8&quot;)
+
+    def add(self, note):
+        with self.path.open(&quot;a&quot;, encoding=&quot;utf-8&quot;) as file:
+            file.write(note.rstrip() + &quot;\n&quot;)
+
+    def read_all(self):
+        if not self.path.exists():
+            return []
+        text = self.path.read_text(encoding=&quot;utf-8&quot;)
+        return text.splitlines()
+
+
+notebook = TextNotebook(&quot;lesson_notes.txt&quot;)
+notebook.replace_all([&quot;Перша нотатка&quot;])
+notebook.add(&quot;Об’єкти тримають дані й поведінку разом.&quot;)
+
+for note in notebook.read_all():
+    print(note)</code></pre></div>
+<p>Перевірка запускає приклад у тимчасовій папці, тому він не зачіпає твої особисті файли. Під час ручної роботи <code>lesson_notes.txt</code> з’явиться в поточній папці термінала.</p>
+<h3 id="shliakh-peredano-obiektu">Шлях передано об’єкту<a class="heading-link" href="#shliakh-peredano-obiektu" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def __init__(self, path):
+    self.path = Path(path)</code></pre></div>
+<p>Клас не зашиває назву глобально. Один об’єкт може працювати з <code>lesson_notes.txt</code>, інший — із <code>ideas.txt</code>. Перевірка може передати шлях до окремої тимчасової папки.</p>
+<h3 id="write-text-perezapysuie-fayl"><code>write_text()</code> перезаписує файл<a class="heading-link" href="#write-text-perezapysuie-fayl" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">self.path.write_text(text, encoding=&quot;utf-8&quot;)</code></pre></div>
+<p>Якщо файла немає, він створюється. Якщо є — попередній вміст <strong>повністю замінюється</strong>. Метод повертає кількість записаних символів, але часто цей результат не потрібен.</p>
+<p>Перед записом у реальний важливий файл перевір шлях. Автоматичний запис не має мовчки обирати файл користувача лише за схожою назвою.</p>
+<h3 id="rezhym-a-dodaie-v-kinets">Режим <code>&quot;a&quot;</code> додає в кінець<a class="heading-link" href="#rezhym-a-dodaie-v-kinets" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">with self.path.open(&quot;a&quot;, encoding=&quot;utf-8&quot;) as file:
+    file.write(note.rstrip() + &quot;\n&quot;)</code></pre></div>
+<p>Режими:</p>
+<ul><li><code>&quot;r&quot;</code> — читання; файл має існувати;</li><li><code>&quot;w&quot;</code> — запис із повною заміною;</li><li><code>&quot;a&quot;</code> — додавання в кінець;</li><li><code>&quot;x&quot;</code> — створення нового файла, помилка, якщо він уже є;</li><li>додаткова <code>&quot;b&quot;</code> — двійковий режим, наприклад <code>&quot;rb&quot;</code>.</li></ul>
+<p><code>with</code> є <strong>контекстним менеджером</strong>. Після виходу з блоку файл закривається навіть за помилки. Не треба вручну викликати <code>file.close()</code>.</p>
+<h3 id="splitlines-prybyraie-symvoly-kintsia-riadka"><code>splitlines()</code> прибирає символи кінця рядка<a class="heading-link" href="#splitlines-prybyraie-symvoly-kintsia-riadka" aria-label="Посилання на розділ">#</a></h3>
+<p><code>read_text()</code> повертає один великий рядок. Метод <code>splitlines()</code> створює список логічних рядків без <code>\n</code> або <code>\r\n</code> наприкінці.</p>
+<div class="code-block"><div class="code-toolbar"><span>splitlines_example.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">text = &quot;А\n\nБ\n&quot;
+print(text.splitlines())</code></pre></div>
+<p>Порожній рядок усередині зберігається, а фінальний роздільник не створює зайвого елемента.</p>
+<section class="callout callout-practice"><div class="callout-label">Порахуй непорожні нотатки</div><p>Додай метод:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def count_nonempty(self):
+    return sum(1 for note in self.read_all() if note.strip())</code></pre></div>
+<p>Перевір файл із порожнім рядком між двома нотатками.</p></section>
+<h2 id="utf-8-robyt-tekst-peredbachuvanym">UTF-8 робить текст передбачуваним<a class="heading-link" href="#utf-8-robyt-tekst-peredbachuvanym" aria-label="Посилання на розділ">#</a></h2>
+<p>Комп’ютер зберігає байти. <strong>Кодування</strong> визначає, як перетворити символи на байти й назад. UTF-8 підтримує українські літери, латиницю, більшість писемностей і звичні символи.</p>
+<p>Завжди вказуй:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">encoding=&quot;utf-8&quot;</code></pre></div>
+<p>для власних текстових форматів. Так поведінка не залежить від системних налаштувань Windows, Linux або macOS.</p>
+<p>Якщо байти записані в одному кодуванні, а прочитані в іншому, можливий <code>UnicodeDecodeError</code> або спотворені символи. Правильне рішення — знати кодування джерела, а не пробувати випадкові варіанти до зникнення помилки.</p>
+<h3 id="symvol-kintsia-riadka">Символ кінця рядка<a class="heading-link" href="#symvol-kintsia-riadka" aria-label="Посилання на розділ">#</a></h3>
+<p>Історично системи використовують різні послідовності:</p>
+<ul><li>Windows часто <code>\r\n</code>;</li><li>Linux і macOS — <code>\n</code>;</li><li>старі версії macOS мали інший формат, який у сучасних проєктах майже не трапляється.</li></ul>
+<p>У текстовому режимі Python здебільшого нормалізує ці відмінності. <code>splitlines()</code> працює з різними завершеннями. Git може окремо налаштовувати перетворення кінців рядків.</p>
+<h2 id="vidnosnyy-i-absoliutnyy-shliakh">Відносний і абсолютний шлях<a class="heading-link" href="#vidnosnyy-i-absoliutnyy-shliakh" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>absolute_path.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">from pathlib import Path
+
+relative = Path(&quot;data&quot;) / &quot;notes.txt&quot;
+absolute = relative.resolve()
+
+print(absolute.is_absolute())</code></pre></div>
+<p><strong>Відносний шлях</strong> не містить повного маршруту від кореня системи. Python тлумачить його від поточної робочої папки.</p>
+<p><strong>Абсолютний шлях</strong> містить повний маршрут:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-text">C:\Users\Student\Project\data\notes.txt
+/home/student/project/data/notes.txt
+/Users/student/project/data/notes.txt</code></pre></div>
+<p>Не записуй особистий абсолютний шлях у код, який має працювати на іншому комп’ютері. Будуй маршрут від відомої основи.</p>
+<h3 id="potochna-robocha-papka">Поточна робоча папка<a class="heading-link" href="#potochna-robocha-papka" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>current_folder.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">from pathlib import Path
+
+current_folder = Path.cwd()
+print(current_folder.is_dir())</code></pre></div>
+<p><code>Path.cwd()</code> показує, звідки процес запущено. У VS Code це часто корінь відкритої проєктної папки, але не гарантується кнопкою чи кодом автоматично.</p>
+<p>У терміналі перевір:</p>
+<section class="callout callout-os"><div class="callout-label">Поточна папка й список файлів</div><h3 id="windows-powershell">Windows PowerShell<a class="heading-link" href="#windows-powershell" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>powershell</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-powershell">pwd
+Get-ChildItem</code></pre></div>
+<p>Короткі <code>ls</code> і <code>dir</code> у PowerShell також працюють як псевдоніми.</p>
+<h3 id="windows-command-prompt">Windows Command Prompt<a class="heading-link" href="#windows-command-prompt" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>bat</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-bat">cd
+dir</code></pre></div>
+<h3 id="macos-i-linux">macOS і Linux<a class="heading-link" href="#macos-i-linux" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>bash</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-bash">pwd
+ls</code></pre></div></section>
+<h3 id="papka-samoho-modulia">Папка самого модуля<a class="heading-link" href="#papka-samoho-modulia" aria-label="Посилання на розділ">#</a></h3>
+<p>Коли ресурс лежить поруч із кодом незалежно від місця запуску:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">from pathlib import Path
+
+MODULE_DIR = Path(__file__).resolve().parent
+DATA_FILE = MODULE_DIR / &quot;data&quot; / &quot;defaults.txt&quot;</code></pre></div>
+<p><code>__file__</code> містить шлях поточного модуля під час звичайного запуску або імпорту. В інтерактивному REPL та деяких середовищах його може не бути, тому не використовуй цей шаблон без розуміння контексту.</p>
+<p>Для даних усередині встановленого пакета є стандартний <code>importlib.resources</code>; просте припущення про сусідню папку не завжди працює після пакування.</p>
+<h2 id="stvorennia-papok-i-perevirka-typu-shliakhu">Створення папок і перевірка типу шляху<a class="heading-link" href="#stvorennia-papok-i-perevirka-typu-shliakhu" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>make_folder.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">from pathlib import Path
+
+folder = Path(&quot;output&quot;) / &quot;notes&quot;
+folder.mkdir(parents=True, exist_ok=True)
+
+file_path = folder / &quot;summary.txt&quot;
+file_path.write_text(&quot;Готово\n&quot;, encoding=&quot;utf-8&quot;)
+
+print(folder.is_dir())
+print(file_path.is_file())</code></pre></div>
+<ul><li><code>parents=True</code> дозволяє створити відсутні батьківські папки;</li><li><code>exist_ok=True</code> не вважає помилкою вже наявну папку;</li><li><code>exists()</code> перевіряє будь-який шлях;</li><li><code>is_file()</code> — звичайний файл;</li><li><code>is_dir()</code> — папку.</li></ul>
+<p>Не плутай «існує» з «безпечний для перезапису». Перед руйнівною заміною потрібне окреме рішення.</p>
+<h2 id="chytannia-velykykh-fayliv-riadok-za-riadkom">Читання великих файлів рядок за рядком<a class="heading-link" href="#chytannia-velykykh-fayliv-riadok-za-riadkom" aria-label="Посилання на розділ">#</a></h2>
+<p><code>read_text()</code> завантажує весь файл у пам’ять. Для великого журналу перебирай файловий об’єкт:</p>
+<div class="code-block"><div class="code-toolbar"><span>line_by_line.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">from pathlib import Path
+
+path = Path(&quot;events.log&quot;)
+path.write_text(&quot;START\n\nSTOP\n&quot;, encoding=&quot;utf-8&quot;)
+
+nonempty_count = 0
+with path.open(&quot;r&quot;, encoding=&quot;utf-8&quot;) as file:
+    for line in file:
+        if line.strip():
+            nonempty_count += 1
+
+print(nonempty_count)</code></pre></div>
+<p>На кожному кроці <code>line</code> зазвичай містить символ кінця рядка. <code>strip()</code> прибирає пробіли з обох країв; <code>rstrip(&quot;\n&quot;)</code> прибирає лише конкретний символ праворуч.</p>
+<h2 id="dviykovi-fayly-ne-tekst">Двійкові файли — не текст<a class="heading-link" href="#dviykovi-fayly-ne-tekst" aria-label="Посилання на розділ">#</a></h2>
+<p>Зображення, PDF, аудіо й архіви читають у двійковому режимі:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">data = Path(&quot;image.png&quot;).read_bytes()</code></pre></div>
+<p>або:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">with Path(&quot;image.png&quot;).open(&quot;rb&quot;) as file:
+    header = file.read(8)</code></pre></div>
+<p>Не декодуй довільні байти як UTF-8. Формат файла визначає, як їх тлумачити.</p>
+<h2 id="riznytsia-zapysu-shliakhiv-u-systemakh">Різниця запису шляхів у системах<a class="heading-link" href="#riznytsia-zapysu-shliakhiv-u-systemakh" aria-label="Посилання на розділ">#</a></h2>
+<p><code>Path(&quot;data&quot;) / &quot;file.txt&quot;</code> працює всюди. Але в терміналі та зовнішніх абсолютних шляхах є відмінності.</p>
+<section class="callout callout-os"><div class="callout-label">Приклади шляхів</div><h3 id="windows">Windows<a class="heading-link" href="#windows" aria-label="Посилання на розділ">#</a></h3>
+<ul><li>диск має літеру: <code>C:\Projects\Robot</code>;</li><li>роздільник традиційно <code>\</code>;</li><li>зворотна риска в Python-рядку запускає escape-послідовність.</li></ul>
+<p>Якщо абсолютний Windows-шлях справді потрібен у коді, raw-рядок зручніший:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">path = Path(r&quot;C:\Projects\Robot\data.txt&quot;)</code></pre></div>
+<p>Не завершуй raw-рядок одинарною зворотною рискою. Ще краще — складай частини через <code>Path</code>.</p>
+<h3 id="linux">Linux<a class="heading-link" href="#linux" aria-label="Посилання на розділ">#</a></h3>
+<ul><li>корінь починається з <code>/</code>;</li><li>типовий домашній шлях: <code>/home/name</code>;</li><li>назви файлів чутливі до регістру: <code>Data.txt</code> і <code>data.txt</code> різні.</li></ul>
+<h3 id="macos">macOS<a class="heading-link" href="#macos" aria-label="Посилання на розділ">#</a></h3>
+<ul><li>синтаксис шляхів Unix-подібний: <code>/Users/name</code>;</li><li>файлова система часто поводиться нечутливо до регістру за типовим налаштуванням, але це не гарантія для всіх дисків.</li></ul>
+<p>У переносному проєкті завжди вважай регістр важливим і точно повторюй назву файла.</p></section>
+<p>Домашню папку можна отримати переносно:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">home = Path.home()</code></pre></div>
+<p>Але не записуй туди дані мовчки. Шлях має бути очікуваним для користувача й відповідати призначенню програми.</p>
+<h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
+<h3 id="fayl-isnuie-ale-prohrama-ne-znakhodyt">Файл існує, але програма «не знаходить»<a class="heading-link" href="#fayl-isnuie-ale-prohrama-ne-znakhodyt" aria-label="Посилання на розділ">#</a></h3>
+<p>Найчастіше файл лежить не відносно поточної робочої папки. Надрукуй діагностику:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">print(Path.cwd())
+print(path.resolve())
+print(path.exists())</code></pre></div>
+<p>Не переносись одразу до абсолютного особистого шляху. Виправ точку запуску або побудуй шлях від відомої основи.</p>
+<h3 id="zapys-bez-encoding">Запис без <code>encoding</code><a class="heading-link" href="#zapys-bez-encoding" aria-label="Посилання на розділ">#</a></h3>
+<p>Код може працювати на одному Windows-комп’ютері й зламатися на іншому середовищі. Для власного тексту явно вказуй UTF-8 при читанні й записі.</p>
+<h3 id="write-text-vypadkovo-ster-poperedniy-vmist"><code>write_text()</code> випадково стер попередній вміст<a class="heading-link" href="#write-text-vypadkovo-ster-poperedniy-vmist" aria-label="Посилання на розділ">#</a></h3>
+<p>Метод замінює файл повністю. Для журналу використовуй режим <code>&quot;a&quot;</code>, для безпечного створення нового — <code>&quot;x&quot;</code>, для оновлення структури — спершу прочитай, зміни дані в пам’яті й усвідомлено запиши нову версію.</p>
+<section class="callout callout-mistake"><div class="callout-label">Типова помилка</div><p>Не перевіряй шлях лише через <code>exists()</code>, якщо далі очікуєш файл. На місці може бути папка. Використовуй <code>is_file()</code> або <code>is_dir()</code> відповідно до контракту.</p></section>
+<h2 id="shvydka-perevirka">Швидка перевірка<a class="heading-link" href="#shvydka-perevirka" aria-label="Посилання на розділ">#</a></h2>
+<p>Спрогнозуй, що буде у файлі після двох записів:</p>
+<div class="code-block"><div class="code-toolbar"><span>file_modes.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">from pathlib import Path
+
+path = Path(&quot;letters.txt&quot;)
+path.write_text(&quot;А\n&quot;, encoding=&quot;utf-8&quot;)
+
+with path.open(&quot;a&quot;, encoding=&quot;utf-8&quot;) as file:
+    file.write(&quot;Б\n&quot;)
+
+print(path.read_text(encoding=&quot;utf-8&quot;), end=&quot;&quot;)</code></pre></div>
+<section class="quiz" data-answer="1"><div class="callout-label">Перевір себе</div><p class="quiz-question">Від якої папки зазвичай рахується відносний шлях Path(&quot;data/file.txt&quot;)?</p><div class="quiz-options"><button type="button" class="quiz-option" data-index="0">Завжди від домашньої папки користувача.</button><button type="button" class="quiz-option" data-index="1">Від поточної робочої папки процесу.</button><button type="button" class="quiz-option" data-index="2">Завжди від папки, де встановлено Python.</button></div><p class="quiz-feedback" hidden>Поточну робочу папку показує Path.cwd(). Для ресурсу біля модуля основу будують окремо через __file__.</p></section>
+<h2 id="samostiyna-robota">Самостійна робота<a class="heading-link" href="#samostiyna-robota" aria-label="Посилання на розділ">#</a></h2>
+<section class="callout callout-tasks"><div class="callout-label">Самостійна робота</div><ul><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="13-faily-koduvannia-i-shliakhy-task-1"><span>Створи <code>TextNotebook</code> для двох різних файлів і доведи, що кожен об’єкт читає лише свій шлях.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="13-faily-koduvannia-i-shliakhy-task-2"><span>Додай метод <code>replace_all()</code> із режимом безпечного створення: якщо файл уже є, метод повертає <code>False</code> і не перезаписує його.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="13-faily-koduvannia-i-shliakhy-task-3"><span>Створи папку <code>output/reports</code> через <code>mkdir(parents=True, exist_ok=True)</code> і запиши туди UTF-8 файл з українським текстом.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="13-faily-koduvannia-i-shliakhy-task-4"><span>Запусти один скрипт із кореня проєкту та з іншої папки. Порівняй <code>Path.cwd()</code>, відносний <code>.resolve()</code> і шлях, побудований від <code>__file__</code>.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="13-faily-koduvannia-i-shliakhy-task-5"><span>Прочитай файл із порожніми рядками двома способами: <code>read_text().splitlines()</code> та циклом по файловому об’єкту. Порівняй результат.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="13-faily-koduvannia-i-shliakhy-task-6"><span>Створи Windows-приклад шляху з raw-рядком і переносний еквівалент через <code>Path</code> та <code>/</code>. На Linux/macOS запиши відповідний абсолютний приклад, але не зашивай його в робочу логіку.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="13-faily-koduvannia-i-shliakhy-task-7"><span>Навмисно прочитай відсутній файл і збережи traceback. Не виправляй через випадковий абсолютний шлях — визнач правильну основу.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="13-faily-koduvannia-i-shliakhy-task-8"><span>Запиши чотири байти через <code>write_bytes()</code>, прочитай їх через <code>read_bytes()</code> і поясни, чому до них не застосовується <code>encoding</code>.</span></label></li></ul></section>
+<section class="callout callout-history"><div class="callout-label">Коротка історична пауза</div><p><code>pathlib</code> з’явився, щоб шлях був не крихким рядком, а об’єктом із діями: скласти, знайти батька, перевірити тип, прочитати. Це добре узгоджується з усією моделлю курсу: дані та пов’язана поведінка живуть разом.</p></section>
+<h2 id="pidsumok">Підсумок<a class="heading-link" href="#pidsumok" aria-label="Посилання на розділ">#</a></h2>
+<ul><li><code>Path</code> представляє шлях і переносно складає його частини через <code>/</code>.</li><li><code>read_text()</code> читає весь текст, <code>write_text()</code> повністю замінює файл, режим <code>&quot;a&quot;</code> додає.</li><li>Контекстний менеджер <code>with</code> гарантує закриття файлового об’єкта.</li><li>Для власних текстових файлів явно використовуй <code>encoding=&quot;utf-8&quot;</code>.</li><li>Відносний шлях рахується від <code>Path.cwd()</code>; шлях ресурсу біля модуля можна будувати від <code>__file__</code>.</li><li><code>mkdir()</code>, <code>exists()</code>, <code>is_file()</code> та <code>is_dir()</code> відповідають за різні перевірки.</li><li>Windows, Linux і macOS мають різний вигляд абсолютних шляхів, але <code>pathlib</code> приховує більшість відмінностей.</li><li>Запис може перезаписати дані, тому точний шлях і режим є частиною контракту.</li></ul>
+<p>Офіційні орієнтири: <a href="https://docs.python.org/3/library/pathlib.html" target="_blank" rel="noreferrer"><code>pathlib</code></a>, <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files" target="_blank" rel="noreferrer">читання й запис файлів</a>, <a href="https://docs.python.org/3/howto/unicode.html" target="_blank" rel="noreferrer">Unicode у Python</a>.</p></div>
+  <section class="completion-card">
+    <div><p class="eyebrow">Твій прогрес</p><h2>Розділ опрацьовано?</h2><p>Позначай тільки після запуску прикладу й самостійної зміни.</p></div>
+    <button class="button primary complete-chapter" type="button" data-chapter-id="13-faily-koduvannia-i-shliakhy">Позначити завершеним</button>
+  </section>
+  <nav class="chapter-pager" aria-label="Сусідні розділи"><a class="chapter-pager-link previous" href="12-standartna-biblioteka-i-vypadkovist.html"><span>← Назад</span><strong>Стандартна бібліотека й керована випадковість</strong></a><a class="chapter-pager-link next" href="14-vyniatky-i-chytabelni-zboi.html"><span>Далі →</span><strong>Винятки: передбачувані збої й корисні повідомлення</strong></a></nav>
+</article>
+
+      <footer class="site-footer">
+        <p>Python через об’єкти · українська практична довідка · 2026</p>
+        <a href="https://github.com/ArTeGaS/python-oop-handbook-ua">Відкрити репозиторій</a>
+      </footer>
+    </main>
+  </div>
+  <div class="search-panel" hidden aria-live="polite">
+    <div class="search-panel-inner">
+      <button class="search-close" type="button" aria-label="Закрити пошук">×</button>
+      <p class="eyebrow">Пошук у довідці</p>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="uk" data-active-chapter="02-stan-obiekta-i-prosti-typy">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Стан об’єкта: рядки, числа й логічні значення Стан об’єкта: рядки, числа й логічні значення У попередньому розділі два роботи поводилися однаково. Тепер кожен об’єкт отримає власні дані: ім’">
+  <meta name="theme-color" content="#f4f0e8">
+  <title>Стан об’єкта: рядки, числа й логічні значення — Python через об’єкти</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body class="chapter-page">
+  <a class="skip-link" href="#main-content">До основного тексту</a>
+  <header class="mobile-header">
+    <button class="icon-button menu-button" type="button" aria-label="Відкрити зміст" aria-expanded="false">Зміст</button>
+    <a class="mobile-brand" href="index.html">Python через об’єкти</a>
+    <button class="icon-button theme-toggle" type="button" aria-label="Змінити тему">Тема</button>
+  </header>
+  <div class="app-shell">
+
+<aside class="sidebar" aria-label="Зміст">
+  <div class="sidebar-top">
+    <a class="brand" data-slug="home" href="index.html">
+      <span class="brand-mark">Py</span>
+      <span><strong>Python через об’єкти</strong><small>Практична довідка для початківців</small></span>
+    </a>
+    <button class="theme-toggle desktop-theme" type="button">Змінити тему</button>
+  </div>
+  <label class="search-box">
+    <span class="visually-hidden">Пошук</span>
+    <input id="chapter-search" type="search" placeholder="Знайти тему…" autocomplete="off">
+    <kbd>Ctrl K</kbd>
+  </label>
+  <div class="progress-card">
+    <div><span>Прогрес</span><strong id="progress-label">0 з 18</strong></div>
+    <div class="progress-track"><span id="progress-bar"></span></div>
+  </div>
+  <nav class="chapter-nav"><a class="chapter-link" data-slug="00-yak-korystuvatysia" href="00-yak-korystuvatysia.html"><span class="chapter-number">Початок</span><span>Як користуватися цією довідкою</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="01-py-fail-i-pershyi-obiekt" href="01-py-fail-i-pershyi-obiekt.html"><span class="chapter-number">01</span><span>`.py`-файл і перший об’єкт</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="02-stan-obiekta-i-prosti-typy" href="02-stan-obiekta-i-prosti-typy.html"><span class="chapter-number">02</span><span>Стан об’єкта: рядки, числа й логічні значення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="03-metody-parametry-i-povernennia" href="03-metody-parametry-i-povernennia.html"><span class="chapter-number">03</span><span>Методи: параметри, аргументи й `return`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="04-rishennia-i-lohichni-vyrazy" href="04-rishennia-i-lohichni-vyrazy.html"><span class="chapter-number">04</span><span>Рішення: порівняння, `if`, `elif`, `else`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="05-spysky-i-kortezhi" href="05-spysky-i-kortezhi.html"><span class="chapter-number">05</span><span>Списки й кортежі: впорядковані колекції</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="06-cykly-range-i-zrizy" href="06-cykly-range-i-zrizy.html"><span class="chapter-number">06</span><span>Повторення: `for`, `range()` і зрізи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="07-vvedennia-i-cykl-while" href="07-vvedennia-i-cykl-while.html"><span class="chapter-number">07</span><span>Діалог із програмою: `input()` і цикл `while`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="08-slovnyky-vkladennia-i-mnozhyny" href="08-slovnyky-vkladennia-i-mnozhyny.html"><span class="chapter-number">08</span><span>Словники, вкладені дані й множини</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="09-funktsii-i-moduli" href="09-funktsii-i-moduli.html"><span class="chapter-number">09</span><span>Функції й модулі: інструменти поза об’єктами</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="10-struktura-opp-proiektu" href="10-struktura-opp-proiektu.html"><span class="chapter-number">10</span><span>Структура OOP-проєкту у VS Code</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="11-spadkuvannia-kompozytsiia-i-vlastyvosti" href="11-spadkuvannia-kompozytsiia-i-vlastyvosti.html"><span class="chapter-number">11</span><span>Пов’язані об’єкти: успадкування, композиція й властивості</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="12-standartna-biblioteka-i-vypadkovist" href="12-standartna-biblioteka-i-vypadkovist.html"><span class="chapter-number">12</span><span>Стандартна бібліотека й керована випадковість</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="13-faily-koduvannia-i-shliakhy" href="13-faily-koduvannia-i-shliakhy.html"><span class="chapter-number">13</span><span>Текстові файли, UTF-8 і шляхи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="14-vyniatky-i-chytabelni-zboi" href="14-vyniatky-i-chytabelni-zboi.html"><span class="chapter-number">14</span><span>Винятки: передбачувані збої й корисні повідомлення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="15-json-zberezhennia-i-refaktorynh" href="15-json-zberezhennia-i-refaktorynh.html"><span class="chapter-number">15</span><span>JSON: збереження стану й рефакторинг</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="16-testy-z-pytest" href="16-testy-z-pytest.html"><span class="chapter-number">16</span><span>Автоматичні тести з pytest</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="17-styl-nalahodzhennia-i-karta-syntaksysu" href="17-styl-nalahodzhennia-i-karta-syntaksysu.html"><span class="chapter-number">17</span><span>Підтримуваний код: стиль, налагодження й карта синтаксису</span><span class="chapter-check" aria-hidden="true">✓</span></a></nav>
+  <div class="sidebar-actions">
+    <a class="button secondary full" href="downloads/python-cherez-obiekty.pdf">Завантажити PDF</a>
+  </div>
+</aside>
+
+    <main id="main-content" class="main-content" tabindex="-1">
+
+<article class="chapter-article" data-chapter="02-stan-obiekta-i-prosti-typy">
+  <header class="chapter-header">
+    <p class="eyebrow">Розділ 02</p>
+    <p class="chapter-reading-note">Читай · запускай · змінюй · перевіряй</p>
+  </header>
+  <div class="chapter-body"><h1 id="stan-obiekta-riadky-chysla-y-lohichni-znachennia">Стан об’єкта: рядки, числа й логічні значення<a class="heading-link" href="#stan-obiekta-riadky-chysla-y-lohichni-znachennia" aria-label="Посилання на розділ">#</a></h1>
+<p>У попередньому розділі два роботи поводилися однаково. Тепер кожен об’єкт отримає власні дані: ім’я, запас енергії та ознаку готовності до роботи. Такі дані називаються <strong>станом об’єкта</strong>.</p>
+<h2 id="shcho-zrobymo">Що зробимо<a class="heading-link" href="#shcho-zrobymo" aria-label="Посилання на розділ">#</a></h2>
+<p>Створимо клас <code>Robot</code>, якому під час народження передають ім’я й початковий заряд. Робот зможе показати свій стан, витратити енергію та зарядитися.</p>
+<section class="callout callout-goal"><div class="callout-label">Результат</div><p>Після запуску два об’єкти одного класу покажуть різні імена й різний заряд. Зміна одного робота не зачепить другого.</p></section>
+<h2 id="zminna-zberihaie-znachennia">Змінна зберігає значення<a class="heading-link" href="#zminna-zberihaie-znachennia" aria-label="Посилання на розділ">#</a></h2>
+<p>Почнемо не з класу, а з трьох коротких рядків:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">robot_name = &quot;Робі&quot;
+energy = 80
+is_ready = True</code></pre></div>
+<p>Зліва стоять <strong>імена змінних</strong>, справа — значення. Знак <code>=</code> тут означає не «дорівнює», а «прив’яжи ім’я до значення».</p>
+<ul><li><code>&quot;Робі&quot;</code> — рядок <code>str</code>, тобто текст;</li><li><code>80</code> — ціле число <code>int</code>;</li><li><code>True</code> — логічне значення <code>bool</code>, тобто «так»;</li><li>число <code>2.5</code> мало б тип <code>float</code>, тобто число з дробовою частиною.</li></ul>
+<p>Python визначає тип за самим значенням. Перевірити припущення можна функцією <code>type()</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>value_types.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">robot_name = &quot;Робі&quot;
+energy = 80
+is_ready = True
+speed = 2.5
+
+print(type(robot_name).__name__)
+print(type(energy).__name__)
+print(type(is_ready).__name__)
+print(type(speed).__name__)</code></pre></div>
+<p><code>type()</code> корисна для дослідження, але в готовій програмі не треба друкувати тип кожної змінної. Краще давати іменам точний зміст: <code>energy</code> зрозуміліше за <code>number</code>, а <code>is_ready</code> — за <code>flag1</code>.</p>
+<h3 id="pravyla-imen">Правила імен<a class="heading-link" href="#pravyla-imen" aria-label="Посилання на розділ">#</a></h3>
+<p>Ім’я змінної або атрибута може містити латинські літери, цифри й підкреслення, але не може починатися з цифри.</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">player_name = &quot;Лея&quot;
+level_2_score = 150</code></pre></div>
+<p>Для звичайних змінних у Python використовують <code>snake_case</code>: слова пишуть малими літерами й розділяють підкресленням. Назви класів мають інший стиль — <code>PascalCase</code>: <code>Robot</code>, <code>GameHero</code>, <code>MusicPlayer</code>.</p>
+<p>Не використовуй як власні імена слова, що вже мають роль у Python: <code>class</code>, <code>def</code>, <code>True</code>, <code>False</code>, <code>None</code>, <code>if</code>. VS Code зазвичай підсвічує їх як ключові слова.</p>
+<h2 id="maysternia">Майстерня<a class="heading-link" href="#maysternia" aria-label="Посилання на розділ">#</a></h2>
+<p>Набери першу повну версію у файлі <code>robot_state.py</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>robot_state.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Robot:
+    def __init__(self, name, energy):
+        self.name = name
+        self.energy = energy
+        self.is_ready = True
+
+    def show_status(self):
+        print(f&quot;{self.name}: {self.energy}%&quot;)
+
+    def move(self):
+        self.energy -= 15
+
+
+first_robot = Robot(&quot;Робі&quot;, 80)
+second_robot = Robot(&quot;Біп&quot;, 35)
+
+first_robot.show_status()
+second_robot.show_status()
+
+first_robot.move()
+
+first_robot.show_status()
+second_robot.show_status()</code></pre></div>
+<p>Очікуваний результат:</p>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Робі: 80%
+Біп: 35%
+Робі: 65%
+Біп: 35%</code></pre></div>
+<p>Останні два рядки доводять важливу річ: після руху змінився тільки <code>first_robot</code>. Клас спільний, але стан у кожного об’єкта власний.</p>
+<h3 id="init-hotuie-novyy-obiekt"><code>__init__</code> готує новий об’єкт<a class="heading-link" href="#init-hotuie-novyy-obiekt" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def __init__(self, name, energy):
+    self.name = name
+    self.energy = energy
+    self.is_ready = True</code></pre></div>
+<p>Метод <code>__init__</code> Python викликає автоматично після створення об’єкта. Його назву починають і завершують по два символи підкреслення. Такі спеціальні імена не вигадують навмання — вони передбачені мовою.</p>
+<p>У виклику <code>Robot(&quot;Робі&quot;, 80)</code>:</p>
+<ul><li><code>&quot;Робі&quot;</code> потрапляє в параметр <code>name</code>;</li><li><code>80</code> потрапляє в параметр <code>energy</code>;</li><li>сам новий об’єкт Python передає в <code>self</code> автоматично.</li></ul>
+<p>Рядок <code>self.name = name</code> читається так: «у цього об’єкта створи атрибут <code>name</code> і запиши туди отримане ім’я».</p>
+<p><strong>Атрибут</strong> — значення, яке належить об’єкту. До нього звертаються через крапку: <code>first_robot.name</code>, <code>second_robot.energy</code>.</p>
+<section class="callout callout-note"><div class="callout-label">Чому імена повторюються</div><p>У <code>self.energy = energy</code> праве <code>energy</code> — тимчасовий параметр методу, а <code>self.energy</code> — довготривалий атрибут об’єкта. Після завершення <code>__init__</code> параметр більше не потрібен, а атрибут лишається разом з об’єктом.</p></section>
+<h3 id="riadky-y-f-riadky">Рядки й f-рядки<a class="heading-link" href="#riadky-y-f-riadky" aria-label="Посилання на розділ">#</a></h3>
+<p>Текст у Python беруть в одинарні або подвійні лапки:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">first_message = &quot;Привіт&quot;
+second_message = &#x27;Робот готовий&#x27;</code></pre></div>
+<p>Обидва варіанти рівноправні. Обирай той, з яким текст читається легше. Наприклад, апостроф зручно залишити всередині подвійних лапок:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">message = &quot;Об’єкт зберігає власний стан.&quot;</code></pre></div>
+<p>Літера <code>f</code> перед рядком дозволяє вставляти значення в фігурних дужках:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">print(f&quot;{self.name}: {self.energy}%&quot;)</code></pre></div>
+<p>Такий текст називається <strong>f-рядком</strong>. Python обчислює вміст <code>{...}</code> і перетворює результат на текст. Тому рядок та число можна показати разом без ручного перетворення.</p>
+<p>Корисні методи рядків:</p>
+<div class="code-block"><div class="code-toolbar"><span>string_methods.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">name = &quot;робі&quot;
+model = &quot;  Космо Бот  &quot;
+
+print(name.upper())
+print(name.lower())
+print(name.title())
+print(model.strip())</code></pre></div>
+<ul><li><code>upper()</code> створює версію великими літерами;</li><li><code>lower()</code> — малими;</li><li><code>title()</code> піднімає першу літеру кожного слова;</li><li><code>strip()</code> прибирає пробіли на початку й у кінці.</li></ul>
+<p>Рядок при цьому не змінюється сам. Метод повертає нове значення. Щоб зберегти його, потрібне присвоєння: <code>name = name.title()</code>.</p>
+<h3 id="chysla-zminiuiut-stan">Числа змінюють стан<a class="heading-link" href="#chysla-zminiuiut-stan" aria-label="Посилання на розділ">#</a></h3>
+<p>Python підтримує звичні дії:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">total = 10 + 5
+left = 10 - 3
+doubled = 7 * 2
+half = 9 / 2
+whole_part = 9 // 2
+remainder = 9 % 2
+power = 3 ** 2</code></pre></div>
+<p><code>/</code> завжди дає <code>float</code>; <code>//</code> залишає цілу частину ділення; <code>%</code> дає остачу; <code>**</code> підносить до степеня.</p>
+<p>У методі руху ми використали скорочене присвоєння:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">self.energy -= 15</code></pre></div>
+<p>Це коротка форма <code>self.energy = self.energy - 15</code>. Так само працюють <code>+=</code>, <code>*=</code>, <code>/=</code>.</p>
+<p>Дробові числа в комп’ютері іноді мають крихітну похибку:</p>
+<div class="code-block"><div class="code-toolbar"><span>float_example.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">result = 0.1 + 0.2
+
+print(result)
+print(round(result, 2))</code></pre></div>
+<p>Це не поломка Python: багато десяткових дробів неможливо точно записати обмеженою кількістю двійкових цифр. Для показу можна використати <code>round()</code>. Для грошей у серйозних програмах застосовують окремі правила або спеціальний тип <code>Decimal</code>.</p>
+<h3 id="lohichne-znachennia-vidpovidaie-tak-abo-ni">Логічне значення відповідає «так» або «ні»<a class="heading-link" href="#lohichne-znachennia-vidpovidaie-tak-abo-ni" aria-label="Посилання на розділ">#</a></h3>
+<p><code>True</code> і <code>False</code> пишуться з великої літери й без лапок:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">self.is_ready = True</code></pre></div>
+<p>Якщо написати <code>&quot;True&quot;</code>, це буде звичайний текст, а не логічне значення. Логічні атрибути зручно називати як коротке запитання: <code>is_ready</code>, <code>has_key</code>, <code>can_fly</code>.</p>
+<p>Поки ми лише зберігаємо <code>is_ready</code>. У розділі про умови програма почне приймати рішення на основі цього значення.</p>
+<section class="callout callout-practice"><div class="callout-label">Додай заряджання</div><p>Встав у клас метод:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def charge(self, amount):
+    self.energy += amount</code></pre></div>
+<p>Після створення робота виконай <code>first_robot.charge(10)</code> і знову покажи стан. Перед запуском самостійно порахуй очікуваний заряд.</p></section>
+<h2 id="komentari-poiasniuiut-prychynu">Коментарі пояснюють причину<a class="heading-link" href="#komentari-poiasniuiut-prychynu" aria-label="Посилання на розділ">#</a></h2>
+<p>Коментар починається із <code>#</code>. Python ігнорує текст після цього символу до кінця рядка.</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python"># На один крок робот витрачає 15 одиниць енергії.
+self.energy -= 15</code></pre></div>
+<p>Корисний коментар пояснює <strong>чому</strong> рішення саме таке. Коментар <code># Віднімаємо 15</code> лише повторює код і майже нічого не додає.</p>
+<p>Коли під час досліду хочеться тимчасово вимкнути рядок, можна поставити перед ним <code>#</code>. Але не накопичуй у готовому файлі великі шматки «мертвого» коду — Git краще зберігає історію змін.</p>
+<h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
+<h3 id="atrybut-stvoreno-ne-dlia-toho-obiekta">Атрибут створено не для того об’єкта<a class="heading-link" href="#atrybut-stvoreno-ne-dlia-toho-obiekta" aria-label="Посилання на розділ">#</a></h3>
+<p>Такий метод не змінює заряд робота:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def move(self):
+    energy -= 15</code></pre></div>
+<p>Python шукає окреме ім’я <code>energy</code> усередині методу й не знаходить його. Потрібно звернутися до стану поточного об’єкта:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def move(self):
+    self.energy -= 15</code></pre></div>
+<h3 id="atrybut-prochytano-do-stvorennia">Атрибут прочитано до створення<a class="heading-link" href="#atrybut-prochytano-do-stvorennia" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Robot:
+    def __init__(self, name):
+        self.name = name
+
+    def show_status(self):
+        print(self.energy)</code></pre></div>
+<p>Під час <code>show_status()</code> виникне <code>AttributeError</code>, бо атрибут <code>energy</code> ніде не створили. Найнадійніше готувати обов’язкові атрибути в <code>__init__</code>, щоб кожен новий об’єкт одразу був придатний до роботи.</p>
+<section class="callout callout-mistake"><div class="callout-label">Типова помилка</div><p>Не змінюй значення різних типів без розуміння. Після <code>self.energy = &quot;вісімдесят&quot;</code> віднімання <code>self.energy -= 15</code> закінчиться <code>TypeError</code>: текст і число не можна відняти одне від одного.</p></section>
+<h2 id="shvydka-perevirka">Швидка перевірка<a class="heading-link" href="#shvydka-perevirka" aria-label="Посилання на розділ">#</a></h2>
+<p>Прочитай код, спрогнозуй обидва рядки, а тоді запусти:</p>
+<div class="code-block"><div class="code-toolbar"><span>pet_state.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Pet:
+    def __init__(self, name, energy):
+        self.name = name
+        self.energy = energy
+
+    def play(self):
+        self.energy -= 1
+
+    def show(self):
+        print(f&quot;{self.name}: {self.energy} од. енергії.&quot;)
+
+
+cat = Pet(&quot;Луна&quot;, 5)
+dog = Pet(&quot;Тор&quot;, 9)
+
+cat.play()
+cat.show()
+dog.show()</code></pre></div>
+<p>Перевір, чи можеш пояснити:</p>
+<ul><li>чому <code>cat</code> і <code>dog</code> мають спільні методи;</li><li>де зберігається ім’я конкретної тварини;</li><li>чому <code>cat.play()</code> не змінює <code>dog.energy</code>;</li><li>який тип мають <code>name</code> та <code>energy</code>.</li></ul>
+<section class="quiz" data-answer="1"><div class="callout-label">Перевір себе</div><p class="quiz-question">Що робить рядок self.energy = energy всередині __init__?</p><div class="quiz-options"><button type="button" class="quiz-option" data-index="0">Порівнює атрибут із параметром.</button><button type="button" class="quiz-option" data-index="1">Записує отримане значення energy в атрибут поточного об’єкта.</button><button type="button" class="quiz-option" data-index="2">Створює одну спільну енергію для всіх об’єктів.</button></div><p class="quiz-feedback" hidden>Ліворуч self.energy означає атрибут конкретного об’єкта, а праворуч energy — параметр, переданий під час створення.</p></section>
+<h2 id="samostiyna-robota">Самостійна робота<a class="heading-link" href="#samostiyna-robota" aria-label="Посилання на розділ">#</a></h2>
+<section class="callout callout-tasks"><div class="callout-label">Самостійна робота</div><ul><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="02-stan-obiekta-i-prosti-typy-task-1"><span>Створи клас <code>Book</code> з атрибутами <code>title</code>, <code>pages</code> і <code>is_open</code>. Додай метод, який показує всі три значення зрозумілим реченням.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="02-stan-obiekta-i-prosti-typy-task-2"><span>Створи два об’єкти <code>GameHero</code> з різними іменами та запасом здоров’я. Зміни здоров’я лише першого й доведи виведенням, що другий не змінився.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="02-stan-obiekta-i-prosti-typy-task-3"><span>Додай роботу атрибут <code>distance = 0</code>. Нехай кожен виклик <code>move()</code> збільшує відстань на 3 і зменшує енергію на 15.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="02-stan-obiekta-i-prosti-typy-task-4"><span>Досліди методи <code>replace()</code> і <code>removeprefix()</code> для рядків. Збережи результат в окремі змінні й поясни, чи змінився початковий рядок.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="02-stan-obiekta-i-prosti-typy-task-5"><span>Створи клас <code>Temperature</code> з атрибутом <code>celsius</code>. Додай метод, що друкує температуру за Цельсієм і приблизне значення за Фаренгейтом за формулою <code>celsius * 9 / 5 + 32</code>.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="02-stan-obiekta-i-prosti-typy-task-6"><span>Навмисно звернися до неіснуючого атрибута, прочитай останній рядок traceback, а потім виправ клас так, щоб атрибут створювався в <code>__init__</code>.</span></label></li></ul></section>
+<section class="callout callout-history"><div class="callout-label">Коротка історична пауза</div><p>Слово «об’єкт» у програмуванні не означає лише видиму річ. Об’єктом може бути рахунок, музичний трек, температура або правило гри — будь-що, для чого програмі зручно тримати дані й пов’язані з ними дії разом.</p></section>
+<h2 id="pidsumok">Підсумок<a class="heading-link" href="#pidsumok" aria-label="Посилання на розділ">#</a></h2>
+<ul><li>Змінна прив’язує ім’я до значення, а <code>=</code> виконує присвоєння.</li><li>Базові типи цього розділу: текст <code>str</code>, цілі числа <code>int</code>, дробові <code>float</code>, логічні значення <code>bool</code>.</li><li><code>__init__</code> готує новий об’єкт і зазвичай створює його обов’язкові атрибути.</li><li><code>self.attribute</code> звертається до стану конкретного об’єкта.</li><li>Об’єкти одного класу мають спільний опис поведінки, але окремий стан.</li><li>f-рядок вставляє значення в текст, а скорочення <code>+=</code> і <code>-=</code> оновлюють числа.</li><li>Добре ім’я пояснює зміст, а добрий коментар — причину рішення.</li></ul></div>
+  <section class="completion-card">
+    <div><p class="eyebrow">Твій прогрес</p><h2>Розділ опрацьовано?</h2><p>Позначай тільки після запуску прикладу й самостійної зміни.</p></div>
+    <button class="button primary complete-chapter" type="button" data-chapter-id="02-stan-obiekta-i-prosti-typy">Позначити завершеним</button>
+  </section>
+  <nav class="chapter-pager" aria-label="Сусідні розділи"><a class="chapter-pager-link previous" href="01-py-fail-i-pershyi-obiekt.html"><span>← Назад</span><strong>`.py`-файл і перший об’єкт</strong></a><a class="chapter-pager-link next" href="03-metody-parametry-i-povernennia.html"><span>Далі →</span><strong>Методи: параметри, аргументи й `return`</strong></a></nav>
+</article>
+
+      <footer class="site-footer">
+        <p>Python через об’єкти · українська практична довідка · 2026</p>
+        <a href="https://github.com/ArTeGaS/python-oop-handbook-ua">Відкрити репозиторій</a>
+      </footer>
+    </main>
+  </div>
+  <div class="search-panel" hidden aria-live="polite">
+    <div class="search-panel-inner">
+      <button class="search-close" type="button" aria-label="Закрити пошук">×</button>
+      <p class="eyebrow">Пошук у довідці</p>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="uk" data-active-chapter="14-vyniatky-i-chytabelni-zboi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Винятки: передбачувані збої й корисні повідомлення Винятки: передбачувані збої й корисні повідомлення Файл може бути відсутній, користувач може ввести `п’ять` замість `5`, а метод — отримати">
+  <meta name="theme-color" content="#f4f0e8">
+  <title>Винятки: передбачувані збої й корисні повідомлення — Python через об’єкти</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body class="chapter-page">
+  <a class="skip-link" href="#main-content">До основного тексту</a>
+  <header class="mobile-header">
+    <button class="icon-button menu-button" type="button" aria-label="Відкрити зміст" aria-expanded="false">Зміст</button>
+    <a class="mobile-brand" href="index.html">Python через об’єкти</a>
+    <button class="icon-button theme-toggle" type="button" aria-label="Змінити тему">Тема</button>
+  </header>
+  <div class="app-shell">
+
+<aside class="sidebar" aria-label="Зміст">
+  <div class="sidebar-top">
+    <a class="brand" data-slug="home" href="index.html">
+      <span class="brand-mark">Py</span>
+      <span><strong>Python через об’єкти</strong><small>Практична довідка для початківців</small></span>
+    </a>
+    <button class="theme-toggle desktop-theme" type="button">Змінити тему</button>
+  </div>
+  <label class="search-box">
+    <span class="visually-hidden">Пошук</span>
+    <input id="chapter-search" type="search" placeholder="Знайти тему…" autocomplete="off">
+    <kbd>Ctrl K</kbd>
+  </label>
+  <div class="progress-card">
+    <div><span>Прогрес</span><strong id="progress-label">0 з 18</strong></div>
+    <div class="progress-track"><span id="progress-bar"></span></div>
+  </div>
+  <nav class="chapter-nav"><a class="chapter-link" data-slug="00-yak-korystuvatysia" href="00-yak-korystuvatysia.html"><span class="chapter-number">Початок</span><span>Як користуватися цією довідкою</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="01-py-fail-i-pershyi-obiekt" href="01-py-fail-i-pershyi-obiekt.html"><span class="chapter-number">01</span><span>`.py`-файл і перший об’єкт</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="02-stan-obiekta-i-prosti-typy" href="02-stan-obiekta-i-prosti-typy.html"><span class="chapter-number">02</span><span>Стан об’єкта: рядки, числа й логічні значення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="03-metody-parametry-i-povernennia" href="03-metody-parametry-i-povernennia.html"><span class="chapter-number">03</span><span>Методи: параметри, аргументи й `return`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="04-rishennia-i-lohichni-vyrazy" href="04-rishennia-i-lohichni-vyrazy.html"><span class="chapter-number">04</span><span>Рішення: порівняння, `if`, `elif`, `else`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="05-spysky-i-kortezhi" href="05-spysky-i-kortezhi.html"><span class="chapter-number">05</span><span>Списки й кортежі: впорядковані колекції</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="06-cykly-range-i-zrizy" href="06-cykly-range-i-zrizy.html"><span class="chapter-number">06</span><span>Повторення: `for`, `range()` і зрізи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="07-vvedennia-i-cykl-while" href="07-vvedennia-i-cykl-while.html"><span class="chapter-number">07</span><span>Діалог із програмою: `input()` і цикл `while`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="08-slovnyky-vkladennia-i-mnozhyny" href="08-slovnyky-vkladennia-i-mnozhyny.html"><span class="chapter-number">08</span><span>Словники, вкладені дані й множини</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="09-funktsii-i-moduli" href="09-funktsii-i-moduli.html"><span class="chapter-number">09</span><span>Функції й модулі: інструменти поза об’єктами</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="10-struktura-opp-proiektu" href="10-struktura-opp-proiektu.html"><span class="chapter-number">10</span><span>Структура OOP-проєкту у VS Code</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="11-spadkuvannia-kompozytsiia-i-vlastyvosti" href="11-spadkuvannia-kompozytsiia-i-vlastyvosti.html"><span class="chapter-number">11</span><span>Пов’язані об’єкти: успадкування, композиція й властивості</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="12-standartna-biblioteka-i-vypadkovist" href="12-standartna-biblioteka-i-vypadkovist.html"><span class="chapter-number">12</span><span>Стандартна бібліотека й керована випадковість</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="13-faily-koduvannia-i-shliakhy" href="13-faily-koduvannia-i-shliakhy.html"><span class="chapter-number">13</span><span>Текстові файли, UTF-8 і шляхи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="14-vyniatky-i-chytabelni-zboi" href="14-vyniatky-i-chytabelni-zboi.html"><span class="chapter-number">14</span><span>Винятки: передбачувані збої й корисні повідомлення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="15-json-zberezhennia-i-refaktorynh" href="15-json-zberezhennia-i-refaktorynh.html"><span class="chapter-number">15</span><span>JSON: збереження стану й рефакторинг</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="16-testy-z-pytest" href="16-testy-z-pytest.html"><span class="chapter-number">16</span><span>Автоматичні тести з pytest</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="17-styl-nalahodzhennia-i-karta-syntaksysu" href="17-styl-nalahodzhennia-i-karta-syntaksysu.html"><span class="chapter-number">17</span><span>Підтримуваний код: стиль, налагодження й карта синтаксису</span><span class="chapter-check" aria-hidden="true">✓</span></a></nav>
+  <div class="sidebar-actions">
+    <a class="button secondary full" href="downloads/python-cherez-obiekty.pdf">Завантажити PDF</a>
+  </div>
+</aside>
+
+    <main id="main-content" class="main-content" tabindex="-1">
+
+<article class="chapter-article" data-chapter="14-vyniatky-i-chytabelni-zboi">
+  <header class="chapter-header">
+    <p class="eyebrow">Розділ 14</p>
+    <p class="chapter-reading-note">Читай · запускай · змінюй · перевіряй</p>
+  </header>
+  <div class="chapter-body"><h1 id="vyniatky-peredbachuvani-zboi-y-korysni-povidomlennia">Винятки: передбачувані збої й корисні повідомлення<a class="heading-link" href="#vyniatky-peredbachuvani-zboi-y-korysni-povidomlennia" aria-label="Посилання на розділ">#</a></h1>
+<p>Файл може бути відсутній, користувач може ввести <code>п’ять</code> замість <code>5</code>, а метод — отримати неможливе значення. Python повідомляє про такі ситуації через <strong>винятки</strong>. Завдання програми не приховати всі помилки, а відрізнити очікуваний збій від справжнього дефекту.</p>
+<h2 id="shcho-zrobymo">Що зробимо<a class="heading-link" href="#shcho-zrobymo" aria-label="Посилання на розділ">#</a></h2>
+<p>Створимо <code>EnergyReader</code>, який читає число з файла. Нижчий рівень повідомлятиме точну проблему винятком, а зовнішній сценарій перетворюватиме очікувані збої на зрозумілий результат.</p>
+<section class="callout callout-goal"><div class="callout-label">Результат</div><p>Ти навчишся ловити лише ті винятки, які справді можеш обробити, залишати неочікувані дефекти видимими й додавати контекст без втрати першопричини.</p></section>
+<h2 id="traceback-pokazuie-shliakh-do-vyniatku">Traceback показує шлях до винятку<a class="heading-link" href="#traceback-pokazuie-shliakh-do-vyniatku" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">number = int(&quot;п’ять&quot;)</code></pre></div>
+<p>Останній рядок traceback приблизно такий:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-text">ValueError: invalid literal for int() with base 10: &#x27;п’ять&#x27;</code></pre></div>
+<ul><li><code>ValueError</code> — тип винятку;</li><li>далі — повідомлення;</li><li>вище — ланцюжок викликів і рядки коду.</li></ul>
+<p>Спочатку читай останній рядок, потім шукай <strong>перший кадр свого коду</strong>, який передав неправильне значення. Не редагуй рядки стандартної бібліотеки.</p>
+<h2 id="try-i-tochnyy-except"><code>try</code> і точний <code>except</code><a class="heading-link" href="#try-i-tochnyy-except" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>safe_number.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">text = &quot;п’ять&quot;
+
+try:
+    number = int(text)
+except ValueError:
+    print(&quot;Потрібне ціле число.&quot;)</code></pre></div>
+<p>Python виконує блок <code>try</code>. Якщо саме <code>ValueError</code> виникає до завершення блоку, виконання переходить у відповідний <code>except</code>.</p>
+<p>Не клади в <code>try</code> десятки не пов’язаних рядків. Чим менший блок, тим ясніше, яка операція очікувано може зламатися.</p>
+<h2 id="maysternia">Майстерня<a class="heading-link" href="#maysternia" aria-label="Посилання на розділ">#</a></h2>
+<p>Створи <code>energy_reader.py</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>energy_reader.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">from pathlib import Path
+
+
+class EnergyDataError(ValueError):
+    &quot;&quot;&quot;Непридатні дані енергії у зовнішньому джерелі.&quot;&quot;&quot;
+
+
+class EnergyReader:
+    def read(self, path):
+        path = Path(path)
+
+        try:
+            text = path.read_text(encoding=&quot;utf-8&quot;)
+        except FileNotFoundError as error:
+            raise EnergyDataError(&quot;файл не знайдено&quot;) from error
+
+        try:
+            energy = int(text.strip())
+        except ValueError as error:
+            raise EnergyDataError(&quot;значення має бути цілим числом&quot;) from error
+
+        if energy &lt; 0:
+            raise EnergyDataError(&quot;енергія не може бути від’ємною&quot;)
+
+        return energy
+
+
+def load_message(reader, path):
+    try:
+        energy = reader.read(path)
+    except EnergyDataError as error:
+        return f&quot;Не вдалося прочитати енергію: {error}.&quot;
+    else:
+        return f&quot;Зчитано енергію: {energy}.&quot;
+
+
+valid_path = Path(&quot;valid_energy.txt&quot;)
+invalid_path = Path(&quot;invalid_energy.txt&quot;)
+
+valid_path.write_text(&quot;25\n&quot;, encoding=&quot;utf-8&quot;)
+invalid_path.write_text(&quot;багато\n&quot;, encoding=&quot;utf-8&quot;)
+
+reader = EnergyReader()
+print(load_message(reader, valid_path))
+print(load_message(reader, invalid_path))
+print(load_message(reader, &quot;missing_energy.txt&quot;))</code></pre></div>
+<p>Тут два рівні мають різні ролі:</p>
+<ul><li><code>EnergyReader.read()</code> знає контракт даних і піднімає <code>EnergyDataError</code> із точною причиною;</li><li><code>load_message()</code> є межею інтерфейсу й вирішує, як показати очікувану проблему людині.</li></ul>
+<h3 id="vlasnyy-vyniatok-nazyvaie-problemu-predmetnoi-oblasti">Власний виняток називає проблему предметної області<a class="heading-link" href="#vlasnyy-vyniatok-nazyvaie-problemu-predmetnoi-oblasti" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class EnergyDataError(ValueError):
+    &quot;&quot;&quot;Непридатні дані енергії у зовнішньому джерелі.&quot;&quot;&quot;</code></pre></div>
+<p>Клас успадковує <code>ValueError</code>, бо проблема стосується непридатного значення. Суфікс <code>Error</code> є звичною домовленістю для винятків.</p>
+<p>Власний тип дозволяє зовнішньому коду ловити саме проблеми енергетичних даних, не ковтаючи будь-який <code>ValueError</code> із випадкового дефекту форматування в іншому місці.</p>
+<h3 id="raise-pidnimaie-vyniatok"><code>raise</code> піднімає виняток<a class="heading-link" href="#raise-pidnimaie-vyniatok" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">if energy &lt; 0:
+    raise EnergyDataError(&quot;енергія не може бути від’ємною&quot;)</code></pre></div>
+<p>Метод відмовляється створювати некоректний результат. Виняток — частина контракту: або повертається коректне невід’ємне число, або піднімається <code>EnergyDataError</code>.</p>
+<p>Не використовуй <code>raise</code> для звичайної гілки на кшталт «предмета немає в наплічнику», якщо це очікувана повсякденна відповідь методу. Для неї часто природні <code>False</code>, <code>None</code> або об’єкт результату. Виняток доречний, коли нормальне продовження операції неможливе.</p>
+<h3 id="raise-from-zberihaie-prychynu"><code>raise ... from ...</code> зберігає причину<a class="heading-link" href="#raise-from-zberihaie-prychynu" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">except FileNotFoundError as error:
+    raise EnergyDataError(&quot;файл не знайдено&quot;) from error</code></pre></div>
+<p>Новий виняток додає контекст, а <code>from error</code> зберігає першопричину в traceback. Під час налагодження видно обидва рівні.</p>
+<p>Якщо навмисно хочеш приховати технічний ланцюжок від traceback, існує <code>raise NewError(...) from None</code>, але застосовуй це лише на межі з добре зрозумілою причиною.</p>
+<h2 id="else-shliakh-bez-vyniatku"><code>else</code> — шлях без винятку<a class="heading-link" href="#else-shliakh-bez-vyniatku" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">try:
+    energy = reader.read(path)
+except EnergyDataError as error:
+    return f&quot;Помилка: {error}&quot;
+else:
+    return f&quot;Енергія: {energy}&quot;</code></pre></div>
+<p>Блок <code>else</code> виконується, якщо <code>try</code> завершився без винятку. Він тримає успішну логіку поза <code>try</code>, тому випадковий збій у формуванні повідомлення не буде помилково сприйнятий як збій читання.</p>
+<h2 id="finally-vykonuietsia-zavzhdy"><code>finally</code> виконується завжди<a class="heading-link" href="#finally-vykonuietsia-zavzhdy" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>finally_example.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">def work():
+    try:
+        print(&quot;Починаю роботу.&quot;)
+        raise RuntimeError(&quot;збій&quot;)
+    finally:
+        print(&quot;Ресурс звільнено.&quot;)
+
+
+try:
+    work()
+except RuntimeError:
+    print(&quot;Помилку передано далі.&quot;)</code></pre></div>
+<p><code>finally</code> виконується за успіху, винятку, <code>return</code> або <code>break</code>. Він потрібен для звільнення ресурсу, відновлення тимчасового стану чи завершального журналювання.</p>
+<p>Для файлів використовуй <code>with</code>, бо контекстний менеджер уже правильно закриває ресурс. Не додавай <code>finally</code> там, де <code>with</code> виражає намір простіше.</p>
+<section class="callout callout-practice"><div class="callout-label">Додай верхню межу</div><p>Розшир <code>EnergyReader</code>: значення понад 100 теж має піднімати <code>EnergyDataError(&quot;енергія перевищує 100&quot;)</code>. Перевір 100, 101 і від’ємне число як окремі межі.</p></section>
+<h2 id="kilka-ochikuvanykh-typiv">Кілька очікуваних типів<a class="heading-link" href="#kilka-ochikuvanykh-typiv" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>multiple_exceptions.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">from pathlib import Path
+
+
+def read_number(path):
+    try:
+        text = Path(path).read_text(encoding=&quot;utf-8&quot;)
+        return int(text)
+    except FileNotFoundError:
+        return &quot;Файл відсутній.&quot;
+    except ValueError:
+        return &quot;Дані не є числом.&quot;
+
+
+bad_path = Path(&quot;bad_number.txt&quot;)
+bad_path.write_text(&quot;ні&quot;, encoding=&quot;utf-8&quot;)
+
+print(read_number(&quot;missing.txt&quot;))
+print(read_number(bad_path))</code></pre></div>
+<p>Різні <code>except</code> дозволяють різні реакції.</p>
+<p>Якщо реакція однакова, типи можна об’єднати кортежем:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">except (FileNotFoundError, PermissionError) as error:
+    return f&quot;Файл недоступний: {error}&quot;</code></pre></div>
+<p>Не об’єднуй типи лише заради короткості, якщо користувачеві потрібні різні наступні дії.</p>
+<h2 id="iierarkhiia-vyniatkiv-i-poriadok-except">Ієрархія винятків і порядок <code>except</code><a class="heading-link" href="#iierarkhiia-vyniatkiv-i-poriadok-except" aria-label="Посилання на розділ">#</a></h2>
+<p>Більш конкретні типи ставлять першими:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">try:
+    value = int(text)
+except ValueError:
+    print(&quot;Неправильне число&quot;)
+except Exception:
+    print(&quot;Інша неочікувана помилка&quot;)</code></pre></div>
+<p><code>Exception</code> є широким базовим класом для багатьох звичайних винятків. Якщо поставити його першим, конкретний <code>ValueError</code> ніколи не дійде до свого блоку.</p>
+<p>Широкий <code>except Exception</code> може бути доречний на зовнішній межі довготривалого сервісу, де помилку <strong>журналюють із traceback</strong> і безпечно ізолюють одну задачу. Він не повинен перетворювати дефекти на мовчазне «щось пішло не так» всередині звичайного методу.</p>
+<p>Уникай голого:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">try:
+    risky_work()
+except:
+    pass</code></pre></div>
+<p>Він може перехопити навіть сигнали завершення, приховує причину й залишає невідомий стан.</p>
+<h2 id="poshyreni-vyniatky-pochatkovykh-prohram">Поширені винятки початкових програм<a class="heading-link" href="#poshyreni-vyniatky-pochatkovykh-prohram" aria-label="Посилання на розділ">#</a></h2>
+<ul><li><code>SyntaxError</code> — Python не може розібрати код; <code>try</code> навколо вже нерозібраного файла не допоможе.</li><li><code>IndentationError</code> — неправильна структура відступів; підклас <code>SyntaxError</code>.</li><li><code>NameError</code> — ім’я не визначено.</li><li><code>AttributeError</code> — об’єкт не має атрибута або методу.</li><li><code>TypeError</code> — операція чи виклик отримали несумісний тип або кількість аргументів.</li><li><code>ValueError</code> — тип придатний, але конкретне значення ні.</li><li><code>IndexError</code> — індекс послідовності за межами.</li><li><code>KeyError</code> — відсутній ключ словника.</li><li><code>FileNotFoundError</code> — файл не знайдено.</li><li><code>PermissionError</code> — системні права не дозволяють операцію.</li><li><code>ZeroDivisionError</code> — ділення на нуль.</li><li><code>ImportError</code>/<code>ModuleNotFoundError</code> — проблема імпорту.</li></ul>
+<p>Тип не є готовою відповіддю. Читай повідомлення й контекст виклику.</p>
+<h2 id="pereviryty-napered-chy-sprobuvaty">Перевірити наперед чи спробувати<a class="heading-link" href="#pereviryty-napered-chy-sprobuvaty" aria-label="Посилання на розділ">#</a></h2>
+<h3 id="pereviryty-pered-operatsiieiu">Перевірити перед операцією<a class="heading-link" href="#pereviryty-pered-operatsiieiu" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">if path.exists():
+    text = path.read_text(encoding=&quot;utf-8&quot;)</code></pre></div>
+<h3 id="sprobuvaty-operatsiiu">Спробувати операцію<a class="heading-link" href="#sprobuvaty-operatsiiu" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">try:
+    text = path.read_text(encoding=&quot;utf-8&quot;)
+except FileNotFoundError:
+    ...</code></pre></div>
+<p>Перевірка <code>exists()</code> не гарантує успіх: між перевіркою й читанням файл може зникнути або бути недоступним. Коли сама операція є остаточною перевіркою, стиль «спробуй і оброби конкретний виняток» надійніший. Його часто називають EAFP: <em>easier to ask forgiveness than permission</em>.</p>
+<p>Перевірки все одно потрібні для правил предметної області: <code>if amount &lt;= 0</code> ясніше за штучне спричинення арифметичного винятку.</p>
+<h2 id="vyniatok-abo-znachennia-rezultatu">Виняток або значення результату<a class="heading-link" href="#vyniatok-abo-znachennia-rezultatu" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def find_robot(robot_id):
+    return robots.get(robot_id)</code></pre></div>
+<p>Відсутній робот може бути нормальною відповіддю пошуку — <code>None</code> природний.</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def require_robot(robot_id):
+    try:
+        return robots[robot_id]
+    except KeyError as error:
+        raise UnknownRobotError(robot_id) from error</code></pre></div>
+<p>Якщо операція обіцяє <strong>обов’язково</strong> повернути робота, відсутність порушує контракт і виняток природний. Назва <code>find_</code> проти <code>require_</code> допомагає показати різницю.</p>
+<h2 id="ne-vykorystovuy-assert-dlia-vvedennia">Не використовуй <code>assert</code> для введення<a class="heading-link" href="#ne-vykorystovuy-assert-dlia-vvedennia" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">assert energy &gt;= 0, &quot;Енергія не може бути від’ємною&quot;</code></pre></div>
+<p><code>assert</code> призначений для внутрішніх тверджень розробника й може бути вимкнений оптимізованим запуском Python. Для даних користувача або зовнішнього файла застосовуй звичайний <code>if</code> і піднімай відповідний виняток.</p>
+<p>У тестах <code>assert</code> доречний: там він формулює очікувану поведінку, а pytest показує різницю.</p>
+<h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
+<h3 id="try-okhopliuie-zanadto-bahato"><code>try</code> охоплює занадто багато<a class="heading-link" href="#try-okhopliuie-zanadto-bahato" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">try:
+    number = int(text)
+    result = calculate(number)
+    save(result)
+except ValueError:
+    print(&quot;Неправильне число&quot;)</code></pre></div>
+<p><code>calculate()</code> теж може мати <code>ValueError</code> через дефект, який тут буде неправильно пояснений введенням. Звузь <code>try</code> до перетворення, а успішну роботу перенеси в <code>else</code>.</p>
+<h3 id="pomylku-nadrukovano-y-vtracheno">Помилку надруковано й втрачено<a class="heading-link" href="#pomylku-nadrukovano-y-vtracheno" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">except Exception as error:
+    print(error)</code></pre></div>
+<p>Програма продовжує роботу з невідомим станом, а traceback втрачено. Або оброби конкретну очікувану ситуацію, або дай винятку піднятися, або журналюй його з повним контекстом на зовнішній межі.</p>
+<h3 id="povtornyy-raise-napysano-nepravylno">Повторний <code>raise</code> написано неправильно<a class="heading-link" href="#povtornyy-raise-napysano-nepravylno" aria-label="Посилання на розділ">#</a></h3>
+<p>Усередині <code>except</code> просто <code>raise</code> повторно піднімає поточний виняток із початковим traceback. <code>raise error</code> може змінити вигляд ланцюжка. Для додавання контексту використовуй <code>raise NewError(...) from error</code>.</p>
+<section class="callout callout-mistake"><div class="callout-label">Типова помилка</div><p>Не перетворюй кожну програмну помилку на <code>None</code>. Якщо атрибут мав існувати, але не існує, <code>AttributeError</code> допомагає знайти дефект. Обробляй лише очікувані зовнішні умови, для яких маєш коректний наступний крок.</p></section>
+<h2 id="shvydka-perevirka">Швидка перевірка<a class="heading-link" href="#shvydka-perevirka" aria-label="Посилання на розділ">#</a></h2>
+<p>Визнач, яка гілка спрацює для кожного значення:</p>
+<div class="code-block"><div class="code-toolbar"><span>parse_energy.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">def parse_energy(text):
+    try:
+        value = int(text)
+    except ValueError:
+        return &quot;Потрібне ціле число.&quot;
+    else:
+        if not 0 &lt;= value &lt;= 100:
+            return &quot;Енергія поза межами.&quot;
+        return value
+
+
+print(parse_energy(&quot;8&quot;))
+print(parse_energy(&quot;вісім&quot;))
+print(parse_energy(&quot;108&quot;))</code></pre></div>
+<section class="quiz" data-answer="2"><div class="callout-label">Перевір себе</div><p class="quiz-question">Чому except ValueError зазвичай кращий за голий except у перетворенні int(text)?</p><div class="quiz-options"><button type="button" class="quiz-option" data-index="0">Бо голий except працює лише для файлів.</button><button type="button" class="quiz-option" data-index="1">Бо ValueError автоматично виправляє введення.</button><button type="button" class="quiz-option" data-index="2">Він обробляє очікуваний неправильний запис числа й не приховує інші дефекти.</button></div><p class="quiz-feedback" hidden>Вузький тип винятку показує конкретний план відновлення. Інші помилки залишаються видимими для налагодження.</p></section>
+<h2 id="samostiyna-robota">Самостійна робота<a class="heading-link" href="#samostiyna-robota" aria-label="Посилання на розділ">#</a></h2>
+<section class="callout callout-tasks"><div class="callout-label">Самостійна робота</div><ul><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="14-vyniatky-i-chytabelni-zboi-task-1"><span>Розшир <code>EnergyReader</code> верхньою межею 100 і перевір значення <code>-1</code>, <code>0</code>, <code>100</code>, <code>101</code>.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="14-vyniatky-i-chytabelni-zboi-task-2"><span>Створи <code>SettingsReader</code>, який відрізняє відсутній файл, неправильне число та невідомий ключ. На зовнішній межі дай кожній причині окреме повідомлення.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="14-vyniatky-i-chytabelni-zboi-task-3"><span>Перероби великий <code>try</code>, який охоплює читання, обчислення й показ, на маленький <code>try</code> з <code>else</code>. Навмисний дефект у обчисленні не повинен маскуватися як помилка файла.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="14-vyniatky-i-chytabelni-zboi-task-4"><span>Створи власний <code>UnknownRobotError</code> і два методи: <code>find()</code> повертає <code>None</code>, <code>require()</code> піднімає виняток. Поясни контракти назв.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="14-vyniatky-i-chytabelni-zboi-task-5"><span>Продемонструй <code>finally</code> на ресурсі або тимчасовому стані. Потім перевір, чи не може контекстний менеджер <code>with</code> виразити те саме ясніше.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="14-vyniatky-i-chytabelni-zboi-task-6"><span>Підніми новий виняток <code>from</code> першопричини й прочитай обидві частини traceback. Порівняй із повторним голим <code>raise</code>.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="14-vyniatky-i-chytabelni-zboi-task-7"><span>Знайди голий <code>except</code> у навчальному прикладі або створи його навмисно. Покажи, який дефект він приховує, і заміни точним типом.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="14-vyniatky-i-chytabelni-zboi-task-8"><span>Спробуй використати <code>assert</code> для перевірки введення, а потім заміни його звичайною умовою та <code>raise ValueError</code>. Поясни, чому другий контракт надійніший.</span></label></li></ul></section>
+<section class="callout callout-history"><div class="callout-label">Коротка історична пауза</div><p>Виняток «піднімається» вгору стеком викликів, доки не знайде сумісний <code>except</code>. Це дозволяє низькому рівню повідомити точну проблему, а вищому — вирішити, чи повторити дію, показати повідомлення або завершити операцію.</p></section>
+<h2 id="pidsumok">Підсумок<a class="heading-link" href="#pidsumok" aria-label="Посилання на розділ">#</a></h2>
+<ul><li>Виняток повідомляє, що операція не може нормально завершитися.</li><li><code>try</code> має охоплювати невелику очікувано ризикову операцію, <code>except</code> — конкретний тип.</li><li><code>else</code> виконує успішний шлях, <code>finally</code> — завершальну дію незалежно від результату.</li><li><code>raise</code> формує контракт відмови; власний клас винятку називає проблему предметної області.</li><li><code>raise NewError(...) from error</code> додає контекст і зберігає першопричину.</li><li>Неочікуваний дефект краще лишити видимим, ніж перетворити на мовчазне <code>None</code>.</li><li>Значення результату доречне для нормальної відсутності, виняток — для порушеної обіцянки операції.</li><li><code>assert</code> не замінює перевірку введення або зовнішніх даних.</li></ul>
+<p>Офіційний орієнтир: <a href="https://docs.python.org/3/tutorial/errors.html" target="_blank" rel="noreferrer">помилки й винятки</a>.</p></div>
+  <section class="completion-card">
+    <div><p class="eyebrow">Твій прогрес</p><h2>Розділ опрацьовано?</h2><p>Позначай тільки після запуску прикладу й самостійної зміни.</p></div>
+    <button class="button primary complete-chapter" type="button" data-chapter-id="14-vyniatky-i-chytabelni-zboi">Позначити завершеним</button>
+  </section>
+  <nav class="chapter-pager" aria-label="Сусідні розділи"><a class="chapter-pager-link previous" href="13-faily-koduvannia-i-shliakhy.html"><span>← Назад</span><strong>Текстові файли, UTF-8 і шляхи</strong></a><a class="chapter-pager-link next" href="15-json-zberezhennia-i-refaktorynh.html"><span>Далі →</span><strong>JSON: збереження стану й рефакторинг</strong></a></nav>
+</article>
+
+      <footer class="site-footer">
+        <p>Python через об’єкти · українська практична довідка · 2026</p>
+        <a href="https://github.com/ArTeGaS/python-oop-handbook-ua">Відкрити репозиторій</a>
+      </footer>
+    </main>
+  </div>
+  <div class="search-panel" hidden aria-live="polite">
+    <div class="search-panel-inner">
+      <button class="search-close" type="button" aria-label="Закрити пошук">×</button>
+      <p class="eyebrow">Пошук у довідці</p>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+</body>
+</html>
