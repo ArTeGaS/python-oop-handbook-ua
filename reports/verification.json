@@ -5,15 +5,17 @@
   "passed": [
     "Повнота структури: 18 розділів",
     "Структура й кодові блоки джерел перевірені",
+    "Навмисні помилки відтворені: 19 блоків",
     "JavaScript пройшов node --check",
-    "PDF читається: 185 сторінок, копії ідентичні",
-    "тести збірки: 2 passed in 0.06s",
-    "навчальний pytest-набір: 7 passed in 0.08s"
+    "PDF читається: 204 сторінок, копії ідентичні",
+    "тести збірки: 13 passed in 1.08s",
+    "навчальний pytest-набір: 7 passed in 0.16s"
   ],
   "metrics": {
-    "runnable_code_blocks": 121,
+    "runnable_code_blocks": 133,
+    "expected_error_blocks": 19,
     "python_code_blocks": 342,
-    "pdf_pages": 185
+    "pdf_pages": 204
   },
   "mode": "strict"
 }

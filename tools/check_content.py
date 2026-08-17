@@ -39,6 +39,7 @@ class CheckReport:
     warnings: list[str] = field(default_factory=list)
     passed: list[str] = field(default_factory=list)
     runnable_blocks: int = 0
+    expected_error_blocks: int = 0
     python_blocks: int = 0
     pages: int = 0
 
@@ -54,6 +55,7 @@ class CheckReport:
             "passed": self.passed,
             "metrics": {
                 "runnable_code_blocks": self.runnable_blocks,
+                "expected_error_blocks": self.expected_error_blocks,
                 "python_code_blocks": self.python_blocks,
                 "pdf_pages": self.pages,
             },
@@ -90,6 +92,9 @@ def check_sources(*, strict: bool) -> tuple[list[Chapter], CheckReport]:
     check_forbidden_references(report)
     if not report.errors:
         report.passed.append("Структура й кодові блоки джерел перевірені")
+        report.passed.append(
+            f"Навмисні помилки відтворені: {report.expected_error_blocks} блоків"
+        )
     return chapters, report
 
 
@@ -104,6 +109,7 @@ def check_chapter(chapter: Chapter, report: CheckReport, *, strict: bool) -> Non
     ]
     quizzes = [block for block in iter_blocks(chapter.blocks) if block.kind == "quiz"]
     code_blocks = [block for block in iter_blocks(chapter.blocks) if block.kind == "code"]
+    check_error_evidence(chapter.blocks, chapter, report)
 
     if chapter.order > 0:
         required_headings = {
@@ -156,6 +162,9 @@ def check_chapter(chapter: Chapter, report: CheckReport, *, strict: bool) -> Non
             runnable_in_chapter += 1
             report.runnable_blocks += 1
             run_python_block(chapter, number, block, report)
+        if "error" in flags:
+            report.expected_error_blocks += 1
+            run_error_block(chapter, number, block, report)
 
     if chapter.order > 0 and strict and runnable_in_chapter == 0:
         report.errors.append(f"{chapter.source_path.name}: немає runnable Python-прикладу")
@@ -195,6 +204,75 @@ def run_python_block(chapter: Chapter, number: int, block: Block, report: CheckR
         report.errors.append(
             f"{chapter.source_path.name}, код {number}: очікуване виведення {expected!r}, отримано {result.stdout!r}"
         )
+
+
+def run_error_block(chapter: Chapter, number: int, block: Block, report: CheckReport) -> None:
+    attributes = block.data["attributes"]
+    expected_error = attributes.get("raises")
+    if not expected_error:
+        report.errors.append(
+            f"{chapter.source_path.name}, код {number}: блок error не має атрибута raises"
+        )
+        return
+
+    stdin_text = attributes.get("stdin", "").replace("\\n", "\n")
+    environment = os.environ.copy()
+    environment["PYTHONIOENCODING"] = "utf-8"
+    try:
+        with tempfile.TemporaryDirectory(prefix="python-oop-handbook-error-") as temp_dir:
+            result = subprocess.run(
+                [sys.executable, "-c", block.data["code"]],
+                input=stdin_text,
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                timeout=8,
+                cwd=temp_dir,
+                env=environment,
+            )
+    except subprocess.TimeoutExpired:
+        report.errors.append(
+            f"{chapter.source_path.name}, код {number}: навмисна помилка зависла довше 8 секунд"
+        )
+        return
+
+    if result.returncode == 0:
+        report.errors.append(
+            f"{chapter.source_path.name}, код {number}: очікувався {expected_error}, але код завершився успішно"
+        )
+        return
+    if expected_error not in result.stderr:
+        report.errors.append(
+            f"{chapter.source_path.name}, код {number}: очікувався {expected_error}, отримано "
+            f"{result.stderr.strip()[:500]}"
+        )
+
+
+def check_error_evidence(
+    blocks: Iterable[Block], chapter: Chapter, report: CheckReport
+) -> None:
+    block_list = list(blocks)
+    for index, block in enumerate(block_list):
+        if block.kind == "directive":
+            check_error_evidence(block.data["blocks"], chapter, report)
+        if not (
+            block.kind == "code"
+            and block.data["language"] == "python"
+            and "error" in block.data["flags"]
+        ):
+            continue
+
+        following = block_list[index + 1 : index + 3]
+        has_visible_output = any(
+            candidate.kind == "code"
+            and candidate.data["language"] in {"output", "text"}
+            for candidate in following
+        )
+        if not has_visible_output:
+            report.errors.append(
+                f"{chapter.source_path.name}: після навмисної помилки немає оформленого журналу"
+            )
 
 
 def normalize_output(value: str) -> str:

@@ -290,26 +290,55 @@ print(f"x={x}, y={y}")
 
 ### Індекс за межами
 
-```python error
+```python error file=list_index.py raises=IndexError
 items = ["карта", "ключ"]
 print(items[2])
 ```
 
-Допустимі індекси тут — `0` і `1`. Python покаже `IndexError: list index out of range`.
+```output
+Traceback (most recent call last):
+  File "...\list_index.py", line 2, in <module>
+    print(items[2])
+          ~~~~~^^^
+IndexError: list index out of range
+```
+
+Допустимі індекси тут — `0` і `1`. Вираз `~~~~~^^^` виділяє звернення, а останній рядок називає вихід за межі списку.
 
 ### Результат `sort()` записано замість списку
 
-```python error
+```python run file=sort_returns_none.py expect="None"
 items = ["ключ", "карта"]
 items = items.sort()
 print(items)
 ```
 
-`sort()` змінює список на місці й повертає `None`. Після присвоєння ім’я `items` втратить посилання на список. Або викликай `items.sort()` окремо, або використовуй `items = sorted(items)`.
+```output
+None
+```
+
+Це не виняток, а видимий неправильний результат. `sort()` змінив початковий список на місці й повернув `None`; присвоєння замінило посилання в `items`. Або викликай `items.sort()` окремо, або використовуй `items = sorted(items)`.
 
 ### Спільний список для всіх об’єктів
 
-Обов’язковий список створюй у `__init__` через `self.items = []`. Не винось його на рівень класу, якщо кожен наплічник повинен мати власний вміст.
+Побачимо проблему на двох об’єктах:
+
+```python run file=shared_backpack.py expect="['ключ']"
+class Backpack:
+    items = []
+
+
+first = Backpack()
+second = Backpack()
+first.items.append("ключ")
+print(second.items)
+```
+
+```output
+['ключ']
+```
+
+Ключ додали лише через `first`, але він з’явився й у `second`, бо список належить класу. Особистий список створюй у `__init__` через `self.items = []`.
 
 :::mistake
 Не видаляй значення через `remove()` без перевірки, якщо його може не бути. Для безпечного сценарію спочатку використай `if item in items:` або спроєктуй метод, який повертає зрозумілий результат.

@@ -239,14 +239,32 @@ self.energy -= 15
 
 ### Атрибут створено не для того об’єкта
 
-Такий метод не змінює заряд робота:
+Такий метод не змінює заряд робота. Запустимо повний мінімальний приклад; у traceback початок шляху скорочено до `...`:
 
-```python error
-def move(self):
-    energy -= 15
+```python error file=missing_self.py raises=UnboundLocalError
+class Robot:
+    def __init__(self):
+        self.energy = 100
+
+    def move(self):
+        energy -= 15
+
+
+robot = Robot()
+robot.move()
 ```
 
-Python шукає окреме ім’я `energy` усередині методу й не знаходить його. Потрібно звернутися до стану поточного об’єкта:
+```output
+Traceback (most recent call last):
+  File "...\missing_self.py", line 10, in <module>
+    robot.move()
+  File "...\missing_self.py", line 6, in move
+    energy -= 15
+    ^^^^^^
+UnboundLocalError: cannot access local variable 'energy' where it is not associated with a value
+```
+
+Присвоєння `energy -= 15` робить `energy` локальним ім’ям методу, але початкового локального значення немає. Атрибут `self.energy` існує, проте це інше ім’я. Потрібно звернутися до стану поточного об’єкта:
 
 ```python fragment
 def move(self):
@@ -255,16 +273,30 @@ def move(self):
 
 ### Атрибут прочитано до створення
 
-```python error
+```python error file=missing_attribute.py raises=AttributeError
 class Robot:
     def __init__(self, name):
         self.name = name
 
     def show_status(self):
         print(self.energy)
+
+
+robot = Robot("Робі")
+robot.show_status()
 ```
 
-Під час `show_status()` виникне `AttributeError`, бо атрибут `energy` ніде не створили. Найнадійніше готувати обов’язкові атрибути в `__init__`, щоб кожен новий об’єкт одразу був придатний до роботи.
+```output
+Traceback (most recent call last):
+  File "...\missing_attribute.py", line 10, in <module>
+    robot.show_status()
+  File "...\missing_attribute.py", line 6, in show_status
+    print(self.energy)
+          ^^^^^^^^^^^
+AttributeError: 'Robot' object has no attribute 'energy'
+```
+
+Останній рядок називає відсутній атрибут, а кадр `show_status` показує читання, на якому це стало помітно. Причина виникла раніше: `energy` не створили в `__init__`. Найнадійніше готувати обов’язкові атрибути під час створення об’єкта.
 
 :::mistake
 Не змінюй значення різних типів без розуміння. Після `self.energy = "вісімдесят"` віднімання `self.energy -= 15` закінчиться `TypeError`: текст і число не можна відняти одне від одного.

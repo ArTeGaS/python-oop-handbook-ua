@@ -271,16 +271,28 @@ print(hero.attack(8))
 
 ### Присвоєння замість порівняння
 
-```python error
-if entered_code = self.secret_code:
+```python error file=assignment_condition.py raises=SyntaxError
+entered_code = "1234"
+secret_code = "1234"
+
+if entered_code = secret_code:
     print("Відкрито")
 ```
 
-Умова потребує порівняння `==`. VS Code підкреслить рядок, а Python покаже `SyntaxError`.
+```output
+  File "...\assignment_condition.py", line 4
+    if entered_code = secret_code:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax. Maybe you meant '==' or ':=' instead of '='?
+```
+
+Рядок із `File` і номером веде до умови, підкреслення охоплює неправильний вираз, а останній рядок навіть пропонує `==`. Тут потрібне порівняння, не присвоєння.
 
 ### Два незалежні `if` замість одного вибору
 
-```python fragment
+```python run file=two_if.py expect="Рівень пройдено\nНовий рекорд"
+score = 120
+
 if score >= 50:
     print("Рівень пройдено")
 
@@ -288,17 +300,38 @@ if score >= 100:
     print("Новий рекорд")
 ```
 
-Для `score = 120` виконаються **обидва** блоки. Це може бути саме тим, що потрібно. Але якщо потрібна лише одна категорія, використовуй `if`/`elif`/`else`.
+```output
+Рівень пройдено
+Новий рекорд
+```
+
+Програма не падає: для `score = 120` обидві умови істинні, тому виконаються **обидва** блоки. Це може бути саме тим, що потрібно. Але якщо потрібна лише одна категорія, використовуй `if`/`elif`/`else`.
 
 ### Стан змінюється до перевірки
 
-```python error
-self.energy -= cost
-if self.energy < 0:
-    return "Не вистачає енергії."
+```python run file=negative_energy_bug.py expect="Не вистачає енергії.\n-5"
+class Robot:
+    def __init__(self, energy):
+        self.energy = energy
+
+    def use(self, cost):
+        self.energy -= cost
+        if self.energy < 0:
+            return "Не вистачає енергії."
+        return "Готово."
+
+
+robot = Robot(10)
+print(robot.use(15))
+print(robot.energy)
 ```
 
-Повідомлення правильне, але енергія вже стала від’ємною. Спочатку перевір можливість, потім змінюй стан.
+```output
+Не вистачає енергії.
+-5
+```
+
+Це логічний дефект: повідомлення правильне, винятку немає, але другий рядок доводить, що стан уже зіпсований. Спочатку перевір можливість, потім змінюй енергію.
 
 :::mistake
 Не порівнюй логічний результат із текстом: `self.is_open == "True"`. Якщо атрибут містить `True` або `False`, перевіряй `if self.is_open:` або `if not self.is_open:`.

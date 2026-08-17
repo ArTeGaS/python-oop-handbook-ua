@@ -337,14 +337,14 @@ def save(self, profile):
 
 Початкова програма часто виглядає так:
 
-```python error
+```python fragment
 data = json.loads(Path("profile.json").read_text())
 data["level"] += 1
 Path("profile.json").write_text(json.dumps(data))
 print(data["name"], data["level"])
 ```
 
-Усі відповідальності змішані. Рефакторинг розкладає їх:
+Це синтаксично робочий код, а не виняток. Проблема архітектурна: читання, зміна моделі, запис і показ результату змішані. Рефакторинг розкладає їх:
 
 ```text
 main -> ProfileStore.load() -> PlayerProfile.from_data()
@@ -379,11 +379,27 @@ main -> ProfileStore.load() -> PlayerProfile.from_data()
 
 ### Спроба записати об’єкт напряму
 
-```python error
+```python error file=json_object.py raises=TypeError
+import json
+
+
+class PlayerProfile:
+    pass
+
+
+profile = PlayerProfile()
 json.dumps(profile)
 ```
 
-Стандартний encoder покаже `TypeError: Object of type PlayerProfile is not JSON serializable`. Перетвори через `profile.to_data()`.
+```output
+Traceback (most recent call last):
+  File "...\json_object.py", line 9, in <module>
+    json.dumps(profile)
+  ...
+TypeError: Object of type PlayerProfile is not JSON serializable
+```
+
+Останній рядок називає тип, для якого JSON не знає формату. Перетвори об’єкт через `profile.to_data()`.
 
 ### Відсутній файл і пошкоджений файл обробляються однаково
 
@@ -391,11 +407,23 @@ json.dumps(profile)
 
 ### Зовнішній словник стає внутрішнім станом без копії
 
-```python error
-self.skills = data["skills"]
+```python run file=shared_json_list.py expect="['python', 'git']"
+class Profile:
+    def __init__(self, data):
+        self.skills = data["skills"]
+
+
+data = {"skills": ["python"]}
+profile = Profile(data)
+data["skills"].append("git")
+print(profile.skills)
 ```
 
-Якщо код продовжує тримати `data`, зміни можуть протікати в обидва боки. Конструктор робить `list(skills)` і встановлює власну колекцію.
+```output
+['python', 'git']
+```
+
+`profile` ніхто не змінював напряму, але його стан уже містить `git`: список спільний із зовнішнім словником. Конструктор має зробити `list(data["skills"])` і встановити власну колекцію.
 
 :::mistake
 Не використовуй `default=str` лише для того, щоб «усе якось записалось». Він мовчки перетворить невідомі об’єкти на рядки, з яких неможливо надійно відновити тип. Визнач явний формат для кожної важливої сутності.

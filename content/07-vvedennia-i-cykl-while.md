@@ -265,14 +265,28 @@ else:
 
 ## Нескінченний цикл і безпечне зупинення
 
-```python error
+```python fragment file=infinite_energy.py
 energy = 3
 
 while energy > 0:
     print(energy)
 ```
 
-`energy` ніколи не змінюється, отже умова завжди істинна. У терміналі VS Code зазвичай можна перервати програму клавішами `Ctrl+C`. На macOS це також `Control+C`, не `Command+C`.
+Перші рядки термінала повторюються без кінця. Після ручного `Ctrl+C` результат виглядає приблизно так:
+
+```output
+3
+3
+3
+...
+^C
+Traceback (most recent call last):
+  File "...\infinite_energy.py", line 4, in <module>
+    print(energy)
+KeyboardInterrupt
+```
+
+`energy` ніколи не змінюється, отже умова завжди істинна. У терміналі VS Code програму можна перервати клавішами `Ctrl+C`. На macOS це також `Control+C`, не `Command+C`.
 
 Це надсилає сигнал переривання, і Python зазвичай показує `KeyboardInterrupt`. Після зупинки виправ причину, а не просто запускай той самий код ще раз.
 
@@ -288,23 +302,44 @@ while energy > 0:
 
 ### Число лишилося рядком
 
-```python error
+```python error file=input_type.py raises=TypeError stdin=12
 age = input("Вік: ")
 print(age + 1)
 ```
 
-`input()` повернув `str`, а до рядка не можна додати число. Після перевірки формату перетвори: `age = int(input("Вік: "))`.
+```output
+Вік: 12
+Traceback (most recent call last):
+  File "...\input_type.py", line 2, in <module>
+    print(age + 1)
+          ~~~~^~~
+TypeError: can only concatenate str (not "int") to str
+```
+
+`input()` повернув рядок `"12"`, а число `1` має тип `int`; підкреслення показує несумісне додавання. Після перевірки формату перетвори введення: `age = int(input("Вік: "))`.
 
 ### Умова ніколи не зміниться
 
-```python error
+```python fragment file=infinite_running.py
 is_running = True
 
 while is_running:
     print("Працюю")
 ```
 
-Потрібен шлях, який змінить `is_running`, виконає `break` або завершить програму іншим усвідомленим способом.
+```output
+Працюю
+Працюю
+Працюю
+...
+^C
+Traceback (most recent call last):
+  File "...\infinite_running.py", line 4, in <module>
+    print("Працюю")
+KeyboardInterrupt
+```
+
+Це не «самостійна помилка Python»: ми зупинили нескінченну поведінку ззовні. У самій програмі потрібен шлях, який змінить `is_running`, виконає `break` або завершить цикл іншим усвідомленим способом.
 
 ### Порожню команду читають до перевірки
 

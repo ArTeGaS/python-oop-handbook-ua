@@ -122,12 +122,12 @@ super().__init__(name, speed)
 
 Не дублюй:
 
-```python error
+```python fragment
 self.name = name
 self.speed = speed
 ```
 
-у кожному похідному класі, якщо базовий уже має правильну ініціалізацію. Дубльовані правила легко розійдуться.
+у кожному похідному класі, якщо базовий уже має правильну ініціалізацію. Це не обов’язково впаде одразу, але дубльовані правила легко розійдуться.
 
 `super()` краще за прямий виклик `Vehicle.__init__(self, ...)`, бо поважає порядок пошуку методів і підтримує складніші, хоча й рідші, схеми успадкування.
 
@@ -218,11 +218,29 @@ def charge(self):
 
 Без setter-властивості такий запис не дозволений:
 
-```python error
+```python error file=read_only_property.py raises=AttributeError
+class Battery:
+    def __init__(self, charge):
+        self._charge = charge
+
+    @property
+    def charge(self):
+        return self._charge
+
+
+battery = Battery(80)
 battery.charge = -10
 ```
 
-Python покаже `AttributeError`. Зміну треба робити через `use()` або окремий метод `charge_by()`, де діють правила.
+```output
+Traceback (most recent call last):
+  File "...\read_only_property.py", line 11, in <module>
+    battery.charge = -10
+    ^^^^^^^^^^^^^^
+AttributeError: property 'charge' of 'Battery' object has no setter
+```
+
+Останній рядок пояснює, що властивість доступна для читання, але не має setter-методу. Зміну треба робити через `use()` або окремий `charge_by()`, де діють правила.
 
 Якщо пряме присвоєння справді є частиною зручного інтерфейсу, можна додати setter:
 
@@ -262,12 +280,22 @@ print(second.created_count)
 
 Не використовуй змінний список атрибутом класу для особистих даних:
 
-```python error
+```python run file=shared_class_list.py expect="['ключ']"
 class Backpack:
     items = []
+
+
+first = Backpack()
+second = Backpack()
+first.items.append("ключ")
+print(second.items)
 ```
 
-Усі наплічники отримають той самий список. Створюй `self.items = []` у `__init__`.
+```output
+['ключ']
+```
+
+Ключ додали через `first`, але його видно й у `second`: усі наплічники отримали той самий список класу. Створюй `self.items = []` у `__init__`.
 
 ## `@classmethod` як альтернативний конструктор
 
@@ -325,13 +353,36 @@ for vehicle in vehicles:
 
 ### Забутий `super().__init__()`
 
-```python error
+```python error file=missing_super.py raises=AttributeError
+class Vehicle:
+    def __init__(self, name, speed):
+        self.name = name
+        self.speed = speed
+
+    def status(self):
+        print(f"{self.name}: {self.speed}")
+
+
 class ElectricScooter(Vehicle):
     def __init__(self, battery):
         self.battery = battery
+
+
+scooter = ElectricScooter(80)
+scooter.status()
 ```
 
-Об’єкт не отримає `name` і `speed`, хоча успадковані методи їх очікують. Або виклич `super()`, або свідомо забезпеч усі обіцянки базового класу.
+```output
+Traceback (most recent call last):
+  File "...\missing_super.py", line 16, in <module>
+    scooter.status()
+  File "...\missing_super.py", line 7, in status
+    print(f"{self.name}: {self.speed}")
+             ^^^^^^^^^
+AttributeError: 'ElectricScooter' object has no attribute 'name'
+```
+
+Виклик успадкованого `status()` дійшов до читання `self.name`, якого похідний конструктор не створив. Або виклич `super().__init__(name, speed)`, або свідомо забезпеч усі обіцянки базового класу.
 
 ### Похідний клас ламає контракт
 

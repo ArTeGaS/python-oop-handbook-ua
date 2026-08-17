@@ -6,8 +6,8 @@
   <meta name="description" content="Методи: параметри, аргументи й `return` Методи: параметри, аргументи й `return` Об’єкт уже вміє зберігати стан. Тепер навчимо його приймати команди з додатковими даними, перевіряти результат">
   <meta name="theme-color" content="#f4f0e8">
   <title>Методи: параметри, аргументи й `return` — Python через об’єкти</title>
-  <link rel="stylesheet" href="assets/styles.css">
-  <script src="assets/app.js" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=3e80905f1037">
+  <script src="assets/app.js?v=3e80905f1037" defer></script>
 </head>
 <body class="chapter-page">
   <a class="skip-link" href="#main-content">До основного тексту</a>
@@ -193,16 +193,41 @@ print(student.experience_text())</code></pre></div>
 <p>Це потужна можливість, але користуйся нею зрозуміло: назва методу має підказувати, що стан іншого об’єкта зміниться.</p>
 <h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
 <h3 id="vyklyk-ne-vidpovidaie-parametram">Виклик не відповідає параметрам<a class="heading-link" href="#vyklyk-ne-vidpovidaie-parametram" aria-label="Посилання на розділ">#</a></h3>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">hero.heal()</code></pre></div>
-<p>Якщо <code>heal(self, amount)</code> очікує <code>amount</code>, Python покаже <code>TypeError</code> про відсутній обов’язковий аргумент.</p>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">hero.heal(10, 20)</code></pre></div>
-<p>Тут, навпаки, передано забагато аргументів.</p>
-<h3 id="rezultat-nadrukovano-dvichi">Результат надруковано двічі<a class="heading-link" href="#rezultat-nadrukovano-dvichi" aria-label="Посилання на розділ">#</a></h3>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def status_text(self):
-    print(&quot;Герой готовий.&quot;)
+<div class="code-block"><div class="code-toolbar"><span>missing_argument.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Hero:
+    def heal(self, amount):
+        print(f&quot;Відновлено: {amount}&quot;)
 
+
+hero = Hero()
+hero.heal()</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Traceback (most recent call last):
+  File &quot;...\missing_argument.py&quot;, line 7, in &lt;module&gt;
+    hero.heal()
+TypeError: Hero.heal() missing 1 required positional argument: &#x27;amount&#x27;</code></pre></div>
+<p>Останній рядок називає метод і параметр <code>amount</code>, для якого не передали значення.</p>
+<div class="code-block"><div class="code-toolbar"><span>too_many_arguments.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Hero:
+    def heal(self, amount):
+        print(f&quot;Відновлено: {amount}&quot;)
+
+
+hero = Hero()
+hero.heal(10, 20)</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Traceback (most recent call last):
+  File &quot;...\too_many_arguments.py&quot;, line 7, in &lt;module&gt;
+    hero.heal(10, 20)
+TypeError: Hero.heal() takes 2 positional arguments but 3 were given</code></pre></div>
+<p>У повідомленні враховано й прихований для виклику <code>self</code>: метод має два параметри <code>self</code> та <code>amount</code>, але отримав об’єкт плюс два числа — разом три аргументи.</p>
+<h3 id="rezultat-nadrukovano-dvichi">Результат надруковано двічі<a class="heading-link" href="#rezultat-nadrukovano-dvichi" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>printed_none.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Hero:
+    def status_text(self):
+        print(&quot;Герой готовий.&quot;)
+
+
+hero = Hero()
 print(hero.status_text())</code></pre></div>
-<p>Метод спочатку надрукує повідомлення, а зовнішній <code>print()</code> потім покаже <code>None</code>. Якщо зовнішній код має друкувати результат, метод повинен <strong>повертати</strong> рядок:</p>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Герой готовий.
+None</code></pre></div>
+<p>Метод спочатку друкує повідомлення, а потім неявно повертає <code>None</code>; зовнішній <code>print()</code> показує саме це повернене значення. Якщо зовнішній код має друкувати результат, метод повинен <strong>повертати</strong> рядок:</p>
 <div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def status_text(self):
     return &quot;Герой готовий.&quot;</code></pre></div>
 <section class="callout callout-mistake"><div class="callout-label">Типова помилка</div><p>Не пиши <code>return print(...)</code>, коли хочеш повернути текст. <code>print()</code> показує значення й повертає <code>None</code>. Спочатку склади рядок, поверни його через <code>return</code>, а друкуй у місці виклику.</p></section>

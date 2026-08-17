@@ -6,8 +6,8 @@
   <meta name="description" content="Діалог із програмою: `input()` і цикл `while` Діалог із програмою: `input()` і цикл `while` Досі всі значення були записані в коді заздалегідь. Інтерактивна консольна програма має чекати на ">
   <meta name="theme-color" content="#f4f0e8">
   <title>Діалог із програмою: `input()` і цикл `while` — Python через об’єкти</title>
-  <link rel="stylesheet" href="assets/styles.css">
-  <script src="assets/app.js" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=3e80905f1037">
+  <script src="assets/app.js?v=3e80905f1037" defer></script>
 </head>
 <body class="chapter-page">
   <a class="skip-link" href="#main-content">До основного тексту</a>
@@ -221,25 +221,50 @@ else:
     print(&quot;Доступ заблоковано.&quot;)</code></pre></div>
 <p>Блок <code>else</code> після <code>while</code> виконується, якщо цикл завершився через хибну умову, але не через <code>break</code>. Це не найчастіша конструкція, проте тут вона точно описує: усі спроби вичерпано без успішного виходу.</p>
 <h2 id="neskinchennyy-tsykl-i-bezpechne-zupynennia">Нескінченний цикл і безпечне зупинення<a class="heading-link" href="#neskinchennyy-tsykl-i-bezpechne-zupynennia" aria-label="Посилання на розділ">#</a></h2>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">energy = 3
+<div class="code-block"><div class="code-toolbar"><span>infinite_energy.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">energy = 3
 
 while energy &gt; 0:
     print(energy)</code></pre></div>
-<p><code>energy</code> ніколи не змінюється, отже умова завжди істинна. У терміналі VS Code зазвичай можна перервати програму клавішами <code>Ctrl+C</code>. На macOS це також <code>Control+C</code>, не <code>Command+C</code>.</p>
+<p>Перші рядки термінала повторюються без кінця. Після ручного <code>Ctrl+C</code> результат виглядає приблизно так:</p>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">3
+3
+3
+...
+^C
+Traceback (most recent call last):
+  File &quot;...\infinite_energy.py&quot;, line 4, in &lt;module&gt;
+    print(energy)
+KeyboardInterrupt</code></pre></div>
+<p><code>energy</code> ніколи не змінюється, отже умова завжди істинна. У терміналі VS Code програму можна перервати клавішами <code>Ctrl+C</code>. На macOS це також <code>Control+C</code>, не <code>Command+C</code>.</p>
 <p>Це надсилає сигнал переривання, і Python зазвичай показує <code>KeyboardInterrupt</code>. Після зупинки виправ причину, а не просто запускай той самий код ще раз.</p>
 <section class="callout callout-os"><div class="callout-label">Переривання у терміналі</div><ul><li>Windows PowerShell і Command Prompt: <code>Ctrl+C</code>.</li><li>Linux-термінали: <code>Ctrl+C</code>.</li><li>macOS Terminal: <code>Control+C</code>.</li></ul>
 <p>Кнопка з кошиком у панелі термінала VS Code завершує всю термінальну сесію. Для звичайної завислої програми спершу достатньо переривання клавішами.</p></section>
 <h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
 <h3 id="chyslo-lyshylosia-riadkom">Число лишилося рядком<a class="heading-link" href="#chyslo-lyshylosia-riadkom" aria-label="Посилання на розділ">#</a></h3>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">age = input(&quot;Вік: &quot;)
+<div class="code-block"><div class="code-toolbar"><span>input_type.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">age = input(&quot;Вік: &quot;)
 print(age + 1)</code></pre></div>
-<p><code>input()</code> повернув <code>str</code>, а до рядка не можна додати число. Після перевірки формату перетвори: <code>age = int(input(&quot;Вік: &quot;))</code>.</p>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Вік: 12
+Traceback (most recent call last):
+  File &quot;...\input_type.py&quot;, line 2, in &lt;module&gt;
+    print(age + 1)
+          ~~~~^~~
+TypeError: can only concatenate str (not &quot;int&quot;) to str</code></pre></div>
+<p><code>input()</code> повернув рядок <code>&quot;12&quot;</code>, а число <code>1</code> має тип <code>int</code>; підкреслення показує несумісне додавання. Після перевірки формату перетвори введення: <code>age = int(input(&quot;Вік: &quot;))</code>.</p>
 <h3 id="umova-nikoly-ne-zminytsia">Умова ніколи не зміниться<a class="heading-link" href="#umova-nikoly-ne-zminytsia" aria-label="Посилання на розділ">#</a></h3>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">is_running = True
+<div class="code-block"><div class="code-toolbar"><span>infinite_running.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">is_running = True
 
 while is_running:
     print(&quot;Працюю&quot;)</code></pre></div>
-<p>Потрібен шлях, який змінить <code>is_running</code>, виконає <code>break</code> або завершить програму іншим усвідомленим способом.</p>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Працюю
+Працюю
+Працюю
+...
+^C
+Traceback (most recent call last):
+  File &quot;...\infinite_running.py&quot;, line 4, in &lt;module&gt;
+    print(&quot;Працюю&quot;)
+KeyboardInterrupt</code></pre></div>
+<p>Це не «самостійна помилка Python»: ми зупинили нескінченну поведінку ззовні. У самій програмі потрібен шлях, який змінить <code>is_running</code>, виконає <code>break</code> або завершить цикл іншим усвідомленим способом.</p>
 <h3 id="porozhniu-komandu-chytaiut-do-perevirky">Порожню команду читають до перевірки<a class="heading-link" href="#porozhniu-komandu-chytaiut-do-perevirky" aria-label="Посилання на розділ">#</a></h3>
 <p>Після <code>parts = raw_command.split()</code> список може бути порожнім. Звернення <code>parts[0]</code> без <code>if not parts:</code> спричинить <code>IndexError</code>.</p>
 <section class="callout callout-mistake"><div class="callout-label">Типова помилка</div><p>Не змішуй увесь діалог, розбір тексту й зміну стану в одному великому циклі. Винеси правила у метод на кшталт <code>handle()</code>: так кожну команду можна перевірити окремим викликом.</p></section>

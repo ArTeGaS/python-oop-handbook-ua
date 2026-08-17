@@ -278,13 +278,23 @@ print(robots["worker"].status_text())
 
 Не використовуй порожній словник як значення параметра за замовчуванням:
 
-```python error
+```python run file=shared_default_dict.py expect="{'volume': 20}"
 class Profile:
     def __init__(self, settings={}):
         self.settings = settings
+
+
+first = Profile()
+second = Profile()
+first.settings["volume"] = 20
+print(second.settings)
 ```
 
-Цей словник створюється один раз під час визначення класу й може несподівано стати спільним для багатьох об’єктів.
+```output
+{'volume': 20}
+```
+
+Зміна через `first` з’явилась у `second`: словник створився один раз під час визначення класу й став спільним для багатьох об’єктів.
 
 Безпечний шаблон:
 
@@ -361,12 +371,20 @@ print(sorted(learned & required))
 
 ### Відсутній ключ
 
-```python error
+```python error file=missing_key.py raises=KeyError
 settings = {"volume": 70}
 print(settings["language"])
 ```
 
-Python покаже `KeyError: 'language'`. Виріши, що це означає для моделі:
+```output
+Traceback (most recent call last):
+  File "...\missing_key.py", line 2, in <module>
+    print(settings["language"])
+          ~~~~~~~~^^^^^^^^^^^^
+KeyError: 'language'
+```
+
+Останній рядок називає відсутній ключ. Виріши, що це означає для моделі:
 
 - структура зламана — нехай помилка лишиться видимою;
 - ключ необов’язковий — використай `settings.get("language", "uk")`;
@@ -374,13 +392,23 @@ Python покаже `KeyError: 'language'`. Виріши, що це означа
 
 ### Зміна розміру словника під час перебору
 
-```python error
+```python error file=dict_size.py raises=RuntimeError
+statistics = {"wins": 3, "draws": 0, "losses": 1}
+
 for key in statistics:
     if statistics[key] == 0:
         del statistics[key]
 ```
 
-Python зупиниться з `RuntimeError`, бо розмір словника змінився під час циклу. Перебирай копію ключів: `for key in list(statistics):`, або створи новий словник.
+```output
+Traceback (most recent call last):
+  File "...\dict_size.py", line 3, in <module>
+    for key in statistics:
+               ^^^^^^^^^^
+RuntimeError: dictionary changed size during iteration
+```
+
+Python зупинився на наступному кроці циклу, бо набір ключів уже змінився. Перебирай копію `for key in list(statistics):` або створи новий словник.
 
 ### Ключ і значення переплутані
 

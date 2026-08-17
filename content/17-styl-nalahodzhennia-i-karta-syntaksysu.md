@@ -14,21 +14,38 @@
 
 ### 1. Синтаксична помилка
 
-```python error
+```python error file=missing_colon.py raises=SyntaxError
+energy = 5
+
 if energy > 0
     print("Рух")
 ```
 
-Python не може побудувати програму через відсутню двокрапку. Типовий результат — `SyntaxError` або `IndentationError`. Жоден рядок файла не почне нормально виконуватися, доки синтаксис не виправлено.
+```output
+  File "...\missing_colon.py", line 3
+    if energy > 0
+                 ^
+SyntaxError: expected ':'
+```
+
+Python не може побудувати програму через відсутню двокрапку. Каретка стоїть у кінці умови, а останній рядок прямо називає очікуваний символ. Жоден рядок файла не почне нормально виконуватися, доки синтаксис не виправлено.
 
 ### 2. Виняток під час виконання
 
-```python error
+```python error file=empty_list.py raises=IndexError
 items = []
 print(items[0])
 ```
 
-Код синтаксично правильний, але конкретний стан спричиняє `IndexError`. Traceback показує шлях викликів.
+```output
+Traceback (most recent call last):
+  File "...\empty_list.py", line 2, in <module>
+    print(items[0])
+          ~~~~~^^^
+IndexError: list index out of range
+```
+
+Код синтаксично правильний, але порожній список не має елемента з індексом `0`. Traceback показує файл, вираз і тип винятку.
 
 ### 3. Логічний дефект
 
@@ -49,7 +66,7 @@ print(f"Очікували 70, отримали {balance}")
 
 Початкова версія гаманця має дефект:
 
-```python error file=wallet_bug.py
+```python run file=wallet_bug.py expect="True\n130"
 class Wallet:
     def __init__(self, balance=0):
         self.balance = balance
@@ -59,13 +76,8 @@ class Wallet:
             return False
         self.balance += amount
         return True
-```
 
-Вимога: `Wallet(100).spend(30)` має повернути `True` і лишити баланс `70`.
 
-### Крок 1. Найменше відтворення
-
-```python fragment
 wallet = Wallet(100)
 result = wallet.spend(30)
 
@@ -73,7 +85,16 @@ print(result)
 print(wallet.balance)
 ```
 
-Не запускай весь великий інтерфейс, якщо дефект відтворюється трьома рядками. Менше рухомих частин — менше гіпотез.
+```output
+True
+130
+```
+
+Вимога: `Wallet(100).spend(30)` має повернути `True` і лишити баланс `70`.
+
+### Крок 1. Найменше відтворення
+
+Виклик і два `print()` внизу файла — це найменше відтворення. Не запускай весь великий інтерфейс, якщо дефект видно в кількох рядках. Менше рухомих частин — менше гіпотез.
 
 ### Крок 2. Запиши очікування до виправлення
 
@@ -384,7 +405,7 @@ self.items = items.copy()
 
 Не повторює очевидне:
 
-```python error
+```python fragment
 self.energy -= 1  # Віднімаємо один від енергії
 ```
 

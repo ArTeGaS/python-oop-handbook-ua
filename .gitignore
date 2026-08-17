@@ -4,3 +4,4 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .venv/
+examples/pytest_demo/chapter*_manual_*.py

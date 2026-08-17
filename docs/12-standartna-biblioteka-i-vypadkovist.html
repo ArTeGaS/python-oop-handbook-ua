@@ -6,8 +6,8 @@
   <meta name="description" content="Стандартна бібліотека й керована випадковість Стандартна бібліотека й керована випадковість Python постачається не лише із синтаксисом, а й із великою **стандартною бібліотекою**. Вона вже м">
   <meta name="theme-color" content="#f4f0e8">
   <title>Стандартна бібліотека й керована випадковість — Python через об’єкти</title>
-  <link rel="stylesheet" href="assets/styles.css">
-  <script src="assets/app.js" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=3e80905f1037">
+  <script src="assets/app.js?v=3e80905f1037" defer></script>
 </head>
 <body class="chapter-page">
   <a class="skip-link" href="#main-content">До основного тексту</a>
@@ -272,7 +272,7 @@ print(lesson_day.year)</code></pre></div>
 <ul><li>сформулюй проблему, яку він розв’язує;</li><li>перевір, що пакет підтримується й має документацію;</li><li>використовуй активну <code>.venv</code>;</li><li>зафіксуй залежність;</li><li>не підключай експериментальний інструмент до базового навчального матеріалу без причини.</li></ul>
 <p>Встановлення стабільного пакета в активне середовище:</p>
 <div class="code-block"><div class="code-toolbar"><span>powershell</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-powershell">python -m pip install package_name</code></pre></div>
-<p>Після цього імпорт зазвичай має іншу назву, яку треба взяти з документації пакета, а не вгадувати.</p>
+<p><code>package_name</code> — заповнювач, а не справжня назва для копіювання. Підстав точну назву вибраного стабільного пакета з його офіційної документації. Після встановлення імпорт може мати іншу назву; її також треба взяти з документації, а не вгадувати.</p>
 <h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
 <h3 id="hlobalne-random-seed-zminiuie-ves-modul">Глобальне <code>random.seed()</code> змінює весь модуль<a class="heading-link" href="#hlobalne-random-seed-zminiuie-ves-modul" aria-label="Посилання на розділ">#</a></h3>
 <div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">import random

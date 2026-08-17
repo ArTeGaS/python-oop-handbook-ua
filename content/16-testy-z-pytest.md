@@ -434,7 +434,7 @@ Python має вбудований модуль `unittest`, який не пот
 
 ### Тести залежать один від одного
 
-```python error
+```python fragment file=test_shared_robot.py
 robot = Robot("Робі", 10)
 
 
@@ -447,7 +447,15 @@ def test_initial_energy():
     assert robot.energy == 10
 ```
 
-Другий тест залежить від порядку. Створюй новий об’єкт у тесті або function-scoped fixture.
+За порядку, показаного у файлі, pytest повідомить:
+
+```output
+.F
+FAILED test_shared_robot.py::test_initial_energy - assert 7 == 10
+1 failed, 1 passed
+```
+
+Перший тест змінив спільний об’єкт, тому другий отримав енергію `7`. Створюй нового робота в кожному тесті або function-scoped fixture.
 
 ### Перевірено реалізацію, а не поведінку
 
@@ -455,21 +463,33 @@ def test_initial_energy():
 
 ### Виняток очікується надто широко
 
-```python error
+```python fragment
 with pytest.raises(Exception):
     robot.move(-1)
 ```
 
-Тест пройде навіть за випадкового `AttributeError`. Очікуй точний `ValueError` або власний `EnergyError` і, за потреби, повідомлення.
+Якщо всередині `move()` випадково виникне `AttributeError`, звіт усе одно може бути зеленим:
+
+```output
+1 passed
+```
+
+Це хибно позитивний тест. Очікуй точний `ValueError` або власний `EnergyError` і, за потреби, перевір повідомлення.
 
 ### Тест містить умову
 
-```python error
+```python fragment
 if result == 3:
     assert True
 ```
 
-Коли результат неправильний, тест може завершитися без жодного твердження й вважатися успішним. Пиши пряме `assert result == 3`.
+Навіть для `result = 999` умова просто не виконається, і pytest покаже:
+
+```output
+1 passed
+```
+
+Тест завершився без жодного твердження й помилково вважається успішним. Пиши пряме `assert result == 3`.
 
 :::mistake
 Не запускай тести на справжній файл користувача, домашню папку або спільну базу. Передавай тимчасову залежність (`tmp_path`, fake, тестовий об’єкт) і доводь межі шляху до операції.

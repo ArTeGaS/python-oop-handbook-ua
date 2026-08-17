@@ -6,8 +6,8 @@
   <meta name="description" content="Списки й кортежі: впорядковані колекції Списки й кортежі: впорядковані колекції Окремий атрибут зручно зберігає одне значення. Але наплічник героя містить багато предметів, черга — багато уч">
   <meta name="theme-color" content="#f4f0e8">
   <title>Списки й кортежі: впорядковані колекції — Python через об’єкти</title>
-  <link rel="stylesheet" href="assets/styles.css">
-  <script src="assets/app.js" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=3e80905f1037">
+  <script src="assets/app.js?v=3e80905f1037" defer></script>
 </head>
 <body class="chapter-page">
   <a class="skip-link" href="#main-content">До основного тексту</a>
@@ -199,16 +199,32 @@ print(f&quot;x={x}, y={y}&quot;)</code></pre></div>
 <section class="callout callout-note"><div class="callout-label">Незмінність не робить значення «константою»</div><p>Кортеж не дозволяє замінити власні елементи, але змінний об’єкт усередині кортежу все одно може змінюватися. Незмінність описує сам контейнер, а не магічно заморожує все, до чого він веде.</p></section>
 <h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
 <h3 id="indeks-za-mezhamy">Індекс за межами<a class="heading-link" href="#indeks-za-mezhamy" aria-label="Посилання на розділ">#</a></h3>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">items = [&quot;карта&quot;, &quot;ключ&quot;]
+<div class="code-block"><div class="code-toolbar"><span>list_index.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">items = [&quot;карта&quot;, &quot;ключ&quot;]
 print(items[2])</code></pre></div>
-<p>Допустимі індекси тут — <code>0</code> і <code>1</code>. Python покаже <code>IndexError: list index out of range</code>.</p>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Traceback (most recent call last):
+  File &quot;...\list_index.py&quot;, line 2, in &lt;module&gt;
+    print(items[2])
+          ~~~~~^^^
+IndexError: list index out of range</code></pre></div>
+<p>Допустимі індекси тут — <code>0</code> і <code>1</code>. Вираз <code>~~~~~^^^</code> виділяє звернення, а останній рядок називає вихід за межі списку.</p>
 <h3 id="rezultat-sort-zapysano-zamist-spysku">Результат <code>sort()</code> записано замість списку<a class="heading-link" href="#rezultat-sort-zapysano-zamist-spysku" aria-label="Посилання на розділ">#</a></h3>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">items = [&quot;ключ&quot;, &quot;карта&quot;]
+<div class="code-block"><div class="code-toolbar"><span>sort_returns_none.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">items = [&quot;ключ&quot;, &quot;карта&quot;]
 items = items.sort()
 print(items)</code></pre></div>
-<p><code>sort()</code> змінює список на місці й повертає <code>None</code>. Після присвоєння ім’я <code>items</code> втратить посилання на список. Або викликай <code>items.sort()</code> окремо, або використовуй <code>items = sorted(items)</code>.</p>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">None</code></pre></div>
+<p>Це не виняток, а видимий неправильний результат. <code>sort()</code> змінив початковий список на місці й повернув <code>None</code>; присвоєння замінило посилання в <code>items</code>. Або викликай <code>items.sort()</code> окремо, або використовуй <code>items = sorted(items)</code>.</p>
 <h3 id="spilnyy-spysok-dlia-vsikh-obiektiv">Спільний список для всіх об’єктів<a class="heading-link" href="#spilnyy-spysok-dlia-vsikh-obiektiv" aria-label="Посилання на розділ">#</a></h3>
-<p>Обов’язковий список створюй у <code>__init__</code> через <code>self.items = []</code>. Не винось його на рівень класу, якщо кожен наплічник повинен мати власний вміст.</p>
+<p>Побачимо проблему на двох об’єктах:</p>
+<div class="code-block"><div class="code-toolbar"><span>shared_backpack.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Backpack:
+    items = []
+
+
+first = Backpack()
+second = Backpack()
+first.items.append(&quot;ключ&quot;)
+print(second.items)</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">[&#x27;ключ&#x27;]</code></pre></div>
+<p>Ключ додали лише через <code>first</code>, але він з’явився й у <code>second</code>, бо список належить класу. Особистий список створюй у <code>__init__</code> через <code>self.items = []</code>.</p>
 <section class="callout callout-mistake"><div class="callout-label">Типова помилка</div><p>Не видаляй значення через <code>remove()</code> без перевірки, якщо його може не бути. Для безпечного сценарію спочатку використай <code>if item in items:</code> або спроєктуй метод, який повертає зрозумілий результат.</p></section>
 <h2 id="shvydka-perevirka">Швидка перевірка<a class="heading-link" href="#shvydka-perevirka" aria-label="Посилання на розділ">#</a></h2>
 <p>Спрогнозуй вміст обох коробок:</p>

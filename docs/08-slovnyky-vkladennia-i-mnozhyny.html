@@ -6,8 +6,8 @@
   <meta name="description" content="Словники, вкладені дані й множини Словники, вкладені дані й множини Список знаходить елемент за позицією: нульовий, перший, останній. Але налаштування зручніше шукати за змістом: `volume`, `">
   <meta name="theme-color" content="#f4f0e8">
   <title>Словники, вкладені дані й множини — Python через об’єкти</title>
-  <link rel="stylesheet" href="assets/styles.css">
-  <script src="assets/app.js" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=3e80905f1037">
+  <script src="assets/app.js?v=3e80905f1037" defer></script>
 </head>
 <body class="chapter-page">
   <a class="skip-link" href="#main-content">До основного тексту</a>
@@ -207,10 +207,17 @@ print(robots[&quot;worker&quot;].status_text())</code></pre></div>
 <section class="callout callout-note"><div class="callout-label">Не перетворюй усе на класи</div><p>ООП-first не означає «клас для кожного числа». Локальний словник налаштувань може бути найпростішим рішенням. Клас виправданий, коли дає назву сутності й збирає разом її стан та поведінку.</p></section>
 <h2 id="bezpechnyy-parametr-slovnyk">Безпечний параметр-словник<a class="heading-link" href="#bezpechnyy-parametr-slovnyk" aria-label="Посилання на розділ">#</a></h2>
 <p>Не використовуй порожній словник як значення параметра за замовчуванням:</p>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Profile:
+<div class="code-block"><div class="code-toolbar"><span>shared_default_dict.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Profile:
     def __init__(self, settings={}):
-        self.settings = settings</code></pre></div>
-<p>Цей словник створюється один раз під час визначення класу й може несподівано стати спільним для багатьох об’єктів.</p>
+        self.settings = settings
+
+
+first = Profile()
+second = Profile()
+first.settings[&quot;volume&quot;] = 20
+print(second.settings)</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">{&#x27;volume&#x27;: 20}</code></pre></div>
+<p>Зміна через <code>first</code> з’явилась у <code>second</code>: словник створився один раз під час визначення класу й став спільним для багатьох об’єктів.</p>
 <p>Безпечний шаблон:</p>
 <div class="code-block"><div class="code-toolbar"><span>safe_default_dict.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Profile:
     def __init__(self, settings=None):
@@ -253,15 +260,27 @@ print(sorted(learned &amp; required))</code></pre></div>
 <p>Множина доречна для унікальних тегів, відвіданих кімнат, дозволів або швидкої перевірки належності.</p>
 <h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
 <h3 id="vidsutniy-kliuch">Відсутній ключ<a class="heading-link" href="#vidsutniy-kliuch" aria-label="Посилання на розділ">#</a></h3>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">settings = {&quot;volume&quot;: 70}
+<div class="code-block"><div class="code-toolbar"><span>missing_key.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">settings = {&quot;volume&quot;: 70}
 print(settings[&quot;language&quot;])</code></pre></div>
-<p>Python покаже <code>KeyError: &#x27;language&#x27;</code>. Виріши, що це означає для моделі:</p>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Traceback (most recent call last):
+  File &quot;...\missing_key.py&quot;, line 2, in &lt;module&gt;
+    print(settings[&quot;language&quot;])
+          ~~~~~~~~^^^^^^^^^^^^
+KeyError: &#x27;language&#x27;</code></pre></div>
+<p>Останній рядок називає відсутній ключ. Виріши, що це означає для моделі:</p>
 <ul><li>структура зламана — нехай помилка лишиться видимою;</li><li>ключ необов’язковий — використай <code>settings.get(&quot;language&quot;, &quot;uk&quot;)</code>;</li><li>ключ треба створити раніше — виправ ініціалізацію.</li></ul>
 <h3 id="zmina-rozmiru-slovnyka-pid-chas-pereboru">Зміна розміру словника під час перебору<a class="heading-link" href="#zmina-rozmiru-slovnyka-pid-chas-pereboru" aria-label="Посилання на розділ">#</a></h3>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">for key in statistics:
+<div class="code-block"><div class="code-toolbar"><span>dict_size.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">statistics = {&quot;wins&quot;: 3, &quot;draws&quot;: 0, &quot;losses&quot;: 1}
+
+for key in statistics:
     if statistics[key] == 0:
         del statistics[key]</code></pre></div>
-<p>Python зупиниться з <code>RuntimeError</code>, бо розмір словника змінився під час циклу. Перебирай копію ключів: <code>for key in list(statistics):</code>, або створи новий словник.</p>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Traceback (most recent call last):
+  File &quot;...\dict_size.py&quot;, line 3, in &lt;module&gt;
+    for key in statistics:
+               ^^^^^^^^^^
+RuntimeError: dictionary changed size during iteration</code></pre></div>
+<p>Python зупинився на наступному кроці циклу, бо набір ключів уже змінився. Перебирай копію <code>for key in list(statistics):</code> або створи новий словник.</p>
 <h3 id="kliuch-i-znachennia-pereplutani">Ключ і значення переплутані<a class="heading-link" href="#kliuch-i-znachennia-pereplutani" aria-label="Посилання на розділ">#</a></h3>
 <p><code>for key, value in data.items()</code> має два імені. Назви <code>for value, key ...</code> синтаксично працюватимуть, але введуть читача в оману й швидко спричинять логічну помилку.</p>
 <section class="callout callout-mistake"><div class="callout-label">Типова помилка</div><p>Не ховай помилку структури через нескінченний ланцюжок <code>.get(..., {})</code>. Якщо поле обов’язкове, краще отримати точну помилку біля джерела, ніж <code>None</code> у далекому обчисленні.</p></section>

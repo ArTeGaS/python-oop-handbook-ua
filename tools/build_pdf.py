@@ -14,6 +14,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (
     BaseDocTemplate,
+    CondPageBreak,
     Flowable,
     Frame,
     Image,
@@ -428,18 +429,35 @@ def blocks_to_flowables(
 ) -> list[Flowable]:
     flowables: list[Flowable] = []
     heading_serial = 0
-    for block in blocks:
+    block_list = list(blocks)
+    for block_index, block in enumerate(block_list):
+        next_block = block_list[block_index + 1] if block_index + 1 < len(block_list) else None
         if block.kind == "heading":
             level = block.data["level"]
             style = styles[f"h{level}"]
+            if level >= 2:
+                minimum_following_space = {2: 32, 3: 27, 4: 23}.get(level, 23)
+                nearby_blocks = block_list[block_index + 1 : block_index + 4]
+                if level == 2 and any(
+                    nearby.kind == "directive"
+                    and nearby.data.get("directive") == "tasks"
+                    for nearby in nearby_blocks
+                ):
+                    minimum_following_space = 110
+                flowables.append(CondPageBreak(minimum_following_space * mm))
             paragraph = Paragraph(render_inline_pdf(block.data["text"]), style)
+            if level >= 2:
+                paragraph.keepWithNext = True
             if level <= 2:
                 heading_serial += 1
                 paragraph.toc_level = 0 if level == 1 else 1
                 paragraph.bookmark_name = f"{chapter.slug}-{heading_serial}-{heading_id(block.data['text'])}"
             flowables.append(paragraph)
         elif block.kind == "paragraph":
-            flowables.append(Paragraph(render_inline_pdf(block.data["text"]), styles["body"]))
+            paragraph = Paragraph(render_inline_pdf(block.data["text"]), styles["body"])
+            if next_block is not None and next_block.kind in {"code", "list", "quiz", "directive"}:
+                paragraph.keepWithNext = True
+            flowables.append(paragraph)
         elif block.kind == "list":
             items = [
                 ListItem(Paragraph(render_inline_pdf(item), styles["body"]), leftIndent=3 * mm)
@@ -514,8 +532,13 @@ def blocks_to_flowables(
             )
             inner = blocks_to_flowables(nested_blocks, styles, chapter)
             if is_complex:
-                flowables.append(callout_header(title, border, background, styles))
-                flowables.extend(inner)
+                header = callout_header(title, border, background, styles)
+                if inner:
+                    prefix_size = min(2, len(inner))
+                    flowables.append(KeepTogether([header, *inner[:prefix_size]]))
+                    flowables.extend(inner[prefix_size:])
+                else:
+                    flowables.append(header)
                 flowables.append(Spacer(1, 3 * mm))
             else:
                 flowables.append(

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import shutil
 from pathlib import Path
@@ -20,6 +21,7 @@ def build_site() -> list[Chapter]:
     assets_target = DOCS_DIR / "assets"
     shutil.copytree(SITE_SOURCE / "assets", assets_target, dirs_exist_ok=True)
     (DOCS_DIR / ".nojekyll").write_text("", encoding="utf-8")
+    asset_version = build_asset_version()
 
     sidebar = render_sidebar(chapters, metadata)
     (DOCS_DIR / "index.html").write_text(
@@ -31,6 +33,7 @@ def build_site() -> list[Chapter]:
             body=render_home(chapters, metadata),
             active_slug="home",
             body_class="home-page",
+            asset_version=asset_version,
         ),
         encoding="utf-8",
     )
@@ -48,6 +51,7 @@ def build_site() -> list[Chapter]:
                 body=body,
                 active_slug=chapter.slug,
                 body_class="chapter-page",
+                asset_version=asset_version,
             ),
             encoding="utf-8",
         )
@@ -79,6 +83,7 @@ def build_site() -> list[Chapter]:
             ),
             active_slug="",
             body_class="error-page",
+            asset_version=asset_version,
         ),
         encoding="utf-8",
     )
@@ -87,6 +92,15 @@ def build_site() -> list[Chapter]:
         encoding="utf-8",
     )
     return chapters
+
+
+def build_asset_version() -> str:
+    digest = hashlib.sha256()
+    for path in sorted((SITE_SOURCE / "assets").glob("*")):
+        if path.is_file():
+            digest.update(path.name.encode("utf-8"))
+            digest.update(path.read_bytes())
+    return digest.hexdigest()[:12]
 
 
 def render_page(
@@ -98,6 +112,7 @@ def render_page(
     body: str,
     active_slug: str,
     body_class: str,
+    asset_version: str,
 ) -> str:
     return f"""<!doctype html>
 <html lang="uk" data-active-chapter="{active_slug}">
@@ -107,8 +122,8 @@ def render_page(
   <meta name="description" content="{escape_attr(description)}">
   <meta name="theme-color" content="#f4f0e8">
   <title>{escape_text(page_title)}</title>
-  <link rel="stylesheet" href="assets/styles.css">
-  <script src="assets/app.js" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v={asset_version}">
+  <script src="assets/app.js?v={asset_version}" defer></script>
 </head>
 <body class="{body_class}">
   <a class="skip-link" href="#main-content">До основного тексту</a>

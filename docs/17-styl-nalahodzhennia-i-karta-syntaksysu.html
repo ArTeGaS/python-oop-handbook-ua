@@ -6,8 +6,8 @@
   <meta name="description" content="Підтримуваний код: стиль, налагодження й карта синтаксису Підтримуваний код: стиль, налагодження й карта синтаксису Програма може мати правильний синтаксис і все одно давати неправильний рез">
   <meta name="theme-color" content="#f4f0e8">
   <title>Підтримуваний код: стиль, налагодження й карта синтаксису — Python через об’єкти</title>
-  <link rel="stylesheet" href="assets/styles.css">
-  <script src="assets/app.js" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=3e80905f1037">
+  <script src="assets/app.js?v=3e80905f1037" defer></script>
 </head>
 <body class="chapter-page">
   <a class="skip-link" href="#main-content">До основного тексту</a>
@@ -55,13 +55,24 @@
 <section class="callout callout-goal"><div class="callout-label">Результат</div><p>Після повідомлення «не працює» ти матимеш маршрут: відтворити → класифікувати → звузити → перевірити припущення → виправити одну причину → запустити регресійний тест.</p></section>
 <h2 id="try-velyki-vydy-problem">Три великі види проблем<a class="heading-link" href="#try-velyki-vydy-problem" aria-label="Посилання на розділ">#</a></h2>
 <h3 id="1-syntaksychna-pomylka">1. Синтаксична помилка<a class="heading-link" href="#1-syntaksychna-pomylka" aria-label="Посилання на розділ">#</a></h3>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">if energy &gt; 0
+<div class="code-block"><div class="code-toolbar"><span>missing_colon.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">energy = 5
+
+if energy &gt; 0
     print(&quot;Рух&quot;)</code></pre></div>
-<p>Python не може побудувати програму через відсутню двокрапку. Типовий результат — <code>SyntaxError</code> або <code>IndentationError</code>. Жоден рядок файла не почне нормально виконуватися, доки синтаксис не виправлено.</p>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">  File &quot;...\missing_colon.py&quot;, line 3
+    if energy &gt; 0
+                 ^
+SyntaxError: expected &#x27;:&#x27;</code></pre></div>
+<p>Python не може побудувати програму через відсутню двокрапку. Каретка стоїть у кінці умови, а останній рядок прямо називає очікуваний символ. Жоден рядок файла не почне нормально виконуватися, доки синтаксис не виправлено.</p>
 <h3 id="2-vyniatok-pid-chas-vykonannia">2. Виняток під час виконання<a class="heading-link" href="#2-vyniatok-pid-chas-vykonannia" aria-label="Посилання на розділ">#</a></h3>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">items = []
+<div class="code-block"><div class="code-toolbar"><span>empty_list.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">items = []
 print(items[0])</code></pre></div>
-<p>Код синтаксично правильний, але конкретний стан спричиняє <code>IndexError</code>. Traceback показує шлях викликів.</p>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Traceback (most recent call last):
+  File &quot;...\empty_list.py&quot;, line 2, in &lt;module&gt;
+    print(items[0])
+          ~~~~~^^^
+IndexError: list index out of range</code></pre></div>
+<p>Код синтаксично правильний, але порожній список не має елемента з індексом <code>0</code>. Traceback показує файл, вираз і тип винятку.</p>
 <h3 id="3-lohichnyy-defekt">3. Логічний дефект<a class="heading-link" href="#3-lohichnyy-defekt" aria-label="Посилання на розділ">#</a></h3>
 <div class="code-block"><div class="code-toolbar"><span>logic_bug.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">balance = 100
 payment = 30
@@ -73,7 +84,7 @@ print(f&quot;Очікували 70, отримали {balance}&quot;)</code></pr
 <p>Класифікація визначає наступну дію. Без неї людина часто безладно переставляє відступи, додає <code>try</code> або переписує робочі частини.</p>
 <h2 id="maysternia">Майстерня<a class="heading-link" href="#maysternia" aria-label="Посилання на розділ">#</a></h2>
 <p>Початкова версія гаманця має дефект:</p>
-<div class="code-block"><div class="code-toolbar"><span>wallet_bug.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Wallet:
+<div class="code-block"><div class="code-toolbar"><span>wallet_bug.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Wallet:
     def __init__(self, balance=0):
         self.balance = balance
 
@@ -81,15 +92,19 @@ print(f&quot;Очікували 70, отримали {balance}&quot;)</code></pr
         if amount &gt; self.balance:
             return False
         self.balance += amount
-        return True</code></pre></div>
-<p>Вимога: <code>Wallet(100).spend(30)</code> має повернути <code>True</code> і лишити баланс <code>70</code>.</p>
-<h3 id="krok-1-naymenshe-vidtvorennia">Крок 1. Найменше відтворення<a class="heading-link" href="#krok-1-naymenshe-vidtvorennia" aria-label="Посилання на розділ">#</a></h3>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">wallet = Wallet(100)
+        return True
+
+
+wallet = Wallet(100)
 result = wallet.spend(30)
 
 print(result)
 print(wallet.balance)</code></pre></div>
-<p>Не запускай весь великий інтерфейс, якщо дефект відтворюється трьома рядками. Менше рухомих частин — менше гіпотез.</p>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">True
+130</code></pre></div>
+<p>Вимога: <code>Wallet(100).spend(30)</code> має повернути <code>True</code> і лишити баланс <code>70</code>.</p>
+<h3 id="krok-1-naymenshe-vidtvorennia">Крок 1. Найменше відтворення<a class="heading-link" href="#krok-1-naymenshe-vidtvorennia" aria-label="Посилання на розділ">#</a></h3>
+<p>Виклик і два <code>print()</code> внизу файла — це найменше відтворення. Не запускай весь великий інтерфейс, якщо дефект видно в кількох рядках. Менше рухомих частин — менше гіпотез.</p>
 <h3 id="krok-2-zapyshy-ochikuvannia-do-vypravlennia">Крок 2. Запиши очікування до виправлення<a class="heading-link" href="#krok-2-zapyshy-ochikuvannia-do-vypravlennia" aria-label="Посилання на розділ">#</a></h3>
 <div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">assert wallet.spend(30) is True
 assert wallet.balance == 70</code></pre></div>

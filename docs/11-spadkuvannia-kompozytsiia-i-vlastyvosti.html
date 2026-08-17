@@ -6,8 +6,8 @@
   <meta name="description" content="Пов’язані об’єкти: успадкування, композиція й властивості Пов’язані об’єкти: успадкування, композиція й властивості Класи рідко живуть окремо. Електросамокат є видом транспорту, а його батар">
   <meta name="theme-color" content="#f4f0e8">
   <title>Пов’язані об’єкти: успадкування, композиція й властивості — Python через об’єкти</title>
-  <link rel="stylesheet" href="assets/styles.css">
-  <script src="assets/app.js" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=3e80905f1037">
+  <script src="assets/app.js?v=3e80905f1037" defer></script>
 </head>
 <body class="chapter-page">
   <a class="skip-link" href="#main-content">До основного тексту</a>
@@ -143,7 +143,7 @@ print(scooter.battery.status_text())</code></pre></div>
 <p>Не дублюй:</p>
 <div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">self.name = name
 self.speed = speed</code></pre></div>
-<p>у кожному похідному класі, якщо базовий уже має правильну ініціалізацію. Дубльовані правила легко розійдуться.</p>
+<p>у кожному похідному класі, якщо базовий уже має правильну ініціалізацію. Це не обов’язково впаде одразу, але дубльовані правила легко розійдуться.</p>
 <p><code>super()</code> краще за прямий виклик <code>Vehicle.__init__(self, ...)</code>, бо поважає порядок пошуку методів і підтримує складніші, хоча й рідші, схеми успадкування.</p>
 <h3 id="perevyznachennia-metodu">Перевизначення методу<a class="heading-link" href="#perevyznachennia-metodu" aria-label="Посилання на розділ">#</a></h3>
 <p>Похідний клас може дати власну реалізацію методу з тим самим іменем:</p>
@@ -189,8 +189,23 @@ def charge(self):
     return self._charge</code></pre></div>
 <p>Зовнішній код читає <code>battery.charge</code> без дужок, але насправді виконується метод. Властивість доречна для простого значення, яке виглядає як стан.</p>
 <p>Без setter-властивості такий запис не дозволений:</p>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">battery.charge = -10</code></pre></div>
-<p>Python покаже <code>AttributeError</code>. Зміну треба робити через <code>use()</code> або окремий метод <code>charge_by()</code>, де діють правила.</p>
+<div class="code-block"><div class="code-toolbar"><span>read_only_property.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Battery:
+    def __init__(self, charge):
+        self._charge = charge
+
+    @property
+    def charge(self):
+        return self._charge
+
+
+battery = Battery(80)
+battery.charge = -10</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Traceback (most recent call last):
+  File &quot;...\read_only_property.py&quot;, line 11, in &lt;module&gt;
+    battery.charge = -10
+    ^^^^^^^^^^^^^^
+AttributeError: property &#x27;charge&#x27; of &#x27;Battery&#x27; object has no setter</code></pre></div>
+<p>Останній рядок пояснює, що властивість доступна для читання, але не має setter-методу. Зміну треба робити через <code>use()</code> або окремий <code>charge_by()</code>, де діють правила.</p>
 <p>Якщо пряме присвоєння справді є частиною зручного інтерфейсу, можна додати setter:</p>
 <div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">@charge.setter
 def charge(self, value):
@@ -215,9 +230,16 @@ print(Robot.created_count)
 print(second.created_count)</code></pre></div>
 <p><code>created_count</code> належить класу й спільний. Читати його через <code>Robot.created_count</code> ясніше. Звичайні дані конкретного робота, як <code>name</code>, створюють через <code>self</code>.</p>
 <p>Не використовуй змінний список атрибутом класу для особистих даних:</p>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Backpack:
-    items = []</code></pre></div>
-<p>Усі наплічники отримають той самий список. Створюй <code>self.items = []</code> у <code>__init__</code>.</p>
+<div class="code-block"><div class="code-toolbar"><span>shared_class_list.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Backpack:
+    items = []
+
+
+first = Backpack()
+second = Backpack()
+first.items.append(&quot;ключ&quot;)
+print(second.items)</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">[&#x27;ключ&#x27;]</code></pre></div>
+<p>Ключ додали через <code>first</code>, але його видно й у <code>second</code>: усі наплічники отримали той самий список класу. Створюй <code>self.items = []</code> у <code>__init__</code>.</p>
 <h2 id="classmethod-iak-alternatyvnyy-konstruktor"><code>@classmethod</code> як альтернативний конструктор<a class="heading-link" href="#classmethod-iak-alternatyvnyy-konstruktor" aria-label="Посилання на розділ">#</a></h2>
 <p>Метод класу отримує клас у параметрі <code>cls</code>:</p>
 <div class="code-block"><div class="code-toolbar"><span>class_method.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Robot:
@@ -256,10 +278,30 @@ for vehicle in vehicles:
 <h3 id="uspadkuvannia-zarady-povtornoho-vykorystannia-dvokh-riadkiv">Успадкування заради повторного використання двох рядків<a class="heading-link" href="#uspadkuvannia-zarady-povtornoho-vykorystannia-dvokh-riadkiv" aria-label="Посилання на розділ">#</a></h3>
 <p>Якщо <code>Report</code> успадковує <code>Robot</code> лише через корисний метод форматування, твердження «звіт є роботом» хибне. Винеси функцію або окремий об’єкт форматера.</p>
 <h3 id="zabutyy-super-init">Забутий <code>super().__init__()</code><a class="heading-link" href="#zabutyy-super-init" aria-label="Посилання на розділ">#</a></h3>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class ElectricScooter(Vehicle):
+<div class="code-block"><div class="code-toolbar"><span>missing_super.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Vehicle:
+    def __init__(self, name, speed):
+        self.name = name
+        self.speed = speed
+
+    def status(self):
+        print(f&quot;{self.name}: {self.speed}&quot;)
+
+
+class ElectricScooter(Vehicle):
     def __init__(self, battery):
-        self.battery = battery</code></pre></div>
-<p>Об’єкт не отримає <code>name</code> і <code>speed</code>, хоча успадковані методи їх очікують. Або виклич <code>super()</code>, або свідомо забезпеч усі обіцянки базового класу.</p>
+        self.battery = battery
+
+
+scooter = ElectricScooter(80)
+scooter.status()</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Traceback (most recent call last):
+  File &quot;...\missing_super.py&quot;, line 16, in &lt;module&gt;
+    scooter.status()
+  File &quot;...\missing_super.py&quot;, line 7, in status
+    print(f&quot;{self.name}: {self.speed}&quot;)
+             ^^^^^^^^^
+AttributeError: &#x27;ElectricScooter&#x27; object has no attribute &#x27;name&#x27;</code></pre></div>
+<p>Виклик успадкованого <code>status()</code> дійшов до читання <code>self.name</code>, якого похідний конструктор не створив. Або виклич <code>super().__init__(name, speed)</code>, або свідомо забезпеч усі обіцянки базового класу.</p>
 <h3 id="pokhidnyy-klas-lamaie-kontrakt">Похідний клас ламає контракт<a class="heading-link" href="#pokhidnyy-klas-lamaie-kontrakt" aria-label="Посилання на розділ">#</a></h3>
 <p>Якщо базовий <code>move_text()</code> повертає рядок, а один похідний метод повертає <code>None</code> і лише друкує, спільний цикл не зможе однаково обробити об’єкти.</p>
 <section class="callout callout-mistake"><div class="callout-label">Типова помилка</div><p>Не створюй глибоку ієрархію наперед: <code>Entity -&gt; Actor -&gt; MovingActor -&gt; LivingMovingActor -&gt; Hero</code>. Спочатку потрібні конкретні два класи й реальна спільна поведінка. Композицію легше змінювати, тому за сумніву перевір варіант «має об’єкт».</p></section>

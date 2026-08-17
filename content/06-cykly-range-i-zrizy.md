@@ -293,32 +293,56 @@ for row in range(2):
 
 ### Забутий відступ
 
-```python error
+```python error file=loop_indent.py raises=IndentationError
 for member in members:
 print(member.name)
 ```
 
-Після двокрапки Python очікує вкладений блок і покаже `IndentationError`.
+```output
+  File "...\loop_indent.py", line 2
+    print(member.name)
+    ^^^^^
+IndentationError: expected an indented block after 'for' statement on line 1
+```
+
+`line 2` показує місце, де Python побачив `print` без очікуваного відступу; останній рядок посилається на цикл у рядку 1.
 
 ### Зайвий відступ після циклу
 
-```python fragment
+```python run file=repeated_summary.py expect="Ада\nУсі учасники показані.\nБор\nУсі учасники показані."
+members = ["Ада", "Бор"]
+
 for member in members:
-    print(member.name)
+    print(member)
     print("Усі учасники показані.")
 ```
 
-Друге повідомлення повториться для кожного учасника. Якщо воно підсумовує весь цикл, прибери відступ.
+```output
+Ада
+Усі учасники показані.
+Бор
+Усі учасники показані.
+```
+
+Другий і четвертий рядки доводять, що підсумкове повідомлення повторилося для кожного учасника. Якщо воно стосується всього циклу, прибери один рівень відступу.
 
 ### Зміна довжини списку під час перебору
 
-```python error
+```python run file=remove_during_loop.py expect="['цілий', 'зламаний', 'заряд']"
+items = ["цілий", "зламаний", "зламаний", "заряд"]
+
 for item in items:
     if item == "зламаний":
         items.remove(item)
+
+print(items)
 ```
 
-Після видалення елементи зсуваються, і цикл може пропустити сусіднє значення. Перебирай копію `for item in items.copy():` або створи новий список потрібних елементів.
+```output
+['цілий', 'зламаний', 'заряд']
+```
+
+Один зламаний елемент залишився. Після першого видалення сусіднє значення зсунулося, а цикл перейшов далі. Перебирай копію `for item in items.copy():` або створи новий список потрібних елементів.
 
 :::mistake
 Не вигадуй індекс, коли маєш сам елемент. `for member in members` майже завжди ясніше за `for index in range(len(members))`. Індекс додавай лише коли він справді потрібен.

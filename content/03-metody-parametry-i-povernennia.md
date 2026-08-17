@@ -242,28 +242,62 @@ print(student.experience_text())
 
 ### Виклик не відповідає параметрам
 
-```python error
+```python error file=missing_argument.py raises=TypeError
+class Hero:
+    def heal(self, amount):
+        print(f"Відновлено: {amount}")
+
+
+hero = Hero()
 hero.heal()
 ```
 
-Якщо `heal(self, amount)` очікує `amount`, Python покаже `TypeError` про відсутній обов’язковий аргумент.
+```output
+Traceback (most recent call last):
+  File "...\missing_argument.py", line 7, in <module>
+    hero.heal()
+TypeError: Hero.heal() missing 1 required positional argument: 'amount'
+```
 
-```python error
+Останній рядок називає метод і параметр `amount`, для якого не передали значення.
+
+```python error file=too_many_arguments.py raises=TypeError
+class Hero:
+    def heal(self, amount):
+        print(f"Відновлено: {amount}")
+
+
+hero = Hero()
 hero.heal(10, 20)
 ```
 
-Тут, навпаки, передано забагато аргументів.
+```output
+Traceback (most recent call last):
+  File "...\too_many_arguments.py", line 7, in <module>
+    hero.heal(10, 20)
+TypeError: Hero.heal() takes 2 positional arguments but 3 were given
+```
+
+У повідомленні враховано й прихований для виклику `self`: метод має два параметри `self` та `amount`, але отримав об’єкт плюс два числа — разом три аргументи.
 
 ### Результат надруковано двічі
 
-```python fragment
-def status_text(self):
-    print("Герой готовий.")
+```python run file=printed_none.py expect="Герой готовий.\nNone"
+class Hero:
+    def status_text(self):
+        print("Герой готовий.")
 
+
+hero = Hero()
 print(hero.status_text())
 ```
 
-Метод спочатку надрукує повідомлення, а зовнішній `print()` потім покаже `None`. Якщо зовнішній код має друкувати результат, метод повинен **повертати** рядок:
+```output
+Герой готовий.
+None
+```
+
+Метод спочатку друкує повідомлення, а потім неявно повертає `None`; зовнішній `print()` показує саме це повернене значення. Якщо зовнішній код має друкувати результат, метод повинен **повертати** рядок:
 
 ```python fragment
 def status_text(self):

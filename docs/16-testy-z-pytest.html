@@ -6,8 +6,8 @@
   <meta name="description" content="Автоматичні тести з pytest Автоматичні тести з pytest Ручний запуск показує, що один сценарій щойно спрацював. Автоматичний тест зберігає очікування у коді й повторює його після кожної зміни">
   <meta name="theme-color" content="#f4f0e8">
   <title>Автоматичні тести з pytest — Python через об’єкти</title>
-  <link rel="stylesheet" href="assets/styles.css">
-  <script src="assets/app.js" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=3e80905f1037">
+  <script src="assets/app.js?v=3e80905f1037" defer></script>
 </head>
 <body class="chapter-page">
   <a class="skip-link" href="#main-content">До основного тексту</a>
@@ -294,7 +294,7 @@ addopts = &quot;-ra&quot;</code></pre></div>
 <p>Вибір залежить від проєкту. Ця довідка використовує pytest через простий <code>assert</code>, fixtures і читабельну параметризацію. Не переписуй робочий набір іншого проєкту лише заради назви інструмента.</p>
 <h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
 <h3 id="testy-zalezhat-odyn-vid-odnoho">Тести залежать один від одного<a class="heading-link" href="#testy-zalezhat-odyn-vid-odnoho" aria-label="Посилання на розділ">#</a></h3>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">robot = Robot(&quot;Робі&quot;, 10)
+<div class="code-block"><div class="code-toolbar"><span>test_shared_robot.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">robot = Robot(&quot;Робі&quot;, 10)
 
 
 def test_move():
@@ -304,17 +304,25 @@ def test_move():
 
 def test_initial_energy():
     assert robot.energy == 10</code></pre></div>
-<p>Другий тест залежить від порядку. Створюй новий об’єкт у тесті або function-scoped fixture.</p>
+<p>За порядку, показаного у файлі, pytest повідомить:</p>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">.F
+FAILED test_shared_robot.py::test_initial_energy - assert 7 == 10
+1 failed, 1 passed</code></pre></div>
+<p>Перший тест змінив спільний об’єкт, тому другий отримав енергію <code>7</code>. Створюй нового робота в кожному тесті або function-scoped fixture.</p>
 <h3 id="perevireno-realizatsiiu-a-ne-povedinku">Перевірено реалізацію, а не поведінку<a class="heading-link" href="#perevireno-realizatsiiu-a-ne-povedinku" aria-label="Посилання на розділ">#</a></h3>
 <p>Тест вимагає, щоб метод використав рівно один цикл або конкретний приватний список. Рефакторинг ламає тест, хоча результат той самий. Перевір публічний результат і значущий стан.</p>
 <h3 id="vyniatok-ochikuietsia-nadto-shyroko">Виняток очікується надто широко<a class="heading-link" href="#vyniatok-ochikuietsia-nadto-shyroko" aria-label="Посилання на розділ">#</a></h3>
 <div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">with pytest.raises(Exception):
     robot.move(-1)</code></pre></div>
-<p>Тест пройде навіть за випадкового <code>AttributeError</code>. Очікуй точний <code>ValueError</code> або власний <code>EnergyError</code> і, за потреби, повідомлення.</p>
+<p>Якщо всередині <code>move()</code> випадково виникне <code>AttributeError</code>, звіт усе одно може бути зеленим:</p>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">1 passed</code></pre></div>
+<p>Це хибно позитивний тест. Очікуй точний <code>ValueError</code> або власний <code>EnergyError</code> і, за потреби, перевір повідомлення.</p>
 <h3 id="test-mistyt-umovu">Тест містить умову<a class="heading-link" href="#test-mistyt-umovu" aria-label="Посилання на розділ">#</a></h3>
 <div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">if result == 3:
     assert True</code></pre></div>
-<p>Коли результат неправильний, тест може завершитися без жодного твердження й вважатися успішним. Пиши пряме <code>assert result == 3</code>.</p>
+<p>Навіть для <code>result = 999</code> умова просто не виконається, і pytest покаже:</p>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">1 passed</code></pre></div>
+<p>Тест завершився без жодного твердження й помилково вважається успішним. Пиши пряме <code>assert result == 3</code>.</p>
 <section class="callout callout-mistake"><div class="callout-label">Типова помилка</div><p>Не запускай тести на справжній файл користувача, домашню папку або спільну базу. Передавай тимчасову залежність (<code>tmp_path</code>, fake, тестовий об’єкт) і доводь межі шляху до операції.</p></section>
 <h2 id="shvydka-perevirka">Швидка перевірка<a class="heading-link" href="#shvydka-perevirka" aria-label="Посилання на розділ">#</a></h2>
 <p>Який тест найкраще ловить регресію «невдала атака все одно відняла енергію»?</p>

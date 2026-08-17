@@ -6,8 +6,8 @@
   <meta name="description" content="Винятки: передбачувані збої й корисні повідомлення Винятки: передбачувані збої й корисні повідомлення Файл може бути відсутній, користувач може ввести `п’ять` замість `5`, а метод — отримати">
   <meta name="theme-color" content="#f4f0e8">
   <title>Винятки: передбачувані збої й корисні повідомлення — Python через об’єкти</title>
-  <link rel="stylesheet" href="assets/styles.css">
-  <script src="assets/app.js" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=3e80905f1037">
+  <script src="assets/app.js?v=3e80905f1037" defer></script>
 </head>
 <body class="chapter-page">
   <a class="skip-link" href="#main-content">До основного тексту</a>
@@ -54,9 +54,13 @@
 <p>Створимо <code>EnergyReader</code>, який читає число з файла. Нижчий рівень повідомлятиме точну проблему винятком, а зовнішній сценарій перетворюватиме очікувані збої на зрозумілий результат.</p>
 <section class="callout callout-goal"><div class="callout-label">Результат</div><p>Ти навчишся ловити лише ті винятки, які справді можеш обробити, залишати неочікувані дефекти видимими й додавати контекст без втрати першопричини.</p></section>
 <h2 id="traceback-pokazuie-shliakh-do-vyniatku">Traceback показує шлях до винятку<a class="heading-link" href="#traceback-pokazuie-shliakh-do-vyniatku" aria-label="Посилання на розділ">#</a></h2>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">number = int(&quot;п’ять&quot;)</code></pre></div>
-<p>Останній рядок traceback приблизно такий:</p>
-<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-text">ValueError: invalid literal for int() with base 10: &#x27;п’ять&#x27;</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>invalid_number.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">number = int(&quot;п’ять&quot;)</code></pre></div>
+<p>Повний короткий traceback виглядає так; шлях скорочено:</p>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Traceback (most recent call last):
+  File &quot;...\invalid_number.py&quot;, line 1, in &lt;module&gt;
+    number = int(&quot;п’ять&quot;)
+             ^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: &#x27;п’ять&#x27;</code></pre></div>
 <ul><li><code>ValueError</code> — тип винятку;</li><li>далі — повідомлення;</li><li>вище — ланцюжок викликів і рядки коду.</li></ul>
 <p>Спочатку читай останній рядок, потім шукай <strong>перший кадр свого коду</strong>, який передав неправильне значення. Не редагуй рядки стандартної бібліотеки.</p>
 <h2 id="try-i-tochnyy-except"><code>try</code> і точний <code>except</code><a class="heading-link" href="#try-i-tochnyy-except" aria-label="Посилання на розділ">#</a></h2>
@@ -196,7 +200,7 @@ except Exception:
     risky_work()
 except:
     pass</code></pre></div>
-<p>Він може перехопити навіть сигнали завершення, приховує причину й залишає невідомий стан.</p>
+<p>Цей код може «успішно» завершитися без жодного рядка в терміналі. Саме це небезпечно: він може перехопити навіть сигнали завершення, приховує причину й залишає невідомий стан.</p>
 <h2 id="poshyreni-vyniatky-pochatkovykh-prohram">Поширені винятки початкових програм<a class="heading-link" href="#poshyreni-vyniatky-pochatkovykh-prohram" aria-label="Посилання на розділ">#</a></h2>
 <ul><li><code>SyntaxError</code> — Python не може розібрати код; <code>try</code> навколо вже нерозібраного файла не допоможе.</li><li><code>IndentationError</code> — неправильна структура відступів; підклас <code>SyntaxError</code>.</li><li><code>NameError</code> — ім’я не визначено.</li><li><code>AttributeError</code> — об’єкт не має атрибута або методу.</li><li><code>TypeError</code> — операція чи виклик отримали несумісний тип або кількість аргументів.</li><li><code>ValueError</code> — тип придатний, але конкретне значення ні.</li><li><code>IndexError</code> — індекс послідовності за межами.</li><li><code>KeyError</code> — відсутній ключ словника.</li><li><code>FileNotFoundError</code> — файл не знайдено.</li><li><code>PermissionError</code> — системні права не дозволяють операцію.</li><li><code>ZeroDivisionError</code> — ділення на нуль.</li><li><code>ImportError</code>/<code>ModuleNotFoundError</code> — проблема імпорту.</li></ul>
 <p>Тип не є готовою відповіддю. Читай повідомлення й контекст виклику.</p>
@@ -222,22 +226,40 @@ except FileNotFoundError:
         raise UnknownRobotError(robot_id) from error</code></pre></div>
 <p>Якщо операція обіцяє <strong>обов’язково</strong> повернути робота, відсутність порушує контракт і виняток природний. Назва <code>find_</code> проти <code>require_</code> допомагає показати різницю.</p>
 <h2 id="ne-vykorystovuy-assert-dlia-vvedennia">Не використовуй <code>assert</code> для введення<a class="heading-link" href="#ne-vykorystovuy-assert-dlia-vvedennia" aria-label="Посилання на розділ">#</a></h2>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">assert energy &gt;= 0, &quot;Енергія не може бути від’ємною&quot;</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>assert_input.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">energy = -1
+assert energy &gt;= 0, &quot;Енергія не може бути від’ємною&quot;</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Traceback (most recent call last):
+  File &quot;...\assert_input.py&quot;, line 2, in &lt;module&gt;
+    assert energy &gt;= 0, &quot;Енергія не може бути від’ємною&quot;
+           ^^^^^^^^^^^
+AssertionError: Енергія не може бути від’ємною</code></pre></div>
 <p><code>assert</code> призначений для внутрішніх тверджень розробника й може бути вимкнений оптимізованим запуском Python. Для даних користувача або зовнішнього файла застосовуй звичайний <code>if</code> і піднімай відповідний виняток.</p>
 <p>У тестах <code>assert</code> доречний: там він формулює очікувану поведінку, а pytest показує різницю.</p>
 <h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
 <h3 id="try-okhopliuie-zanadto-bahato"><code>try</code> охоплює занадто багато<a class="heading-link" href="#try-okhopliuie-zanadto-bahato" aria-label="Посилання на розділ">#</a></h3>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">try:
+<div class="code-block"><div class="code-toolbar"><span>too_wide_try.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">text = &quot;5&quot;
+
+
+def calculate(number):
+    raise ValueError(&quot;Дефект у формулі&quot;)
+
+
+def save(result):
+    print(result)
+
+
+try:
     number = int(text)
     result = calculate(number)
     save(result)
 except ValueError:
     print(&quot;Неправильне число&quot;)</code></pre></div>
-<p><code>calculate()</code> теж може мати <code>ValueError</code> через дефект, який тут буде неправильно пояснений введенням. Звузь <code>try</code> до перетворення, а успішну роботу перенеси в <code>else</code>.</p>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Неправильне число</code></pre></div>
+<p>Введення <code>&quot;5&quot;</code> правильне, але <code>calculate()</code> підняв <code>ValueError</code> через дефект формули. Широкий блок неправдиво пояснив проблему введенням. Звузь <code>try</code> до перетворення, а успішну роботу перенеси в <code>else</code>.</p>
 <h3 id="pomylku-nadrukovano-y-vtracheno">Помилку надруковано й втрачено<a class="heading-link" href="#pomylku-nadrukovano-y-vtracheno" aria-label="Посилання на розділ">#</a></h3>
 <div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">except Exception as error:
     print(error)</code></pre></div>
-<p>Програма продовжує роботу з невідомим станом, а traceback втрачено. Або оброби конкретну очікувану ситуацію, або дай винятку піднятися, або журналюй його з повним контекстом на зовнішній межі.</p>
+<p>Це фрагмент обробника, не самостійна програма. Він друкує лише текст останнього рядка; файл, номер рядка та шлях викликів зникають. Програма продовжує роботу з невідомим станом. Або оброби конкретну очікувану ситуацію, або дай винятку піднятися, або журналюй його з повним контекстом на зовнішній межі.</p>
 <h3 id="povtornyy-raise-napysano-nepravylno">Повторний <code>raise</code> написано неправильно<a class="heading-link" href="#povtornyy-raise-napysano-nepravylno" aria-label="Посилання на розділ">#</a></h3>
 <p>Усередині <code>except</code> просто <code>raise</code> повторно піднімає поточний виняток із початковим traceback. <code>raise error</code> може змінити вигляд ланцюжка. Для додавання контексту використовуй <code>raise NewError(...) from error</code>.</p>
 <section class="callout callout-mistake"><div class="callout-label">Типова помилка</div><p>Не перетворюй кожну програмну помилку на <code>None</code>. Якщо атрибут мав існувати, але не існує, <code>AttributeError</code> допомагає знайти дефект. Обробляй лише очікувані зовнішні умови, для яких маєш коректний наступний крок.</p></section>

@@ -6,8 +6,8 @@
   <meta name="description" content="Рішення: порівняння, `if`, `elif`, `else` Рішення: порівняння, `if`, `elif`, `else` До цього методи виконували однакові дії за будь-якого стану. Але двері не мають відчинятися без ключа, гер">
   <meta name="theme-color" content="#f4f0e8">
   <title>Рішення: порівняння, `if`, `elif`, `else` — Python через об’єкти</title>
-  <link rel="stylesheet" href="assets/styles.css">
-  <script src="assets/app.js" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=3e80905f1037">
+  <script src="assets/app.js?v=3e80905f1037" defer></script>
 </head>
 <body class="chapter-page">
   <a class="skip-link" href="#main-content">До основного тексту</a>
@@ -201,21 +201,45 @@ print(hero.attack(8))</code></pre></div>
 <p>Спочатку метод перевіряє небезпечний випадок і завершується. Лише після цього змінює стан. Такий ранній вихід часто робить метод пласким і читабельним.</p>
 <h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
 <h3 id="prysvoiennia-zamist-porivniannia">Присвоєння замість порівняння<a class="heading-link" href="#prysvoiennia-zamist-porivniannia" aria-label="Посилання на розділ">#</a></h3>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">if entered_code = self.secret_code:
+<div class="code-block"><div class="code-toolbar"><span>assignment_condition.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">entered_code = &quot;1234&quot;
+secret_code = &quot;1234&quot;
+
+if entered_code = secret_code:
     print(&quot;Відкрито&quot;)</code></pre></div>
-<p>Умова потребує порівняння <code>==</code>. VS Code підкреслить рядок, а Python покаже <code>SyntaxError</code>.</p>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">  File &quot;...\assignment_condition.py&quot;, line 4
+    if entered_code = secret_code:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax. Maybe you meant &#x27;==&#x27; or &#x27;:=&#x27; instead of &#x27;=&#x27;?</code></pre></div>
+<p>Рядок із <code>File</code> і номером веде до умови, підкреслення охоплює неправильний вираз, а останній рядок навіть пропонує <code>==</code>. Тут потрібне порівняння, не присвоєння.</p>
 <h3 id="dva-nezalezhni-if-zamist-odnoho-vyboru">Два незалежні <code>if</code> замість одного вибору<a class="heading-link" href="#dva-nezalezhni-if-zamist-odnoho-vyboru" aria-label="Посилання на розділ">#</a></h3>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">if score &gt;= 50:
+<div class="code-block"><div class="code-toolbar"><span>two_if.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">score = 120
+
+if score &gt;= 50:
     print(&quot;Рівень пройдено&quot;)
 
 if score &gt;= 100:
     print(&quot;Новий рекорд&quot;)</code></pre></div>
-<p>Для <code>score = 120</code> виконаються <strong>обидва</strong> блоки. Це може бути саме тим, що потрібно. Але якщо потрібна лише одна категорія, використовуй <code>if</code>/<code>elif</code>/<code>else</code>.</p>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Рівень пройдено
+Новий рекорд</code></pre></div>
+<p>Програма не падає: для <code>score = 120</code> обидві умови істинні, тому виконаються <strong>обидва</strong> блоки. Це може бути саме тим, що потрібно. Але якщо потрібна лише одна категорія, використовуй <code>if</code>/<code>elif</code>/<code>else</code>.</p>
 <h3 id="stan-zminiuietsia-do-perevirky">Стан змінюється до перевірки<a class="heading-link" href="#stan-zminiuietsia-do-perevirky" aria-label="Посилання на розділ">#</a></h3>
-<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">self.energy -= cost
-if self.energy &lt; 0:
-    return &quot;Не вистачає енергії.&quot;</code></pre></div>
-<p>Повідомлення правильне, але енергія вже стала від’ємною. Спочатку перевір можливість, потім змінюй стан.</p>
+<div class="code-block"><div class="code-toolbar"><span>negative_energy_bug.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Robot:
+    def __init__(self, energy):
+        self.energy = energy
+
+    def use(self, cost):
+        self.energy -= cost
+        if self.energy &lt; 0:
+            return &quot;Не вистачає енергії.&quot;
+        return &quot;Готово.&quot;
+
+
+robot = Robot(10)
+print(robot.use(15))
+print(robot.energy)</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Не вистачає енергії.
+-5</code></pre></div>
+<p>Це логічний дефект: повідомлення правильне, винятку немає, але другий рядок доводить, що стан уже зіпсований. Спочатку перевір можливість, потім змінюй енергію.</p>
 <section class="callout callout-mistake"><div class="callout-label">Типова помилка</div><p>Не порівнюй логічний результат із текстом: <code>self.is_open == &quot;True&quot;</code>. Якщо атрибут містить <code>True</code> або <code>False</code>, перевіряй <code>if self.is_open:</code> або <code>if not self.is_open:</code>.</p></section>
 <h2 id="shvydka-perevirka">Швидка перевірка<a class="heading-link" href="#shvydka-perevirka" aria-label="Посилання на розділ">#</a></h2>
 <p>Перед запуском визнач результат для кожного учня:</p>
