@@ -2,10 +2,13 @@
   "title": "Python через об’єкти",
   "subtitle": "Практична довідка для початківців",
   "language": "uk",
-  "edition": "2026",
+  "edition": "Перше офіційне видання · 2026",
+  "edition_id": "official-1",
   "expected_chapters": 18,
   "description": "Систематична довідка з основ Python: від першого .py-файла до класів, файлів, помилок і тестів — через маленькі робочі програми та об’єктне мислення.",
   "repository_url": "https://github.com/ArTeGaS/python-oop-handbook-ua",
   "pages_url": "https://artegas.github.io/python-oop-handbook-ua/",
-  "pdf_filename": "python-cherez-obiekty.pdf"
+  "pdf_filename": "python-cherez-obiekty.pdf",
+  "classic_url": "classic/index.html",
+  "classic_pdf_url": "classic/downloads/python-cherez-obiekty.pdf"
 }

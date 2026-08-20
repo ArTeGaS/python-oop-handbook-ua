@@ -10,6 +10,12 @@
 Ти побачиш межу між живим об’єктом і його серіалізованими даними. Завантаження не повинно перетворювати весь код на вкладені словники.
 :::
 
+
+:::focus
+**Одна дія:** простеж дві межі перетворення: об’єкт Python → прості дані → JSON-текст і назад.
+
+Якщо відволікся, визнач, де в прикладі живе словник, а де — лише текст із JSON-синтаксисом.
+:::
 ## JSON має прості типи
 
 Вигляд файла `profile.json`:
@@ -38,6 +44,10 @@ JSON не зберігає методи класу. Він зберігає ли
 
 ## `dumps()` і `loads()` працюють із рядком
 
+:::predict
+До запуску визнач типи `data`, `text` і `restored`, а також чи буде `restored` тим самим об’єктом або лише рівною за даними новою структурою.
+:::
+
 ```python run file=json_string.py expect="Міра\nTrue"
 import json
 
@@ -53,6 +63,17 @@ print(restored["name"])
 print(restored == data)
 ```
 
+
+:::trace Дані проходять через JSON-текст і повертаються
+before: `data` — словник Python з рядком та списком.
+step: Серіалізація | `json.dumps(data, ...)` | Структура перетворюється на рядок `text` у JSON-форматі.
+step: Межа формату | `type(text) is str` | У тексті немає методів словника або об’єкта класу.
+step: Десеріалізація | `json.loads(text)` | JSON-рядок перетворюється на новий словник `restored`.
+step: Читання | `restored["name"]` | За ключем отримуємо `"Міра"`.
+step: Порівняння | `restored == data` | Окремі словники мають рівний вміст, тому результат — `True`.
+after: `data` і `restored` — два рівні за вмістом словники; `text` лишається рядком.
+meaning: JSON зберігає прості дані, а поведінку класу треба відновити окремим конструктором на кшталт `from_data()`.
+:::
 - `json.dumps(data)` повертає JSON-рядок; літера `s` нагадує *string*;
 - `json.loads(text)` читає JSON-рядок і повертає Python-дані;
 - `ensure_ascii=False` залишає українські літери читабельними;
@@ -91,10 +112,11 @@ import json
 from pathlib import Path
 
 
+# 1. Зрозуміла помилка на межі даних
 class ProfileDataError(ValueError):
     """JSON не відповідає контракту профілю."""
 
-
+# 2. Живий об’єкт і правила його стану
 class PlayerProfile:
     def __init__(self, name, level=1, skills=None):
         if not name.strip():
@@ -141,7 +163,7 @@ class PlayerProfile:
         skills_text = ", ".join(self.skills) if self.skills else "немає"
         return f"{self.name}: рівень {self.level}; навички: {skills_text}."
 
-
+# 3. Сховище знає файл і JSON
 class ProfileStore:
     def __init__(self, path):
         self.path = Path(path)
@@ -165,7 +187,7 @@ class ProfileStore:
 
         return PlayerProfile.from_data(data)
 
-
+# 4. Сценарій з’єднує модель і сховище
 store = ProfileStore("profile.json")
 
 profile = PlayerProfile("Міра", level=3)
@@ -375,6 +397,20 @@ main -> ProfileStore.load() -> PlayerProfile.from_data()
 
 `pickle` може створювати довільні Python-об’єкти й **не підходить для недовірених файлів**, бо завантаження може виконати код.
 
+:::completion Віднови межу між об’єктом і даними
+Заповни пропуски так, щоб один метод створював словник, а інший відновлював об’єкт через конструктор.
+
+```python fragment
+class Hero:
+    def to_data(self):
+        return {"name": self.name, "health": self.health}
+
+    @classmethod
+    def from_data(cls, data):
+        return cls(name=data[____], health=data[____])
+```
+:::
+
 ## Типова помилка
 
 ### Спроба записати об’єкт напряму
@@ -468,6 +504,10 @@ correct: Його відповідальність — зберігати й ч�
 option: Бо JSON не підтримує числа.
 option: Бо методи класу не можуть імпортувати json.
 explanation: Розділення відповідальності дозволяє перевіряти модель без файла й змінювати формат сховища без перенесення правил профілю.
+:::
+
+:::recall
+Без підглядання назви чотири етапи: об’єкт, прості дані, JSON-текст, відновлені дані. Поясни, на якому етапі повертається поведінка класу.
 :::
 
 ## Самостійна робота

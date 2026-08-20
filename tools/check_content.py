@@ -22,6 +22,7 @@ CONTENT_DIR = ROOT / "content"
 DOCS_DIR = ROOT / "docs"
 REPORTS_DIR = ROOT / "reports"
 OUTPUT_PDF_DIR = ROOT / "output" / "pdf"
+CLASSIC_DIR = ROOT / "editions" / "classic"
 
 FORBIDDEN_SOURCE_REFERENCES = (
     "matthes",
@@ -31,6 +32,26 @@ FORBIDDEN_SOURCE_REFERENCES = (
     "ерік мат",
     "eric mat",
 )
+
+ATTENTION_ACTIVE_DIRECTIVES = {
+    "focus",
+    "predict",
+    "practice",
+    "completion",
+    "parsons",
+    "check",
+    "recall",
+    "tasks",
+}
+ATTENTION_LIMITS = {
+    "max_paragraph_words": 70,
+    "max_passive_words_between_actions": 450,
+    "minimum_active_prompts_per_main_chapter": 7,
+    "minimum_reentry_headings_per_main_chapter": 12,
+    "long_code_soft_limit_lines": 60,
+    "minimum_navigation_comments_in_long_code": 3,
+}
+NAVIGATION_COMMENT = re.compile(r"^\s*#\s*\d+[.)]\s+\S", re.MULTILINE)
 
 
 @dataclass
@@ -42,6 +63,7 @@ class CheckReport:
     expected_error_blocks: int = 0
     python_blocks: int = 0
     pages: int = 0
+    attention_chapters: list[dict] = field(default_factory=list)
 
     @property
     def ok(self) -> bool:
@@ -59,6 +81,7 @@ class CheckReport:
                 "python_code_blocks": self.python_blocks,
                 "pdf_pages": self.pages,
             },
+            "attention": attention_payload(self.attention_chapters),
         }
 
 
@@ -90,8 +113,16 @@ def check_sources(*, strict: bool) -> tuple[list[Chapter], CheckReport]:
         check_chapter(chapter, report, strict=strict)
 
     check_forbidden_references(report)
+    check_classic_sources(report, strict=strict)
     if not report.errors:
         report.passed.append("Структура й кодові блоки джерел перевірені")
+        report.passed.append("Навчальний ритм першого офіційного видання перевірено")
+        summary = attention_payload(report.attention_chapters)["book"]
+        report.passed.append(
+            "Увага пройшла окремий аудит: "
+            f"пасивний відрізок до {summary['longest_passive_stretch_words']} слів, "
+            f"абзац до {summary['longest_paragraph_words']} слів"
+        )
         report.passed.append(
             f"Навмисні помилки відтворені: {report.expected_error_blocks} блоків"
         )
@@ -109,6 +140,7 @@ def check_chapter(chapter: Chapter, report: CheckReport, *, strict: bool) -> Non
     ]
     quizzes = [block for block in iter_blocks(chapter.blocks) if block.kind == "quiz"]
     code_blocks = [block for block in iter_blocks(chapter.blocks) if block.kind == "code"]
+    document_blocks = list(iter_blocks(chapter.blocks))
     check_error_evidence(chapter.blocks, chapter, report)
 
     if chapter.order > 0:
@@ -138,6 +170,25 @@ def check_chapter(chapter: Chapter, report: CheckReport, *, strict: bool) -> Non
                 )
         if strict and not quizzes:
             report.errors.append(f"{chapter.source_path.name}: немає інтерактивної самоперевірки")
+        directive_names = [block.data["directive"] for block in directives]
+        for required in ("focus", "predict", "recall"):
+            if directive_names.count(required) != 1:
+                report.errors.append(
+                    f"{chapter.source_path.name}: потрібен рівно один блок {required}"
+                )
+        traces = [block for block in document_blocks if block.kind == "trace"]
+        if len(traces) != 1:
+            report.errors.append(
+                f"{chapter.source_path.name}: потрібна рівно одна інтегрована trace-схема"
+            )
+        bridge_count = sum(name in {"completion", "parsons"} for name in directive_names)
+        if bridge_count != 1:
+            report.errors.append(
+                f"{chapter.source_path.name}: потрібен рівно один проміжний блок completion або parsons"
+            )
+        check_learning_block_order(chapter, document_blocks, report)
+
+    check_attention(chapter, document_blocks, report, strict=strict)
 
     runnable_in_chapter = 0
     for number, block in enumerate(code_blocks, 1):
@@ -203,6 +254,221 @@ def run_python_block(chapter: Chapter, number: int, block: Block, report: CheckR
     if expected is not None and normalize_output(expected) not in normalize_output(result.stdout):
         report.errors.append(
             f"{chapter.source_path.name}, код {number}: очікуване виведення {expected!r}, отримано {result.stdout!r}"
+        )
+
+
+def check_learning_block_order(
+    chapter: Chapter, blocks: list[Block], report: CheckReport
+) -> None:
+    def first_index(predicate) -> int | None:
+        return next((index for index, block in enumerate(blocks) if predicate(block)), None)
+
+    predict = first_index(
+        lambda block: block.kind == "directive" and block.data["directive"] == "predict"
+    )
+    first_run = first_index(
+        lambda block: block.kind == "code" and "run" in block.data["flags"]
+    )
+    trace = first_index(lambda block: block.kind == "trace")
+    bridge = first_index(
+        lambda block: block.kind == "directive"
+        and block.data["directive"] in {"completion", "parsons"}
+    )
+    mistake_heading = first_index(
+        lambda block: block.kind == "heading"
+        and block.data["text"].strip().lower() == "типова помилка"
+    )
+    recall = first_index(
+        lambda block: block.kind == "directive" and block.data["directive"] == "recall"
+    )
+    tasks = first_index(
+        lambda block: block.kind == "directive" and block.data["directive"] == "tasks"
+    )
+    history = first_index(
+        lambda block: block.kind == "directive" and block.data["directive"] == "history"
+    )
+
+    expected_pairs = [
+        (predict, first_run, "predict має стояти перед першим запуском"),
+        (first_run, trace, "trace має стояти після першого запуску"),
+        (bridge, mistake_heading, "completion/parsons має стояти до типової помилки"),
+        (recall, tasks, "recall має стояти до самостійної роботи"),
+        (tasks, history, "історична пауза має стояти після самостійної дії"),
+    ]
+    for earlier, later, message in expected_pairs:
+        if earlier is None or later is None or earlier >= later:
+            report.errors.append(f"{chapter.source_path.name}: {message}")
+
+
+def attention_payload(chapters: list[dict]) -> dict:
+    main_chapters = [item for item in chapters if item["chapter"] > 0]
+    all_passed = bool(chapters) and all(item["passed"] for item in chapters)
+    return {
+        "status": "pass" if all_passed else "fail",
+        "thresholds": ATTENTION_LIMITS,
+        "book": {
+            "chapters_audited": len(chapters),
+            "longest_paragraph_words": max(
+                (item["max_paragraph_words"] for item in chapters), default=0
+            ),
+            "longest_passive_stretch_words": max(
+                (item["max_passive_words_between_actions"] for item in chapters),
+                default=0,
+            ),
+            "minimum_active_prompts_in_main_chapter": min(
+                (item["active_prompts"] for item in main_chapters), default=0
+            ),
+            "minimum_reentry_headings_in_main_chapter": min(
+                (item["reentry_headings"] for item in main_chapters), default=0
+            ),
+            "longest_code_block_lines": max(
+                (item["max_code_lines"] for item in chapters), default=0
+            ),
+            "long_code_blocks": sum(
+                item["long_code_blocks"] for item in chapters
+            ),
+            "long_code_blocks_with_navigation": sum(
+                item["long_code_blocks_with_navigation"] for item in chapters
+            ),
+        },
+        "chapters": chapters,
+    }
+
+
+def check_attention(
+    chapter: Chapter,
+    blocks: list[Block],
+    report: CheckReport,
+    *,
+    strict: bool,
+) -> None:
+    paragraph_words = [
+        word_count(block.data["text"])
+        for block in blocks
+        if block.kind == "paragraph"
+    ]
+    code_blocks = [block for block in blocks if block.kind == "code"]
+    code_lines = [len(block.data["code"].splitlines()) for block in code_blocks]
+    long_code_blocks = [
+        block
+        for block, line_count in zip(code_blocks, code_lines)
+        if line_count > ATTENTION_LIMITS["long_code_soft_limit_lines"]
+    ]
+    long_code_with_navigation = sum(
+        len(NAVIGATION_COMMENT.findall(block.data["code"]))
+        >= ATTENTION_LIMITS["minimum_navigation_comments_in_long_code"]
+        for block in long_code_blocks
+    )
+    active_prompts = sum(is_attention_action(block) for block in blocks)
+    reentry_headings = sum(
+        block.kind == "heading" and block.data["level"] >= 2 for block in blocks
+    )
+    max_passive_words = longest_passive_stretch(blocks)
+
+    failures: list[str] = []
+    max_paragraph_words = max(paragraph_words, default=0)
+    if max_paragraph_words > ATTENTION_LIMITS["max_paragraph_words"]:
+        failures.append(
+            f"найдовший абзац має {max_paragraph_words} слів"
+        )
+    if max_passive_words > ATTENTION_LIMITS["max_passive_words_between_actions"]:
+        failures.append(
+            f"пасивний відрізок має {max_passive_words} слів без дії учня"
+        )
+    if chapter.order > 0:
+        if active_prompts < ATTENTION_LIMITS["minimum_active_prompts_per_main_chapter"]:
+            failures.append(
+                f"лише {active_prompts} активних відповідей або дій"
+            )
+        if reentry_headings < ATTENTION_LIMITS["minimum_reentry_headings_per_main_chapter"]:
+            failures.append(
+                f"лише {reentry_headings} точок повернення у підзаголовках"
+            )
+    if long_code_with_navigation != len(long_code_blocks):
+        failures.append(
+            "довгий код не має щонайменше трьох пронумерованих навігаційних коментарів"
+        )
+
+    metrics = {
+        "chapter": chapter.order,
+        "source": chapter.source_path.name,
+        "max_paragraph_words": max_paragraph_words,
+        "max_passive_words_between_actions": max_passive_words,
+        "active_prompts": active_prompts,
+        "reentry_headings": reentry_headings,
+        "max_code_lines": max(code_lines, default=0),
+        "long_code_blocks": len(long_code_blocks),
+        "long_code_blocks_with_navigation": long_code_with_navigation,
+        "passed": not failures,
+    }
+    report.attention_chapters.append(metrics)
+
+    for failure in failures:
+        message = f"{chapter.source_path.name}: увага — {failure}"
+        if strict:
+            report.errors.append(message)
+        else:
+            report.warnings.append(message)
+
+
+def longest_passive_stretch(blocks: list[Block]) -> int:
+    current = 0
+    longest = 0
+    for block in blocks:
+        if is_attention_action(block):
+            longest = max(longest, current)
+            current = 0
+            continue
+        if block.kind == "paragraph":
+            current += word_count(block.data["text"])
+        elif block.kind == "list":
+            current += sum(word_count(item) for item in block.data["items"])
+    return max(longest, current)
+
+
+def is_attention_action(block: Block) -> bool:
+    if block.kind in {"quiz", "trace"}:
+        return True
+    if block.kind == "directive":
+        return block.data["directive"] in ATTENTION_ACTIVE_DIRECTIVES
+    return block.kind == "code" and bool(
+        block.data["flags"] & {"run", "error"}
+    )
+
+
+def word_count(text: str) -> int:
+    return len(re.findall(r"[\w’'-]+", text, flags=re.UNICODE))
+
+
+def check_classic_sources(report: CheckReport, *, strict: bool) -> None:
+    metadata_path = CLASSIC_DIR / "edition.json"
+    content_dir = CLASSIC_DIR / "content"
+    site_dir = CLASSIC_DIR / "site"
+    required = [
+        metadata_path,
+        CLASSIC_DIR / "book.json",
+        site_dir / "index.html",
+        site_dir / "downloads" / "python-cherez-obiekty.pdf",
+    ]
+    missing = [str(path.relative_to(ROOT)) for path in required if not path.exists()]
+    if missing:
+        report.errors.append(f"Класичне видання неповне: {', '.join(missing)}")
+        return
+    metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    sources = sorted(content_dir.glob("*.md"))
+    if len(sources) != metadata["chapter_count"]:
+        report.errors.append(
+            f"Класичне видання: очікувалося {metadata['chapter_count']} джерел, є {len(sources)}"
+        )
+    classic_reader = PdfReader(str(site_dir / "downloads" / "python-cherez-obiekty.pdf"))
+    if strict and len(classic_reader.pages) != metadata["pdf_page_count"]:
+        report.errors.append(
+            f"Класичне видання: очікувалося {metadata['pdf_page_count']} сторінок PDF, "
+            f"є {len(classic_reader.pages)}"
+        )
+    if not report.errors:
+        report.passed.append(
+            f"Класичне видання збережене: {len(sources)} розділів, {len(classic_reader.pages)} сторінки"
         )
 
 
@@ -311,6 +577,7 @@ def check_built_outputs(report: CheckReport, *, strict: bool) -> None:
         return
     if strict and not (DOCS_DIR / ".nojekyll").exists():
         report.errors.append("У docs немає .nojekyll для GitHub Pages")
+    check_classic_built_copy(report)
     html_files = sorted(DOCS_DIR.glob("*.html"))
     if not html_files:
         report.errors.append("У docs немає HTML-сторінок")
@@ -376,6 +643,30 @@ def check_built_outputs(report: CheckReport, *, strict: bool) -> None:
             report.errors.append(f"У PDF є заборонене посилання на джерело ({forbidden})")
     report.passed.append(f"PDF читається: {report.pages} сторінок, копії ідентичні")
     check_pytest_suites(report, strict=strict)
+
+
+def check_classic_built_copy(report: CheckReport) -> None:
+    frozen_site = CLASSIC_DIR / "site"
+    published_site = DOCS_DIR / "classic"
+    pairs = [
+        (frozen_site / "index.html", published_site / "index.html"),
+        (
+            frozen_site / "downloads" / "python-cherez-obiekty.pdf",
+            published_site / "downloads" / "python-cherez-obiekty.pdf",
+        ),
+    ]
+    for source, target in pairs:
+        if not source.exists() or not target.exists():
+            report.errors.append(
+                f"Класична копія для сайту відсутня: {target.relative_to(ROOT)}"
+            )
+            return
+        if sha256(source) != sha256(target):
+            report.errors.append(
+                f"Класична копія не збігається з архівом: {target.relative_to(ROOT)}"
+            )
+            return
+    report.passed.append("Класичне видання доступне у docs/classic і збігається з архівом")
 
 
 def check_pytest_suites(report: CheckReport, *, strict: bool) -> None:

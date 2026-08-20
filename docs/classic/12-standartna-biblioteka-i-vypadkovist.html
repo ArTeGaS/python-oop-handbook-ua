@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="uk" data-active-chapter="12-standartna-biblioteka-i-vypadkovist">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Стандартна бібліотека й керована випадковість Стандартна бібліотека й керована випадковість Python постачається не лише із синтаксисом, а й із великою **стандартною бібліотекою**. Вона вже м">
+  <meta name="theme-color" content="#f4f0e8">
+  <title>Стандартна бібліотека й керована випадковість — Python через об’єкти</title>
+  <link rel="stylesheet" href="assets/styles.css?v=3e80905f1037">
+  <script src="assets/app.js?v=3e80905f1037" defer></script>
+</head>
+<body class="chapter-page">
+  <a class="skip-link" href="#main-content">До основного тексту</a>
+  <header class="mobile-header">
+    <button class="icon-button menu-button" type="button" aria-label="Відкрити зміст" aria-expanded="false">Зміст</button>
+    <a class="mobile-brand" href="index.html">Python через об’єкти</a>
+    <button class="icon-button theme-toggle" type="button" aria-label="Змінити тему">Тема</button>
+  </header>
+  <div class="app-shell">
+
+<aside class="sidebar" aria-label="Зміст">
+  <div class="sidebar-top">
+    <a class="brand" data-slug="home" href="index.html">
+      <span class="brand-mark">Py</span>
+      <span><strong>Python через об’єкти</strong><small>Практична довідка для початківців</small></span>
+    </a>
+    <button class="theme-toggle desktop-theme" type="button">Змінити тему</button>
+  </div>
+  <label class="search-box">
+    <span class="visually-hidden">Пошук</span>
+    <input id="chapter-search" type="search" placeholder="Знайти тему…" autocomplete="off">
+    <kbd>Ctrl K</kbd>
+  </label>
+  <div class="progress-card">
+    <div><span>Прогрес</span><strong id="progress-label">0 з 18</strong></div>
+    <div class="progress-track"><span id="progress-bar"></span></div>
+  </div>
+  <nav class="chapter-nav"><a class="chapter-link" data-slug="00-yak-korystuvatysia" href="00-yak-korystuvatysia.html"><span class="chapter-number">Початок</span><span>Як користуватися цією довідкою</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="01-py-fail-i-pershyi-obiekt" href="01-py-fail-i-pershyi-obiekt.html"><span class="chapter-number">01</span><span>`.py`-файл і перший об’єкт</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="02-stan-obiekta-i-prosti-typy" href="02-stan-obiekta-i-prosti-typy.html"><span class="chapter-number">02</span><span>Стан об’єкта: рядки, числа й логічні значення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="03-metody-parametry-i-povernennia" href="03-metody-parametry-i-povernennia.html"><span class="chapter-number">03</span><span>Методи: параметри, аргументи й `return`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="04-rishennia-i-lohichni-vyrazy" href="04-rishennia-i-lohichni-vyrazy.html"><span class="chapter-number">04</span><span>Рішення: порівняння, `if`, `elif`, `else`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="05-spysky-i-kortezhi" href="05-spysky-i-kortezhi.html"><span class="chapter-number">05</span><span>Списки й кортежі: впорядковані колекції</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="06-cykly-range-i-zrizy" href="06-cykly-range-i-zrizy.html"><span class="chapter-number">06</span><span>Повторення: `for`, `range()` і зрізи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="07-vvedennia-i-cykl-while" href="07-vvedennia-i-cykl-while.html"><span class="chapter-number">07</span><span>Діалог із програмою: `input()` і цикл `while`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="08-slovnyky-vkladennia-i-mnozhyny" href="08-slovnyky-vkladennia-i-mnozhyny.html"><span class="chapter-number">08</span><span>Словники, вкладені дані й множини</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="09-funktsii-i-moduli" href="09-funktsii-i-moduli.html"><span class="chapter-number">09</span><span>Функції й модулі: інструменти поза об’єктами</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="10-struktura-opp-proiektu" href="10-struktura-opp-proiektu.html"><span class="chapter-number">10</span><span>Структура OOP-проєкту у VS Code</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="11-spadkuvannia-kompozytsiia-i-vlastyvosti" href="11-spadkuvannia-kompozytsiia-i-vlastyvosti.html"><span class="chapter-number">11</span><span>Пов’язані об’єкти: успадкування, композиція й властивості</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="12-standartna-biblioteka-i-vypadkovist" href="12-standartna-biblioteka-i-vypadkovist.html"><span class="chapter-number">12</span><span>Стандартна бібліотека й керована випадковість</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="13-faily-koduvannia-i-shliakhy" href="13-faily-koduvannia-i-shliakhy.html"><span class="chapter-number">13</span><span>Текстові файли, UTF-8 і шляхи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="14-vyniatky-i-chytabelni-zboi" href="14-vyniatky-i-chytabelni-zboi.html"><span class="chapter-number">14</span><span>Винятки: передбачувані збої й корисні повідомлення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="15-json-zberezhennia-i-refaktorynh" href="15-json-zberezhennia-i-refaktorynh.html"><span class="chapter-number">15</span><span>JSON: збереження стану й рефакторинг</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="16-testy-z-pytest" href="16-testy-z-pytest.html"><span class="chapter-number">16</span><span>Автоматичні тести з pytest</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="17-styl-nalahodzhennia-i-karta-syntaksysu" href="17-styl-nalahodzhennia-i-karta-syntaksysu.html"><span class="chapter-number">17</span><span>Підтримуваний код: стиль, налагодження й карта синтаксису</span><span class="chapter-check" aria-hidden="true">✓</span></a></nav>
+  <div class="sidebar-actions">
+    <a class="button secondary full" href="downloads/python-cherez-obiekty.pdf">Завантажити PDF</a>
+  </div>
+</aside>
+
+    <main id="main-content" class="main-content" tabindex="-1">
+
+<article class="chapter-article" data-chapter="12-standartna-biblioteka-i-vypadkovist">
+  <header class="chapter-header">
+    <p class="eyebrow">Розділ 12</p>
+    <p class="chapter-reading-note">Читай · запускай · змінюй · перевіряй</p>
+  </header>
+  <div class="chapter-body"><h1 id="standartna-biblioteka-y-kerovana-vypadkovist">Стандартна бібліотека й керована випадковість<a class="heading-link" href="#standartna-biblioteka-y-kerovana-vypadkovist" aria-label="Посилання на розділ">#</a></h1>
+<p>Python постачається не лише із синтаксисом, а й із великою <strong>стандартною бібліотекою</strong>. Вона вже містить генератори випадкових чисел, статистику, дати, лічильники, переліки станів і багато інших перевірених інструментів.</p>
+<h2 id="shcho-zrobymo">Що зробимо<a class="heading-link" href="#shcho-zrobymo" aria-label="Посилання на розділ">#</a></h2>
+<p>Створимо генератор тренувальних місій. Він використовуватиме окремий об’єкт випадковості, а перевірка зможе передати фіксоване зерно й отримати повторюваний результат.</p>
+<section class="callout callout-goal"><div class="callout-label">Результат</div><p>Випадковість залишиться залежністю, якою керує об’єкт, а не магією, розкиданою по методах. Ти навчишся відрізняти стандартний модуль, сторонній пакет і власний модуль.</p></section>
+<h2 id="try-dzherela-importiv">Три джерела імпортів<a class="heading-link" href="#try-dzherela-importiv" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">import random
+from statistics import mean
+
+from mission import Mission</code></pre></div>
+<p>У типовому файлі імпорти групують так:</p>
+<ol><li>стандартна бібліотека Python;</li><li>сторонні пакети, встановлені в середовище;</li><li>власні локальні модулі.</li></ol>
+<p>Між групами залишають порожній рядок. Це допомагає одразу побачити, що потребує <code>pip</code>, а що приходить разом із Python.</p>
+<p>Стандартні <code>random</code>, <code>statistics</code>, <code>collections</code>, <code>datetime</code>, <code>enum</code>, <code>json</code>, <code>pathlib</code>, <code>math</code> окремо не встановлюють.</p>
+<h2 id="maysternia">Майстерня<a class="heading-link" href="#maysternia" aria-label="Посилання на розділ">#</a></h2>
+<p>Створи <code>mission_generator.py</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>mission_generator.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">import random
+
+
+class Mission:
+    def __init__(self, start, destination, difficulty):
+        self.start = start
+        self.destination = destination
+        self.difficulty = difficulty
+
+    def description(self):
+        return (
+            f&quot;Маршрут: {self.start} -&gt; {self.destination}, &quot;
+            f&quot;складність {self.difficulty}.&quot;
+        )
+
+
+class MissionGenerator:
+    def __init__(self, places, random_source=None):
+        self.places = places.copy()
+        self.random_source = random_source or random.Random()
+
+    def create(self):
+        start, destination = self.random_source.sample(self.places, k=2)
+        difficulty = self.random_source.randint(1, 5)
+        return Mission(start, destination, difficulty)
+
+
+places = [&quot;Маяк&quot;, &quot;Ліс&quot;, &quot;Порт&quot;, &quot;Вежа&quot;]
+
+first_generator = MissionGenerator(places, random.Random(7))
+second_generator = MissionGenerator(places, random.Random(7))
+
+first_description = first_generator.create().description()
+second_description = second_generator.create().description()
+
+print(first_description)
+print(second_description)
+print(f&quot;Однаковий результат: {first_description == second_description}&quot;)</code></pre></div>
+<p>Два різні об’єкти <code>Random</code> отримали однакове зерно <code>7</code>, тому створили однакову послідовність рішень. У звичайному запуску <code>random_source</code> не передається й використовується нове непередбачуване для користувача джерело.</p>
+<h3 id="zalezhnist-peredano-v-konstruktor">Залежність передано в конструктор<a class="heading-link" href="#zalezhnist-peredano-v-konstruktor" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def __init__(self, places, random_source=None):
+    self.places = places.copy()
+    self.random_source = random_source or random.Random()</code></pre></div>
+<p>Генератор не звертається до глобального <code>random.choice()</code> у випадкових місцях. Він зберігає один сумісний об’єкт. Це <strong>впровадження залежності</strong> (<em>dependency injection</em>): потрібний інструмент можна передати ззовні.</p>
+<p>Назва звучить складно, але дія проста: не створюй незамінний інструмент глибоко всередині кожного методу, якщо перевірці або іншому сценарію може знадобитися контрольована версія.</p>
+<h2 id="osnovni-instrumenty-random">Основні інструменти <code>random</code><a class="heading-link" href="#osnovni-instrumenty-random" aria-label="Посилання на розділ">#</a></h2>
+<h3 id="vypadkovyy-element">Випадковий елемент<a class="heading-link" href="#vypadkovyy-element" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>random_choice.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">import random
+
+rng = random.Random(3)
+directions = [&quot;північ&quot;, &quot;південь&quot;, &quot;схід&quot;, &quot;захід&quot;]
+direction = rng.choice(directions)
+
+print(f&quot;Обрано: {direction}&quot;)
+print(f&quot;Обрано відомий напрямок: {direction in directions}&quot;)</code></pre></div>
+<p><code>choice(sequence)</code> потребує непорожню послідовність і повертає один елемент.</p>
+<h3 id="tsile-chyslo-z-oboma-mezhamy">Ціле число з обома межами<a class="heading-link" href="#tsile-chyslo-z-oboma-mezhamy" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>random_int.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">import random
+
+rng = random.Random(5)
+roll = rng.randint(1, 6)
+
+print(f&quot;Випало: {roll}&quot;)
+print(f&quot;Число в межах кубика: {1 &lt;= roll &lt;= 6}&quot;)</code></pre></div>
+<p><code>randint(1, 6)</code> може повернути і 1, і 6. Це відрізняється від <code>range()</code>, де права межа не включається.</p>
+<p>Еквівалент через <code>randrange()</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">rng.randrange(1, 7)</code></pre></div>
+<p><code>randrange()</code> працює за правилами <code>range</code> й не включає <code>stop</code>.</p>
+<h3 id="kilka-riznykh-elementiv">Кілька різних елементів<a class="heading-link" href="#kilka-riznykh-elementiv" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>random_sample.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">import random
+
+rng = random.Random(2)
+picked = rng.sample([&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;], k=2)
+
+print(picked)
+print(f&quot;Кількість: {len(picked)}&quot;)
+print(f&quot;Усі різні: {len(set(picked)) == len(picked)}&quot;)</code></pre></div>
+<p><code>sample()</code> повертає новий список без повторного вибору того самого елемента. <code>k</code> не може бути більшим за кількість доступних значень.</p>
+<p>Для вибору з можливими повторами є <code>choices(..., k=...)</code>.</p>
+<h3 id="peremishuvannia-na-mistsi">Перемішування на місці<a class="heading-link" href="#peremishuvannia-na-mistsi" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>random_shuffle.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">import random
+
+cards = [1, 2, 3, 4]
+original = cards.copy()
+rng = random.Random(4)
+rng.shuffle(cards)
+
+print(cards)
+print(f&quot;Ті самі карти: {sorted(cards) == sorted(original)}&quot;)</code></pre></div>
+<p><code>shuffle()</code> змінює список і повертає <code>None</code>, як <code>list.sort()</code>. Якщо початковий порядок треба зберегти, перемішуй копію.</p>
+<h3 id="drobove-chyslo">Дробове число<a class="heading-link" href="#drobove-chyslo" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">rng.random()
+rng.uniform(1.5, 3.5)</code></pre></div>
+<p><code>random()</code> дає <code>float</code> від 0 включно до 1 не включно. <code>uniform(a, b)</code> — дробове число між межами; точна поведінка крайньої межі залежить від округлення, тому не будуй на ній логіку точного включення.</p>
+<h2 id="zerno-ne-robyt-rezultat-vypadkovishym">Зерно не робить результат випадковішим<a class="heading-link" href="#zerno-ne-robyt-rezultat-vypadkovishym" aria-label="Посилання на розділ">#</a></h2>
+<p>Псевдовипадковий генератор створює довгу послідовність за алгоритмом. Однаковий початковий стан — <strong>seed</strong>, або зерно — дає однакову послідовність.</p>
+<p>Це корисно для:</p>
+<ul><li>повторюваних тестів;</li><li>відтворення помилки;</li><li>однакової генерації навчального прикладу;</li><li>збереження процедурного світу за кодом зерна.</li></ul>
+<p>Не став постійне зерно у звичайній програмі, якщо користувач очікує новий результат кожного запуску. Передавай його лише в перевірці або як усвідомлену функцію продукту.</p>
+<section class="callout callout-warning"><div class="callout-label">Не для паролів і токенів</div><p>Модуль <code>random</code> не призначений для секретів. Його послідовність відтворювана. Для паролів, токенів і кодів безпеки використовують стандартний модуль <code>secrets</code>, наприклад <code>secrets.choice()</code> або <code>secrets.token_urlsafe()</code>.</p></section>
+<h2 id="kerovana-perevirka-bez-vhaduvannia">Керована перевірка без вгадування<a class="heading-link" href="#kerovana-perevirka-bez-vhaduvannia" aria-label="Посилання на розділ">#</a></h2>
+<p>Можна передати не справжній генератор, а маленький передбачуваний об’єкт із потрібними методами:</p>
+<div class="code-block"><div class="code-toolbar"><span>fake_random.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class FixedRandom:
+    def sample(self, values, k):
+        return [&quot;Ліс&quot;, &quot;Порт&quot;]
+
+    def randint(self, start, stop):
+        return 4
+
+
+class Mission:
+    def __init__(self, start, destination, difficulty):
+        self.start = start
+        self.destination = destination
+        self.difficulty = difficulty
+
+    def description(self):
+        return (
+            f&quot;Маршрут: {self.start} -&gt; {self.destination}, &quot;
+            f&quot;складність {self.difficulty}.&quot;
+        )
+
+
+class MissionGenerator:
+    def __init__(self, places, random_source):
+        self.places = places
+        self.random_source = random_source
+
+    def create(self):
+        start, destination = self.random_source.sample(self.places, k=2)
+        difficulty = self.random_source.randint(1, 5)
+        return Mission(start, destination, difficulty)
+
+
+generator = MissionGenerator([&quot;Ліс&quot;, &quot;Порт&quot;], FixedRandom())
+print(generator.create().description())</code></pre></div>
+<p><code>MissionGenerator</code> не питає, якого класу <code>random_source</code>. Йому потрібні сумісні методи <code>sample()</code> і <code>randint()</code>. Це практичний поліморфізм і основа майбутніх тестових підмін.</p>
+<h2 id="statistics-hotovi-obchyslennia"><code>statistics</code>: готові обчислення<a class="heading-link" href="#statistics-hotovi-obchyslennia" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>statistics_example.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">from statistics import mean, median, mode
+
+scores = [2, 4, 4, 6]
+
+print(f&quot;Середнє: {mean(scores):g}&quot;)
+print(f&quot;Медіана: {median(scores):g}&quot;)
+print(f&quot;Найчастіше: {mode(scores):g}&quot;)</code></pre></div>
+<ul><li><code>mean()</code> — арифметичне середнє;</li><li><code>median()</code> — середнє позиційне значення після впорядкування;</li><li><code>mode()</code> — найчастіше значення.</li></ul>
+<p>Порожні дані або неоднозначні припущення треба обробляти відповідно до задачі. Читай документацію функції, а не вгадуй поведінку за назвою.</p>
+<h2 id="collections-counter-slovnyk-chastot"><code>collections.Counter</code>: словник частот<a class="heading-link" href="#collections-counter-slovnyk-chastot" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>counter_example.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">from collections import Counter
+
+topics = [&quot;python&quot;, &quot;oop&quot;, &quot;python&quot;, &quot;loops&quot;, &quot;python&quot;]
+counts = Counter(topics)
+
+print(f&quot;python: {counts[&#x27;python&#x27;]}&quot;)
+print(f&quot;loops: {counts[&#x27;loops&#x27;]}&quot;)</code></pre></div>
+<p><code>Counter</code> поводиться як спеціалізований словник лічильників. Для відсутнього ключа повертає 0. Він також має <code>most_common()</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">top_two = counts.most_common(2)</code></pre></div>
+<p>Використання готового типу зменшує власний код, але варто розуміти базову словникову модель, яку він розширює.</p>
+<h2 id="enum-nazvanyy-nabir-staniv"><code>Enum</code>: названий набір станів<a class="heading-link" href="#enum-nazvanyy-nabir-staniv" aria-label="Посилання на розділ">#</a></h2>
+<p>Рядки <code>&quot;new&quot;</code>, <code>&quot;active&quot;</code>, <code>&quot;done&quot;</code> легко написати з помилкою. Перелік <code>Enum</code> дає стани з автодоповненням:</p>
+<div class="code-block"><div class="code-toolbar"><span>enum_status.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">from enum import Enum, auto
+
+
+class TaskStatus(Enum):
+    NEW = auto()
+    ACTIVE = auto()
+    DONE = auto()
+
+
+class Task:
+    def __init__(self, title):
+        self.title = title
+        self.status = TaskStatus.NEW
+
+    def start(self):
+        self.status = TaskStatus.ACTIVE
+
+    def status_text(self):
+        if self.status is TaskStatus.ACTIVE:
+            return &quot;Завдання виконується.&quot;
+        if self.status is TaskStatus.DONE:
+            return &quot;Завдання завершено.&quot;
+        return &quot;Завдання нове.&quot;
+
+
+task = Task(&quot;Практика&quot;)
+task.start()
+print(task.status_text())</code></pre></div>
+<p>Члени переліку порівнюють через <code>is</code> або <code>==</code>. <code>auto()</code> створює внутрішні значення, бо конкретні числа тут не важливі.</p>
+<p>Не створюй <code>Enum</code> для двох станів, які природно виражає <code>bool</code>, наприклад <code>is_open</code>. Перелік корисний для трьох і більше взаємовиключних названих станів.</p>
+<h2 id="data-y-chas">Дата й час<a class="heading-link" href="#data-y-chas" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>date_example.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">from datetime import date
+
+lesson_day = date(2026, 8, 16)
+
+print(lesson_day.isoformat())
+print(lesson_day.year)</code></pre></div>
+<p>Об’єкти <code>date</code> краще за ручні рядки, коли треба порівнювати дні або додавати проміжки. Для поточної дати є <code>date.today()</code>, але приклади й тести з фіксованою датою повторюваніші.</p>
+<p>Часові пояси — окрема важлива тема. Для реальних моментів часу не змішуй наївні <code>datetime</code> з даними різних поясів; використовуй timezone-aware об’єкти й чітко фіксуй зону.</p>
+<h2 id="iak-chytaty-dokumentatsiiu-modulia">Як читати документацію модуля<a class="heading-link" href="#iak-chytaty-dokumentatsiiu-modulia" aria-label="Посилання на розділ">#</a></h2>
+<p>Не треба запам’ятовувати всю бібліотеку. Для нового інструмента перевір:</p>
+<ol><li>Чи модуль входить до стандартної бібліотеки потрібної версії Python?</li><li>Які типи приймає функція?</li><li>Що повертає і чи змінює аргумент?</li><li>Які винятки можливі?</li><li>Чи є приклад мінімального використання?</li><li>Чи підходить інструмент для безпеки й точності конкретної задачі?</li></ol>
+<p>У VS Code наведи курсор на ім’я або використай <strong>Go to Definition</strong>. Для повного контракту переходь до офіційної документації Python.</p>
+<h2 id="storonniy-paket-koly-vin-spravdi-potriben">Сторонній пакет: коли він справді потрібен<a class="heading-link" href="#storonniy-paket-koly-vin-spravdi-potriben" aria-label="Посилання на розділ">#</a></h2>
+<p>Сторонній пакет не входить до стандартного Python. Перед додаванням:</p>
+<ul><li>сформулюй проблему, яку він розв’язує;</li><li>перевір, що пакет підтримується й має документацію;</li><li>використовуй активну <code>.venv</code>;</li><li>зафіксуй залежність;</li><li>не підключай експериментальний інструмент до базового навчального матеріалу без причини.</li></ul>
+<p>Встановлення стабільного пакета в активне середовище:</p>
+<div class="code-block"><div class="code-toolbar"><span>powershell</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-powershell">python -m pip install package_name</code></pre></div>
+<p><code>package_name</code> — заповнювач, а не справжня назва для копіювання. Підстав точну назву вибраного стабільного пакета з його офіційної документації. Після встановлення імпорт може мати іншу назву; її також треба взяти з документації, а не вгадувати.</p>
+<h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
+<h3 id="hlobalne-random-seed-zminiuie-ves-modul">Глобальне <code>random.seed()</code> змінює весь модуль<a class="heading-link" href="#hlobalne-random-seed-zminiuie-ves-modul" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">import random
+
+random.seed(7)</code></pre></div>
+<p>Це змінює глобальний генератор модуля, яким можуть користуватися інші частини програми. Для ізольованого компонента краще <code>rng = random.Random(7)</code> і передавання <code>rng</code> об’єкту.</p>
+<h3 id="zmishano-choice-i-sample">Змішано <code>choice()</code> і <code>sample()</code><a class="heading-link" href="#zmishano-choice-i-sample" aria-label="Посилання на розділ">#</a></h3>
+<p>Два окремі виклики <code>choice()</code> можуть вибрати те саме місце двічі. Якщо старт і фініш мають різнитися, <code>sample(places, k=2)</code> прямо виражає правило.</p>
+<h3 id="vstanovleno-nazvu-standartnoho-modulia">Встановлено назву стандартного модуля<a class="heading-link" href="#vstanovleno-nazvu-standartnoho-modulia" aria-label="Посилання на розділ">#</a></h3>
+<p>Не запускай <code>pip install random</code> або <code>pip install statistics</code> для звичайного Python. Спершу спробуй імпорт у чистому файлі й перевір офіційну документацію.</p>
+<section class="callout callout-mistake"><div class="callout-label">Типова помилка</div><p>Не перевіряй випадковий код твердженням «результат має бути саме 4», якщо джерело не зафіксоване. Передай seeded <code>Random</code> або контрольовану підміну, тоді очікування стає частиною контракту.</p></section>
+<h2 id="shvydka-perevirka">Швидка перевірка<a class="heading-link" href="#shvydka-perevirka" aria-label="Посилання на розділ">#</a></h2>
+<p>Два генератори з різними зернами повинні мати незалежний стан:</p>
+<div class="code-block"><div class="code-toolbar"><span>independent_random.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">import random
+
+first = random.Random(1)
+second = random.Random(2)
+
+print([first.randint(1, 3) for _ in range(3)])
+print([second.randint(1, 3) for _ in range(3)])</code></pre></div>
+<section class="quiz" data-answer="1"><div class="callout-label">Перевір себе</div><p class="quiz-question">Навіщо передавати MissionGenerator окремий random_source?</p><div class="quiz-options"><button type="button" class="quiz-option" data-index="0">Щоб кожна місія завжди була однаковою для користувача.</button><button type="button" class="quiz-option" data-index="1">Щоб звичайний запуск мав випадковість, а перевірка могла підставити повторюване джерело.</button><button type="button" class="quiz-option" data-index="2">Щоб модуль random став стороннім пакетом.</button></div><p class="quiz-feedback" hidden>Явна залежність дозволяє керувати випадковістю без зміни логіки генератора.</p></section>
+<h2 id="samostiyna-robota">Самостійна робота<a class="heading-link" href="#samostiyna-robota" aria-label="Посилання на розділ">#</a></h2>
+<section class="callout callout-tasks"><div class="callout-label">Самостійна робота</div><ul><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="12-standartna-biblioteka-i-vypadkovist-task-1"><span>Створи генератор кидків кубика з переданим <code>random.Random</code>. Перевір однакові серії для однакових зерен і різні — для різних.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="12-standartna-biblioteka-i-vypadkovist-task-2"><span>Згенеруй випадкову команду з трьох різних імен через <code>sample()</code>. Оброби випадок, коли доступних імен менше трьох.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="12-standartna-biblioteka-i-vypadkovist-task-3"><span>Зроби об’єкт <code>Deck</code>, який зберігає карти, перемішує копію й роздає через <code>pop()</code>. Початковий список зовні не повинен змінюватися.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="12-standartna-biblioteka-i-vypadkovist-task-4"><span>Порахуй частоти слів через звичайний словник, а потім через <code>Counter</code>. Порівняй обсяг коду й структуру результату.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="12-standartna-biblioteka-i-vypadkovist-task-5"><span>Створи <code>Enum</code> для станів замовлення <code>NEW</code>, <code>PAID</code>, <code>SENT</code>, <code>DELIVERED</code>. Методи мають дозволяти лише логічні переходи.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="12-standartna-biblioteka-i-vypadkovist-task-6"><span>Передай генератору маленький <code>FixedRandom</code>, який повертає заготовлені значення. Перевір поведінку без справжньої випадковості.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="12-standartna-biblioteka-i-vypadkovist-task-7"><span>Знайди в офіційній документації один стандартний модуль для власної задачі. Запиши його вхід, результат, можливу помилку й мінімальний приклад.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="12-standartna-biblioteka-i-vypadkovist-task-8"><span>Поясни, чому <code>random</code> не підходить для коду відновлення пароля, і створи окремий безпечний приклад із <code>secrets.token_urlsafe()</code> без публікації отриманого токена.</span></label></li></ul></section>
+<section class="callout callout-history"><div class="callout-label">Коротка історична пауза</div><p>Псевдовипадкова послідовність детермінована, але для людини виглядає хаотично. Саме повторюваність робить її корисною в моделюванні й тестах. Криптографічна випадковість має іншу мету й суворіші вимоги, тому Python розділяє <code>random</code> і <code>secrets</code>.</p></section>
+<h2 id="pidsumok">Підсумок<a class="heading-link" href="#pidsumok" aria-label="Посилання на розділ">#</a></h2>
+<ul><li>Стандартна бібліотека постачається з Python; сторонні пакети встановлюють окремо у віртуальне середовище.</li><li><code>Random</code> можна створити як незалежний об’єкт і передати компоненту.</li><li>Однакове зерно дає повторювану послідовність, що корисно для перевірок і відтворення помилок.</li><li><code>choice()</code>, <code>randint()</code>, <code>sample()</code>, <code>shuffle()</code> і <code>random()</code> мають різні контракти.</li><li><code>random</code> не підходить для секретів; для них існує <code>secrets</code>.</li><li><code>statistics</code>, <code>Counter</code>, <code>Enum</code> і <code>datetime</code> розв’язують поширені задачі без власного повторного винаходу.</li><li>Перед додаванням залежності перевір призначення, підтримку, документацію й спосіб відтворення середовища.</li><li>Випадкову залежність краще передавати явно, щоб об’єкт лишався керованим і тестованим.</li></ul>
+<p>Офіційні орієнтири: <a href="https://docs.python.org/3/library/random.html" target="_blank" rel="noreferrer"><code>random</code></a>, <a href="https://docs.python.org/3/library/secrets.html" target="_blank" rel="noreferrer"><code>secrets</code></a>, <a href="https://docs.python.org/3/library/statistics.html" target="_blank" rel="noreferrer"><code>statistics</code></a>, <a href="https://docs.python.org/3/library/collections.html#collections.Counter" target="_blank" rel="noreferrer"><code>collections.Counter</code></a>, <a href="https://docs.python.org/3/library/enum.html" target="_blank" rel="noreferrer"><code>enum</code></a>.</p></div>
+  <section class="completion-card">
+    <div><p class="eyebrow">Твій прогрес</p><h2>Розділ опрацьовано?</h2><p>Позначай тільки після запуску прикладу й самостійної зміни.</p></div>
+    <button class="button primary complete-chapter" type="button" data-chapter-id="12-standartna-biblioteka-i-vypadkovist">Позначити завершеним</button>
+  </section>
+  <nav class="chapter-pager" aria-label="Сусідні розділи"><a class="chapter-pager-link previous" href="11-spadkuvannia-kompozytsiia-i-vlastyvosti.html"><span>← Назад</span><strong>Пов’язані об’єкти: успадкування, композиція й властивості</strong></a><a class="chapter-pager-link next" href="13-faily-koduvannia-i-shliakhy.html"><span>Далі →</span><strong>Текстові файли, UTF-8 і шляхи</strong></a></nav>
+</article>
+
+      <footer class="site-footer">
+        <p>Python через об’єкти · українська практична довідка · 2026</p>
+        <a href="https://github.com/ArTeGaS/python-oop-handbook-ua">Відкрити репозиторій</a>
+      </footer>
+    </main>
+  </div>
+  <div class="search-panel" hidden aria-live="polite">
+    <div class="search-panel-inner">
+      <button class="search-close" type="button" aria-label="Закрити пошук">×</button>
+      <p class="eyebrow">Пошук у довідці</p>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+</body>
+</html>

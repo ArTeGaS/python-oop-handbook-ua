@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="uk" data-active-chapter="06-cykly-range-i-zrizy">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Повторення: `for`, `range()` і зрізи Повторення: `for`, `range()` і зрізи Список лише зберігає багато значень. Щоб кожен учасник команди привітався або кожен датчик передав показник, програм">
+  <meta name="theme-color" content="#f4f0e8">
+  <title>Повторення: `for`, `range()` і зрізи — Python через об’єкти</title>
+  <link rel="stylesheet" href="assets/styles.css?v=3e80905f1037">
+  <script src="assets/app.js?v=3e80905f1037" defer></script>
+</head>
+<body class="chapter-page">
+  <a class="skip-link" href="#main-content">До основного тексту</a>
+  <header class="mobile-header">
+    <button class="icon-button menu-button" type="button" aria-label="Відкрити зміст" aria-expanded="false">Зміст</button>
+    <a class="mobile-brand" href="index.html">Python через об’єкти</a>
+    <button class="icon-button theme-toggle" type="button" aria-label="Змінити тему">Тема</button>
+  </header>
+  <div class="app-shell">
+
+<aside class="sidebar" aria-label="Зміст">
+  <div class="sidebar-top">
+    <a class="brand" data-slug="home" href="index.html">
+      <span class="brand-mark">Py</span>
+      <span><strong>Python через об’єкти</strong><small>Практична довідка для початківців</small></span>
+    </a>
+    <button class="theme-toggle desktop-theme" type="button">Змінити тему</button>
+  </div>
+  <label class="search-box">
+    <span class="visually-hidden">Пошук</span>
+    <input id="chapter-search" type="search" placeholder="Знайти тему…" autocomplete="off">
+    <kbd>Ctrl K</kbd>
+  </label>
+  <div class="progress-card">
+    <div><span>Прогрес</span><strong id="progress-label">0 з 18</strong></div>
+    <div class="progress-track"><span id="progress-bar"></span></div>
+  </div>
+  <nav class="chapter-nav"><a class="chapter-link" data-slug="00-yak-korystuvatysia" href="00-yak-korystuvatysia.html"><span class="chapter-number">Початок</span><span>Як користуватися цією довідкою</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="01-py-fail-i-pershyi-obiekt" href="01-py-fail-i-pershyi-obiekt.html"><span class="chapter-number">01</span><span>`.py`-файл і перший об’єкт</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="02-stan-obiekta-i-prosti-typy" href="02-stan-obiekta-i-prosti-typy.html"><span class="chapter-number">02</span><span>Стан об’єкта: рядки, числа й логічні значення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="03-metody-parametry-i-povernennia" href="03-metody-parametry-i-povernennia.html"><span class="chapter-number">03</span><span>Методи: параметри, аргументи й `return`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="04-rishennia-i-lohichni-vyrazy" href="04-rishennia-i-lohichni-vyrazy.html"><span class="chapter-number">04</span><span>Рішення: порівняння, `if`, `elif`, `else`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="05-spysky-i-kortezhi" href="05-spysky-i-kortezhi.html"><span class="chapter-number">05</span><span>Списки й кортежі: впорядковані колекції</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="06-cykly-range-i-zrizy" href="06-cykly-range-i-zrizy.html"><span class="chapter-number">06</span><span>Повторення: `for`, `range()` і зрізи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="07-vvedennia-i-cykl-while" href="07-vvedennia-i-cykl-while.html"><span class="chapter-number">07</span><span>Діалог із програмою: `input()` і цикл `while`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="08-slovnyky-vkladennia-i-mnozhyny" href="08-slovnyky-vkladennia-i-mnozhyny.html"><span class="chapter-number">08</span><span>Словники, вкладені дані й множини</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="09-funktsii-i-moduli" href="09-funktsii-i-moduli.html"><span class="chapter-number">09</span><span>Функції й модулі: інструменти поза об’єктами</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="10-struktura-opp-proiektu" href="10-struktura-opp-proiektu.html"><span class="chapter-number">10</span><span>Структура OOP-проєкту у VS Code</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="11-spadkuvannia-kompozytsiia-i-vlastyvosti" href="11-spadkuvannia-kompozytsiia-i-vlastyvosti.html"><span class="chapter-number">11</span><span>Пов’язані об’єкти: успадкування, композиція й властивості</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="12-standartna-biblioteka-i-vypadkovist" href="12-standartna-biblioteka-i-vypadkovist.html"><span class="chapter-number">12</span><span>Стандартна бібліотека й керована випадковість</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="13-faily-koduvannia-i-shliakhy" href="13-faily-koduvannia-i-shliakhy.html"><span class="chapter-number">13</span><span>Текстові файли, UTF-8 і шляхи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="14-vyniatky-i-chytabelni-zboi" href="14-vyniatky-i-chytabelni-zboi.html"><span class="chapter-number">14</span><span>Винятки: передбачувані збої й корисні повідомлення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="15-json-zberezhennia-i-refaktorynh" href="15-json-zberezhennia-i-refaktorynh.html"><span class="chapter-number">15</span><span>JSON: збереження стану й рефакторинг</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="16-testy-z-pytest" href="16-testy-z-pytest.html"><span class="chapter-number">16</span><span>Автоматичні тести з pytest</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="17-styl-nalahodzhennia-i-karta-syntaksysu" href="17-styl-nalahodzhennia-i-karta-syntaksysu.html"><span class="chapter-number">17</span><span>Підтримуваний код: стиль, налагодження й карта синтаксису</span><span class="chapter-check" aria-hidden="true">✓</span></a></nav>
+  <div class="sidebar-actions">
+    <a class="button secondary full" href="downloads/python-cherez-obiekty.pdf">Завантажити PDF</a>
+  </div>
+</aside>
+
+    <main id="main-content" class="main-content" tabindex="-1">
+
+<article class="chapter-article" data-chapter="06-cykly-range-i-zrizy">
+  <header class="chapter-header">
+    <p class="eyebrow">Розділ 06</p>
+    <p class="chapter-reading-note">Читай · запускай · змінюй · перевіряй</p>
+  </header>
+  <div class="chapter-body"><h1 id="povtorennia-for-range-i-zrizy">Повторення: <code>for</code>, <code>range()</code> і зрізи<a class="heading-link" href="#povtorennia-for-range-i-zrizy" aria-label="Посилання на розділ">#</a></h1>
+<p>Список лише зберігає багато значень. Щоб кожен учасник команди привітався або кожен датчик передав показник, програмі потрібне повторення. Цикл дозволяє описати дію один раз і застосувати її до всієї послідовності.</p>
+<h2 id="shcho-zrobymo">Що зробимо<a class="heading-link" href="#shcho-zrobymo" aria-label="Посилання на розділ">#</a></h2>
+<p>Створимо команду з кількох об’єктів <code>Member</code>. Клас <code>Team</code> зможе представити всіх учасників, нарахувати кожному досвід, обрати частину складу й порахувати спільний результат.</p>
+<section class="callout callout-goal"><div class="callout-label">Результат</div><p>Ти навчишся відрізняти саму колекцію від одного поточного елемента, бачити межі тіла циклу за відступом і створювати нові списки без ручного повторення рядків.</p></section>
+<h2 id="for-bere-elementy-po-odnomu"><code>for</code> бере елементи по одному<a class="heading-link" href="#for-bere-elementy-po-odnomu" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>first_loop.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">names = [&quot;Ада&quot;, &quot;Бор&quot;, &quot;Віра&quot;]
+
+for name in names:
+    print(f&quot;Привіт, {name}!&quot;)</code></pre></div>
+<p>Рядок <code>for name in names:</code> читається: «для кожного <code>name</code> зі списку <code>names</code>». На кожному повторенні ім’я <code>name</code> посилається на наступний елемент.</p>
+<p>Вкладений блок є <strong>тілом циклу</strong>:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">for name in names:
+    print(f&quot;Привіт, {name}!&quot;)
+    print(&quot;Реєстрацію завершено.&quot;)
+
+print(&quot;Усі учасники готові.&quot;)</code></pre></div>
+<p>Два рядки з відступом повторяться для кожного імені. Останній рядок без відступу виконається один раз після циклу.</p>
+<p>Однина й множина в іменах допомагають читати код: <code>for member in members</code>, <code>for item in items</code>, <code>for score in scores</code>.</p>
+<h2 id="maysternia">Майстерня<a class="heading-link" href="#maysternia" aria-label="Посилання на розділ">#</a></h2>
+<p>Створи <code>team.py</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>team.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Member:
+    def __init__(self, name, role):
+        self.name = name
+        self.role = role
+        self.experience = 0
+
+    def train(self, points):
+        self.experience += points
+
+    def description(self):
+        return f&quot;{self.name}, роль: {self.role}, досвід: {self.experience}.&quot;
+
+
+class Team:
+    def __init__(self, members):
+        self.members = members.copy()
+
+    def train_everyone(self, points):
+        for member in self.members:
+            member.train(points)
+
+    def show_everyone(self):
+        for member in self.members:
+            print(member.description())
+
+    def total_experience(self):
+        return sum(member.experience for member in self.members)
+
+
+members = [
+    Member(&quot;Ада&quot;, &quot;навігатор&quot;),
+    Member(&quot;Бор&quot;, &quot;механік&quot;),
+    Member(&quot;Віра&quot;, &quot;дослідниця&quot;),
+]
+
+team = Team(members)
+team.show_everyone()
+team.train_everyone(5)
+print(f&quot;Спільний досвід: {team.total_experience()}.&quot;)</code></pre></div>
+<p>Список <code>members</code> містить не рядки, а три повноцінні об’єкти. Під час циклу <code>member</code> по черзі посилається на кожен із них, тому можна викликати <code>member.train()</code> і <code>member.description()</code>.</p>
+<h3 id="stvorennia-obiektiv-u-spysku">Створення об’єктів у списку<a class="heading-link" href="#stvorennia-obiektiv-u-spysku" aria-label="Посилання на розділ">#</a></h3>
+<p>Формат із кожним елементом на окремому рядку зручно читати й змінювати:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">members = [
+    Member(&quot;Ада&quot;, &quot;навігатор&quot;),
+    Member(&quot;Бор&quot;, &quot;механік&quot;),
+    Member(&quot;Віра&quot;, &quot;дослідниця&quot;),
+]</code></pre></div>
+<p>Завершальна кома після останнього елемента дозволена. Вона спрощує додавання нового рядка й робить зміни в Git чистішими.</p>
+<h3 id="obchyslennia-cherez-heneratornyy-vyraz">Обчислення через генераторний вираз<a class="heading-link" href="#obchyslennia-cherez-heneratornyy-vyraz" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">sum(member.experience for member in self.members)</code></pre></div>
+<p>Внутрішня частина по черзі дістає <code>experience</code> кожного учасника, а <code>sum()</code> додає числа. Це <strong>генераторний вираз</strong>: значення надходять по одному й не потребують окремого проміжного списку.</p>
+<p>На першому знайомстві можна написати довше:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">total = 0
+for member in self.members:
+    total += member.experience
+return total</code></pre></div>
+<p>Обидві версії правильні. Обирай коротку лише тоді, коли вона лишається зрозумілою.</p>
+<section class="callout callout-practice"><div class="callout-label">Дай бонус за роль</div><p>Додай метод, який нараховує додатковий бал механікам:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def reward_mechanics(self):
+    for member in self.members:
+        if member.role == &quot;механік&quot;:
+            member.train(1)</code></pre></div>
+<p>Цикл і умова виконують різну роботу: цикл перебирає учасників, умова обирає потрібних.</p></section>
+<h2 id="range-stvoriuie-poslidovnist-chysel"><code>range()</code> створює послідовність чисел<a class="heading-link" href="#range-stvoriuie-poslidovnist-chysel" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>range_examples.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">for number in range(3):
+    print(number, end=&quot; &quot;)
+print()
+
+for number in range(2, 5):
+    print(number, end=&quot; &quot;)
+print()
+
+for number in range(2, 10, 3):
+    print(number, end=&quot; &quot;)</code></pre></div>
+<p><code>range(start, stop, step)</code> починає зі <code>start</code>, але <strong>не включає</strong> <code>stop</code>.</p>
+<ul><li><code>range(3)</code> дає <code>0, 1, 2</code>;</li><li><code>range(2, 5)</code> дає <code>2, 3, 4</code>;</li><li><code>range(2, 10, 3)</code> додає по 3: <code>2, 5, 8</code>;</li><li><code>range(5, 0, -1)</code> дає зворотний відлік <code>5, 4, 3, 2, 1</code>.</li></ul>
+<p>Сам об’єкт <code>range</code> не є списком, але його можна перетворити:</p>
+<div class="code-block"><div class="code-toolbar"><span>range_list.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">levels = list(range(1, 6))
+print(levels)</code></pre></div>
+<p>Не створюй великий список без потреби. Для простого циклу <code>for number in range(...)</code> достатньо самого <code>range</code>.</p>
+<h3 id="povtoryty-diiu-vidomu-kilkist-raziv">Повторити дію відому кількість разів<a class="heading-link" href="#povtoryty-diiu-vidomu-kilkist-raziv" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">for _ in range(3):
+    robot.move()</code></pre></div>
+<p>Ім’я <code>_</code> традиційно показує: поточне число циклу не потрібне, важлива лише кількість повторень.</p>
+<p>Якщо номер потрібен людині, часто додають 1:</p>
+<div class="code-block"><div class="code-toolbar"><span>round_numbers.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">for index in range(3):
+    print(f&quot;Раунд {index + 1}&quot;)</code></pre></div>
+<h2 id="enumerate-daie-i-nomer-i-element"><code>enumerate()</code> дає і номер, і елемент<a class="heading-link" href="#enumerate-daie-i-nomer-i-element" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>enumerate_team.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">names = [&quot;Ада&quot;, &quot;Бор&quot;, &quot;Віра&quot;]
+
+for number, name in enumerate(names, start=1):
+    print(f&quot;{number}. {name}&quot;)</code></pre></div>
+<p><code>enumerate()</code> повертає пари «номер, елемент». Розпакування одразу дає два зрозумілі імені. <code>start=1</code> змінює лише показуваний номер, не індекси самого списку.</p>
+<p>Не використовуй <code>range(len(names))</code>, якщо тобі потрібен лише елемент. Прямий <code>for name in names</code> простіший. Індекс потрібен, коли треба замінити елемент у конкретній позиції або зіставити паралельні дані.</p>
+<h2 id="zip-poiednuie-poslidovnosti-poparno"><code>zip()</code> поєднує послідовності попарно<a class="heading-link" href="#zip-poiednuie-poslidovnosti-poparno" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>zip_roles.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">names = [&quot;Ада&quot;, &quot;Бор&quot;]
+roles = [&quot;навігатор&quot;, &quot;механік&quot;]
+
+for name, role in zip(names, roles):
+    print(f&quot;{name} — {role}&quot;)</code></pre></div>
+<p><code>zip()</code> зупиняється разом із найкоротшою послідовністю. Якщо різна довжина означає помилку даних, перевір її окремо або зберігай пов’язані значення в об’єктах — як у <code>Member</code>.</p>
+<h2 id="zriz-bere-chastynu-poslidovnosti">Зріз бере частину послідовності<a class="heading-link" href="#zriz-bere-chastynu-poslidovnosti" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>slices.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">names = [&quot;Ада&quot;, &quot;Бор&quot;, &quot;Віра&quot;, &quot;Ганна&quot;]
+
+print(names[1:3])
+print(names[:2])
+print(names[2:])
+print(names[::2])</code></pre></div>
+<p>Зріз має форму <code>[start:stop:step]</code> і, як <code>range()</code>, не включає межу <code>stop</code>.</p>
+<ul><li><code>names[1:3]</code> — індекси 1 і 2;</li><li><code>names[:2]</code> — від початку до індексу 2, не включаючи його;</li><li><code>names[2:]</code> — від індексу 2 до кінця;</li><li><code>names[::2]</code> — кожен другий елемент;</li><li><code>names[::-1]</code> — перевернута копія.</li></ul>
+<p>Зріз повертає новий список. <code>names[:]</code> — короткий спосіб зробити поверхневу копію всього списку.</p>
+<section class="callout callout-practice"><div class="callout-label">Тимчасова група</div><p>Додай у <code>Team</code> метод:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def first_members(self, amount):
+    return self.members[:amount]</code></pre></div>
+<p>Метод повертає список перших учасників. Зміна самого поверненого зовнішнього списку не змінить <code>self.members</code>, але об’єкти <code>Member</code> всередині обох списків ті самі.</p></section>
+<h2 id="chyslova-statystyka">Числова статистика<a class="heading-link" href="#chyslova-statystyka" aria-label="Посилання на розділ">#</a></h2>
+<p>Для непорожньої числової колекції корисні:</p>
+<div class="code-block"><div class="code-toolbar"><span>score_stats.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">scores = [12, 6, 18, 9]
+
+print(min(scores))
+print(max(scores))
+print(sum(scores))
+print(sum(scores) / len(scores))</code></pre></div>
+<p>Перед діленням на <code>len(scores)</code> переконайся, що список не порожній. <code>min([])</code> і <code>max([])</code> теж не мають результату й спричиняють <code>ValueError</code>.</p>
+<p>Метод об’єкта може безпечно обробити порожній список:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def average_score(self):
+    if not self.scores:
+        return None
+    return sum(self.scores) / len(self.scores)</code></pre></div>
+<h2 id="spyskove-vkliuchennia-stvoriuie-novyy-spysok">Спискове включення створює новий список<a class="heading-link" href="#spyskove-vkliuchennia-stvoriuie-novyy-spysok" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>list_comprehension.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">squares = [number ** 2 for number in range(1, 6)]
+print(squares)</code></pre></div>
+<p>Це <strong>спискове включення</strong> (<em>list comprehension</em>). Воно читається: «створи список із квадрата кожного <code>number</code> у діапазоні».</p>
+<p>Можна додати просту умову:</p>
+<div class="code-block"><div class="code-toolbar"><span>even_squares.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">even_squares = [number ** 2 for number in range(1, 11) if number % 2 == 0]
+print(even_squares)</code></pre></div>
+<p>Символ <code>%</code> дає остачу від ділення. Парне число має остачу 0 під час ділення на 2.</p>
+<p>Коли перетворення має кілька кроків, змінює об’єкти або потребує складних умов, звичайний цикл читабельніший.</p>
+<h2 id="vkladeni-tsykly">Вкладені цикли<a class="heading-link" href="#vkladeni-tsykly" aria-label="Посилання на розділ">#</a></h2>
+<p>Цикл може містити інший цикл:</p>
+<div class="code-block"><div class="code-toolbar"><span>grid.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">for row in range(2):
+    for column in range(2):
+        print((row, column), end=&quot; &quot;)</code></pre></div>
+<p>Для кожного <code>row</code> внутрішній цикл проходить усі <code>column</code>. Загальна кількість повторень тут <code>2 * 2 = 4</code>. Зі збільшенням меж вкладені цикли швидко створюють багато роботи, тому завжди оцінюй розмір.</p>
+<h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
+<h3 id="zabutyy-vidstup">Забутий відступ<a class="heading-link" href="#zabutyy-vidstup" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>loop_indent.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">for member in members:
+print(member.name)</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">  File &quot;...\loop_indent.py&quot;, line 2
+    print(member.name)
+    ^^^^^
+IndentationError: expected an indented block after &#x27;for&#x27; statement on line 1</code></pre></div>
+<p><code>line 2</code> показує місце, де Python побачив <code>print</code> без очікуваного відступу; останній рядок посилається на цикл у рядку 1.</p>
+<h3 id="zayvyy-vidstup-pislia-tsyklu">Зайвий відступ після циклу<a class="heading-link" href="#zayvyy-vidstup-pislia-tsyklu" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>repeated_summary.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">members = [&quot;Ада&quot;, &quot;Бор&quot;]
+
+for member in members:
+    print(member)
+    print(&quot;Усі учасники показані.&quot;)</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Ада
+Усі учасники показані.
+Бор
+Усі учасники показані.</code></pre></div>
+<p>Другий і четвертий рядки доводять, що підсумкове повідомлення повторилося для кожного учасника. Якщо воно стосується всього циклу, прибери один рівень відступу.</p>
+<h3 id="zmina-dovzhyny-spysku-pid-chas-pereboru">Зміна довжини списку під час перебору<a class="heading-link" href="#zmina-dovzhyny-spysku-pid-chas-pereboru" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>remove_during_loop.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">items = [&quot;цілий&quot;, &quot;зламаний&quot;, &quot;зламаний&quot;, &quot;заряд&quot;]
+
+for item in items:
+    if item == &quot;зламаний&quot;:
+        items.remove(item)
+
+print(items)</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">[&#x27;цілий&#x27;, &#x27;зламаний&#x27;, &#x27;заряд&#x27;]</code></pre></div>
+<p>Один зламаний елемент залишився. Після першого видалення сусіднє значення зсунулося, а цикл перейшов далі. Перебирай копію <code>for item in items.copy():</code> або створи новий список потрібних елементів.</p>
+<section class="callout callout-mistake"><div class="callout-label">Типова помилка</div><p>Не вигадуй індекс, коли маєш сам елемент. <code>for member in members</code> майже завжди ясніше за <code>for index in range(len(members))</code>. Індекс додавай лише коли він справді потрібен.</p></section>
+<h2 id="shvydka-perevirka">Швидка перевірка<a class="heading-link" href="#shvydka-perevirka" aria-label="Посилання на розділ">#</a></h2>
+<p>Спрогнозуй результат і поясни, чому третій учасник не отримав бонус:</p>
+<div class="code-block"><div class="code-toolbar"><span>team_bonus.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Member:
+    def __init__(self, name):
+        self.name = name
+        self.points = 0
+
+
+members = [Member(&quot;Ада&quot;), Member(&quot;Бор&quot;), Member(&quot;Віра&quot;)]
+
+for member in members[:2]:
+    member.points += 2
+
+for member in members:
+    print(f&quot;{member.name}: {member.points}&quot;)</code></pre></div>
+<section class="quiz" data-answer="2"><div class="callout-label">Перевір себе</div><p class="quiz-question">Які числа створює range(2, 8, 2)?</p><div class="quiz-options"><button type="button" class="quiz-option" data-index="0">2, 4, 6, 8</button><button type="button" class="quiz-option" data-index="1">0, 2, 4, 6</button><button type="button" class="quiz-option" data-index="2">2, 4, 6</button></div><p class="quiz-feedback" hidden>range починає з 2, додає крок 2 і зупиняється перед межею 8.</p></section>
+<h2 id="samostiyna-robota">Самостійна робота<a class="heading-link" href="#samostiyna-robota" aria-label="Посилання на розділ">#</a></h2>
+<section class="callout callout-tasks"><div class="callout-label">Самостійна робота</div><ul><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="06-cykly-range-i-zrizy-task-1"><span>Додай команді метод <code>train_role(role, points)</code>, який нараховує досвід лише учасникам із потрібною роллю.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="06-cykly-range-i-zrizy-task-2"><span>Створи 10 об’єктів <code>Sensor</code> у циклі. Нехай кожен отримує номер від 1 до 10, а потім усі друкують короткий опис.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="06-cykly-range-i-zrizy-task-3"><span>Використай <code>enumerate()</code> для нумерованого списку предметів наплічника. Нумерація для людини має починатися з 1.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="06-cykly-range-i-zrizy-task-4"><span>Створи список рівнів від 5 до 50 з кроком 5. Виведи мінімум, максимум, суму й середнє значення.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="06-cykly-range-i-zrizy-task-5"><span>Зроби три зрізи складу: перші троє, останні двоє та кожен другий учасник. Для кожного поясни межі зрізу.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="06-cykly-range-i-zrizy-task-6"><span>Перероби цикл, який додає квадрати чисел у порожній список, на спискове включення. Потім поверни довгу форму й порівняй читабельність.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="06-cykly-range-i-zrizy-task-7"><span>Створи таблицю координат 3 × 4 вкладеними циклами. Перед запуском обчисли кількість надрукованих пар.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="06-cykly-range-i-zrizy-task-8"><span>Продемонструй помилку зміни списку під час циклу, а потім виправ її перебором копії або створенням нового списку.</span></label></li></ul></section>
+<section class="callout callout-history"><div class="callout-label">Коротка історична пауза</div><p>Цикл <code>for</code> у Python не означає буквально «збільшуй лічильник», як у деяких старіших мовах. Він просить у будь-якого перебираного об’єкта наступне значення. Тому однаково природно перебирає список об’єктів, рядок, <code>range</code> або інші послідовності.</p></section>
+<h2 id="pidsumok">Підсумок<a class="heading-link" href="#pidsumok" aria-label="Посилання на розділ">#</a></h2>
+<ul><li><code>for element in collection</code> бере елементи по одному, а відступ визначає тіло циклу.</li><li>У списку можуть зберігатися об’єкти, і цикл може викликати їхні методи.</li><li><code>range()</code> описує числову послідовність і не включає кінцеву межу.</li><li><code>enumerate()</code> дає номер та елемент, <code>zip()</code> поєднує послідовності попарно.</li><li>Зріз <code>[start:stop:step]</code> повертає нову частину послідовності без <code>stop</code>.</li><li><code>min()</code>, <code>max()</code>, <code>sum()</code> і <code>len()</code> допомагають рахувати статистику, але порожні дані треба врахувати.</li><li>Спискове включення компактно створює новий список із простого перетворення.</li><li>Не змінюй довжину того самого списку під час прямого перебору без усвідомленої стратегії.</li></ul></div>
+  <section class="completion-card">
+    <div><p class="eyebrow">Твій прогрес</p><h2>Розділ опрацьовано?</h2><p>Позначай тільки після запуску прикладу й самостійної зміни.</p></div>
+    <button class="button primary complete-chapter" type="button" data-chapter-id="06-cykly-range-i-zrizy">Позначити завершеним</button>
+  </section>
+  <nav class="chapter-pager" aria-label="Сусідні розділи"><a class="chapter-pager-link previous" href="05-spysky-i-kortezhi.html"><span>← Назад</span><strong>Списки й кортежі: впорядковані колекції</strong></a><a class="chapter-pager-link next" href="07-vvedennia-i-cykl-while.html"><span>Далі →</span><strong>Діалог із програмою: `input()` і цикл `while`</strong></a></nav>
+</article>
+
+      <footer class="site-footer">
+        <p>Python через об’єкти · українська практична довідка · 2026</p>
+        <a href="https://github.com/ArTeGaS/python-oop-handbook-ua">Відкрити репозиторій</a>
+      </footer>
+    </main>
+  </div>
+  <div class="search-panel" hidden aria-live="polite">
+    <div class="search-panel-inner">
+      <button class="search-close" type="button" aria-label="Закрити пошук">×</button>
+      <p class="eyebrow">Пошук у довідці</p>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="uk" data-active-chapter="05-spysky-i-kortezhi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Списки й кортежі: впорядковані колекції Списки й кортежі: впорядковані колекції Окремий атрибут зручно зберігає одне значення. Але наплічник героя містить багато предметів, черга — багато уч">
+  <meta name="theme-color" content="#f4f0e8">
+  <title>Списки й кортежі: впорядковані колекції — Python через об’єкти</title>
+  <link rel="stylesheet" href="assets/styles.css?v=3e80905f1037">
+  <script src="assets/app.js?v=3e80905f1037" defer></script>
+</head>
+<body class="chapter-page">
+  <a class="skip-link" href="#main-content">До основного тексту</a>
+  <header class="mobile-header">
+    <button class="icon-button menu-button" type="button" aria-label="Відкрити зміст" aria-expanded="false">Зміст</button>
+    <a class="mobile-brand" href="index.html">Python через об’єкти</a>
+    <button class="icon-button theme-toggle" type="button" aria-label="Змінити тему">Тема</button>
+  </header>
+  <div class="app-shell">
+
+<aside class="sidebar" aria-label="Зміст">
+  <div class="sidebar-top">
+    <a class="brand" data-slug="home" href="index.html">
+      <span class="brand-mark">Py</span>
+      <span><strong>Python через об’єкти</strong><small>Практична довідка для початківців</small></span>
+    </a>
+    <button class="theme-toggle desktop-theme" type="button">Змінити тему</button>
+  </div>
+  <label class="search-box">
+    <span class="visually-hidden">Пошук</span>
+    <input id="chapter-search" type="search" placeholder="Знайти тему…" autocomplete="off">
+    <kbd>Ctrl K</kbd>
+  </label>
+  <div class="progress-card">
+    <div><span>Прогрес</span><strong id="progress-label">0 з 18</strong></div>
+    <div class="progress-track"><span id="progress-bar"></span></div>
+  </div>
+  <nav class="chapter-nav"><a class="chapter-link" data-slug="00-yak-korystuvatysia" href="00-yak-korystuvatysia.html"><span class="chapter-number">Початок</span><span>Як користуватися цією довідкою</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="01-py-fail-i-pershyi-obiekt" href="01-py-fail-i-pershyi-obiekt.html"><span class="chapter-number">01</span><span>`.py`-файл і перший об’єкт</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="02-stan-obiekta-i-prosti-typy" href="02-stan-obiekta-i-prosti-typy.html"><span class="chapter-number">02</span><span>Стан об’єкта: рядки, числа й логічні значення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="03-metody-parametry-i-povernennia" href="03-metody-parametry-i-povernennia.html"><span class="chapter-number">03</span><span>Методи: параметри, аргументи й `return`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="04-rishennia-i-lohichni-vyrazy" href="04-rishennia-i-lohichni-vyrazy.html"><span class="chapter-number">04</span><span>Рішення: порівняння, `if`, `elif`, `else`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="05-spysky-i-kortezhi" href="05-spysky-i-kortezhi.html"><span class="chapter-number">05</span><span>Списки й кортежі: впорядковані колекції</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="06-cykly-range-i-zrizy" href="06-cykly-range-i-zrizy.html"><span class="chapter-number">06</span><span>Повторення: `for`, `range()` і зрізи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="07-vvedennia-i-cykl-while" href="07-vvedennia-i-cykl-while.html"><span class="chapter-number">07</span><span>Діалог із програмою: `input()` і цикл `while`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="08-slovnyky-vkladennia-i-mnozhyny" href="08-slovnyky-vkladennia-i-mnozhyny.html"><span class="chapter-number">08</span><span>Словники, вкладені дані й множини</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="09-funktsii-i-moduli" href="09-funktsii-i-moduli.html"><span class="chapter-number">09</span><span>Функції й модулі: інструменти поза об’єктами</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="10-struktura-opp-proiektu" href="10-struktura-opp-proiektu.html"><span class="chapter-number">10</span><span>Структура OOP-проєкту у VS Code</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="11-spadkuvannia-kompozytsiia-i-vlastyvosti" href="11-spadkuvannia-kompozytsiia-i-vlastyvosti.html"><span class="chapter-number">11</span><span>Пов’язані об’єкти: успадкування, композиція й властивості</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="12-standartna-biblioteka-i-vypadkovist" href="12-standartna-biblioteka-i-vypadkovist.html"><span class="chapter-number">12</span><span>Стандартна бібліотека й керована випадковість</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="13-faily-koduvannia-i-shliakhy" href="13-faily-koduvannia-i-shliakhy.html"><span class="chapter-number">13</span><span>Текстові файли, UTF-8 і шляхи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="14-vyniatky-i-chytabelni-zboi" href="14-vyniatky-i-chytabelni-zboi.html"><span class="chapter-number">14</span><span>Винятки: передбачувані збої й корисні повідомлення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="15-json-zberezhennia-i-refaktorynh" href="15-json-zberezhennia-i-refaktorynh.html"><span class="chapter-number">15</span><span>JSON: збереження стану й рефакторинг</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="16-testy-z-pytest" href="16-testy-z-pytest.html"><span class="chapter-number">16</span><span>Автоматичні тести з pytest</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="17-styl-nalahodzhennia-i-karta-syntaksysu" href="17-styl-nalahodzhennia-i-karta-syntaksysu.html"><span class="chapter-number">17</span><span>Підтримуваний код: стиль, налагодження й карта синтаксису</span><span class="chapter-check" aria-hidden="true">✓</span></a></nav>
+  <div class="sidebar-actions">
+    <a class="button secondary full" href="downloads/python-cherez-obiekty.pdf">Завантажити PDF</a>
+  </div>
+</aside>
+
+    <main id="main-content" class="main-content" tabindex="-1">
+
+<article class="chapter-article" data-chapter="05-spysky-i-kortezhi">
+  <header class="chapter-header">
+    <p class="eyebrow">Розділ 05</p>
+    <p class="chapter-reading-note">Читай · запускай · змінюй · перевіряй</p>
+  </header>
+  <div class="chapter-body"><h1 id="spysky-y-kortezhi-vporiadkovani-kolektsii">Списки й кортежі: впорядковані колекції<a class="heading-link" href="#spysky-y-kortezhi-vporiadkovani-kolektsii" aria-label="Посилання на розділ">#</a></h1>
+<p>Окремий атрибут зручно зберігає одне значення. Але наплічник героя містить багато предметів, черга — багато учасників, а координата — кілька пов’язаних чисел. Для таких даних Python має колекції.</p>
+<h2 id="shcho-zrobymo">Що зробимо<a class="heading-link" href="#shcho-zrobymo" aria-label="Посилання на розділ">#</a></h2>
+<p>Створимо <code>Backpack</code>, який зберігає предмети у списку. Навчимося додавати, знаходити, замінювати й забирати елементи, не відкриваючи внутрішню будову об’єкта всьому коду.</p>
+<section class="callout callout-goal"><div class="callout-label">Результат</div><p>Ти зможеш пояснити різницю між порядком, індексом і значенням, а також обрати список для змінних даних або кортеж для фіксованого набору.</p></section>
+<h2 id="spysok-zberihaie-poslidovnist-znachen">Список зберігає послідовність значень<a class="heading-link" href="#spysok-zberihaie-poslidovnist-znachen" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">items = [&quot;ліхтар&quot;, &quot;карта&quot;, &quot;ключ&quot;]</code></pre></div>
+<p>Квадратні дужки позначають <strong>список</strong> <code>list</code>. Елементи зберігають порядок. У цьому списку <code>&quot;ліхтар&quot;</code> стоїть першим, <code>&quot;карта&quot;</code> — другим, <code>&quot;ключ&quot;</code> — третім.</p>
+<p>Список може бути порожнім:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">items = []</code></pre></div>
+<p>або містити значення різних типів:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">mixed = [&quot;Робі&quot;, 80, True]</code></pre></div>
+<p>Python це дозволяє, але однорідна колекція зазвичай зрозуміліша: список предметів, список чисел, список об’єктів. Пов’язані різнотипні дані одного учасника краще тримати в об’єкті.</p>
+<h3 id="indeks-pochynaietsia-z-nulia">Індекс починається з нуля<a class="heading-link" href="#indeks-pochynaietsia-z-nulia" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>list_indexes.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">items = [&quot;ліхтар&quot;, &quot;карта&quot;, &quot;ключ&quot;]
+
+print(items[0])
+print(items[1])
+print(items[-1])</code></pre></div>
+<p><code>items[0]</code> — перший елемент. Відлік із нуля поширений у програмуванні: індекс показує, на скільки кроків елемент віддалений від початку.</p>
+<p>Від’ємні індекси рахують із кінця:</p>
+<ul><li><code>items[-1]</code> — останній;</li><li><code>items[-2]</code> — передостанній.</li></ul>
+<h2 id="maysternia">Майстерня<a class="heading-link" href="#maysternia" aria-label="Посилання на розділ">#</a></h2>
+<p>Створи <code>backpack.py</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>backpack.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Backpack:
+    def __init__(self):
+        self.items = []
+
+    def add(self, item):
+        self.items.append(item)
+
+    def use(self, item):
+        if item not in self.items:
+            return None
+        self.items.remove(item)
+        return item
+
+    def contents_text(self):
+        if not self.items:
+            return &quot;Наплічник порожній.&quot;
+        return f&quot;У наплічнику: {&#x27;, &#x27;.join(self.items)}.&quot;
+
+
+backpack = Backpack()
+backpack.add(&quot;карта&quot;)
+backpack.add(&quot;ключ&quot;)
+
+print(backpack.contents_text())
+used_item = backpack.use(&quot;ключ&quot;)
+print(f&quot;Використано: {used_item}.&quot;)
+print(backpack.contents_text())</code></pre></div>
+<p>Атрибут <code>items</code> належить конкретному наплічнику. Зовнішній код просить об’єкт <code>add()</code> або <code>use()</code>, а правила зміни списку залишаються всередині класу.</p>
+<h3 id="dodavannia">Додавання<a class="heading-link" href="#dodavannia" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">self.items.append(item)</code></pre></div>
+<p><code>append()</code> додає один елемент у кінець.</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">self.items.insert(0, &quot;компас&quot;)</code></pre></div>
+<p><code>insert(index, value)</code> вставляє значення у вказане місце й пересуває наступні елементи праворуч. Часті вставки на початок великого списку можуть бути повільними, але для маленьких навчальних колекцій це не проблема.</p>
+<p>Щоб додати одразу елементи іншого списку, використовуй <code>extend()</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">self.items.extend([&quot;мотузка&quot;, &quot;вода&quot;])</code></pre></div>
+<p><code>append([&quot;мотузка&quot;, &quot;вода&quot;])</code> додав би <strong>один вкладений список</strong>, а <code>extend(...)</code> додає два окремі елементи.</p>
+<h3 id="zamina-za-indeksom">Заміна за індексом<a class="heading-link" href="#zamina-za-indeksom" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>replace_item.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">items = [&quot;ліхтар&quot;, &quot;стара карта&quot;, &quot;ключ&quot;]
+items[1] = &quot;нова карта&quot;
+
+print(items)</code></pre></div>
+<p>Список <strong>змінний</strong>: після створення можна замінювати, додавати й видаляти елементи.</p>
+<h3 id="vydalennia-riznymy-sposobamy">Видалення різними способами<a class="heading-link" href="#vydalennia-riznymy-sposobamy" aria-label="Посилання на розділ">#</a></h3>
+<p>Спосіб залежить від того, що відомо програмі.</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">del items[0]</code></pre></div>
+<p><code>del</code> видаляє за індексом і не повертає значення.</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">items.remove(&quot;ключ&quot;)</code></pre></div>
+<p><code>remove()</code> видаляє перше входження відомого значення. Якщо такого значення немає, виникне <code>ValueError</code>, тому в майстерні ми спершу перевірили <code>item not in self.items</code>.</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">last_item = items.pop()
+first_item = items.pop(0)</code></pre></div>
+<p><code>pop()</code> видаляє і <strong>повертає</strong> елемент. Без аргументу — останній, з індексом — елемент у вказаному місці. Це зручно, коли предмет не просто зникає, а переходить у наступну дію.</p>
+<section class="callout callout-practice"><div class="callout-label">Передай предмет</div><p>Додай метод, який забирає останній предмет:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def take_last(self):
+    if not self.items:
+        return None
+    return self.items.pop()</code></pre></div>
+<p>Перевір його на наповненому й порожньому наплічнику. Чому перевірка стоїть до <code>pop()</code>?</p></section>
+<h2 id="poshuk-dovzhyna-y-kilkist">Пошук, довжина й кількість<a class="heading-link" href="#poshuk-dovzhyna-y-kilkist" aria-label="Посилання на розділ">#</a></h2>
+<p>Оператори <code>in</code> і <code>not in</code> відповідають, чи є значення в колекції:</p>
+<div class="code-block"><div class="code-toolbar"><span>list_search.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">items = [&quot;ключ&quot;, &quot;карта&quot;, &quot;ключ&quot;]
+
+print(&quot;карта&quot; in items)
+print(&quot;вода&quot; in items)
+print(len(items))
+print(items.count(&quot;ключ&quot;))</code></pre></div>
+<ul><li><code>len(items)</code> повертає кількість елементів;</li><li><code>items.count(value)</code> — кількість входжень значення;</li><li><code>items.index(value)</code> — індекс першого входження, але дає <code>ValueError</code>, якщо значення відсутнє.</li></ul>
+<p>Для перевірки на порожність пиши <code>if not self.items:</code>. Це природний спосіб запитати, чи список порожній.</p>
+<h3 id="peretvorennia-spysku-riadkiv-na-odyn-riadok">Перетворення списку рядків на один рядок<a class="heading-link" href="#peretvorennia-spysku-riadkiv-na-odyn-riadok" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">&quot;, &quot;.join(self.items)</code></pre></div>
+<p>Метод <code>join()</code> належить рядку-роздільнику. Він бере послідовність рядків і склеює їх. Усі елементи мають бути текстом; список чисел спочатку треба перетворити.</p>
+<h2 id="sortuvannia-ne-totozhne-poriadku-dodavannia">Сортування не тотожне порядку додавання<a class="heading-link" href="#sortuvannia-ne-totozhne-poriadku-dodavannia" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>sorting.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">items = [&quot;ключ&quot;, &quot;аптечка&quot;, &quot;вода&quot;]
+
+alphabetical = sorted(items)
+print(alphabetical)
+print(items)</code></pre></div>
+<p><code>sorted(items)</code> повертає новий відсортований список, не змінюючи початковий.</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">items.sort()</code></pre></div>
+<p><code>sort()</code> змінює сам список і повертає <code>None</code>.</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">items.sort(reverse=True)
+items.reverse()</code></pre></div>
+<ul><li><code>sort(reverse=True)</code> сортує у зворотному напрямку;</li><li><code>reverse()</code> просто перевертає поточний порядок, не сортуючи значення.</li></ul>
+<p>У списку рядків регістр впливає на порядок. Для нечутливого до регістру сортування:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">sorted_names = sorted(names, key=str.lower)</code></pre></div>
+<p>Параметр <code>key</code> отримує дію, за результатом якої порівнюють елементи. Ми повернемося до передавання функцій у розділі про функції та модулі.</p>
+<h2 id="kopiia-y-druhe-imia-ne-te-same">Копія й друге ім’я — не те саме<a class="heading-link" href="#kopiia-y-druhe-imia-ne-te-same" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>list_alias.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">original = [&quot;карта&quot;]
+alias = original
+
+alias.append(&quot;ключ&quot;)
+
+print(original)
+print(alias)</code></pre></div>
+<p><code>alias = original</code> не створює другого списку. Два імені посилаються на одну колекцію.</p>
+<p>Для поверхневої копії:</p>
+<div class="code-block"><div class="code-toolbar"><span>list_copy.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">original = [&quot;карта&quot;]
+copy_items = original.copy()
+
+copy_items.append(&quot;ключ&quot;)
+
+print(original)
+print(copy_items)</code></pre></div>
+<p>Так само працює зріз <code>original[:]</code>, з яким познайомимося в наступному розділі.</p>
+<p><strong>Поверхнева</strong> копія створює новий зовнішній список, але вкладені змінні об’єкти все ще можуть бути спільними. Для початку достатньо запам’ятати: перевіряй, чи хочеш спільну колекцію, чи незалежну копію.</p>
+<h2 id="kortezh-fiksuie-poslidovnist">Кортеж фіксує послідовність<a class="heading-link" href="#kortezh-fiksuie-poslidovnist" aria-label="Посилання на розділ">#</a></h2>
+<p>Кортеж <code>tuple</code> записують круглими дужками:</p>
+<div class="code-block"><div class="code-toolbar"><span>tuple_position.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">position = (12, 7)
+
+print(position[0])
+print(position[1])
+
+position = (12, 9)
+print(position)</code></pre></div>
+<p>Елементи кортежу не можна замінити через індекс. Але ім’я <code>position</code> можна прив’язати до нового кортежу цілком.</p>
+<p>Кортеж із одним елементом потребує коми:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">single_value = (5,)</code></pre></div>
+<p>Без коми <code>(5)</code> — просто число в дужках.</p>
+<h3 id="rozpakuvannia">Розпакування<a class="heading-link" href="#rozpakuvannia" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>tuple_unpack.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">position = (12, 7)
+x, y = position
+
+print(f&quot;x={x}, y={y}&quot;)</code></pre></div>
+<p>Кількість імен має відповідати кількості елементів. Розпакування працює і зі списками.</p>
+<p>Кортеж доречний, коли кількість і зміст позицій стабільні: координата <code>(x, y)</code>, колір <code>(red, green, blue)</code>, межі області. Якщо набір має часто зростати або скорочуватися, обирай список.</p>
+<section class="callout callout-note"><div class="callout-label">Незмінність не робить значення «константою»</div><p>Кортеж не дозволяє замінити власні елементи, але змінний об’єкт усередині кортежу все одно може змінюватися. Незмінність описує сам контейнер, а не магічно заморожує все, до чого він веде.</p></section>
+<h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
+<h3 id="indeks-za-mezhamy">Індекс за межами<a class="heading-link" href="#indeks-za-mezhamy" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>list_index.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">items = [&quot;карта&quot;, &quot;ключ&quot;]
+print(items[2])</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Traceback (most recent call last):
+  File &quot;...\list_index.py&quot;, line 2, in &lt;module&gt;
+    print(items[2])
+          ~~~~~^^^
+IndexError: list index out of range</code></pre></div>
+<p>Допустимі індекси тут — <code>0</code> і <code>1</code>. Вираз <code>~~~~~^^^</code> виділяє звернення, а останній рядок називає вихід за межі списку.</p>
+<h3 id="rezultat-sort-zapysano-zamist-spysku">Результат <code>sort()</code> записано замість списку<a class="heading-link" href="#rezultat-sort-zapysano-zamist-spysku" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>sort_returns_none.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">items = [&quot;ключ&quot;, &quot;карта&quot;]
+items = items.sort()
+print(items)</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">None</code></pre></div>
+<p>Це не виняток, а видимий неправильний результат. <code>sort()</code> змінив початковий список на місці й повернув <code>None</code>; присвоєння замінило посилання в <code>items</code>. Або викликай <code>items.sort()</code> окремо, або використовуй <code>items = sorted(items)</code>.</p>
+<h3 id="spilnyy-spysok-dlia-vsikh-obiektiv">Спільний список для всіх об’єктів<a class="heading-link" href="#spilnyy-spysok-dlia-vsikh-obiektiv" aria-label="Посилання на розділ">#</a></h3>
+<p>Побачимо проблему на двох об’єктах:</p>
+<div class="code-block"><div class="code-toolbar"><span>shared_backpack.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Backpack:
+    items = []
+
+
+first = Backpack()
+second = Backpack()
+first.items.append(&quot;ключ&quot;)
+print(second.items)</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">[&#x27;ключ&#x27;]</code></pre></div>
+<p>Ключ додали лише через <code>first</code>, але він з’явився й у <code>second</code>, бо список належить класу. Особистий список створюй у <code>__init__</code> через <code>self.items = []</code>.</p>
+<section class="callout callout-mistake"><div class="callout-label">Типова помилка</div><p>Не видаляй значення через <code>remove()</code> без перевірки, якщо його може не бути. Для безпечного сценарію спочатку використай <code>if item in items:</code> або спроєктуй метод, який повертає зрозумілий результат.</p></section>
+<h2 id="shvydka-perevirka">Швидка перевірка<a class="heading-link" href="#shvydka-perevirka" aria-label="Посилання на розділ">#</a></h2>
+<p>Спрогнозуй вміст обох коробок:</p>
+<div class="code-block"><div class="code-toolbar"><span>boxes.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Box:
+    def __init__(self, items):
+        self.items = items.copy()
+
+    def add(self, item):
+        self.items.append(item)
+
+
+starter_items = [&quot;олівець&quot;]
+first = Box(starter_items)
+second = Box(starter_items)
+
+second.add(&quot;стікер&quot;)
+
+print(f&quot;Перша: {first.items}&quot;)
+print(f&quot;Друга: {second.items}&quot;)</code></pre></div>
+<p>Чому в <code>__init__</code> є <code>.copy()</code>? Що змінилося б без нього?</p>
+<section class="quiz" data-answer="1"><div class="callout-label">Перевір себе</div><p class="quiz-question">Який вираз забере останній елемент списку й водночас поверне його?</p><div class="quiz-options"><button type="button" class="quiz-option" data-index="0">del items[-1]</button><button type="button" class="quiz-option" data-index="1">items.pop()</button><button type="button" class="quiz-option" data-index="2">items.remove()</button></div><p class="quiz-feedback" hidden>pop() без індексу видаляє останній елемент і повертає його. remove() потребує значення, а del нічого не повертає.</p></section>
+<h2 id="samostiyna-robota">Самостійна робота<a class="heading-link" href="#samostiyna-robota" aria-label="Посилання на розділ">#</a></h2>
+<section class="callout callout-tasks"><div class="callout-label">Самостійна робота</div><ul><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="05-spysky-i-kortezhi-task-1"><span>Розшир <code>Backpack</code>: додай обмеження місткості й метод <code>add()</code>, який повертає <code>False</code>, якщо місця вже немає.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="05-spysky-i-kortezhi-task-2"><span>Створи клас <code>Playlist</code> зі списком назв. Додай методи для додавання, вилучення за назвою, показу першого й останнього треку та алфавітної копії списку.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="05-spysky-i-kortezhi-task-3"><span>Досліди різницю між <code>append(other_list)</code> і <code>extend(other_list)</code> на двох коротких прикладах. Поясни форму результату.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="05-spysky-i-kortezhi-task-4"><span>Створи початковий список предметів і два наплічники: спершу без копіювання, потім із <code>.copy()</code>. Покажи, коли зміна «протікає» в інший об’єкт.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="05-spysky-i-kortezhi-task-5"><span>Збережи межі прямокутника як кортеж <code>(width, height)</code>, розпакуй їх і обчисли площу. Потім заміни весь кортеж новими межами.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="05-spysky-i-kortezhi-task-6"><span>Навмисно отримай <code>IndexError</code>, <code>ValueError</code> від <code>remove()</code> і <code>ValueError</code> від <code>index()</code>. Для кожного випадку поясни, яку передумову треба було перевірити.</span></label></li></ul></section>
+<section class="callout callout-history"><div class="callout-label">Коротка історична пауза</div><p>Відлік з нуля не є примхою Python. Індекс історично зручно тлумачити як зміщення від початку області пам’яті: перший елемент віддалений від початку на нуль позицій. Сьогодні важливіше не походження, а послідовність: перший — <code>[0]</code>, останній — <code>[-1]</code>.</p></section>
+<h2 id="pidsumok">Підсумок<a class="heading-link" href="#pidsumok" aria-label="Посилання на розділ">#</a></h2>
+<ul><li>Список — впорядкована змінна колекція; індекси починаються з нуля.</li><li><code>append()</code>, <code>insert()</code> і <code>extend()</code> додають елементи різними способами.</li><li><code>del</code>, <code>remove()</code> і <code>pop()</code> відрізняються тим, що відомо програмі й чи потрібне видалене значення.</li><li><code>in</code>, <code>not in</code>, <code>len()</code>, <code>count()</code> та <code>index()</code> допомагають досліджувати колекцію.</li><li><code>sorted()</code> створює новий список, <code>sort()</code> змінює наявний, <code>reverse()</code> перевертає порядок.</li><li>Присвоєння другого імені не копіює список; <code>.copy()</code> створює поверхневу копію.</li><li>Кортеж — впорядкована послідовність, елементи якої не можна замінювати.</li><li>Колекцію варто ховати за зрозумілими методами об’єкта, якщо зміна має правила.</li></ul></div>
+  <section class="completion-card">
+    <div><p class="eyebrow">Твій прогрес</p><h2>Розділ опрацьовано?</h2><p>Позначай тільки після запуску прикладу й самостійної зміни.</p></div>
+    <button class="button primary complete-chapter" type="button" data-chapter-id="05-spysky-i-kortezhi">Позначити завершеним</button>
+  </section>
+  <nav class="chapter-pager" aria-label="Сусідні розділи"><a class="chapter-pager-link previous" href="04-rishennia-i-lohichni-vyrazy.html"><span>← Назад</span><strong>Рішення: порівняння, `if`, `elif`, `else`</strong></a><a class="chapter-pager-link next" href="06-cykly-range-i-zrizy.html"><span>Далі →</span><strong>Повторення: `for`, `range()` і зрізи</strong></a></nav>
+</article>
+
+      <footer class="site-footer">
+        <p>Python через об’єкти · українська практична довідка · 2026</p>
+        <a href="https://github.com/ArTeGaS/python-oop-handbook-ua">Відкрити репозиторій</a>
+      </footer>
+    </main>
+  </div>
+  <div class="search-panel" hidden aria-live="polite">
+    <div class="search-panel-inner">
+      <button class="search-close" type="button" aria-label="Закрити пошук">×</button>
+      <p class="eyebrow">Пошук у довідці</p>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+</body>
+</html>

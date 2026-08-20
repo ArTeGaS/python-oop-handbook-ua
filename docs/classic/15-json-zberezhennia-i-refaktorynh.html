@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="uk" data-active-chapter="15-json-zberezhennia-i-refaktorynh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="JSON: збереження стану й рефакторинг JSON: збереження стану й рефакторинг Текстовий журнал зручний для людини, але програма має окремо вгадувати, де ім’я, число чи список. JSON зберігає прос">
+  <meta name="theme-color" content="#f4f0e8">
+  <title>JSON: збереження стану й рефакторинг — Python через об’єкти</title>
+  <link rel="stylesheet" href="assets/styles.css?v=3e80905f1037">
+  <script src="assets/app.js?v=3e80905f1037" defer></script>
+</head>
+<body class="chapter-page">
+  <a class="skip-link" href="#main-content">До основного тексту</a>
+  <header class="mobile-header">
+    <button class="icon-button menu-button" type="button" aria-label="Відкрити зміст" aria-expanded="false">Зміст</button>
+    <a class="mobile-brand" href="index.html">Python через об’єкти</a>
+    <button class="icon-button theme-toggle" type="button" aria-label="Змінити тему">Тема</button>
+  </header>
+  <div class="app-shell">
+
+<aside class="sidebar" aria-label="Зміст">
+  <div class="sidebar-top">
+    <a class="brand" data-slug="home" href="index.html">
+      <span class="brand-mark">Py</span>
+      <span><strong>Python через об’єкти</strong><small>Практична довідка для початківців</small></span>
+    </a>
+    <button class="theme-toggle desktop-theme" type="button">Змінити тему</button>
+  </div>
+  <label class="search-box">
+    <span class="visually-hidden">Пошук</span>
+    <input id="chapter-search" type="search" placeholder="Знайти тему…" autocomplete="off">
+    <kbd>Ctrl K</kbd>
+  </label>
+  <div class="progress-card">
+    <div><span>Прогрес</span><strong id="progress-label">0 з 18</strong></div>
+    <div class="progress-track"><span id="progress-bar"></span></div>
+  </div>
+  <nav class="chapter-nav"><a class="chapter-link" data-slug="00-yak-korystuvatysia" href="00-yak-korystuvatysia.html"><span class="chapter-number">Початок</span><span>Як користуватися цією довідкою</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="01-py-fail-i-pershyi-obiekt" href="01-py-fail-i-pershyi-obiekt.html"><span class="chapter-number">01</span><span>`.py`-файл і перший об’єкт</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="02-stan-obiekta-i-prosti-typy" href="02-stan-obiekta-i-prosti-typy.html"><span class="chapter-number">02</span><span>Стан об’єкта: рядки, числа й логічні значення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="03-metody-parametry-i-povernennia" href="03-metody-parametry-i-povernennia.html"><span class="chapter-number">03</span><span>Методи: параметри, аргументи й `return`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="04-rishennia-i-lohichni-vyrazy" href="04-rishennia-i-lohichni-vyrazy.html"><span class="chapter-number">04</span><span>Рішення: порівняння, `if`, `elif`, `else`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="05-spysky-i-kortezhi" href="05-spysky-i-kortezhi.html"><span class="chapter-number">05</span><span>Списки й кортежі: впорядковані колекції</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="06-cykly-range-i-zrizy" href="06-cykly-range-i-zrizy.html"><span class="chapter-number">06</span><span>Повторення: `for`, `range()` і зрізи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="07-vvedennia-i-cykl-while" href="07-vvedennia-i-cykl-while.html"><span class="chapter-number">07</span><span>Діалог із програмою: `input()` і цикл `while`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="08-slovnyky-vkladennia-i-mnozhyny" href="08-slovnyky-vkladennia-i-mnozhyny.html"><span class="chapter-number">08</span><span>Словники, вкладені дані й множини</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="09-funktsii-i-moduli" href="09-funktsii-i-moduli.html"><span class="chapter-number">09</span><span>Функції й модулі: інструменти поза об’єктами</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="10-struktura-opp-proiektu" href="10-struktura-opp-proiektu.html"><span class="chapter-number">10</span><span>Структура OOP-проєкту у VS Code</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="11-spadkuvannia-kompozytsiia-i-vlastyvosti" href="11-spadkuvannia-kompozytsiia-i-vlastyvosti.html"><span class="chapter-number">11</span><span>Пов’язані об’єкти: успадкування, композиція й властивості</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="12-standartna-biblioteka-i-vypadkovist" href="12-standartna-biblioteka-i-vypadkovist.html"><span class="chapter-number">12</span><span>Стандартна бібліотека й керована випадковість</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="13-faily-koduvannia-i-shliakhy" href="13-faily-koduvannia-i-shliakhy.html"><span class="chapter-number">13</span><span>Текстові файли, UTF-8 і шляхи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="14-vyniatky-i-chytabelni-zboi" href="14-vyniatky-i-chytabelni-zboi.html"><span class="chapter-number">14</span><span>Винятки: передбачувані збої й корисні повідомлення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="15-json-zberezhennia-i-refaktorynh" href="15-json-zberezhennia-i-refaktorynh.html"><span class="chapter-number">15</span><span>JSON: збереження стану й рефакторинг</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="16-testy-z-pytest" href="16-testy-z-pytest.html"><span class="chapter-number">16</span><span>Автоматичні тести з pytest</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="17-styl-nalahodzhennia-i-karta-syntaksysu" href="17-styl-nalahodzhennia-i-karta-syntaksysu.html"><span class="chapter-number">17</span><span>Підтримуваний код: стиль, налагодження й карта синтаксису</span><span class="chapter-check" aria-hidden="true">✓</span></a></nav>
+  <div class="sidebar-actions">
+    <a class="button secondary full" href="downloads/python-cherez-obiekty.pdf">Завантажити PDF</a>
+  </div>
+</aside>
+
+    <main id="main-content" class="main-content" tabindex="-1">
+
+<article class="chapter-article" data-chapter="15-json-zberezhennia-i-refaktorynh">
+  <header class="chapter-header">
+    <p class="eyebrow">Розділ 15</p>
+    <p class="chapter-reading-note">Читай · запускай · змінюй · перевіряй</p>
+  </header>
+  <div class="chapter-body"><h1 id="json-zberezhennia-stanu-y-refaktorynh">JSON: збереження стану й рефакторинг<a class="heading-link" href="#json-zberezhennia-stanu-y-refaktorynh" aria-label="Посилання на розділ">#</a></h1>
+<p>Текстовий журнал зручний для людини, але програма має окремо вгадувати, де ім’я, число чи список. JSON зберігає просту структуру даних: словники, списки, рядки, числа, логічні значення та <code>null</code>.</p>
+<h2 id="shcho-zrobymo">Що зробимо<a class="heading-link" href="#shcho-zrobymo" aria-label="Посилання на розділ">#</a></h2>
+<p>Збережемо профіль гравця у JSON через окремий <code>ProfileStore</code>. Сам клас <code>PlayerProfile</code> відповідатиме за правила стану, сховище — за файл, а точка запуску — за сценарій.</p>
+<section class="callout callout-goal"><div class="callout-label">Результат</div><p>Ти побачиш межу між живим об’єктом і його серіалізованими даними. Завантаження не повинно перетворювати весь код на вкладені словники.</p></section>
+<h2 id="json-maie-prosti-typy">JSON має прості типи<a class="heading-link" href="#json-maie-prosti-typy" aria-label="Посилання на розділ">#</a></h2>
+<p>Вигляд файла <code>profile.json</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>json</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-json">{
+  &quot;version&quot;: 1,
+  &quot;name&quot;: &quot;Міра&quot;,
+  &quot;level&quot;: 3,
+  &quot;is_active&quot;: true,
+  &quot;skills&quot;: [
+    &quot;навігація&quot;,
+    &quot;ремонт&quot;
+  ]
+}</code></pre></div>
+<p>Відмінності від запису Python:</p>
+<ul><li>ключі JSON — рядки в подвійних лапках;</li><li>логічні значення — <code>true</code> і <code>false</code> з малої літери;</li><li>відсутнє значення — <code>null</code>, у Python воно стає <code>None</code>;</li><li>коментарі й завершальні коми стандартний JSON не дозволяє.</li></ul>
+<p>JSON не зберігає методи класу. Він зберігає лише підтримувані дані, з яких програма може відновити новий об’єкт.</p>
+<h2 id="dumps-i-loads-pratsiuiut-iz-riadkom"><code>dumps()</code> і <code>loads()</code> працюють із рядком<a class="heading-link" href="#dumps-i-loads-pratsiuiut-iz-riadkom" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>json_string.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">import json
+
+data = {
+    &quot;name&quot;: &quot;Міра&quot;,
+    &quot;skills&quot;: [&quot;навігація&quot;, &quot;ремонт&quot;],
+}
+
+text = json.dumps(data, ensure_ascii=False, indent=2)
+restored = json.loads(text)
+
+print(restored[&quot;name&quot;])
+print(restored == data)</code></pre></div>
+<ul><li><code>json.dumps(data)</code> повертає JSON-рядок; літера <code>s</code> нагадує <em>string</em>;</li><li><code>json.loads(text)</code> читає JSON-рядок і повертає Python-дані;</li><li><code>ensure_ascii=False</code> залишає українські літери читабельними;</li><li><code>indent=2</code> форматує файл для людини.</li></ul>
+<p>Без <code>ensure_ascii=False</code> дані не зіпсуються, але символи можуть виглядати як <code>\u041c...</code>.</p>
+<h2 id="dump-i-load-pratsiuiut-iz-faylovym-obiektom"><code>dump()</code> і <code>load()</code> працюють із файловим об’єктом<a class="heading-link" href="#dump-i-load-pratsiuiut-iz-faylovym-obiektom" aria-label="Посилання на розділ">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>json_file.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">import json
+from pathlib import Path
+
+path = Path(&quot;robot.json&quot;)
+data = {&quot;name&quot;: &quot;Робі&quot;, &quot;energy&quot;: 18}
+
+with path.open(&quot;w&quot;, encoding=&quot;utf-8&quot;) as file:
+    json.dump(data, file, ensure_ascii=False, indent=2)
+
+with path.open(&quot;r&quot;, encoding=&quot;utf-8&quot;) as file:
+    restored = json.load(file)
+
+print(restored)</code></pre></div>
+<p><code>dump()</code> пише у відкритий файл, <code>load()</code> читає з нього. У маленькому коді також можна поєднати <code>Path.write_text(json.dumps(...))</code>.</p>
+<p>Запис у режимі <code>&quot;w&quot;</code> повністю замінює попередній файл. Це має бути усвідомленою частиною методу <code>save()</code>.</p>
+<h2 id="maysternia">Майстерня<a class="heading-link" href="#maysternia" aria-label="Посилання на розділ">#</a></h2>
+<p>Створи <code>profile_storage.py</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>profile_storage.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">import json
+from pathlib import Path
+
+
+class ProfileDataError(ValueError):
+    &quot;&quot;&quot;JSON не відповідає контракту профілю.&quot;&quot;&quot;
+
+
+class PlayerProfile:
+    def __init__(self, name, level=1, skills=None):
+        if not name.strip():
+            raise ValueError(&quot;Ім’я не може бути порожнім&quot;)
+        if level &lt; 1:
+            raise ValueError(&quot;Рівень має бути не меншим за 1&quot;)
+
+        self.name = name.strip()
+        self.level = level
+        self.skills = list(skills) if skills is not None else []
+
+    def level_up(self):
+        self.level += 1
+
+    def learn(self, skill):
+        if skill not in self.skills:
+            self.skills.append(skill)
+
+    def to_data(self):
+        return {
+            &quot;version&quot;: 1,
+            &quot;name&quot;: self.name,
+            &quot;level&quot;: self.level,
+            &quot;skills&quot;: self.skills.copy(),
+        }
+
+    @classmethod
+    def from_data(cls, data):
+        if not isinstance(data, dict):
+            raise ProfileDataError(&quot;корінь має бути об’єктом JSON&quot;)
+        if data.get(&quot;version&quot;) != 1:
+            raise ProfileDataError(&quot;непідтримувана версія&quot;)
+
+        try:
+            return cls(
+                name=data[&quot;name&quot;],
+                level=data[&quot;level&quot;],
+                skills=data.get(&quot;skills&quot;, []),
+            )
+        except (KeyError, TypeError, ValueError) as error:
+            raise ProfileDataError(&quot;неправильні поля профілю&quot;) from error
+
+    def summary(self):
+        skills_text = &quot;, &quot;.join(self.skills) if self.skills else &quot;немає&quot;
+        return f&quot;{self.name}: рівень {self.level}; навички: {skills_text}.&quot;
+
+
+class ProfileStore:
+    def __init__(self, path):
+        self.path = Path(path)
+
+    def save(self, profile):
+        text = json.dumps(
+            profile.to_data(),
+            ensure_ascii=False,
+            indent=2,
+        )
+        self.path.write_text(text + &quot;\n&quot;, encoding=&quot;utf-8&quot;)
+
+    def load(self):
+        try:
+            text = self.path.read_text(encoding=&quot;utf-8&quot;)
+            data = json.loads(text)
+        except FileNotFoundError:
+            return None
+        except json.JSONDecodeError as error:
+            raise ProfileDataError(&quot;пошкоджений JSON&quot;) from error
+
+        return PlayerProfile.from_data(data)
+
+
+store = ProfileStore(&quot;profile.json&quot;)
+
+profile = PlayerProfile(&quot;Міра&quot;, level=3)
+profile.learn(&quot;навігація&quot;)
+profile.learn(&quot;ремонт&quot;)
+profile.level_up()
+
+store.save(profile)
+restored_profile = store.load()
+
+print(restored_profile.summary())</code></pre></div>
+<h3 id="to-data-stvoriuie-prostu-formu"><code>to_data()</code> створює просту форму<a class="heading-link" href="#to-data-stvoriuie-prostu-formu" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def to_data(self):
+    return {
+        &quot;version&quot;: 1,
+        &quot;name&quot;: self.name,
+        &quot;level&quot;: self.level,
+        &quot;skills&quot;: self.skills.copy(),
+    }</code></pre></div>
+<p>Метод не пише файл і не імпортує <code>json</code>. Він лише перетворює стан на підтримувані прості типи. Це дозволяє використати ті самі дані для файла, мережі або перевірки.</p>
+<p>Назви <code>to_dict()</code>/<code>from_dict()</code> теж поширені. <code>to_data()</code> підкреслює, що повернена структура є зовнішнім представленням, а не весь внутрішній світ об’єкта.</p>
+<h3 id="from-data-vidnovliuie-obiekt-cherez-konstruktor"><code>from_data()</code> відновлює об’єкт через конструктор<a class="heading-link" href="#from-data-vidnovliuie-obiekt-cherez-konstruktor" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">return cls(
+    name=data[&quot;name&quot;],
+    level=data[&quot;level&quot;],
+    skills=data.get(&quot;skills&quot;, []),
+)</code></pre></div>
+<p>Ми не створюємо порожній об’єкт і не вставляємо атрибути навмання. Звичайний <code>__init__</code> знову перевіряє правила.</p>
+<p><code>@classmethod</code> використовує <code>cls</code>, тому альтернативний конструктор лишається сумісним із похідними класами.</p>
+<h3 id="skhovyshche-ne-keruie-pravylamy-profiliu">Сховище не керує правилами профілю<a class="heading-link" href="#skhovyshche-ne-keruie-pravylamy-profiliu" aria-label="Посилання на розділ">#</a></h3>
+<p><code>ProfileStore</code> знає <code>Path</code>, UTF-8 і JSON. Він просить профіль <code>to_data()</code> та передає прочитані дані <code>PlayerProfile.from_data()</code>.</p>
+<p>Завдяки цьому:</p>
+<ul><li>модель можна перевірити без файла;</li><li>формат збереження можна змінити окремо;</li><li>інтерфейс не працює з сирими словниками;</li><li>кожна помилка має зрозумілий рівень.</li></ul>
+<section class="callout callout-practice"><div class="callout-label">Завантаж або створи</div><p>Напиши функцію сценарію:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def load_or_create(store, default_name):
+    profile = store.load()
+    if profile is not None:
+        return profile
+    return PlayerProfile(default_name)</code></pre></div>
+<p>Відсутній файл тут є нормальним першим запуском, тому <code>load()</code> повертає <code>None</code>. Пошкоджений наявний JSON — інша ситуація, її не можна мовчки замінити новим профілем.</p></section>
+<h2 id="perevirka-typiv-pislia-json">Перевірка типів після JSON<a class="heading-link" href="#perevirka-typiv-pislia-json" aria-label="Посилання на розділ">#</a></h2>
+<p>Синтаксично правильний JSON не обов’язково відповідає моделі:</p>
+<div class="code-block"><div class="code-toolbar"><span>json</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-json">{
+  &quot;version&quot;: 1,
+  &quot;name&quot;: 123,
+  &quot;level&quot;: &quot;високий&quot;
+}</code></pre></div>
+<p><code>json.loads()</code> успішно створить словник. Перевірка структури — відповідальність <code>from_data()</code> або окремого валідатора.</p>
+<p><code>isinstance()</code> доречний на межі зовнішніх даних:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">if not isinstance(data.get(&quot;name&quot;), str):
+    raise ProfileDataError(&quot;name має бути рядком&quot;)</code></pre></div>
+<p>Не розкидай такі перевірки по всій програмі. Перетвори зовнішню структуру на надійний об’єкт один раз біля входу.</p>
+<h2 id="iaki-python-znachennia-zminiuiutsia-v-json">Які Python-значення змінюються в JSON<a class="heading-link" href="#iaki-python-znachennia-zminiuiutsia-v-json" aria-label="Посилання на розділ">#</a></h2>
+<p>Стандартний JSON підтримує:</p>
+<ul><li><code>dict</code> із рядковими ключами → object;</li><li><code>list</code> і <code>tuple</code> → array, після читання це буде <code>list</code>;</li><li><code>str</code> → string;</li><li><code>int</code>/<code>float</code> → number;</li><li><code>True</code>/<code>False</code> → true/false;</li><li><code>None</code> → null.</li></ul>
+<p>Кортеж після кругової подорожі стає списком:</p>
+<div class="code-block"><div class="code-toolbar"><span>json_tuple.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">import json
+
+text = json.dumps({&quot;position&quot;: (3, 5)})
+restored = json.loads(text)
+
+print(type(restored[&quot;position&quot;]).__name__)
+print(restored[&quot;position&quot;])</code></pre></div>
+<p>Об’єкт <code>Path</code>, <code>date</code>, <code>set</code>, <code>Enum</code> або власний клас стандартний encoder напряму не знає. Перетвори їх у просту явну форму: рядок, список, значення переліку, словник.</p>
+<h3 id="kliuchi-staiut-riadkamy">Ключі стають рядками<a class="heading-link" href="#kliuchi-staiut-riadkamy" aria-label="Посилання на розділ">#</a></h3>
+<p>JSON object має рядкові ключі. Словник <code>{1: &quot;one&quot;}</code> після запису й читання повернеться як <code>{&quot;1&quot;: &quot;one&quot;}</code>. Якщо тип ключа важливий, обери список записів або явне перетворення.</p>
+<h2 id="versiia-formatu-y-zmina-struktury">Версія формату й зміна структури<a class="heading-link" href="#versiia-formatu-y-zmina-struktury" aria-label="Посилання на розділ">#</a></h2>
+<p>Поле:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">&quot;version&quot;: 1</code></pre></div>
+<p>допомагає відрізнити формати. Коли версія 2 перейменує <code>level</code> на <code>rank</code>, старі файли не повинні дивно ламатися в далекому методі.</p>
+<p>Стратегії:</p>
+<ul><li>підтримати читання кількох версій;</li><li>написати явну міграцію <code>v1 -&gt; v2</code>;</li><li>відмовити з повідомленням, що версія не підтримується;</li><li>для необов’язкового нового поля використати безпечне значення за замовчуванням.</li></ul>
+<p>Не змінюй значення старого поля мовчки, якщо це може втратити дані.</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def migrate_v1_to_v2(data):
+    return {
+        &quot;version&quot;: 2,
+        &quot;name&quot;: data[&quot;name&quot;],
+        &quot;rank&quot;: data[&quot;level&quot;],
+        &quot;skills&quot;: data.get(&quot;skills&quot;, []),
+    }</code></pre></div>
+<p>Міграція є чистою функцією: отримує старі дані, повертає нові, не перезаписує файл самостійно.</p>
+<h2 id="oberezhnyy-zapys-cherez-tymchasovyy-fayl">Обережний запис через тимчасовий файл<a class="heading-link" href="#oberezhnyy-zapys-cherez-tymchasovyy-fayl" aria-label="Посилання на розділ">#</a></h2>
+<p>Звичайний <code>write_text()</code> може лишити неповний файл, якщо процес аварійно завершиться посеред запису. Для важливого локального стану спочатку пишуть сусідній тимчасовий файл, а потім замінюють ціль:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def save(self, profile):
+    text = json.dumps(profile.to_data(), ensure_ascii=False, indent=2) + &quot;\n&quot;
+    temporary_path = self.path.with_suffix(self.path.suffix + &quot;.tmp&quot;)
+    temporary_path.write_text(text, encoding=&quot;utf-8&quot;)
+    temporary_path.replace(self.path)</code></pre></div>
+<p><code>replace()</code> замінює наявний цільовий файл. Це <strong>руйнівна дія щодо попередньої версії</strong>, тому шлях має бути точно контрольований, а для цінних даних потрібна резервна копія або історія версій.</p>
+<p>Гарантії атомарності залежать від файлової системи й того, чи обидва шляхи на одному томі. Для початкового локального застосунку цей шаблон зменшує ризик часткового запису, але не замінює продумане резервування.</p>
+<h2 id="refaktorynh-zminiuiemo-budovu-zberihaiemo-povedinku">Рефакторинг: змінюємо будову, зберігаємо поведінку<a class="heading-link" href="#refaktorynh-zminiuiemo-budovu-zberihaiemo-povedinku" aria-label="Посилання на розділ">#</a></h2>
+<p>Початкова програма часто виглядає так:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">data = json.loads(Path(&quot;profile.json&quot;).read_text())
+data[&quot;level&quot;] += 1
+Path(&quot;profile.json&quot;).write_text(json.dumps(data))
+print(data[&quot;name&quot;], data[&quot;level&quot;])</code></pre></div>
+<p>Це синтаксично робочий код, а не виняток. Проблема архітектурна: читання, зміна моделі, запис і показ результату змішані. Рефакторинг розкладає їх:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-text">main -&gt; ProfileStore.load() -&gt; PlayerProfile.from_data()
+     -&gt; profile.level_up()
+     -&gt; ProfileStore.save(profile)
+     -&gt; profile.summary()</code></pre></div>
+<p>Безпечний порядок:</p>
+<ol><li>Зафіксуй поточний очікуваний результат маленькою перевіркою.</li><li>Виділи одну відповідальність без зміни зовнішнього результату.</li><li>Запусти перевірку.</li><li>Лише потім роби наступний крок.</li></ol>
+<p>Не поєднуй рефакторинг і нову функцію у величезній зміні, якщо можна розділити. Інакше важко зрозуміти причину регресії.</p>
+<h2 id="json-ne-ie-bezpechnym-lyshe-tomu-shcho-tekstovyy">JSON не є безпечним лише тому, що текстовий<a class="heading-link" href="#json-ne-ie-bezpechnym-lyshe-tomu-shcho-tekstovyy" aria-label="Посилання на розділ">#</a></h2>
+<p><code>json.load()</code> не виконує код, що робить JSON безпечнішим за формати на кшталт <code>pickle</code> для неперевіреного джерела. Але дані все одно можуть бути:</p>
+<ul><li>надто великими;</li><li>неправильної структури;</li><li>з небезпечними шляхами або командами як звичайним текстом;</li><li>навмисно створеними для перевантаження логіки.</li></ul>
+<p>Вміст JSON — дані, не інструкції. Перевіряй межі й ніколи не виконуй рядок із файла через <code>eval()</code> або оболонку.</p>
+<p><code>pickle</code> може створювати довільні Python-об’єкти й <strong>не підходить для недовірених файлів</strong>, бо завантаження може виконати код.</p>
+<h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
+<h3 id="sproba-zapysaty-obiekt-napriamu">Спроба записати об’єкт напряму<a class="heading-link" href="#sproba-zapysaty-obiekt-napriamu" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>json_object.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">import json
+
+
+class PlayerProfile:
+    pass
+
+
+profile = PlayerProfile()
+json.dumps(profile)</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Traceback (most recent call last):
+  File &quot;...\json_object.py&quot;, line 9, in &lt;module&gt;
+    json.dumps(profile)
+  ...
+TypeError: Object of type PlayerProfile is not JSON serializable</code></pre></div>
+<p>Останній рядок називає тип, для якого JSON не знає формату. Перетвори об’єкт через <code>profile.to_data()</code>.</p>
+<h3 id="vidsutniy-fayl-i-poshkodzhenyy-fayl-obrobliaiutsia-odnakovo">Відсутній файл і пошкоджений файл обробляються однаково<a class="heading-link" href="#vidsutniy-fayl-i-poshkodzhenyy-fayl-obrobliaiutsia-odnakovo" aria-label="Посилання на розділ">#</a></h3>
+<p>Якщо <code>load()</code> повертає <code>None</code> і для <code>FileNotFoundError</code>, і для <code>JSONDecodeError</code>, програма може затерти пошкоджені дані новим порожнім профілем. Перший запуск — нормальний, пошкодження — проблема, яку треба показати або відновити з копії.</p>
+<h3 id="zovnishniy-slovnyk-staie-vnutrishnim-stanom-bez-kopii">Зовнішній словник стає внутрішнім станом без копії<a class="heading-link" href="#zovnishniy-slovnyk-staie-vnutrishnim-stanom-bez-kopii" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>shared_json_list.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Profile:
+    def __init__(self, data):
+        self.skills = data[&quot;skills&quot;]
+
+
+data = {&quot;skills&quot;: [&quot;python&quot;]}
+profile = Profile(data)
+data[&quot;skills&quot;].append(&quot;git&quot;)
+print(profile.skills)</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">[&#x27;python&#x27;, &#x27;git&#x27;]</code></pre></div>
+<p><code>profile</code> ніхто не змінював напряму, але його стан уже містить <code>git</code>: список спільний із зовнішнім словником. Конструктор має зробити <code>list(data[&quot;skills&quot;])</code> і встановити власну колекцію.</p>
+<section class="callout callout-mistake"><div class="callout-label">Типова помилка</div><p>Не використовуй <code>default=str</code> лише для того, щоб «усе якось записалось». Він мовчки перетворить невідомі об’єкти на рядки, з яких неможливо надійно відновити тип. Визнач явний формат для кожної важливої сутності.</p></section>
+<h2 id="shvydka-perevirka">Швидка перевірка<a class="heading-link" href="#shvydka-perevirka" aria-label="Посилання на розділ">#</a></h2>
+<p>Перевір кругову подорож «об’єкт → дані → JSON → дані → новий об’єкт»:</p>
+<div class="code-block"><div class="code-toolbar"><span>json_round_trip.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">import json
+
+
+class Profile:
+    def __init__(self, name, level, skills):
+        self.name = name
+        self.level = level
+        self.skills = list(skills)
+
+    def to_data(self):
+        return {
+            &quot;name&quot;: self.name,
+            &quot;level&quot;: self.level,
+            &quot;skills&quot;: self.skills.copy(),
+        }
+
+    @classmethod
+    def from_data(cls, data):
+        return cls(data[&quot;name&quot;], data[&quot;level&quot;], data[&quot;skills&quot;])
+
+
+original = Profile(&quot;Лея&quot;, 2, [&quot;python&quot;])
+text = json.dumps(original.to_data(), ensure_ascii=False)
+restored = Profile.from_data(json.loads(text))
+
+print(f&quot;{restored.name}: {restored.level}; {restored.skills}&quot;)</code></pre></div>
+<section class="quiz" data-answer="1"><div class="callout-label">Перевір себе</div><p class="quiz-question">Чому ProfileStore не повинен сам змінювати level профілю?</p><div class="quiz-options"><button type="button" class="quiz-option" data-index="0">Бо методи класу не можуть імпортувати json.</button><button type="button" class="quiz-option" data-index="1">Його відповідальність — зберігати й читати дані, а правила рівня належать PlayerProfile.</button><button type="button" class="quiz-option" data-index="2">Бо JSON не підтримує числа.</button></div><p class="quiz-feedback" hidden>Розділення відповідальності дозволяє перевіряти модель без файла й змінювати формат сховища без перенесення правил профілю.</p></section>
+<h2 id="samostiyna-robota">Самостійна робота<a class="heading-link" href="#samostiyna-robota" aria-label="Посилання на розділ">#</a></h2>
+<section class="callout callout-tasks"><div class="callout-label">Самостійна робота</div><ul><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="15-json-zberezhennia-i-refaktorynh-task-1"><span>Додай профілю поле <code>settings</code> зі словником і забезпеч копію під час створення, <code>to_data()</code> та <code>from_data()</code>.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="15-json-zberezhennia-i-refaktorynh-task-2"><span>Створи окремі перевірки для відсутнього файла, пошкодженого JSON, відсутнього ключа й неправильного типу поля. Не повертай для всіх випадків однакове <code>None</code>.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="15-json-zberezhennia-i-refaktorynh-task-3"><span>Реалізуй <code>Robot.to_data()</code>/<code>from_data()</code> і <code>RobotStore</code>. Методи руху й заряду мають лишитися в <code>Robot</code>, не у сховищі.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="15-json-zberezhennia-i-refaktorynh-task-4"><span>Продемонструй, як кортеж і ключ-число змінюються після JSON round trip. Обери явне представлення, якщо початковий тип треба відновити.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="15-json-zberezhennia-i-refaktorynh-task-5"><span>Додай <code>version: 1</code>, створи приклад старих даних і чисту функцію міграції у версію 2 без запису файла.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="15-json-zberezhennia-i-refaktorynh-task-6"><span>Реалізуй запис через сусідній <code>.tmp</code> і <code>replace()</code> лише в окремій навчальній папці. Перед запуском надрукуй обидва абсолютні шляхи й переконайся, що вони в межах проєкту.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="15-json-zberezhennia-i-refaktorynh-task-7"><span>Візьми монолітний скрипт зі словником і JSON та розділи на модель, сховище і <code>main()</code>. Після кожного кроку перевіряй той самий видимий результат.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="15-json-zberezhennia-i-refaktorynh-task-8"><span>Спробуй серіалізувати <code>Path</code>, <code>set</code> або <code>Enum</code>, прочитай <code>TypeError</code>, а потім визнач явну просту форму й зворотне відновлення.</span></label></li></ul></section>
+<section class="callout callout-history"><div class="callout-label">Коротка історична пауза</div><p>JSON походить із синтаксису об’єктів JavaScript, але давно є незалежним форматом обміну. Його сила — невеликий спільний набір типів. Обмеження змушує явно вирішити, які дані справді потрібні для відновлення об’єкта.</p></section>
+<h2 id="pidsumok">Підсумок<a class="heading-link" href="#pidsumok" aria-label="Посилання на розділ">#</a></h2>
+<ul><li>JSON зберігає прості структури, а не методи й довільні Python-об’єкти.</li><li><code>dumps()</code>/<code>loads()</code> працюють із рядками, <code>dump()</code>/<code>load()</code> — із файловими об’єктами.</li><li><code>ensure_ascii=False</code>, <code>indent</code> і UTF-8 роблять український файл читабельним.</li><li><code>to_data()</code> створює серіалізовану форму, <code>from_data()</code> перевіряє її й відновлює об’єкт.</li><li>Сховище відповідає за шлях та формат; модель — за правила стану й поведінку.</li><li>Відсутній файл, пошкоджений JSON і неправильна схема — різні ситуації.</li><li>Версія формату та явні міграції допомагають безпечно змінювати структуру.</li><li>Тимчасовий запис із <code>replace()</code> зменшує ризик часткового файла, але є заміною даних і потребує точного шляху.</li><li>Рефакторинг змінює будову маленькими кроками, зберігаючи перевірену поведінку.</li></ul>
+<p>Офіційний орієнтир: <a href="https://docs.python.org/3/library/json.html" target="_blank" rel="noreferrer"><code>json</code></a>.</p></div>
+  <section class="completion-card">
+    <div><p class="eyebrow">Твій прогрес</p><h2>Розділ опрацьовано?</h2><p>Позначай тільки після запуску прикладу й самостійної зміни.</p></div>
+    <button class="button primary complete-chapter" type="button" data-chapter-id="15-json-zberezhennia-i-refaktorynh">Позначити завершеним</button>
+  </section>
+  <nav class="chapter-pager" aria-label="Сусідні розділи"><a class="chapter-pager-link previous" href="14-vyniatky-i-chytabelni-zboi.html"><span>← Назад</span><strong>Винятки: передбачувані збої й корисні повідомлення</strong></a><a class="chapter-pager-link next" href="16-testy-z-pytest.html"><span>Далі →</span><strong>Автоматичні тести з pytest</strong></a></nav>
+</article>
+
+      <footer class="site-footer">
+        <p>Python через об’єкти · українська практична довідка · 2026</p>
+        <a href="https://github.com/ArTeGaS/python-oop-handbook-ua">Відкрити репозиторій</a>
+      </footer>
+    </main>
+  </div>
+  <div class="search-panel" hidden aria-live="polite">
+    <div class="search-panel-inner">
+      <button class="search-close" type="button" aria-label="Закрити пошук">×</button>
+      <p class="eyebrow">Пошук у довідці</p>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+</body>
+</html>

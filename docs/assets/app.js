@@ -127,14 +127,18 @@
   });
 
   const menuButton = document.querySelector(".menu-button");
+  const sidebarClose = document.querySelector(".sidebar-close");
   const closeMenu = () => {
     body.classList.remove("menu-open");
     menuButton?.setAttribute("aria-expanded", "false");
+    menuButton?.setAttribute("aria-label", "Відкрити зміст");
   };
   menuButton?.addEventListener("click", () => {
     const open = body.classList.toggle("menu-open");
     menuButton.setAttribute("aria-expanded", String(open));
+    menuButton.setAttribute("aria-label", open ? "Закрити зміст" : "Відкрити зміст");
   });
+  sidebarClose?.addEventListener("click", closeMenu);
   document.querySelectorAll(".sidebar a").forEach((link) => link.addEventListener("click", closeMenu));
   document.addEventListener("click", (event) => {
     if (

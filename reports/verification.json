@@ -4,18 +4,261 @@
   "warnings": [],
   "passed": [
     "Повнота структури: 18 розділів",
+    "Класичне видання збережене: 18 розділів, 204 сторінки",
     "Структура й кодові блоки джерел перевірені",
+    "Навчальний ритм першого офіційного видання перевірено",
+    "Увага пройшла окремий аудит: пасивний відрізок до 383 слів, абзац до 54 слів",
     "Навмисні помилки відтворені: 19 блоків",
+    "Класичне видання доступне у docs/classic і збігається з архівом",
     "JavaScript пройшов node --check",
-    "PDF читається: 204 сторінок, копії ідентичні",
-    "тести збірки: 13 passed in 1.08s",
-    "навчальний pytest-набір: 7 passed in 0.16s"
+    "PDF читається: 225 сторінок, копії ідентичні",
+    "тести збірки: 18 passed in 1.10s",
+    "навчальний pytest-набір: 7 passed in 0.12s"
   ],
   "metrics": {
     "runnable_code_blocks": 133,
     "expected_error_blocks": 19,
-    "python_code_blocks": 342,
-    "pdf_pages": 204
+    "python_code_blocks": 357,
+    "pdf_pages": 225
+  },
+  "attention": {
+    "status": "pass",
+    "thresholds": {
+      "max_paragraph_words": 70,
+      "max_passive_words_between_actions": 450,
+      "minimum_active_prompts_per_main_chapter": 7,
+      "minimum_reentry_headings_per_main_chapter": 12,
+      "long_code_soft_limit_lines": 60,
+      "minimum_navigation_comments_in_long_code": 3
+    },
+    "book": {
+      "chapters_audited": 18,
+      "longest_paragraph_words": 54,
+      "longest_passive_stretch_words": 383,
+      "minimum_active_prompts_in_main_chapter": 9,
+      "minimum_reentry_headings_in_main_chapter": 15,
+      "longest_code_block_lines": 91,
+      "long_code_blocks": 2,
+      "long_code_blocks_with_navigation": 2
+    },
+    "chapters": [
+      {
+        "chapter": 0,
+        "source": "00-yak-korystuvatysia.md",
+        "max_paragraph_words": 44,
+        "max_passive_words_between_actions": 346,
+        "active_prompts": 1,
+        "reentry_headings": 2,
+        "max_code_lines": 0,
+        "long_code_blocks": 0,
+        "long_code_blocks_with_navigation": 0,
+        "passed": true
+      },
+      {
+        "chapter": 1,
+        "source": "01-py-fail-i-pershyi-obiekt.md",
+        "max_paragraph_words": 53,
+        "max_passive_words_between_actions": 377,
+        "active_prompts": 14,
+        "reentry_headings": 18,
+        "max_code_lines": 10,
+        "long_code_blocks": 0,
+        "long_code_blocks_with_navigation": 0,
+        "passed": true
+      },
+      {
+        "chapter": 2,
+        "source": "02-stan-obiekta-i-prosti-typy.md",
+        "max_paragraph_words": 32,
+        "max_passive_words_between_actions": 219,
+        "active_prompts": 15,
+        "reentry_headings": 15,
+        "max_code_lines": 23,
+        "long_code_blocks": 0,
+        "long_code_blocks_with_navigation": 0,
+        "passed": true
+      },
+      {
+        "chapter": 3,
+        "source": "03-metody-parametry-i-povernennia.md",
+        "max_paragraph_words": 39,
+        "max_passive_words_between_actions": 237,
+        "active_prompts": 17,
+        "reentry_headings": 17,
+        "max_code_lines": 25,
+        "long_code_blocks": 0,
+        "long_code_blocks_with_navigation": 0,
+        "passed": true
+      },
+      {
+        "chapter": 4,
+        "source": "04-rishennia-i-lohichni-vyrazy.md",
+        "max_paragraph_words": 41,
+        "max_passive_words_between_actions": 210,
+        "active_prompts": 19,
+        "reentry_headings": 20,
+        "max_code_lines": 23,
+        "long_code_blocks": 0,
+        "long_code_blocks_with_navigation": 0,
+        "passed": true
+      },
+      {
+        "chapter": 5,
+        "source": "05-spysky-i-kortezhi.md",
+        "max_paragraph_words": 35,
+        "max_passive_words_between_actions": 223,
+        "active_prompts": 21,
+        "reentry_headings": 20,
+        "max_code_lines": 27,
+        "long_code_blocks": 0,
+        "long_code_blocks_with_navigation": 0,
+        "passed": true
+      },
+      {
+        "chapter": 6,
+        "source": "06-cykly-range-i-zrizy.md",
+        "max_paragraph_words": 33,
+        "max_passive_words_between_actions": 251,
+        "active_prompts": 25,
+        "reentry_headings": 20,
+        "max_code_lines": 39,
+        "long_code_blocks": 0,
+        "long_code_blocks_with_navigation": 0,
+        "passed": true
+      },
+      {
+        "chapter": 7,
+        "source": "07-vvedennia-i-cykl-while.md",
+        "max_paragraph_words": 30,
+        "max_passive_words_between_actions": 241,
+        "active_prompts": 17,
+        "reentry_headings": 20,
+        "max_code_lines": 64,
+        "long_code_blocks": 1,
+        "long_code_blocks_with_navigation": 1,
+        "passed": true
+      },
+      {
+        "chapter": 8,
+        "source": "08-slovnyky-vkladennia-i-mnozhyny.md",
+        "max_paragraph_words": 41,
+        "max_passive_words_between_actions": 264,
+        "active_prompts": 21,
+        "reentry_headings": 24,
+        "max_code_lines": 45,
+        "long_code_blocks": 0,
+        "long_code_blocks_with_navigation": 0,
+        "passed": true
+      },
+      {
+        "chapter": 9,
+        "source": "09-funktsii-i-moduli.md",
+        "max_paragraph_words": 41,
+        "max_passive_words_between_actions": 245,
+        "active_prompts": 20,
+        "reentry_headings": 21,
+        "max_code_lines": 25,
+        "long_code_blocks": 0,
+        "long_code_blocks_with_navigation": 0,
+        "passed": true
+      },
+      {
+        "chapter": 10,
+        "source": "10-struktura-opp-proiektu.md",
+        "max_paragraph_words": 36,
+        "max_passive_words_between_actions": 305,
+        "active_prompts": 13,
+        "reentry_headings": 27,
+        "max_code_lines": 37,
+        "long_code_blocks": 0,
+        "long_code_blocks_with_navigation": 0,
+        "passed": true
+      },
+      {
+        "chapter": 11,
+        "source": "11-spadkuvannia-kompozytsiia-i-vlastyvosti.md",
+        "max_paragraph_words": 33,
+        "max_passive_words_between_actions": 243,
+        "active_prompts": 18,
+        "reentry_headings": 18,
+        "max_code_lines": 50,
+        "long_code_blocks": 0,
+        "long_code_blocks_with_navigation": 0,
+        "passed": true
+      },
+      {
+        "chapter": 12,
+        "source": "12-standartna-biblioteka-i-vypadkovist.md",
+        "max_paragraph_words": 50,
+        "max_passive_words_between_actions": 302,
+        "active_prompts": 18,
+        "reentry_headings": 25,
+        "max_code_lines": 38,
+        "long_code_blocks": 0,
+        "long_code_blocks_with_navigation": 0,
+        "passed": true
+      },
+      {
+        "chapter": 13,
+        "source": "13-faily-koduvannia-i-shliakhy.md",
+        "max_paragraph_words": 36,
+        "max_passive_words_between_actions": 295,
+        "active_prompts": 16,
+        "reentry_headings": 29,
+        "max_code_lines": 28,
+        "long_code_blocks": 0,
+        "long_code_blocks_with_navigation": 0,
+        "passed": true
+      },
+      {
+        "chapter": 14,
+        "source": "14-vyniatky-i-chytabelni-zboi.md",
+        "max_paragraph_words": 43,
+        "max_passive_words_between_actions": 279,
+        "active_prompts": 16,
+        "reentry_headings": 24,
+        "max_code_lines": 46,
+        "long_code_blocks": 0,
+        "long_code_blocks_with_navigation": 0,
+        "passed": true
+      },
+      {
+        "chapter": 15,
+        "source": "15-json-zberezhennia-i-refaktorynh.md",
+        "max_paragraph_words": 31,
+        "max_passive_words_between_actions": 340,
+        "active_prompts": 15,
+        "reentry_headings": 22,
+        "max_code_lines": 91,
+        "long_code_blocks": 1,
+        "long_code_blocks_with_navigation": 1,
+        "passed": true
+      },
+      {
+        "chapter": 16,
+        "source": "16-testy-z-pytest.md",
+        "max_paragraph_words": 54,
+        "max_passive_words_between_actions": 310,
+        "active_prompts": 9,
+        "reentry_headings": 27,
+        "max_code_lines": 17,
+        "long_code_blocks": 0,
+        "long_code_blocks_with_navigation": 0,
+        "passed": true
+      },
+      {
+        "chapter": 17,
+        "source": "17-styl-nalahodzhennia-i-karta-syntaksysu.md",
+        "max_paragraph_words": 40,
+        "max_passive_words_between_actions": 383,
+        "active_prompts": 18,
+        "reentry_headings": 54,
+        "max_code_lines": 22,
+        "long_code_blocks": 0,
+        "long_code_blocks_with_navigation": 0,
+        "passed": true
+      }
+    ]
   },
   "mode": "strict"
 }

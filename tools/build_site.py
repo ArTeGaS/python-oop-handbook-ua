@@ -138,7 +138,10 @@ def render_page(
 {body}
       <footer class="site-footer">
         <p>{escape_text(metadata['title'])} · українська практична довідка · {escape_text(metadata['edition'])}</p>
-        <a href="{escape_attr(metadata['repository_url'])}">Відкрити репозиторій</a>
+        <div class="footer-links">
+          <a href="{escape_attr(metadata.get('classic_url', 'classic/index.html'))}">Класичне видання</a>
+          <a href="{escape_attr(metadata['repository_url'])}">Відкрити репозиторій</a>
+        </div>
       </footer>
     </main>
   </div>
@@ -172,6 +175,7 @@ def render_sidebar(chapters: list[Chapter], metadata: dict) -> str:
       <span class="brand-mark">Py</span>
       <span><strong>{escape_text(metadata['title'])}</strong><small>{escape_text(metadata['subtitle'])}</small></span>
     </a>
+    <button class="icon-button sidebar-close" type="button" aria-label="Закрити зміст">×</button>
     <button class="theme-toggle desktop-theme" type="button">Змінити тему</button>
   </div>
   <label class="search-box">
@@ -186,6 +190,7 @@ def render_sidebar(chapters: list[Chapter], metadata: dict) -> str:
   <nav class="chapter-nav">{''.join(links)}</nav>
   <div class="sidebar-actions">
     <a class="button secondary full" href="downloads/{escape_attr(metadata['pdf_filename'])}">Завантажити PDF</a>
+    <a class="edition-link" href="{escape_attr(metadata.get('classic_url', 'classic/index.html'))}">Відкрити класичне видання</a>
   </div>
 </aside>
 """
@@ -206,12 +211,13 @@ def render_home(chapters: list[Chapter], metadata: dict) -> str:
     return f"""
 <section class="hero">
   <div class="hero-copy">
-    <p class="eyebrow">Українська практична довідка</p>
+    <p class="eyebrow">Перше офіційне видання · українська практична довідка</p>
     <h1>Python, у якому дані <em>щось означають</em>, а об’єкти <em>щось роблять</em></h1>
     <p class="hero-lead">Від першого <code>.py</code>-файла до збереження даних і тестів. Кожна нова конструкція одразу стає поведінкою маленької програми.</p>
     <div class="hero-actions">
       <a class="button primary" href="{first.output_name}">Почати читати</a>
       <a class="button secondary" href="downloads/{escape_attr(metadata['pdf_filename'])}">PDF-книга</a>
+      <a class="button quiet" href="{escape_attr(metadata.get('classic_url', 'classic/index.html'))}">Класичне видання</a>
     </div>
   </div>
   <div class="hero-code" aria-label="Приклад Python-коду">
@@ -229,10 +235,10 @@ robot.say_hello()</code></pre>
 <section class="home-section principles">
   <p class="eyebrow">Як тут навчаємось</p>
   <div class="principle-grid">
-    <article><span>01</span><h2>Спочатку результат</h2><p>Перед кодом завжди зрозуміло, що зміниться після запуску.</p></article>
-    <article><span>02</span><h2>Теорія в потрібний момент</h2><p>Нове слово з’являється поруч із дією, яку допомагає виконати.</p></article>
-    <article><span>03</span><h2>Помилка — теж приклад</h2><p>Ми навмисно ламаємо код, читаємо повідомлення й відновлюємо поведінку.</p></article>
-    <article><span>04</span><h2>Зміни самостійно</h2><p>Наприкінці розділу є завдання без готової покрокової відповіді.</p></article>
+    <article><span>01</span><h2>Передбач до запуску</h2><p>Спочатку сформулюй очікування, потім порівняй його з реальною поведінкою.</p></article>
+    <article><span>02</span><h2>Простеж зміну</h2><p>Стан «до», точні кроки коду і стан «після» показані в одному місці.</p></article>
+    <article><span>03</span><h2>Підказки зникають поступово</h2><p>Від готового прикладу переходь через доповнення й зміну до власної програми.</p></article>
+    <article><span>04</span><h2>Згадай і перенеси</h2><p>Коротко відтвори правило без підглядання та застосуй його до іншого об’єкта.</p></article>
   </div>
 </section>
 
@@ -283,11 +289,11 @@ def render_chapter(
 <article class="chapter-article" data-chapter="{chapter.slug}">
   <header class="chapter-header">
     <p class="eyebrow">{label}</p>
-    <p class="chapter-reading-note">Читай · запускай · змінюй · перевіряй</p>
+    <p class="chapter-reading-note">Передбач · запускай · простеж · змінюй · створи</p>
   </header>
   <div class="chapter-body">{content}</div>
   <section class="completion-card">
-    <div><p class="eyebrow">Твій прогрес</p><h2>Розділ опрацьовано?</h2><p>Позначай тільки після запуску прикладу й самостійної зміни.</p></div>
+    <div><p class="eyebrow">Твій прогрес</p><h2>Розділ опрацьовано?</h2><p>Позначай після запуску, пояснення без підглядання й самостійної зміни.</p></div>
     <button class="button primary complete-chapter" type="button" data-chapter-id="{chapter.slug}">Позначити завершеним</button>
   </section>
   <nav class="chapter-pager" aria-label="Сусідні розділи">{previous_link}{next_link}</nav>

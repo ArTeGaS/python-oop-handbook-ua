@@ -6,8 +6,8 @@
   <meta name="description" content="Діалог із програмою: `input()` і цикл `while` Діалог із програмою: `input()` і цикл `while` Досі всі значення були записані в коді заздалегідь. Інтерактивна консольна програма має чекати на ">
   <meta name="theme-color" content="#f4f0e8">
   <title>Діалог із програмою: `input()` і цикл `while` — Python через об’єкти</title>
-  <link rel="stylesheet" href="assets/styles.css?v=3e80905f1037">
-  <script src="assets/app.js?v=3e80905f1037" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=4fbec2200f80">
+  <script src="assets/app.js?v=4fbec2200f80" defer></script>
 </head>
 <body class="chapter-page">
   <a class="skip-link" href="#main-content">До основного тексту</a>
@@ -24,6 +24,7 @@
       <span class="brand-mark">Py</span>
       <span><strong>Python через об’єкти</strong><small>Практична довідка для початківців</small></span>
     </a>
+    <button class="icon-button sidebar-close" type="button" aria-label="Закрити зміст">×</button>
     <button class="theme-toggle desktop-theme" type="button">Змінити тему</button>
   </div>
   <label class="search-box">
@@ -38,6 +39,7 @@
   <nav class="chapter-nav"><a class="chapter-link" data-slug="00-yak-korystuvatysia" href="00-yak-korystuvatysia.html"><span class="chapter-number">Початок</span><span>Як користуватися цією довідкою</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="01-py-fail-i-pershyi-obiekt" href="01-py-fail-i-pershyi-obiekt.html"><span class="chapter-number">01</span><span>`.py`-файл і перший об’єкт</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="02-stan-obiekta-i-prosti-typy" href="02-stan-obiekta-i-prosti-typy.html"><span class="chapter-number">02</span><span>Стан об’єкта: рядки, числа й логічні значення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="03-metody-parametry-i-povernennia" href="03-metody-parametry-i-povernennia.html"><span class="chapter-number">03</span><span>Методи: параметри, аргументи й `return`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="04-rishennia-i-lohichni-vyrazy" href="04-rishennia-i-lohichni-vyrazy.html"><span class="chapter-number">04</span><span>Рішення: порівняння, `if`, `elif`, `else`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="05-spysky-i-kortezhi" href="05-spysky-i-kortezhi.html"><span class="chapter-number">05</span><span>Списки й кортежі: впорядковані колекції</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="06-cykly-range-i-zrizy" href="06-cykly-range-i-zrizy.html"><span class="chapter-number">06</span><span>Повторення: `for`, `range()` і зрізи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="07-vvedennia-i-cykl-while" href="07-vvedennia-i-cykl-while.html"><span class="chapter-number">07</span><span>Діалог із програмою: `input()` і цикл `while`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="08-slovnyky-vkladennia-i-mnozhyny" href="08-slovnyky-vkladennia-i-mnozhyny.html"><span class="chapter-number">08</span><span>Словники, вкладені дані й множини</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="09-funktsii-i-moduli" href="09-funktsii-i-moduli.html"><span class="chapter-number">09</span><span>Функції й модулі: інструменти поза об’єктами</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="10-struktura-opp-proiektu" href="10-struktura-opp-proiektu.html"><span class="chapter-number">10</span><span>Структура OOP-проєкту у VS Code</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="11-spadkuvannia-kompozytsiia-i-vlastyvosti" href="11-spadkuvannia-kompozytsiia-i-vlastyvosti.html"><span class="chapter-number">11</span><span>Пов’язані об’єкти: успадкування, композиція й властивості</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="12-standartna-biblioteka-i-vypadkovist" href="12-standartna-biblioteka-i-vypadkovist.html"><span class="chapter-number">12</span><span>Стандартна бібліотека й керована випадковість</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="13-faily-koduvannia-i-shliakhy" href="13-faily-koduvannia-i-shliakhy.html"><span class="chapter-number">13</span><span>Текстові файли, UTF-8 і шляхи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="14-vyniatky-i-chytabelni-zboi" href="14-vyniatky-i-chytabelni-zboi.html"><span class="chapter-number">14</span><span>Винятки: передбачувані збої й корисні повідомлення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="15-json-zberezhennia-i-refaktorynh" href="15-json-zberezhennia-i-refaktorynh.html"><span class="chapter-number">15</span><span>JSON: збереження стану й рефакторинг</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="16-testy-z-pytest" href="16-testy-z-pytest.html"><span class="chapter-number">16</span><span>Автоматичні тести з pytest</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="17-styl-nalahodzhennia-i-karta-syntaksysu" href="17-styl-nalahodzhennia-i-karta-syntaksysu.html"><span class="chapter-number">17</span><span>Підтримуваний код: стиль, налагодження й карта синтаксису</span><span class="chapter-check" aria-hidden="true">✓</span></a></nav>
   <div class="sidebar-actions">
     <a class="button secondary full" href="downloads/python-cherez-obiekty.pdf">Завантажити PDF</a>
+    <a class="edition-link" href="classic/index.html">Відкрити класичне видання</a>
   </div>
 </aside>
 
@@ -46,23 +48,27 @@
 <article class="chapter-article" data-chapter="07-vvedennia-i-cykl-while">
   <header class="chapter-header">
     <p class="eyebrow">Розділ 07</p>
-    <p class="chapter-reading-note">Читай · запускай · змінюй · перевіряй</p>
+    <p class="chapter-reading-note">Передбач · запускай · простеж · змінюй · створи</p>
   </header>
   <div class="chapter-body"><h1 id="dialoh-iz-prohramoiu-input-i-tsykl-while">Діалог із програмою: <code>input()</code> і цикл <code>while</code><a class="heading-link" href="#dialoh-iz-prohramoiu-input-i-tsykl-while" aria-label="Посилання на розділ">#</a></h1>
 <p>Досі всі значення були записані в коді заздалегідь. Інтерактивна консольна програма має чекати на людину, читати команду, відповідати й знову чекати — доки користувач не попросить завершити роботу.</p>
 <h2 id="shcho-zrobymo">Що зробимо<a class="heading-link" href="#shcho-zrobymo" aria-label="Посилання на розділ">#</a></h2>
 <p>Створимо <code>RobotConsole</code>: об’єкт, який розуміє команди <code>status</code>, <code>move N</code>, <code>charge N</code> та <code>exit</code>. Так ми поєднаємо <code>input()</code>, перетворення тексту, цикл <code>while</code>, прапорець стану, <code>break</code> і <code>continue</code>.</p>
 <section class="callout callout-goal"><div class="callout-label">Результат</div><p>Програма працюватиме невідому наперед кількість кроків, але матиме чітку умову завершення. Уся поведінка команд лишиться в об’єкті, а цикл відповідатиме за діалог.</p></section>
+<section class="callout callout-focus"><div class="callout-label">Зараз у фокусі</div><p><strong>Одна дія:</strong> розділяй текст, який прийшов від користувача, і значення потрібного програмі типу.</p>
+<p>Якщо відволікся, повернися до переходу <code>answer</code> → <code>int(answer)</code>.</p></section>
 <h2 id="input-zavzhdy-povertaie-tekst"><code>input()</code> завжди повертає текст<a class="heading-link" href="#input-zavzhdy-povertaie-tekst" aria-label="Посилання на розділ">#</a></h2>
 <div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">name = input(&quot;Як тебе звати? &quot;)
 print(f&quot;Привіт, {name}!&quot;)</code></pre></div>
 <p>Рядок у дужках — <strong>запрошення</strong> (<em>prompt</em>). Курсор лишається після пробілу, користувач вводить текст і натискає Enter. Результат має тип <code>str</code>.</p>
 <p>Навіть якщо людина вводить <code>12</code>, Python отримує рядок <code>&quot;12&quot;</code>:</p>
+<section class="callout callout-predict"><div class="callout-label">Спочатку передбач</div><p>Уяви, що користувач вводить <code>12</code>. Запиши тип <code>answer</code>, числове значення <code>number</code> і останній рядок виведення до запуску програми.</p></section>
 <div class="code-block"><div class="code-toolbar"><span>input_type.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">answer = input(&quot;Введи число: &quot;)
 
 print(type(answer).__name__)
 number = int(answer)
 print(f&quot;Наступне число: {number + 1}&quot;)</code></pre></div>
+<section class="state-trace"><div class="callout-label">Введений текст стає числом</div><div class="trace-states"><div class="trace-state trace-before"><span>До</span><strong>Користувач набрав символи <code>12</code>; змінних <code>answer</code> і <code>number</code> ще немає.</strong></div><div class="trace-state-arrow" aria-hidden="true">→</div><div class="trace-state trace-after"><span>Після</span><strong><code>answer == &quot;12&quot;</code>, <code>number == 12</code>, надруковано <code>Наступне число: 13</code>.</strong></div></div><ol class="trace-steps"><li class="trace-step"><span class="trace-step-number">1</span><div><strong>Читання</strong><div class="trace-code"><code>answer = input(...)</code></div><p><code>input()</code> завжди повертає рядок, тому <code>answer</code> отримує <code>&quot;12&quot;</code>.</p></div></li><li class="trace-step"><span class="trace-step-number">2</span><div><strong>Перевірка типу</strong><div class="trace-code"><code>type(answer).__name__</code></div><p>Термінал показує <code>str</code>.</p></div></li><li class="trace-step"><span class="trace-step-number">3</span><div><strong>Перетворення</strong><div class="trace-code"><code>number = int(answer)</code></div><p><code>int()</code> створює ціле число <code>12</code>; початковий рядок не змінюється.</p></div></li><li class="trace-step"><span class="trace-step-number">4</span><div><strong>Обчислення</strong><div class="trace-code"><code>number + 1</code></div><p>Числова операція дає <code>13</code>.</p></div></li></ol><p class="trace-meaning"><strong>Що тут важливо:</strong> Текстове введення треба явно перевірити або перетворити перед числовими обчисленнями.</p></section>
 <p>У автоматичній перевірці введення <code>12</code> передається програмі так, ніби його набрала людина.</p>
 <h3 id="peretvorennia-typiv">Перетворення типів<a class="heading-link" href="#peretvorennia-typiv" aria-label="Посилання на розділ">#</a></h3>
 <ul><li><code>int(&quot;12&quot;)</code> створює ціле число <code>12</code>;</li><li><code>float(&quot;2.5&quot;)</code> створює дробове число <code>2.5</code>;</li><li><code>str(12)</code> створює текст <code>&quot;12&quot;</code>;</li><li><code>bool(value)</code> оцінює істинність значення, але не розуміє людські відповіді автоматично.</li></ul>
@@ -82,7 +88,8 @@ print(&quot;Старт!&quot;)</code></pre></div>
 <p>На відміну від <code>for</code>, цикл <code>while</code> не перебирає готову послідовність. Він доречний, коли кількість повторень наперед невідома: чекати правильну команду, працювати до <code>exit</code>, рухатися, доки є енергія.</p>
 <h2 id="maysternia">Майстерня<a class="heading-link" href="#maysternia" aria-label="Посилання на розділ">#</a></h2>
 <p>Створи <code>robot_console.py</code>:</p>
-<div class="code-block"><div class="code-toolbar"><span>robot_console.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Robot:
+<div class="code-block"><div class="code-toolbar"><span>robot_console.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python"># 1. Об’єкт, стан якого змінюють команди
+class Robot:
     def __init__(self, name, energy=10):
         self.name = name
         self.energy = energy
@@ -107,7 +114,7 @@ print(&quot;Старт!&quot;)</code></pre></div>
         self.energy += amount
         return f&quot;Додано {amount} енергії.&quot;
 
-
+# 2. Об’єкт, який читає та розбирає команди
 class RobotConsole:
     def __init__(self, robot):
         self.robot = robot
@@ -141,7 +148,7 @@ class RobotConsole:
             command = input(&quot;&gt; &quot;)
             print(self.handle(command))
 
-
+# 3. Створення об’єктів і запуск циклу
 robot = Robot(&quot;Робі&quot;)
 console = RobotConsole(robot)
 console.run()</code></pre></div>
@@ -239,6 +246,13 @@ KeyboardInterrupt</code></pre></div>
 <p>Це надсилає сигнал переривання, і Python зазвичай показує <code>KeyboardInterrupt</code>. Після зупинки виправ причину, а не просто запускай той самий код ще раз.</p>
 <section class="callout callout-os"><div class="callout-label">Переривання у терміналі</div><ul><li>Windows PowerShell і Command Prompt: <code>Ctrl+C</code>.</li><li>Linux-термінали: <code>Ctrl+C</code>.</li><li>macOS Terminal: <code>Control+C</code>.</li></ul>
 <p>Кнопка з кошиком у панелі термінала VS Code завершує всю термінальну сесію. Для звичайної завислої програми спершу достатньо переривання клавішами.</p></section>
+<section class="callout callout-completion"><div class="callout-label">Дай циклу шлях до завершення</div><p>Заповни пропуски так, щоб цикл надрукував <code>1</code>, <code>2</code>, <code>3</code> і зупинився.</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">counter = 1
+
+while counter &lt;= ____:
+    print(counter)
+    counter ____ 1</code></pre></div>
+<p>Перед запуском поясни, який рядок змінює умову майбутньої перевірки.</p></section>
 <h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
 <h3 id="chyslo-lyshylosia-riadkom">Число лишилося рядком<a class="heading-link" href="#chyslo-lyshylosia-riadkom" aria-label="Посилання на розділ">#</a></h3>
 <div class="code-block"><div class="code-toolbar"><span>input_type.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">age = input(&quot;Вік: &quot;)
@@ -290,21 +304,25 @@ commands = [&quot;show&quot;, &quot;+&quot;, &quot;+&quot;, &quot;skip&quot;, &q
 for command in commands:
     print(counter.handle(command))</code></pre></div>
 <section class="quiz" data-answer="1"><div class="callout-label">Перевір себе</div><p class="quiz-question">Чому значення з input() треба перетворити через int(), перш ніж додавати до нього число?</p><div class="quiz-options"><button type="button" class="quiz-option" data-index="0">int() потрібна лише для від’ємних чисел.</button><button type="button" class="quiz-option" data-index="1">input() завжди повертає рядок, навіть якщо користувач увів лише цифри.</button><button type="button" class="quiz-option" data-index="2">input() повертає None до завершення циклу.</button></div><p class="quiz-feedback" hidden>Текст &quot;12&quot; і число 12 — різні типи. int() створює ціле число з правильного текстового запису.</p></section>
+<section class="callout callout-recall"><div class="callout-label">Згадай без підглядання</div><p>Закрий приклади й поясни, чому <code>input()</code> повертає текст навіть після введення цифр. Потім назви три частини безпечного <code>while</code>: початковий стан, умова і зміна стану.</p></section>
 <h2 id="samostiyna-robota">Самостійна робота<a class="heading-link" href="#samostiyna-robota" aria-label="Посилання на розділ">#</a></h2>
 <section class="callout callout-tasks"><div class="callout-label">Самостійна робота</div><ul><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="07-vvedennia-i-cykl-while-task-1"><span>Додай до <code>RobotConsole</code> команди <code>rename ІМ’Я</code> та <code>reset</code>, яка обнуляє пройдену відстань, але не заряд.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="07-vvedennia-i-cykl-while-task-2"><span>Створи клас <code>QuizRound</code>, який читає відповіді, доки користувач не дасть правильну або не витратить три спроби. Логіку перевірки винеси в окремий метод.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="07-vvedennia-i-cykl-while-task-3"><span>Напиши цикл, який просить додатне ціле число. Поки що використовуй <code>isdigit()</code>; поясни, які правильні числові записи цей метод не прийме.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="07-vvedennia-i-cykl-while-task-4"><span>Реалізуй меню <code>1 — статус</code>, <code>2 — зарядити</code>, <code>0 — вихід</code>. Відділи перетворення команди від методів об’єкта.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="07-vvedennia-i-cykl-while-task-5"><span>Виведи числа від 1 до 20, пропускаючи кратні 3 через <code>continue</code>. Потім заверши цикл достроково на першому числі, більшому за 14.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="07-vvedennia-i-cykl-while-task-6"><span>Створи обмежений цикл входу з трьома спробами й <code>while ... else</code>. Перевір окремо успішний <code>break</code> і вичерпання спроб.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="07-vvedennia-i-cykl-while-task-7"><span>Навмисно створи нескінченний цикл, у якому лічильник не змінюється, зупини його через <code>Ctrl+C</code>/<code>Control+C</code>, а потім виправ умову або оновлення стану.</span></label></li></ul></section>
 <section class="callout callout-history"><div class="callout-label">Коротка історична пауза</div><p>Слово <code>while</code> означає «поки». Це корисна перевірка для читання: якщо рядок <code>while</code> не можна природно продовжити фразою «поки ця умова істинна», можливо, умова або назви змінних потребують спрощення.</p></section>
 <h2 id="pidsumok">Підсумок<a class="heading-link" href="#pidsumok" aria-label="Посилання на розділ">#</a></h2>
 <ul><li><code>input()</code> показує запрошення й завжди повертає рядок.</li><li><code>int()</code>, <code>float()</code> і <code>str()</code> створюють значення іншого типу з придатного вхідного значення.</li><li><code>while</code> повторює блок, поки умова дає <code>True</code>; стан умови має змінюватися.</li><li>Прапорець зручно керує циклом із кількома можливими причинами завершення.</li><li><code>break</code> завершує найближчий цикл, <code>continue</code> переходить до наступної перевірки.</li><li><code>%</code> повертає остачу й допомагає перевіряти парність та кратність.</li><li><code>Ctrl+C</code> або <code>Control+C</code> перериває завислу консольну програму.</li><li>Інтерактивний цикл краще залишати тонким, а обробку команди переносити у метод, який можна викликати без <code>input()</code>.</li></ul></div>
   <section class="completion-card">
-    <div><p class="eyebrow">Твій прогрес</p><h2>Розділ опрацьовано?</h2><p>Позначай тільки після запуску прикладу й самостійної зміни.</p></div>
+    <div><p class="eyebrow">Твій прогрес</p><h2>Розділ опрацьовано?</h2><p>Позначай після запуску, пояснення без підглядання й самостійної зміни.</p></div>
     <button class="button primary complete-chapter" type="button" data-chapter-id="07-vvedennia-i-cykl-while">Позначити завершеним</button>
   </section>
   <nav class="chapter-pager" aria-label="Сусідні розділи"><a class="chapter-pager-link previous" href="06-cykly-range-i-zrizy.html"><span>← Назад</span><strong>Повторення: `for`, `range()` і зрізи</strong></a><a class="chapter-pager-link next" href="08-slovnyky-vkladennia-i-mnozhyny.html"><span>Далі →</span><strong>Словники, вкладені дані й множини</strong></a></nav>
 </article>
 
       <footer class="site-footer">
-        <p>Python через об’єкти · українська практична довідка · 2026</p>
-        <a href="https://github.com/ArTeGaS/python-oop-handbook-ua">Відкрити репозиторій</a>
+        <p>Python через об’єкти · українська практична довідка · Перше офіційне видання · 2026</p>
+        <div class="footer-links">
+          <a href="classic/index.html">Класичне видання</a>
+          <a href="https://github.com/ArTeGaS/python-oop-handbook-ua">Відкрити репозиторій</a>
+        </div>
       </footer>
     </main>
   </div>

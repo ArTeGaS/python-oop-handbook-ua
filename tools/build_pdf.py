@@ -372,7 +372,8 @@ def build_cover(metadata: dict, styles: dict[str, ParagraphStyle]) -> list[Flowa
         Table(
             [[Paragraph(
                 "Від першого <font name=\"BookCode\">.py</font>-файла до об’єктів, файлів, помилок і тестів. "
-                "Теорія з’являється поруч із практикою, а кожен розділ завершується самостійною зміною.",
+                "Спочатку передбачаємо результат, потім запускаємо, простежуємо стан, поступово прибираємо "
+                "підказки й переносимо знання у власну програму.",
                 styles["body"],
             )]],
             colWidths=[128 * mm],
@@ -390,6 +391,11 @@ def build_cover(metadata: dict, styles: dict[str, ParagraphStyle]) -> list[Flowa
         ),
         Spacer(1, 36 * mm),
         Paragraph(metadata["edition"], styles["cover_label"]),
+        Spacer(1, 3 * mm),
+        Paragraph(
+            "Попередня версія збережена на сайті як класичне видання.",
+            styles["small"],
+        ),
         NextPageTemplate("body"),
         PageBreak(),
     ]
@@ -455,7 +461,7 @@ def blocks_to_flowables(
             flowables.append(paragraph)
         elif block.kind == "paragraph":
             paragraph = Paragraph(render_inline_pdf(block.data["text"]), styles["body"])
-            if next_block is not None and next_block.kind in {"code", "list", "quiz", "directive"}:
+            if next_block is not None and next_block.kind in {"code", "list", "quiz", "trace", "directive"}:
                 paragraph.keepWithNext = True
             flowables.append(paragraph)
         elif block.kind == "list":
@@ -481,8 +487,19 @@ def blocks_to_flowables(
                 "Результат" if block.data["language"] == "output" else block.data["language"]
             )
             code_lines = block.data["code"].splitlines() or [""]
-            for chunk_index in range(0, len(code_lines), 22):
-                chunk = code_lines[chunk_index : chunk_index + 22]
+            previous_block = block_list[block_index - 1] if block_index > 0 else None
+            follows_prediction = (
+                previous_block is not None
+                and previous_block.kind == "directive"
+                and previous_block.data.get("directive") == "predict"
+            )
+            first_chunk_size = 16 if follows_prediction and len(code_lines) > 22 else 22
+            code_chunks = [code_lines[:first_chunk_size]]
+            code_chunks.extend(
+                code_lines[start : start + 22]
+                for start in range(first_chunk_size, len(code_lines), 22)
+            )
+            for chunk_index, chunk in enumerate(code_chunks):
                 chunk_label = label if chunk_index == 0 else f"{label} · продовження"
                 flowables.append(code_table(chunk_label, "\n".join(chunk), styles))
         elif block.kind == "rule":
@@ -495,8 +512,12 @@ def blocks_to_flowables(
                 flowables.extend(
                     [
                         Spacer(1, 3 * mm),
-                        image,
-                        Paragraph(render_inline_pdf(block.data["alt"]), styles["small"]),
+                        KeepTogether(
+                            [
+                                image,
+                                Paragraph(render_inline_pdf(block.data["alt"]), styles["small"]),
+                            ]
+                        ),
                         Spacer(1, 3 * mm),
                     ]
                 )
@@ -520,6 +541,8 @@ def blocks_to_flowables(
                 )
             )
             flowables.append(callout_table(quiz_flowables, CORAL, SURFACE))
+        elif block.kind == "trace":
+            flowables.append(trace_table(block.data, styles))
         elif block.kind == "directive":
             directive = block.data["directive"]
             title = block.data["title"] or DIRECTIVE_LABELS.get(directive, directive.capitalize())
@@ -534,27 +557,40 @@ def blocks_to_flowables(
             if is_complex:
                 header = callout_header(title, border, background, styles)
                 if inner:
-                    prefix_size = min(2, len(inner))
-                    flowables.append(KeepTogether([header, *inner[:prefix_size]]))
+                    prefix: list[Flowable] = []
+                    prefix_size = 0
+                    while prefix_size < len(inner) and len(prefix) < 2:
+                        item = inner[prefix_size]
+                        prefix_size += 1
+                        if isinstance(item, CondPageBreak):
+                            continue
+                        prefix.append(item)
+                    flowables.append(KeepTogether([header, *prefix]))
                     flowables.extend(inner[prefix_size:])
                 else:
                     flowables.append(header)
                 flowables.append(Spacer(1, 3 * mm))
             else:
-                flowables.append(
-                    callout_table(
-                        [Paragraph(render_inline_pdf(title.upper()), styles["label"]), *inner],
-                        border,
-                        background,
-                    )
+                callout = callout_table(
+                    [Paragraph(render_inline_pdf(title.upper()), styles["label"]), *inner],
+                    border,
+                    background,
                 )
+                if directive == "predict":
+                    callout.keepWithNext = True
+                flowables.append(callout)
     return flowables
 
 
 def directive_colors(directive: str):
     return {
         "goal": (TEAL, TEAL_SOFT),
+        "focus": (TEAL, TEAL_SOFT),
+        "predict": (colors.HexColor("#D89A25"), YELLOW_SOFT),
         "practice": (colors.HexColor("#D89A25"), YELLOW_SOFT),
+        "completion": (GREEN, GREEN_SOFT),
+        "parsons": (GREEN, GREEN_SOFT),
+        "recall": (CORAL, CORAL_SOFT),
         "check": (colors.HexColor("#D89A25"), YELLOW_SOFT),
         "tasks": (colors.HexColor("#D89A25"), YELLOW_SOFT),
         "warning": (DANGER, DANGER_SOFT),
@@ -563,6 +599,87 @@ def directive_colors(directive: str):
         "answer": (GREEN, GREEN_SOFT),
         "history": (NAVY, SURFACE),
     }.get(directive, (TEAL, SURFACE))
+
+
+def trace_table(data: dict, styles: dict[str, ParagraphStyle]) -> Table:
+    state_table = Table(
+        [[
+            Paragraph(
+                f'<font color="#52606b">ДО</font><br/><b>{render_inline_pdf(data["before"])}</b>',
+                styles["body"],
+            ),
+            Paragraph("→", styles["h3"]),
+            Paragraph(
+                f'<font color="#2f7d56">ПІСЛЯ</font><br/><b>{render_inline_pdf(data["after"])}</b>',
+                styles["body"],
+            ),
+        ]],
+        colWidths=[69 * mm, 10 * mm, 69 * mm],
+        hAlign="LEFT",
+    )
+    state_table.setStyle(
+        TableStyle(
+            [
+                ("BACKGROUND", (0, 0), (0, 0), PAPER),
+                ("BACKGROUND", (2, 0), (2, 0), GREEN_SOFT),
+                ("BOX", (0, 0), (0, 0), 0.5, LINE),
+                ("BOX", (2, 0), (2, 0), 0.5, LINE),
+                ("ALIGN", (1, 0), (1, 0), "CENTER"),
+                ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+                ("LEFTPADDING", (0, 0), (-1, -1), 4 * mm),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 4 * mm),
+                ("TOPPADDING", (0, 0), (-1, -1), 3 * mm),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 3 * mm),
+            ]
+        )
+    )
+
+    step_rows = []
+    for index, step in enumerate(data["steps"], 1):
+        step_rows.append(
+            [
+                Paragraph(f"<b>{index}</b>", styles["body"]),
+                Paragraph(f"<b>{render_inline_pdf(step['label'])}</b>", styles["small"]),
+                Paragraph(render_inline_pdf(step["code"]), styles["small"]),
+                Paragraph(render_inline_pdf(step["meaning"]), styles["small"]),
+            ]
+        )
+    steps_table = Table(
+        step_rows,
+        colWidths=[9 * mm, 28 * mm, 43 * mm, 68 * mm],
+        hAlign="LEFT",
+        repeatRows=0,
+    )
+    steps_table.setStyle(
+        TableStyle(
+            [
+                ("BACKGROUND", (0, 0), (0, -1), TEAL_SOFT),
+                ("TEXTCOLOR", (0, 0), (0, -1), TEAL),
+                ("GRID", (0, 0), (-1, -1), 0.35, LINE),
+                ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                ("ALIGN", (0, 0), (0, -1), "CENTER"),
+                ("LEFTPADDING", (0, 0), (-1, -1), 2.5 * mm),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 2.5 * mm),
+                ("TOPPADDING", (0, 0), (-1, -1), 2.5 * mm),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 2.5 * mm),
+            ]
+        )
+    )
+    return callout_table(
+        [
+            Paragraph(render_inline_pdf(data["title"].upper()), styles["label"]),
+            state_table,
+            Spacer(1, 3 * mm),
+            steps_table,
+            Spacer(1, 2 * mm),
+            Paragraph(
+                f'<b>Що тут важливо:</b> {render_inline_pdf(data["meaning"])}',
+                styles["small"],
+            ),
+        ],
+        TEAL,
+        SURFACE,
+    )
 
 
 def callout_table(flowables: list[Flowable], border, background) -> Table:

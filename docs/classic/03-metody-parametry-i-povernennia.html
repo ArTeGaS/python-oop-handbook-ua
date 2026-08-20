@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="uk" data-active-chapter="03-metody-parametry-i-povernennia">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Методи: параметри, аргументи й `return` Методи: параметри, аргументи й `return` Об’єкт уже вміє зберігати стан. Тепер навчимо його приймати команди з додатковими даними, перевіряти результат">
+  <meta name="theme-color" content="#f4f0e8">
+  <title>Методи: параметри, аргументи й `return` — Python через об’єкти</title>
+  <link rel="stylesheet" href="assets/styles.css?v=3e80905f1037">
+  <script src="assets/app.js?v=3e80905f1037" defer></script>
+</head>
+<body class="chapter-page">
+  <a class="skip-link" href="#main-content">До основного тексту</a>
+  <header class="mobile-header">
+    <button class="icon-button menu-button" type="button" aria-label="Відкрити зміст" aria-expanded="false">Зміст</button>
+    <a class="mobile-brand" href="index.html">Python через об’єкти</a>
+    <button class="icon-button theme-toggle" type="button" aria-label="Змінити тему">Тема</button>
+  </header>
+  <div class="app-shell">
+
+<aside class="sidebar" aria-label="Зміст">
+  <div class="sidebar-top">
+    <a class="brand" data-slug="home" href="index.html">
+      <span class="brand-mark">Py</span>
+      <span><strong>Python через об’єкти</strong><small>Практична довідка для початківців</small></span>
+    </a>
+    <button class="theme-toggle desktop-theme" type="button">Змінити тему</button>
+  </div>
+  <label class="search-box">
+    <span class="visually-hidden">Пошук</span>
+    <input id="chapter-search" type="search" placeholder="Знайти тему…" autocomplete="off">
+    <kbd>Ctrl K</kbd>
+  </label>
+  <div class="progress-card">
+    <div><span>Прогрес</span><strong id="progress-label">0 з 18</strong></div>
+    <div class="progress-track"><span id="progress-bar"></span></div>
+  </div>
+  <nav class="chapter-nav"><a class="chapter-link" data-slug="00-yak-korystuvatysia" href="00-yak-korystuvatysia.html"><span class="chapter-number">Початок</span><span>Як користуватися цією довідкою</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="01-py-fail-i-pershyi-obiekt" href="01-py-fail-i-pershyi-obiekt.html"><span class="chapter-number">01</span><span>`.py`-файл і перший об’єкт</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="02-stan-obiekta-i-prosti-typy" href="02-stan-obiekta-i-prosti-typy.html"><span class="chapter-number">02</span><span>Стан об’єкта: рядки, числа й логічні значення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="03-metody-parametry-i-povernennia" href="03-metody-parametry-i-povernennia.html"><span class="chapter-number">03</span><span>Методи: параметри, аргументи й `return`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="04-rishennia-i-lohichni-vyrazy" href="04-rishennia-i-lohichni-vyrazy.html"><span class="chapter-number">04</span><span>Рішення: порівняння, `if`, `elif`, `else`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="05-spysky-i-kortezhi" href="05-spysky-i-kortezhi.html"><span class="chapter-number">05</span><span>Списки й кортежі: впорядковані колекції</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="06-cykly-range-i-zrizy" href="06-cykly-range-i-zrizy.html"><span class="chapter-number">06</span><span>Повторення: `for`, `range()` і зрізи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="07-vvedennia-i-cykl-while" href="07-vvedennia-i-cykl-while.html"><span class="chapter-number">07</span><span>Діалог із програмою: `input()` і цикл `while`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="08-slovnyky-vkladennia-i-mnozhyny" href="08-slovnyky-vkladennia-i-mnozhyny.html"><span class="chapter-number">08</span><span>Словники, вкладені дані й множини</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="09-funktsii-i-moduli" href="09-funktsii-i-moduli.html"><span class="chapter-number">09</span><span>Функції й модулі: інструменти поза об’єктами</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="10-struktura-opp-proiektu" href="10-struktura-opp-proiektu.html"><span class="chapter-number">10</span><span>Структура OOP-проєкту у VS Code</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="11-spadkuvannia-kompozytsiia-i-vlastyvosti" href="11-spadkuvannia-kompozytsiia-i-vlastyvosti.html"><span class="chapter-number">11</span><span>Пов’язані об’єкти: успадкування, композиція й властивості</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="12-standartna-biblioteka-i-vypadkovist" href="12-standartna-biblioteka-i-vypadkovist.html"><span class="chapter-number">12</span><span>Стандартна бібліотека й керована випадковість</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="13-faily-koduvannia-i-shliakhy" href="13-faily-koduvannia-i-shliakhy.html"><span class="chapter-number">13</span><span>Текстові файли, UTF-8 і шляхи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="14-vyniatky-i-chytabelni-zboi" href="14-vyniatky-i-chytabelni-zboi.html"><span class="chapter-number">14</span><span>Винятки: передбачувані збої й корисні повідомлення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="15-json-zberezhennia-i-refaktorynh" href="15-json-zberezhennia-i-refaktorynh.html"><span class="chapter-number">15</span><span>JSON: збереження стану й рефакторинг</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="16-testy-z-pytest" href="16-testy-z-pytest.html"><span class="chapter-number">16</span><span>Автоматичні тести з pytest</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="17-styl-nalahodzhennia-i-karta-syntaksysu" href="17-styl-nalahodzhennia-i-karta-syntaksysu.html"><span class="chapter-number">17</span><span>Підтримуваний код: стиль, налагодження й карта синтаксису</span><span class="chapter-check" aria-hidden="true">✓</span></a></nav>
+  <div class="sidebar-actions">
+    <a class="button secondary full" href="downloads/python-cherez-obiekty.pdf">Завантажити PDF</a>
+  </div>
+</aside>
+
+    <main id="main-content" class="main-content" tabindex="-1">
+
+<article class="chapter-article" data-chapter="03-metody-parametry-i-povernennia">
+  <header class="chapter-header">
+    <p class="eyebrow">Розділ 03</p>
+    <p class="chapter-reading-note">Читай · запускай · змінюй · перевіряй</p>
+  </header>
+  <div class="chapter-body"><h1 id="metody-parametry-arhumenty-y-return">Методи: параметри, аргументи й <code>return</code><a class="heading-link" href="#metody-parametry-arhumenty-y-return" aria-label="Посилання на розділ">#</a></h1>
+<p>Об’єкт уже вміє зберігати стан. Тепер навчимо його приймати команди з додатковими даними, перевіряти результат своєї роботи та повертати значення тому коду, який викликав метод.</p>
+<h2 id="shcho-zrobymo">Що зробимо<a class="heading-link" href="#shcho-zrobymo" aria-label="Посилання на розділ">#</a></h2>
+<p>Створимо героя, який отримує лікування й витрачає енергію на удар. Одні методи змінюватимуть стан, інші — обчислюватимуть і <strong>повертатимуть</strong> результат без друку.</p>
+<section class="callout callout-goal"><div class="callout-label">Результат</div><p>Після розділу ти зможеш простежити шлях значення: від аргументу у виклику — до параметра методу — до нового стану або результату <code>return</code>.</p></section>
+<h2 id="komandi-chasto-potribni-dodatkovi-dani">Команді часто потрібні додаткові дані<a class="heading-link" href="#komandi-chasto-potribni-dodatkovi-dani" aria-label="Посилання на розділ">#</a></h2>
+<p>Метод <code>robot.move()</code> може завжди рухати робота на однакову відстань. Але команда <code>hero.heal(15)</code> повинна знати, скільки саме здоров’я відновити.</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Hero:
+    def heal(self, amount):
+        self.health += amount</code></pre></div>
+<p><code>amount</code> у визначенні методу — <strong>параметр</strong>. Він позначає місце для майбутнього значення.</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">hero.heal(15)</code></pre></div>
+<p><code>15</code> у виклику — <strong>аргумент</strong>, тобто конкретне значення, передане параметру.</p>
+<p>Коротко:</p>
+<ul><li>параметр живе у загальному описі методу;</li><li>аргумент з’являється під час конкретного виклику;</li><li><code>self</code> теж параметр, але об’єкт для нього Python підставляє автоматично.</li></ul>
+<h2 id="maysternia">Майстерня<a class="heading-link" href="#maysternia" aria-label="Посилання на розділ">#</a></h2>
+<p>Створи файл <code>hero_actions.py</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>hero_actions.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Hero:
+    def __init__(self, name, health=100, energy=30):
+        self.name = name
+        self.health = health
+        self.energy = energy
+
+    def heal(self, amount):
+        self.health += amount
+
+    def strike(self, damage, energy_cost=8):
+        self.energy -= energy_cost
+        return damage
+
+    def status_text(self):
+        return f&quot;{self.name}: {self.health} здоров’я, {self.energy} енергії.&quot;
+
+
+hero = Hero(&quot;Міра&quot;, health=70, energy=25)
+
+print(hero.status_text())
+hero.heal(15)
+dealt_damage = hero.strike(12)
+
+print(f&quot;Удар завдав {dealt_damage} шкоди.&quot;)
+print(hero.status_text())</code></pre></div>
+<p>Тут є три різні види роботи:</p>
+<ul><li><code>heal()</code> змінює стан;</li><li><code>strike()</code> змінює стан і повертає число;</li><li><code>status_text()</code> не змінює стан, а складає й повертає текст.</li></ul>
+<h3 id="znachennia-za-zamovchuvanniam">Значення за замовчуванням<a class="heading-link" href="#znachennia-za-zamovchuvanniam" aria-label="Посилання на розділ">#</a></h3>
+<p>У заголовку <code>__init__</code> два параметри мають готові значення:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def __init__(self, name, health=100, energy=30):</code></pre></div>
+<p>Тому всі ці виклики правильні:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">first = Hero(&quot;Міра&quot;)
+second = Hero(&quot;Орест&quot;, 80)
+third = Hero(&quot;Лея&quot;, 70, 50)</code></pre></div>
+<ul><li><code>first</code> отримає <code>health=100</code>, <code>energy=30</code>;</li><li><code>second</code> отримає <code>health=80</code>, <code>energy=30</code>;</li><li><code>third</code> отримає всі передані значення.</li></ul>
+<p>Обов’язкові параметри ставлять перед параметрами зі значенням за замовчуванням. Такий заголовок був би помилковим: <code>def __init__(self, health=100, name):</code>.</p>
+<section class="callout callout-note"><div class="callout-label">Стабільне значення за замовчуванням</div><p>Для числа, рядка, <code>True</code>, <code>False</code> або <code>None</code> значення за замовчуванням безпечне. Змінні списки й словники потребують іншого прийому; ми розберемо його після знайомства з колекціями.</p></section>
+<h3 id="pozytsiyni-y-imenovani-arhumenty">Позиційні й іменовані аргументи<a class="heading-link" href="#pozytsiyni-y-imenovani-arhumenty" aria-label="Посилання на розділ">#</a></h3>
+<p>У виклику <code>Hero(&quot;Міра&quot;, 70, 25)</code> Python зіставляє значення з параметрами за позицією. Це <strong>позиційні аргументи</strong>.</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">hero = Hero(&quot;Міра&quot;, health=70, energy=25)</code></pre></div>
+<p><code>health=70</code> та <code>energy=25</code> — <strong>іменовані аргументи</strong>. Вони довші, але не дають переплутати два схожих числа.</p>
+<p>Позиційні аргументи мають стояти перед іменованими:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">hero = Hero(&quot;Міра&quot;, energy=25, health=70)</code></pre></div>
+<p>Порядок двох іменованих аргументів уже не важливий.</p>
+<section class="callout callout-practice"><div class="callout-label">Перевір різні виклики</div><p>Створи трьох героїв:</p>
+<div class="code-block"><div class="code-toolbar"><span>hero_defaults.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Hero:
+    def __init__(self, name, health=100, energy=30):
+        self.name = name
+        self.health = health
+        self.energy = energy
+
+    def short_status(self):
+        return f&quot;{self.name}: {self.health}/{self.energy}&quot;
+
+
+first = Hero(&quot;Ада&quot;)
+second = Hero(&quot;Бор&quot;, 60)
+third = Hero(&quot;Віра&quot;, energy=45, health=90)
+
+print(first.short_status())
+print(second.short_status())
+print(third.short_status())</code></pre></div>
+<p>Поясни, звідки взялося кожне число: з аргументу чи зі значення за замовчуванням.</p></section>
+<h2 id="return-peredaie-rezultat-nazovni"><code>return</code> передає результат назовні<a class="heading-link" href="#return-peredaie-rezultat-nazovni" aria-label="Посилання на розділ">#</a></h2>
+<p>Порівняй два методи:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def print_status(self):
+    print(f&quot;Здоров’я: {self.health}&quot;)
+
+def status_text(self):
+    return f&quot;Здоров’я: {self.health}&quot;</code></pre></div>
+<p>Перший сам вирішує, що результат треба показати в терміналі. Другий лише готує текст і віддає його виклику. Тому з <code>status_text()</code> можна зробити більше:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">message = hero.status_text()
+print(message)
+save_later = message</code></pre></div>
+<p>Пізніше цей текст можна буде показати у графічному інтерфейсі, записати у файл або перевірити тестом. Метод не прив’язаний до одного способу використання.</p>
+<p>Рядок із <code>return</code> одразу завершує метод:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def double(self, number):
+    return number * 2
+    print(&quot;Цей рядок не виконається.&quot;)</code></pre></div>
+<p>Код після виконаного <code>return</code> у тому самому блоці недосяжний.</p>
+<h3 id="metod-bez-iavnoho-return-povertaie-none">Метод без явного <code>return</code> повертає <code>None</code><a class="heading-link" href="#metod-bez-iavnoho-return-povertaie-none" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>none_result.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Hero:
+    def heal(self, amount):
+        print(&quot;Лікування завершено.&quot;)
+
+
+hero = Hero()
+result = hero.heal(10)
+print(result)</code></pre></div>
+<p><code>None</code> означає «корисного значення тут немає». Це окремий об’єкт Python, а не нуль, не порожній рядок і не <code>False</code>.</p>
+<p>Не треба додавати <code>return None</code> наприкінці кожного методу: Python робить це неявно. Явний <code>return</code> потрібен, коли ми справді хочемо передати результат або достроково завершити роботу.</p>
+<h3 id="obchyslennia-krashche-viddiliaty-vid-vyvedennia">Обчислення краще відділяти від виведення<a class="heading-link" href="#obchyslennia-krashche-viddiliaty-vid-vyvedennia" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>travel_cost.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Journey:
+    def __init__(self, price_per_step):
+        self.price_per_step = price_per_step
+
+    def calculate_cost(self, steps):
+        return self.price_per_step * steps
+
+
+journey = Journey(price_per_step=3)
+cost = journey.calculate_cost(12)
+print(f&quot;Подорож коштує {cost} монет.&quot;)</code></pre></div>
+<p>Метод рахує, а зовнішній код вирішує, як використати число. Це простий приклад <strong>поділу відповідальності</strong>: кожна частина має одну зрозумілу роботу.</p>
+<h2 id="peredavannia-obiekta-metodu">Передавання об’єкта методу<a class="heading-link" href="#peredavannia-obiekta-metodu" aria-label="Посилання на розділ">#</a></h2>
+<p>Аргументом може бути не лише число або рядок, а й інший об’єкт.</p>
+<div class="code-block"><div class="code-toolbar"><span>training.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Hero:
+    def __init__(self, name):
+        self.name = name
+        self.experience = 0
+
+    def train(self, student, points):
+        student.experience += points
+        return f&quot;Тренування: {self.name} -&gt; {student.name}.&quot;
+
+    def experience_text(self):
+        return f&quot;{self.name} отримує {self.experience} досвіду.&quot;
+
+
+mentor = Hero(&quot;Ніка&quot;)
+student = Hero(&quot;Рей&quot;)
+
+print(mentor.train(student, 3))
+print(student.experience_text())</code></pre></div>
+<p>Усередині <code>train()</code> параметр <code>student</code> посилається на той самий об’єкт, що й зовнішнє ім’я <code>student</code>. Тому зміна <code>student.experience</code> зберігається після завершення методу.</p>
+<p>Це потужна можливість, але користуйся нею зрозуміло: назва методу має підказувати, що стан іншого об’єкта зміниться.</p>
+<h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
+<h3 id="vyklyk-ne-vidpovidaie-parametram">Виклик не відповідає параметрам<a class="heading-link" href="#vyklyk-ne-vidpovidaie-parametram" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>missing_argument.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Hero:
+    def heal(self, amount):
+        print(f&quot;Відновлено: {amount}&quot;)
+
+
+hero = Hero()
+hero.heal()</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Traceback (most recent call last):
+  File &quot;...\missing_argument.py&quot;, line 7, in &lt;module&gt;
+    hero.heal()
+TypeError: Hero.heal() missing 1 required positional argument: &#x27;amount&#x27;</code></pre></div>
+<p>Останній рядок називає метод і параметр <code>amount</code>, для якого не передали значення.</p>
+<div class="code-block"><div class="code-toolbar"><span>too_many_arguments.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">class Hero:
+    def heal(self, amount):
+        print(f&quot;Відновлено: {amount}&quot;)
+
+
+hero = Hero()
+hero.heal(10, 20)</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Traceback (most recent call last):
+  File &quot;...\too_many_arguments.py&quot;, line 7, in &lt;module&gt;
+    hero.heal(10, 20)
+TypeError: Hero.heal() takes 2 positional arguments but 3 were given</code></pre></div>
+<p>У повідомленні враховано й прихований для виклику <code>self</code>: метод має два параметри <code>self</code> та <code>amount</code>, але отримав об’єкт плюс два числа — разом три аргументи.</p>
+<h3 id="rezultat-nadrukovano-dvichi">Результат надруковано двічі<a class="heading-link" href="#rezultat-nadrukovano-dvichi" aria-label="Посилання на розділ">#</a></h3>
+<div class="code-block"><div class="code-toolbar"><span>printed_none.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class Hero:
+    def status_text(self):
+        print(&quot;Герой готовий.&quot;)
+
+
+hero = Hero()
+print(hero.status_text())</code></pre></div>
+<div class="code-block"><div class="code-toolbar"><span>Результат</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-output">Герой готовий.
+None</code></pre></div>
+<p>Метод спочатку друкує повідомлення, а потім неявно повертає <code>None</code>; зовнішній <code>print()</code> показує саме це повернене значення. Якщо зовнішній код має друкувати результат, метод повинен <strong>повертати</strong> рядок:</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">def status_text(self):
+    return &quot;Герой готовий.&quot;</code></pre></div>
+<section class="callout callout-mistake"><div class="callout-label">Типова помилка</div><p>Не пиши <code>return print(...)</code>, коли хочеш повернути текст. <code>print()</code> показує значення й повертає <code>None</code>. Спочатку склади рядок, поверни його через <code>return</code>, а друкуй у місці виклику.</p></section>
+<h2 id="shvydka-perevirka">Швидка перевірка<a class="heading-link" href="#shvydka-perevirka" aria-label="Посилання на розділ">#</a></h2>
+<p>Спочатку визнач, які значення потраплять у параметри <code>minutes</code> і <code>intensity</code>, і лише тоді запускай:</p>
+<div class="code-block"><div class="code-toolbar"><span>music_player.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">class MusicPlayer:
+    def __init__(self, battery=60):
+        self.battery = battery
+
+    def play(self, minutes, intensity=1):
+        used = minutes * intensity
+        self.battery -= used
+        return used
+
+    def battery_text(self):
+        return f&quot;Залишилося {self.battery} хв.&quot;
+
+
+player = MusicPlayer()
+spent = player.play(minutes=9, intensity=2)
+
+print(spent)
+print(player.battery_text())</code></pre></div>
+<section class="quiz" data-answer="1"><div class="callout-label">Перевір себе</div><p class="quiz-question">Навіщо метод status_text() повертає рядок, а не одразу друкує його?</p><div class="quiz-options"><button type="button" class="quiz-option" data-index="0">Щоб атрибути об’єкта стали глобальними змінними.</button><button type="button" class="quiz-option" data-index="1">Щоб код, який викликав метод, сам вирішив, як використати готовий текст.</button><button type="button" class="quiz-option" data-index="2">Бо методи класу не можуть використовувати print().</button></div><p class="quiz-feedback" hidden>return віддає значення назовні. Його можна надрукувати, зберегти, записати у файл або перевірити тестом.</p></section>
+<h2 id="samostiyna-robota">Самостійна робота<a class="heading-link" href="#samostiyna-robota" aria-label="Посилання на розділ">#</a></h2>
+<section class="callout callout-tasks"><div class="callout-label">Самостійна робота</div><ul><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="03-metody-parametry-i-povernennia-task-1"><span>Додай герою метод <code>rest(minutes)</code>, який відновлює по 2 одиниці енергії за хвилину й повертає фактично додану кількість.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="03-metody-parametry-i-povernennia-task-2"><span>Створи клас <code>Calculator</code> з методами <code>add(a, b)</code>, <code>subtract(a, b)</code> і <code>square(number)</code>. Усі методи мають повертати значення, а друк зроби поза класом.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="03-metody-parametry-i-povernennia-task-3"><span>Створи клас <code>Ticket</code> з обов’язковою назвою події та ціною за замовчуванням 100. Створи три квитки різними поєднаннями позиційних та іменованих аргументів.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="03-metody-parametry-i-povernennia-task-4"><span>Перероби метод, який одночасно рахує і друкує вартість, на два кроки: метод повертає число, зовнішній код формує повідомлення.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="03-metody-parametry-i-povernennia-task-5"><span>Створи два об’єкти <code>Pet</code>. Нехай метод одного об’єкта <code>share_food(other, amount)</code> зменшує його запас їжі й збільшує запас іншого.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="03-metody-parametry-i-povernennia-task-6"><span>Навмисно виклич метод без обов’язкового аргументу. Знайди в останньому рядку traceback назву методу та опис відсутнього параметра, після чого виправ виклик.</span></label></li></ul></section>
+<section class="callout callout-history"><div class="callout-label">Коротка історична пауза</div><p>Слово <code>return</code> буквально означає «повернути». Значення ніби проходить усередину методу через аргументи, опрацьовується, а потім повертається до місця виклику. Ця схема існувала в мовах задовго до Python і лишається одним з головних способів складати великі програми з малих частин.</p></section>
+<h2 id="pidsumok">Підсумок<a class="heading-link" href="#pidsumok" aria-label="Посилання на розділ">#</a></h2>
+<ul><li>Параметр описує місце для значення, аргумент передає конкретне значення під час виклику.</li><li><code>self</code> Python передає автоматично, решту обов’язкових аргументів передає програміст.</li><li>Значення за замовчуванням робить аргумент необов’язковим.</li><li>Іменовані аргументи пояснюють зміст і не залежать від взаємного порядку.</li><li><code>return</code> передає результат коду, який викликав метод, і завершує метод.</li><li>Метод без явного <code>return</code> повертає <code>None</code>.</li><li>Обчислення, зміна стану й показ результату — різні відповідальності; їх корисно бачити окремо.</li><li>Аргументом може бути інший об’єкт, і метод може взаємодіяти з його станом.</li></ul></div>
+  <section class="completion-card">
+    <div><p class="eyebrow">Твій прогрес</p><h2>Розділ опрацьовано?</h2><p>Позначай тільки після запуску прикладу й самостійної зміни.</p></div>
+    <button class="button primary complete-chapter" type="button" data-chapter-id="03-metody-parametry-i-povernennia">Позначити завершеним</button>
+  </section>
+  <nav class="chapter-pager" aria-label="Сусідні розділи"><a class="chapter-pager-link previous" href="02-stan-obiekta-i-prosti-typy.html"><span>← Назад</span><strong>Стан об’єкта: рядки, числа й логічні значення</strong></a><a class="chapter-pager-link next" href="04-rishennia-i-lohichni-vyrazy.html"><span>Далі →</span><strong>Рішення: порівняння, `if`, `elif`, `else`</strong></a></nav>
+</article>
+
+      <footer class="site-footer">
+        <p>Python через об’єкти · українська практична довідка · 2026</p>
+        <a href="https://github.com/ArTeGaS/python-oop-handbook-ua">Відкрити репозиторій</a>
+      </footer>
+    </main>
+  </div>
+  <div class="search-panel" hidden aria-live="polite">
+    <div class="search-panel-inner">
+      <button class="search-close" type="button" aria-label="Закрити пошук">×</button>
+      <p class="eyebrow">Пошук у довідці</p>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+</body>
+</html>

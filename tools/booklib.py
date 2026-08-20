@@ -32,10 +32,15 @@ class Chapter:
 
 DIRECTIVE_LABELS = {
     "goal": "Результат",
+    "focus": "Зараз у фокусі",
+    "predict": "Спочатку передбач",
     "note": "Важливо",
     "history": "Коротка історична пауза",
     "warning": "Обережно",
     "practice": "Спробуй зараз",
+    "completion": "Доповни готовий приклад",
+    "parsons": "Склади код у правильному порядку",
+    "recall": "Згадай без підглядання",
     "check": "Швидка перевірка",
     "mistake": "Типова помилка",
     "os": "Різниця між системами",
@@ -103,6 +108,10 @@ def parse_blocks(lines: list[str]) -> list[Block]:
                 raise ValueError(f"Не закрито блок :::{directive}")
             if directive == "quiz":
                 blocks.append(Block("quiz", parse_quiz(body)))
+            elif directive == "trace":
+                trace = parse_trace(body)
+                trace["title"] = title or "Простеж стан крок за кроком"
+                blocks.append(Block("trace", trace))
             else:
                 blocks.append(
                     Block(
@@ -231,6 +240,38 @@ def parse_quiz(lines: list[str]) -> dict[str, Any]:
     options = options[shift:] + options[:shift]
     values["options"] = options
     values["correct_index"] = options.index(values["correct"])
+    return values
+
+
+def parse_trace(lines: list[str]) -> dict[str, Any]:
+    values: dict[str, Any] = {"steps": []}
+    for line in lines:
+        stripped = line.strip()
+        if not stripped:
+            continue
+        key, separator, value = stripped.partition(":")
+        if not separator:
+            raise ValueError(f"Невірний рядок trace: {line}")
+        key = key.lower().strip()
+        value = value.strip()
+        if key == "step":
+            parts = [part.strip() for part in value.split("|", 2)]
+            if len(parts) != 3 or not all(parts):
+                raise ValueError(
+                    "Крок trace має формат: step: Назва | `код` | пояснення"
+                )
+            values["steps"].append(
+                {"label": parts[0], "code": parts[1], "meaning": parts[2]}
+            )
+        elif key in {"before", "after", "meaning"}:
+            values[key] = value
+        else:
+            raise ValueError(f"Невідоме поле trace: {key}")
+    for required in ("before", "after", "meaning"):
+        if not values.get(required):
+            raise ValueError(f"У trace немає поля {required}")
+    if len(values["steps"]) < 2:
+        raise ValueError("У trace має бути щонайменше два кроки")
     return values
 
 
@@ -384,6 +425,32 @@ def render_blocks_html(blocks: Iterable[Block], chapter_slug: str) -> str:
                     f'<p class="quiz-feedback" hidden>{render_inline_html(block.data["explanation"])}</p>'
                     '</section>'
                 )
+            elif block.kind == "trace":
+                steps = "".join(
+                    '<li class="trace-step">'
+                    f'<span class="trace-step-number">{index}</span>'
+                    '<div>'
+                    f'<strong>{render_inline_html(step["label"])}</strong>'
+                    f'<div class="trace-code">{render_inline_html(step["code"])}</div>'
+                    f'<p>{render_inline_html(step["meaning"])}</p>'
+                    '</div>'
+                    '</li>'
+                    for index, step in enumerate(block.data["steps"], 1)
+                )
+                rendered.append(
+                    '<section class="state-trace">'
+                    f'<div class="callout-label">{render_inline_html(block.data["title"])}</div>'
+                    '<div class="trace-states">'
+                    '<div class="trace-state trace-before"><span>До</span>'
+                    f'<strong>{render_inline_html(block.data["before"])}</strong></div>'
+                    '<div class="trace-state-arrow" aria-hidden="true">→</div>'
+                    '<div class="trace-state trace-after"><span>Після</span>'
+                    f'<strong>{render_inline_html(block.data["after"])}</strong></div>'
+                    '</div>'
+                    f'<ol class="trace-steps">{steps}</ol>'
+                    f'<p class="trace-meaning"><strong>Що тут важливо:</strong> {render_inline_html(block.data["meaning"])}</p>'
+                    '</section>'
+                )
             elif block.kind == "directive":
                 directive = block.data["directive"]
                 title = block.data["title"] or DIRECTIVE_LABELS.get(directive, directive.capitalize())
@@ -434,6 +501,20 @@ def chapter_plain_text(chapter: Chapter) -> str:
                 parts.append(block.data["code"])
             elif block.kind == "quiz":
                 parts.extend([block.data["question"], block.data["explanation"]])
+            elif block.kind == "trace":
+                parts.extend(
+                    [
+                        block.data["title"],
+                        block.data["before"],
+                        *(
+                            text
+                            for step in block.data["steps"]
+                            for text in (step["label"], step["code"], step["meaning"])
+                        ),
+                        block.data["after"],
+                        block.data["meaning"],
+                    ]
+                )
             elif block.kind == "directive":
                 if block.data["title"]:
                     parts.append(block.data["title"])

@@ -6,8 +6,8 @@
   <meta name="description" content="Рішення: порівняння, `if`, `elif`, `else` Рішення: порівняння, `if`, `elif`, `else` До цього методи виконували однакові дії за будь-якого стану. Але двері не мають відчинятися без ключа, гер">
   <meta name="theme-color" content="#f4f0e8">
   <title>Рішення: порівняння, `if`, `elif`, `else` — Python через об’єкти</title>
-  <link rel="stylesheet" href="assets/styles.css?v=3e80905f1037">
-  <script src="assets/app.js?v=3e80905f1037" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=4fbec2200f80">
+  <script src="assets/app.js?v=4fbec2200f80" defer></script>
 </head>
 <body class="chapter-page">
   <a class="skip-link" href="#main-content">До основного тексту</a>
@@ -24,6 +24,7 @@
       <span class="brand-mark">Py</span>
       <span><strong>Python через об’єкти</strong><small>Практична довідка для початківців</small></span>
     </a>
+    <button class="icon-button sidebar-close" type="button" aria-label="Закрити зміст">×</button>
     <button class="theme-toggle desktop-theme" type="button">Змінити тему</button>
   </div>
   <label class="search-box">
@@ -38,6 +39,7 @@
   <nav class="chapter-nav"><a class="chapter-link" data-slug="00-yak-korystuvatysia" href="00-yak-korystuvatysia.html"><span class="chapter-number">Початок</span><span>Як користуватися цією довідкою</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="01-py-fail-i-pershyi-obiekt" href="01-py-fail-i-pershyi-obiekt.html"><span class="chapter-number">01</span><span>`.py`-файл і перший об’єкт</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="02-stan-obiekta-i-prosti-typy" href="02-stan-obiekta-i-prosti-typy.html"><span class="chapter-number">02</span><span>Стан об’єкта: рядки, числа й логічні значення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="03-metody-parametry-i-povernennia" href="03-metody-parametry-i-povernennia.html"><span class="chapter-number">03</span><span>Методи: параметри, аргументи й `return`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="04-rishennia-i-lohichni-vyrazy" href="04-rishennia-i-lohichni-vyrazy.html"><span class="chapter-number">04</span><span>Рішення: порівняння, `if`, `elif`, `else`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="05-spysky-i-kortezhi" href="05-spysky-i-kortezhi.html"><span class="chapter-number">05</span><span>Списки й кортежі: впорядковані колекції</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="06-cykly-range-i-zrizy" href="06-cykly-range-i-zrizy.html"><span class="chapter-number">06</span><span>Повторення: `for`, `range()` і зрізи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="07-vvedennia-i-cykl-while" href="07-vvedennia-i-cykl-while.html"><span class="chapter-number">07</span><span>Діалог із програмою: `input()` і цикл `while`</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="08-slovnyky-vkladennia-i-mnozhyny" href="08-slovnyky-vkladennia-i-mnozhyny.html"><span class="chapter-number">08</span><span>Словники, вкладені дані й множини</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="09-funktsii-i-moduli" href="09-funktsii-i-moduli.html"><span class="chapter-number">09</span><span>Функції й модулі: інструменти поза об’єктами</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="10-struktura-opp-proiektu" href="10-struktura-opp-proiektu.html"><span class="chapter-number">10</span><span>Структура OOP-проєкту у VS Code</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="11-spadkuvannia-kompozytsiia-i-vlastyvosti" href="11-spadkuvannia-kompozytsiia-i-vlastyvosti.html"><span class="chapter-number">11</span><span>Пов’язані об’єкти: успадкування, композиція й властивості</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="12-standartna-biblioteka-i-vypadkovist" href="12-standartna-biblioteka-i-vypadkovist.html"><span class="chapter-number">12</span><span>Стандартна бібліотека й керована випадковість</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="13-faily-koduvannia-i-shliakhy" href="13-faily-koduvannia-i-shliakhy.html"><span class="chapter-number">13</span><span>Текстові файли, UTF-8 і шляхи</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="14-vyniatky-i-chytabelni-zboi" href="14-vyniatky-i-chytabelni-zboi.html"><span class="chapter-number">14</span><span>Винятки: передбачувані збої й корисні повідомлення</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="15-json-zberezhennia-i-refaktorynh" href="15-json-zberezhennia-i-refaktorynh.html"><span class="chapter-number">15</span><span>JSON: збереження стану й рефакторинг</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="16-testy-z-pytest" href="16-testy-z-pytest.html"><span class="chapter-number">16</span><span>Автоматичні тести з pytest</span><span class="chapter-check" aria-hidden="true">✓</span></a><a class="chapter-link" data-slug="17-styl-nalahodzhennia-i-karta-syntaksysu" href="17-styl-nalahodzhennia-i-karta-syntaksysu.html"><span class="chapter-number">17</span><span>Підтримуваний код: стиль, налагодження й карта синтаксису</span><span class="chapter-check" aria-hidden="true">✓</span></a></nav>
   <div class="sidebar-actions">
     <a class="button secondary full" href="downloads/python-cherez-obiekty.pdf">Завантажити PDF</a>
+    <a class="edition-link" href="classic/index.html">Відкрити класичне видання</a>
   </div>
 </aside>
 
@@ -46,20 +48,24 @@
 <article class="chapter-article" data-chapter="04-rishennia-i-lohichni-vyrazy">
   <header class="chapter-header">
     <p class="eyebrow">Розділ 04</p>
-    <p class="chapter-reading-note">Читай · запускай · змінюй · перевіряй</p>
+    <p class="chapter-reading-note">Передбач · запускай · простеж · змінюй · створи</p>
   </header>
   <div class="chapter-body"><h1 id="rishennia-porivniannia-if-elif-else">Рішення: порівняння, <code>if</code>, <code>elif</code>, <code>else</code><a class="heading-link" href="#rishennia-porivniannia-if-elif-else" aria-label="Посилання на розділ">#</a></h1>
 <p>До цього методи виконували однакові дії за будь-якого стану. Але двері не мають відчинятися без ключа, герой не може витратити більше енергії, ніж має, а завершене завдання не треба завершувати вдруге. Для цього програма вчиться ставити запитання й обирати гілку дій.</p>
 <h2 id="shcho-zrobymo">Що зробимо<a class="heading-link" href="#shcho-zrobymo" aria-label="Посилання на розділ">#</a></h2>
 <p>Створимо розумні двері. Вони знатимуть правильний код, кількість невдалих спроб і свій стан. Метод <code>try_open()</code> повертатиме різні повідомлення залежно від введеного коду.</p>
 <section class="callout callout-goal"><div class="callout-label">Результат</div><p>Один виклик методу зможе піти різними шляхами. Ти навчишся читати умову як запитання, результатом якого є лише <code>True</code> або <code>False</code>.</p></section>
+<section class="callout callout-focus"><div class="callout-label">Зараз у фокусі</div><p><strong>Одна дія:</strong> перед кожною умовою сформулюй питання, на яке Python відповість лише <code>True</code> або <code>False</code>.</p>
+<p>Якщо відволікся, повернися до поточного значення <code>energy</code> і прочитай порівняння як звичайне запитання.</p></section>
 <h2 id="porivniannia-stvoriuie-lohichne-znachennia">Порівняння створює логічне значення<a class="heading-link" href="#porivniannia-stvoriuie-lohichne-znachennia" aria-label="Посилання на розділ">#</a></h2>
+<section class="callout callout-predict"><div class="callout-label">Спочатку передбач</div><p>Для <code>energy = 20</code> прочитай чотири порівняння зверху вниз і запиши чотири відповіді <code>True</code> або <code>False</code>. Лише після цього запускай файл.</p></section>
 <div class="code-block"><div class="code-toolbar"><span>comparisons.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="true"><code class="language-python">energy = 20
 
 print(energy == 20)
 print(energy == 10)
 print(energy &gt; 5)
 print(energy != 0)</code></pre></div>
+<section class="state-trace"><div class="callout-label">Порівняння читають стан, але не змінюють його</div><div class="trace-states"><div class="trace-state trace-before"><span>До</span><strong><code>energy = 20</code>; у терміналі ще немає відповідей.</strong></div><div class="trace-state-arrow" aria-hidden="true">→</div><div class="trace-state trace-after"><span>Після</span><strong><code>energy</code> досі дорівнює <code>20</code>; термінал містить чотири логічні відповіді.</strong></div></div><ol class="trace-steps"><li class="trace-step"><span class="trace-step-number">1</span><div><strong>Рівність</strong><div class="trace-code"><code>energy == 20</code></div><p>Питання «20 дорівнює 20?» дає <code>True</code>.</p></div></li><li class="trace-step"><span class="trace-step-number">2</span><div><strong>Інша рівність</strong><div class="trace-code"><code>energy == 10</code></div><p>Питання «20 дорівнює 10?» дає <code>False</code>.</p></div></li><li class="trace-step"><span class="trace-step-number">3</span><div><strong>Більше</strong><div class="trace-code"><code>energy &gt; 5</code></div><p>Питання «20 більше 5?» дає <code>True</code>.</p></div></li><li class="trace-step"><span class="trace-step-number">4</span><div><strong>Нерівність</strong><div class="trace-code"><code>energy != 0</code></div><p>Питання «20 не дорівнює 0?» дає <code>True</code>.</p></div></li></ol><p class="trace-meaning"><strong>Що тут важливо:</strong> Порівняння обчислює нове логічне значення, але саме по собі не переприсвоює стан.</p></section>
 <p>Кожен вираз повертає <code>True</code> або <code>False</code>.</p>
 <ul><li><code>==</code> — дорівнює;</li><li><code>!=</code> — не дорівнює;</li><li><code>&gt;</code> — більше;</li><li><code>&lt;</code> — менше;</li><li><code>&gt;=</code> — більше або дорівнює;</li><li><code>&lt;=</code> — менше або дорівнює.</li></ul>
 <p>Один знак <code>=</code> <strong>записує</strong> значення. Два знаки <code>==</code> <strong>порівнюють</strong>. Це різні операції.</p>
@@ -199,6 +205,14 @@ hero = Hero(10)
 print(hero.attack(12))
 print(hero.attack(8))</code></pre></div>
 <p>Спочатку метод перевіряє небезпечний випадок і завершується. Лише після цього змінює стан. Такий ранній вихід часто робить метод пласким і читабельним.</p>
+<section class="callout callout-parsons"><div class="callout-label">Склади один взаємовиключний вибір</div><p>Розташуй гілки так, щоб Python перевіряв найнебезпечніший стан першим і друкував рівно одне повідомлення.</p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">else:
+    print(&quot;Енергії достатньо&quot;)
+if energy &lt;= 0:
+    print(&quot;Робот вимкнений&quot;)
+elif energy &lt; 10:
+    print(&quot;Потрібна зарядка&quot;)</code></pre></div>
+<p>Перевір з <code>energy = 0</code>, <code>5</code> і <code>20</code>.</p></section>
 <h2 id="typova-pomylka">Типова помилка<a class="heading-link" href="#typova-pomylka" aria-label="Посилання на розділ">#</a></h2>
 <h3 id="prysvoiennia-zamist-porivniannia">Присвоєння замість порівняння<a class="heading-link" href="#prysvoiennia-zamist-porivniannia" aria-label="Посилання на розділ">#</a></h3>
 <div class="code-block"><div class="code-toolbar"><span>assignment_condition.py</span><button class="copy-code" type="button">Копіювати</button></div><pre data-runnable="false"><code class="language-python">entered_code = &quot;1234&quot;
@@ -264,21 +278,25 @@ print(lesson.access_text(&quot;Богдан&quot;, True))
 lesson.free_places = 2
 print(lesson.access_text(&quot;Віра&quot;, False))</code></pre></div>
 <section class="quiz" data-answer="0"><div class="callout-label">Перевір себе</div><p class="quiz-question">Яка умова дозволяє атаку лише тоді, коли енергії не менше за вартість?</p><div class="quiz-options"><button type="button" class="quiz-option" data-index="0">if self.energy &gt;= cost:</button><button type="button" class="quiz-option" data-index="1">if self.energy = cost:</button><button type="button" class="quiz-option" data-index="2">if self.energy &lt; cost:</button></div><p class="quiz-feedback" hidden>Оператор &gt;= охоплює і більший запас, і точну рівність. Один знак = виконує присвоєння, а &lt; описує протилежний випадок.</p></section>
+<section class="callout callout-recall"><div class="callout-label">Згадай без підглядання</div><p>Без підглядання поясни різницю між <code>=</code>, <code>==</code> і <code>!=</code>. Потім назви випадок, коли потрібні пов’язані <code>if</code> / <code>elif</code> / <code>else</code>, а не два незалежні <code>if</code>.</p></section>
 <h2 id="samostiyna-robota">Самостійна робота<a class="heading-link" href="#samostiyna-robota" aria-label="Посилання на розділ">#</a></h2>
 <section class="callout callout-tasks"><div class="callout-label">Самостійна робота</div><ul><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="04-rishennia-i-lohichni-vyrazy-task-1"><span>Додай <code>SmartDoor</code> метод <code>close()</code>. Якщо двері вже зачинені, він має повернути окреме повідомлення й не змінювати інші атрибути.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="04-rishennia-i-lohichni-vyrazy-task-2"><span>Створи клас <code>Player</code> з очками. Метод <code>rank_text()</code> має повертати один із чотирьох рангів за діапазонами, які ти визначиш сам. Перевір точні межі.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="04-rishennia-i-lohichni-vyrazy-task-3"><span>Створи клас <code>Lamp</code> з атрибутами <code>is_on</code> і <code>battery</code>. Дозволяй увімкнення лише за умови, що лампа вимкнена <strong>і</strong> батарея більша за нуль.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="04-rishennia-i-lohichni-vyrazy-task-4"><span>Напиши метод <code>can_join(age, has_permission)</code>, який дозволяє участь повнолітній людині або дитині з дозволом. Перевір щонайменше чотири комбінації.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="04-rishennia-i-lohichni-vyrazy-task-5"><span>Навмисно постав перевірку широкого діапазону перед вузьким у ланцюжку <code>if</code>/<code>elif</code>. Побач неправильну категорію, а потім виправ порядок.</span></label></li><li class="task-item"><label><input class="task-check" type="checkbox" data-task-id="04-rishennia-i-lohichni-vyrazy-task-6"><span>Створи метод, який спершу змінює стан, а потім виявляє заборонений випадок. Перероби його так, щоб перевірка відбувалася до зміни.</span></label></li></ul></section>
 <section class="callout callout-history"><div class="callout-label">Коротка історична пауза</div><p>Слово <code>elif</code> — коротка форма англійського «else if», тобто «інакше, якщо». Python навмисно має окреме коротке ключове слово: менше зайвих вкладень — легше побачити всі взаємовиключні варіанти.</p></section>
 <h2 id="pidsumok">Підсумок<a class="heading-link" href="#pidsumok" aria-label="Посилання на розділ">#</a></h2>
 <ul><li>Порівняння повертає <code>True</code> або <code>False</code>; <code>=</code> присвоює, а <code>==</code> порівнює.</li><li><code>if</code> виконує вкладений блок лише за істинної умови.</li><li><code>elif</code> додає наступну умову, <code>else</code> ловить усі решта випадків.</li><li>Пов’язані гілки обирають перший придатний шлях; окремі <code>if</code> можуть виконатися разом.</li><li><code>and</code>, <code>or</code> і <code>not</code> поєднують або заперечують логічні умови.</li><li>Межі треба перевіряти точним значенням, значенням нижче та значенням вище.</li><li>Ранній <code>return</code> зупиняє заборонений сценарій до зміни стану.</li><li>Логічний атрибут можна перевіряти без <code>== True</code>.</li></ul></div>
   <section class="completion-card">
-    <div><p class="eyebrow">Твій прогрес</p><h2>Розділ опрацьовано?</h2><p>Позначай тільки після запуску прикладу й самостійної зміни.</p></div>
+    <div><p class="eyebrow">Твій прогрес</p><h2>Розділ опрацьовано?</h2><p>Позначай після запуску, пояснення без підглядання й самостійної зміни.</p></div>
     <button class="button primary complete-chapter" type="button" data-chapter-id="04-rishennia-i-lohichni-vyrazy">Позначити завершеним</button>
   </section>
   <nav class="chapter-pager" aria-label="Сусідні розділи"><a class="chapter-pager-link previous" href="03-metody-parametry-i-povernennia.html"><span>← Назад</span><strong>Методи: параметри, аргументи й `return`</strong></a><a class="chapter-pager-link next" href="05-spysky-i-kortezhi.html"><span>Далі →</span><strong>Списки й кортежі: впорядковані колекції</strong></a></nav>
 </article>
 
       <footer class="site-footer">
-        <p>Python через об’єкти · українська практична довідка · 2026</p>
-        <a href="https://github.com/ArTeGaS/python-oop-handbook-ua">Відкрити репозиторій</a>
+        <p>Python через об’єкти · українська практична довідка · Перше офіційне видання · 2026</p>
+        <div class="footer-links">
+          <a href="classic/index.html">Класичне видання</a>
+          <a href="https://github.com/ArTeGaS/python-oop-handbook-ua">Відкрити репозиторій</a>
+        </div>
       </footer>
     </main>
   </div>

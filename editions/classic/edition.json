@@ -1,0 +1,10 @@
+{
+  "id": "classic",
+  "label": "Класичне видання",
+  "status": "frozen",
+  "source_commit": "e9afb5b2ba70ceca6517ed217709059946c8f19c",
+  "chapter_count": 18,
+  "pdf_page_count": 204,
+  "main_entry": "site/index.html",
+  "pdf_entry": "site/downloads/python-cherez-obiekty.pdf"
+}
