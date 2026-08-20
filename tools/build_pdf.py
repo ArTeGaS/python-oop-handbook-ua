@@ -435,6 +435,7 @@ def blocks_to_flowables(
 ) -> list[Flowable]:
     flowables: list[Flowable] = []
     heading_serial = 0
+    final_summary_start: int | None = None
     block_list = list(blocks)
     for block_index, block in enumerate(block_list):
         next_block = block_list[block_index + 1] if block_index + 1 < len(block_list) else None
@@ -451,6 +452,8 @@ def blocks_to_flowables(
                 ):
                     minimum_following_space = 110
                 flowables.append(CondPageBreak(minimum_following_space * mm))
+                if level == 2 and block.data["text"].strip().casefold() == "підсумок":
+                    final_summary_start = len(flowables)
             paragraph = Paragraph(render_inline_pdf(block.data["text"]), style)
             if level >= 2:
                 paragraph.keepWithNext = True
@@ -579,6 +582,9 @@ def blocks_to_flowables(
                 if directive == "predict":
                     callout.keepWithNext = True
                 flowables.append(callout)
+    if final_summary_start is not None and final_summary_start < len(flowables):
+        final_summary = flowables[final_summary_start:]
+        flowables[final_summary_start:] = [KeepTogether(final_summary)]
     return flowables
 
 

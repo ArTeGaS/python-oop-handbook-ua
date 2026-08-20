@@ -12,8 +12,8 @@
     "Класичне видання доступне у docs/classic і збігається з архівом",
     "JavaScript пройшов node --check",
     "PDF читається: 225 сторінок, копії ідентичні",
-    "тести збірки: 18 passed in 1.10s",
-    "навчальний pytest-набір: 7 passed in 0.12s"
+    "тести збірки: 19 passed in 1.21s",
+    "навчальний pytest-набір: 7 passed in 0.10s"
   ],
   "metrics": {
     "runnable_code_blocks": 133,

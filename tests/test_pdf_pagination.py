@@ -36,8 +36,31 @@ def test_section_heading_reserves_room_for_following_content() -> None:
     )
 
     assert isinstance(flowables[0], CondPageBreak)
-    assert isinstance(flowables[1], Paragraph)
-    assert flowables[1].getKeepWithNext()
+    assert isinstance(flowables[1], KeepTogether)
+    assert isinstance(flowables[1]._content[0], Paragraph)
+    assert flowables[1]._content[0].getKeepWithNext()
+
+
+def test_final_summary_stays_together_with_list_and_references() -> None:
+    flowables = blocks_to_flowables(
+        [
+            Block("heading", {"level": 2, "text": "Підсумок"}),
+            Block(
+                "list",
+                {
+                    "ordered": False,
+                    "items": ["Перший висновок.", "Другий висновок."],
+                },
+            ),
+            Block("paragraph", {"text": "Офіційні орієнтири: Python."}),
+        ],
+        make_styles(),
+        chapter(),
+    )
+
+    assert isinstance(flowables[0], CondPageBreak)
+    assert isinstance(flowables[1], KeepTogether)
+    assert len(flowables[1]._content) == 3
 
 
 def test_lead_in_paragraph_stays_with_code_block() -> None:
